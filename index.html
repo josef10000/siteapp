@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HubSymples | Soluções Inteligentes para Todos os Nichos</title>
+    <meta name="description" content="A HubSymples oferece apps, cursos, aulões e ferramentas práticas para qualquer nicho. Do artesanato aos negócios, simplificamos sua jornada.">
+    
+    <!-- SEO / Open Graph -->
+    <meta property="og:title" content="HubSymples | Soluções em Todos os Nichos">
+    <meta property="og:description" content="Apps, aulões, cursos e ferramentas práticas feitas para resolver problemas em qualquer área de atuação.">
+    <meta property="og:type" content="website">
+    <meta name="robots" content="index, follow">
+
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+
+    <style>
+        /* DESIGN TOKENS */
+        :root {
+            --bg-body: #0a0c10;
+            --bg-card: #161b22;
+            --bg-nav: rgba(10, 12, 16, 0.95);
+            --primary: #3b82f6; 
+            --accent: #10b981; 
+            --text-main: #f0f6fc;
+            --text-dim: #8b949e;
+            --border: #30363d;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --container: 1100px;
+        }
+
+        /* RESET & BASE */
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        body { font-family: 'Inter', -apple-system, sans-serif; background-color: var(--bg-body); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
+        h1, h2, h3 { line-height: 1.2; font-weight: 700; color: #fff; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        section { padding: 100px 20px; max-width: var(--container); margin: 0 auto; }
+
+        /* BUTTONS */
+        .btn { display: inline-flex; align-items: center; justify-content: center; padding: 14px 28px; border-radius: 8px; font-weight: 600; cursor: pointer; transition: var(--transition); font-size: 1rem; border: none; gap: 10px; }
+        .btn-primary { background: linear-gradient(135deg, #3b82f6, #2563eb); color: white; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4); }
+        .btn-outline { background: transparent; color: var(--text-main); border: 1px solid var(--border); }
+        .btn-outline:hover { background: var(--border); }
+
+        /* HEADER */
+        header { position: fixed; top: 0; width: 100%; z-index: 1000; background: var(--bg-nav); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+        .nav-container { max-width: var(--container); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 12px 20px; }
+        .logo-container { display: flex; align-items: center; gap: 12px; }
+        .logo-img { height: 42px; width: auto; object-fit: contain; }
+        .logo-text { font-size: 1.4rem; font-weight: 800; letter-spacing: -0.5px; background: linear-gradient(to right, #3b82f6, #10b981); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .nav-menu { display: flex; gap: 25px; align-items: center; }
+        .nav-link { font-size: 0.9rem; color: var(--text-dim); transition: var(--transition); font-weight: 500; }
+        .nav-link:hover, .nav-link.active { color: var(--primary); }
+        .menu-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+        .menu-toggle span { width: 25px; height: 3px; background: var(--text-main); border-radius: 2px; }
+
+        /* HERO */
+        .hero { padding-top: 180px; padding-bottom: 120px; text-align: center; }
+        .hero h1 { font-size: clamp(2.2rem, 5vw, 3.8rem); margin-bottom: 24px; max-width: 950px; margin-inline: auto; }
+        .hero p { font-size: 1.2rem; color: var(--text-dim); max-width: 750px; margin: 0 auto 40px; }
+        .hero-badges { display: flex; gap: 20px; justify-content: center; font-size: 0.85rem; color: var(--text-dim); font-weight: 500; text-transform: uppercase; letter-spacing: 1px; flex-wrap: wrap; }
+        .badge-item { display: flex; align-items: center; gap: 6px; }
+        .badge-item::before { content: "•"; color: var(--primary); font-size: 1.5rem; }
+
+        /* GRID & CARDS */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .section-tag { color: var(--primary); font-weight: 600; text-transform: uppercase; font-size: 0.8rem; margin-bottom: 15px; display: block; letter-spacing: 2px; }
+        .value-card { background: var(--bg-card); padding: 20px; border-radius: 12px; border: 1px solid var(--border); text-align: center; transition: var(--transition); }
+        .cards-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 50px; }
+        .card { background: var(--bg-card); padding: 35px; border-radius: 16px; border: 1px solid var(--border); transition: var(--transition); }
+        .card:hover { border-color: var(--primary); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        .card-icon { width: 48px; height: 48px; background: rgba(59, 130, 246, 0.1); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--primary); margin-bottom: 20px; }
+
+        /* FAQ */
+        .faq-container { max-width: 800px; margin: 50px auto 0; }
+        .faq-item { border-bottom: 1px solid var(--border); }
+        .faq-question { width: 100%; padding: 24px 0; display: flex; justify-content: space-between; align-items: center; background: none; border: none; color: var(--text-main); font-size: 1.1rem; font-weight: 600; text-align: left; cursor: pointer; }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; color: var(--text-dim); }
+        .faq-answer p { padding-bottom: 24px; }
+        .faq-item.active .faq-answer { max-height: 250px; }
+
+        /* CONTACT & FOOTER */
+        .contato-box { background: linear-gradient(135deg, var(--bg-card), #1c2128); padding: 80px 40px; border-radius: 32px; text-align: center; border: 1px solid var(--border); }
+        .email-display { margin-top: 30px; color: var(--text-dim); font-family: monospace; background: #0d1117; padding: 12px 24px; border-radius: 8px; display: inline-block; border: 1px solid var(--border); }
+        footer { border-top: 1px solid var(--border); padding: 80px 20px; text-align: center; }
+        .footer-logo { margin-bottom: 30px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+        .whatsapp-float { position: fixed; bottom: 30px; right: 30px; background: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3); z-index: 999; transition: var(--transition); }
+
+        @media (max-width: 768px) {
+            .nav-menu { position: fixed; top: 65px; left: -100%; width: 100%; height: calc(100vh - 65px); background: var(--bg-body); flex-direction: column; padding: 40px; transition: 0.4s; align-items: center; justify-content: center; gap: 30px; }
+            .nav-menu.open { left: 0; }
+            .menu-toggle { display: flex; }
+            .grid-2 { grid-template-columns: 1fr; gap: 40px; }
+            .header-actions .btn { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <script>
+        // TROQUE AQUI O LINK DO WHATSAPP
+        const WHATSAPP_LINK = "https://api.whatsapp.com/send?phone=5511952924208&text=Olá!%20Vim%20pelo%20site%20da%20HubSymples."; 
+    </script>
+
+    <header>
+        <nav class="nav-container">
+            <a href="#" class="logo-container">
+                <img src="logo oficial.png" alt="HubSymples Logo" class="logo-img" onerror="this.style.display='none'">
+                <span class="logo-text">HubSymples</span>
+            </a>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#sobre" class="nav-link">Sobre</a></li>
+                <li><a href="#oquefazemos" class="nav-link">O que fazemos</a></li>
+                <li><a href="#comofunciona" class="nav-link">Como funciona</a></li>
+                <li><a href="#confianca" class="nav-link">Confiança</a></li>
+                <li><a href="#faq" class="nav-link">FAQ</a></li>
+                <li><a href="#contato" class="nav-link">Contato</a></li>
+            </ul>
+
+            <div class="header-actions" style="display: flex; gap: 15px; align-items: center;">
+                <button onclick="window.open(WHATSAPP_LINK)" class="btn btn-primary" style="padding: 10px 20px; font-size: 0.85rem;">WhatsApp</button>
+                <div class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Soluções inteligentes para todos os nichos e objetivos.</h1>
+            <p>Seja no artesanato, nos negócios ou na vida pessoal: entregamos apps, cursos, aulões e ferramentas práticas para você aprender e executar em qualquer área.</p>
+            <div class="hero-btns">
+                <button onclick="window.open(WHATSAPP_LINK)" class="btn btn-primary">Falar no WhatsApp</button>
+                <a href="#sobre" class="btn btn-outline">Explorar Soluções</a>
+            </div>
+            <div class="hero-badges">
+                <span class="badge-item">Apps Úteis</span>
+                <span class="badge-item">Cursos Práticos</span>
+                <span class="badge-item">Todos os Nichos</span>
+                <span class="badge-item">Aulões Objetivos</span>
+            </div>
+        </section>
+
+        <section id="sobre" class="grid-2">
+            <div>
+                <span class="section-tag">Nossa Visão</span>
+                <h2>Presença em todos os nichos</h2>
+                <p style="margin-top: 20px; font-size: 1.1rem;">A HubSymples é uma central multinicho. Atendemos artesãos, empreendedores e pessoas que buscam organização pessoal com a mesma excelência.</p>
+                <p style="margin-top: 15px; color: var(--text-dim);">Criamos um ecossistema onde a simplicidade é o foco. Se existe algo a ser aprendido ou automatizado, nós temos o app ou o curso certo para si.</p>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                <div class="value-card"><h4>Multinicho</h4></div>
+                <div class="value-card"><h4>Clareza</h4></div>
+                <div class="value-card"><h4>Resultados</h4></div>
+                <div class="value-card"><h4>Praticidade</h4></div>
+                <div class="value-card"><h4>Transparência</h4></div>
+                <div class="value-card"><h4>Inovação</h4></div>
+            </div>
+        </section>
+
+        <section id="oquefazemos">
+            <div style="text-align: center; margin-bottom: 50px;">
+                <span class="section-tag">Formatos</span>
+                <h2>Como ajudamos você</h2>
+            </div>
+            <div class="cards-container">
+                <div class="card">
+                    <div class="card-icon"><svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg></div>
+                    <h3>Aplicativos Úteis</h3>
+                    <p>Micro-softwares web focados em funções específicas para facilitar tarefas em qualquer nicho.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><path d="M15.6 11.6L22 7v10l-6.4-4.6V7z"></path><rect x="2" y="5" width="14" height="14" rx="2" ry="2"></rect></svg></div>
+                    <h3>Aulões & Mini Aulas</h3>
+                    <p>Aprendizado intensivo para aprender uma técnica (como artesanato ou marketing) em poucas horas.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg></div>
+                    <h3>Cursos Práticos</h3>
+                    <p>Treinamentos estruturados passo a passo para quem busca domínio total sobre um tema.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg></div>
+                    <h3>Templates & Planilhas</h3>
+                    <p>Recursos prontos para organizar a sua produção artesanal, finanças ou gestão de tempo.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq">
+            <div style="text-align: center; margin-bottom: 30px;"><span class="section-tag">Dúvidas</span><h2>Perguntas Frequentes</h2></div>
+            <div class="faq-container">
+                <div class="faq-item"><button class="faq-question">A HubSymples serve para o meu nicho? <span class="faq-icon">+</span></button><div class="faq-answer"><p>Sim! Nossas soluções são multinicho, atendendo desde o artesanato até áreas de tecnologia e finanças.</p></div></div>
+                <div class="faq-item"><button class="faq-question">O que são os aulões? <span class="faq-icon">+</span></button><div class="faq-answer"><p>São sessões intensivas focadas numa habilidade específica para que você possa aplicar o conhecimento no mesmo dia.</p></div></div>
+                <div class="faq-item"><button class="faq-question">Como entro em contato? <span class="faq-icon">+</span></button><div class="faq-answer"><p>O nosso canal central é o WhatsApp, onde fornecemos suporte humano para orientar a sua escolha.</p></div></div>
+            </div>
+        </section>
+
+        <section id="contato">
+            <div class="contato-box">
+                <h2>Simplifique a sua jornada agora.</h2>
+                <p style="color: var(--text-dim); margin-bottom: 40px; font-size: 1.1rem;">Não importa o seu nicho, a HubSymples tem a ferramenta certa para si.</p>
+                <button onclick="window.open(WHATSAPP_LINK)" class="btn btn-primary" style="padding: 22px 50px; font-size: 1.2rem;">Falar com a Equipe</button>
+                <div class="email-display">contato@hubsymples.com.br</div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-logo">
+            <img src="logo oficial.png" alt="HubSymples Logo" style="height: 50px;" onerror="this.style.display='none'">
+            <div class="logo-text">HubSymples</div>
+        </div>
+        <p class="footer-text">© <script>document.write(new Date().getFullYear())</script> HubSymples. Soluções para todos os nichos.</p>
+        <p class="footer-motto">Simplicidade é estratégia. Resultado é consequência.</p>
+    </footer>
+
+    <a href="#" onclick="window.open(WHATSAPP_LINK)" class="whatsapp-float" aria-label="WhatsApp">
+        <svg style="width: 32px; height: 32px;" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.72.94 3.659 1.437 5.634 1.437h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        menuToggle.addEventListener('click', () => navMenu.classList.toggle('open'));
+        document.querySelectorAll('.nav-link').forEach(link => link.addEventListener('click', () => navMenu.classList.remove('open')));
+
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const item = button.parentElement;
+                const isActive = item.classList.contains('active');
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+                if (!isActive) item.classList.add('active');
+            });
+        });
+
+        window.addEventListener('scroll', () => {
+            let current = "";
+            document.querySelectorAll("section").forEach((section) => {
+                if (pageYOffset >= section.offsetTop - 150) current = section.getAttribute("id");
+            });
+            document.querySelectorAll(".nav-link").forEach((link) => {
+                link.classList.remove("active");
+                if (link.getAttribute("href").includes(current)) link.classList.add("active");
+            });
+        });
+    </script>
+</body>
+</html>
