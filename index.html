@@ -4,13 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HubSymples | Domine o Google Meu Negócio</title>
-    <meta name="description" content="Especialistas em Google Meu Negócio. Coloque sua empresa no topo das buscas locais, atraia mais clientes e venda todos os dias.">
+    <meta name="description" content="Especialistas em Google Meu Negócio. Coloque o seu negócio no topo das buscas locais, atraia mais clientes e venda todos os dias.">
     
     <!-- SEO / Open Graph -->
     <meta property="og:title" content="HubSymples | Especialistas em Google Meu Negócio">
-    <meta property="og:description" content="Otimização profissional do seu perfil no Google. Domine sua região e seja a primeira escolha dos seus clientes.">
+    <meta property="og:description" content="Otimização profissional do seu perfil no Google. Domine a sua região e seja a primeira escolha dos seus clientes.">
     <meta property="og:type" content="website">
     <meta name="robots" content="index, follow">
+
+    <!-- SEO TÉCNICO (Schema Markup JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "HubSymples",
+      "description": "Especialistas em otimização de Perfil de Empresa no Google (Google Meu Negócio). Ajudamos profissionais e empresas locais a dominar as pesquisas orgânicas e atrair mais clientes.",
+      "image": "logo_oficial.png",
+      "telephone": "+5511952924208",
+      "url": "https://hubsymples.com.br",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "BR"
+      },
+      "priceRange": "$$",
+      "serviceArea": {
+        "@type": "GeoCircle",
+        "geoMidpoint": {
+            "@type": "GeoCoordinates",
+            "latitude": -23.5505,
+            "longitude": -46.6333
+        },
+        "geoRadius": "50000"
+      }
+    }
+    </script>
 
     <!-- Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📍</text></svg>">
@@ -26,11 +53,11 @@
             --bg-nav: rgba(10, 12, 16, 0.95);
             --primary: #3b82f6; 
             --accent: #10b981; 
-            --google-blue: #1a73e8; /* Azul Oficial do Google Maps */
+            --google-blue: #1a73e8; 
             --google-red: #EA4335;
             --google-yellow: #fbbc04;
             --google-green: #34A853;
-            --google-purple: #a855f7; /* Cor Roxa Solicitada */
+            --google-purple: #a855f7; 
             --text-main: #f0f6fc;
             --text-dim: #8b949e;
             --border: #30363d;
@@ -45,11 +72,11 @@
         a { text-decoration: none; color: inherit; }
         ul { list-style: none; }
         
-        /* MOBILE FIRST PADDING (Fluidos) */
+        /* MOBILE FIRST PADDING */
         section { padding: clamp(60px, 10vw, 100px) 20px; max-width: var(--container); margin: 0 auto; }
 
         /* BUTTONS */
-        .btn { display: inline-flex; align-items: center; justify-content: center; padding: 14px 28px; border-radius: 8px; font-weight: 600; cursor: pointer; transition: var(--transition); font-size: 1rem; border: none; gap: 10px; }
+        .btn { display: inline-flex; align-items: center; justify-content: center; padding: 14px 28px; border-radius: 8px; font-weight: 600; cursor: pointer; transition: var(--transition); font-size: 1rem; border: none; gap: 10px; text-align: center; }
         .btn-primary { background: linear-gradient(135deg, var(--google-blue), #2563eb); color: white; }
         .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(26, 115, 232, 0.4); }
         .btn-outline { background: transparent; color: var(--text-main); border: 1px solid var(--border); }
@@ -77,7 +104,7 @@
         .badge-item::before { content: "✓"; color: var(--google-green); font-size: 1.2rem; font-weight: bold; }
 
         /* GRID & CARDS */
-        .grid-2 { display: grid; grid-template-columns: 1fr; gap: 40px; align-items: center; } /* Mobile first grid */
+        .grid-2 { display: grid; grid-template-columns: 1fr; gap: 40px; align-items: center; } 
         .section-tag { color: var(--google-blue); font-weight: 600; text-transform: uppercase; font-size: 0.8rem; margin-bottom: 15px; display: block; letter-spacing: 2px; }
         .value-card { background: var(--bg-card); padding: 20px; border-radius: 12px; border: 1px solid var(--border); text-align: center; transition: var(--transition); display: flex; flex-direction: column; align-items: center; gap: 10px;}
         .value-card:hover { border-color: var(--google-blue); }
@@ -93,6 +120,22 @@
         .highlight-box ul { margin-top: 20px; display: flex; flex-direction: column; gap: 15px; }
         .highlight-box li { display: flex; align-items: center; gap: 10px; font-size: 1.1rem; }
         .highlight-box li svg { color: var(--google-green); flex-shrink: 0; }
+
+        /* ANTES E DEPOIS - MOCKUPS COM CELULARES (Layout Fixo e Responsivo) */
+        .comparison-phones { display: flex; flex-wrap: wrap; gap: 40px; justify-content: center; margin-top: 40px; align-items: center; }
+        .phone-wrapper { display: flex; flex-direction: column; align-items: center; gap: 20px; width: 100%; max-width: 320px; flex: 1 1 300px; }
+        .phone-label { font-weight: 800; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; padding: 10px 25px; border-radius: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); text-align: center; }
+        .label-bad { background: var(--google-red); color: white; border: 2px solid #ff6b6b; }
+        .label-good { background: var(--google-green); color: white; border: 2px solid #5ce67a; }
+        .comparison-vs { font-size: 2.5rem; font-weight: 900; color: var(--text-dim); }
+
+        /* IMPLEMENTAÇÃO: ESTUDO DE CASO */
+        .case-study-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: 24px; padding: clamp(30px, 6vw, 50px); margin-top: 40px; position: relative; overflow: hidden; }
+        .case-study-box::before { content: ''; position: absolute; top: 0; left: 0; width: 6px; height: 100%; background: linear-gradient(to bottom, var(--google-blue), var(--google-purple)); }
+        .case-grid { display: grid; grid-template-columns: 1fr; gap: 30px; margin-top: 30px; }
+        .case-step { background: rgba(255,255,255,0.03); padding: 25px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.05); }
+        .case-step-title { display: flex; align-items: center; gap: 10px; font-size: 1.1rem; font-weight: bold; margin-bottom: 15px; color: #fff; }
+        .case-icon-wrapper { width: 35px; height: 35px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
 
         /* TESTIMONIALS */
         .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 50px; }
@@ -121,58 +164,38 @@
         .whatsapp-float { position: fixed; bottom: 30px; right: 30px; background: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3); z-index: 999; transition: var(--transition); }
         .whatsapp-float:hover { transform: scale(1.1); }
 
-        /* MOCKUP DO GOOGLE E GARANTIA (OTIMIZADOS) */
+        /* MOCKUP DO GOOGLE: ESTRUTURA FIRME E RESPONSIVA */
         .hero-wrapper { display: grid; grid-template-columns: 1fr; gap: 50px; text-align: center; align-items: center; max-width: 1200px; margin: 0 auto; }
         .hero-content { max-width: 650px; margin: 0 auto; }
         .hero-btns { justify-content: center; }
         .hero-badges { justify-content: center; }
         
-        .phone-mockup { width: 320px; height: 620px; background: #f1f3f4; border-radius: 40px; border: 14px solid #161b22; position: relative; box-shadow: 0 25px 50px -12px rgba(26, 115, 232, 0.3); overflow: hidden; justify-self: center; transform: scale(0.9); transform-origin: top center; }
-        .phone-mockup::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 140px; height: 25px; background: #161b22; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; z-index: 10; }
+        .phone-mockup { width: 100%; max-width: 300px; height: 580px; background: #f1f3f4; border-radius: 35px; border: 12px solid #161b22; position: relative; box-shadow: 0 25px 50px -12px rgba(26, 115, 232, 0.3); overflow: hidden; margin: 0 auto; display: flex; flex-direction: column; }
+        .phone-mockup::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 120px; height: 20px; background: #161b22; border-bottom-left-radius: 12px; border-bottom-right-radius: 12px; z-index: 10; }
         
         /* Estilos do GMB Fake Realista */
-        .gmb-search { background: #fff; padding: 45px 15px 10px; border-bottom: 1px solid #e0e0e0; display: flex; justify-content: center; }
-        .gmb-search-bar { background: #fff; border: 1px solid #dfe1e5; border-radius: 24px; padding: 10px 20px; width: 100%; box-shadow: 0 1px 6px rgba(32,33,36,.28); display: flex; align-items: center; gap: 10px; font-size: 14px; color: #3c4043; font-family: sans-serif; }
-        .gmb-map { height: 120px; background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="120" viewBox="0 0 300 120"><rect width="300" height="120" fill="%23e8eaed"/><path d="M0 40 Q 150 80 300 20 L 300 120 L 0 120 Z" fill="%23d8ebc1"/><path d="M50 0 L 100 120" stroke="%23fff" stroke-width="6"/><path d="M0 80 L 300 50" stroke="%23fbbc04" stroke-width="8"/></svg>') center/cover; position: relative;}
+        .gmb-search { background: #fff; padding: 40px 15px 10px; border-bottom: 1px solid #e0e0e0; display: flex; justify-content: center; flex-shrink: 0; }
+        .gmb-search-bar { background: #fff; border: 1px solid #dfe1e5; border-radius: 24px; padding: 8px 15px; width: 100%; box-shadow: 0 1px 6px rgba(32,33,36,.28); display: flex; align-items: center; gap: 10px; font-size: 13px; color: #3c4043; font-family: sans-serif; }
+        .gmb-map { height: 110px; flex-shrink: 0; background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="120" viewBox="0 0 300 120"><rect width="300" height="120" fill="%23e8eaed"/><path d="M0 40 Q 150 80 300 20 L 300 120 L 0 120 Z" fill="%23d8ebc1"/><path d="M50 0 L 100 120" stroke="%23fff" stroke-width="6"/><path d="M0 80 L 300 50" stroke="%23fbbc04" stroke-width="8"/></svg>') center/cover; position: relative;}
         .gmb-pin { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 24px; height: 34px; background: var(--google-red); border-radius: 50% 50% 50% 0; transform: rotate(-45deg); display: flex; align-items: center; justify-content: center; box-shadow: 2px 2px 4px rgba(0,0,0,0.3); margin-top:-10px; margin-left:-10px;}
         .gmb-pin::after { content: ''; width: 10px; height: 10px; background: #fff; border-radius: 50%; transform: rotate(45deg); }
-        .gmb-card { background: #fff; border-radius: 16px; margin: -20px 10px 0; padding: 20px 15px; position: relative; z-index: 2; box-shadow: 0 4px 6px rgba(0,0,0,0.1); font-family: sans-serif; text-align: left;}
-        .gmb-title { font-size: 20px; font-weight: 500; color: #202124; margin-bottom: 4px; line-height: 1.2; }
-        .gmb-rating { display: flex; align-items: center; gap: 5px; font-size: 14px; color: #70757a; margin-bottom: 8px;}
-        .gmb-stars { color: var(--google-yellow); font-size: 14px; letter-spacing: 1px;}
-        .gmb-category { font-size: 14px; color: #70757a; margin-bottom: 15px; }
-        .gmb-actions { display: flex; justify-content: space-around; margin-bottom: 20px; border-bottom: 1px solid #ebebeb; padding-bottom: 15px;}
-        .gmb-action-item { display: flex; flex-direction: column; align-items: center; gap: 8px; font-size: 12px; color: var(--google-blue); font-weight: 500; cursor: pointer;}
-        .gmb-action-icon { width: 40px; height: 40px; border-radius: 50%; background: var(--google-blue); color: white; display: flex; align-items: center; justify-content: center; }
+        .gmb-card { background: #fff; border-radius: 16px; margin: -20px 10px 10px; padding: 15px; position: relative; z-index: 2; box-shadow: 0 4px 6px rgba(0,0,0,0.1); font-family: sans-serif; text-align: left; overflow-y: auto; flex-grow: 1; }
+        .gmb-title { font-size: 18px; font-weight: 500; color: #202124; margin-bottom: 4px; line-height: 1.2; }
+        .gmb-rating { display: flex; align-items: center; gap: 5px; font-size: 13px; color: #70757a; margin-bottom: 8px;}
+        .gmb-stars { color: var(--google-yellow); font-size: 13px; letter-spacing: 1px;}
+        .gmb-category { font-size: 12px; color: #70757a; margin-bottom: 15px; }
+        .gmb-actions { display: flex; justify-content: space-around; margin-bottom: 15px; border-bottom: 1px solid #ebebeb; padding-bottom: 15px;}
+        .gmb-action-item { display: flex; flex-direction: column; align-items: center; gap: 6px; font-size: 11px; color: var(--google-blue); font-weight: 500; cursor: pointer; text-align: center; }
+        .gmb-action-icon { width: 36px; height: 36px; border-radius: 50%; background: var(--google-blue); color: white; display: flex; align-items: center; justify-content: center; }
         .gmb-action-icon.outline { background: white; color: var(--google-blue); border: 1px solid #dadce0; }
-        .gmb-tabs { display: flex; gap: 15px; font-size: 14px; color: #5f6368; font-weight: 500; overflow-x: hidden; white-space: nowrap; border-bottom: 1px solid #ebebeb;}
-        .gmb-tab.active { color: var(--google-blue); border-bottom: 3px solid var(--google-blue); padding-bottom: 10px; }
+        .gmb-tabs { display: flex; gap: 15px; font-size: 13px; color: #5f6368; font-weight: 500; overflow-x: auto; white-space: nowrap; border-bottom: 1px solid #ebebeb; padding-bottom: 8px; -webkit-overflow-scrolling: touch; }
+        .gmb-tab.active { color: var(--google-blue); border-bottom: 3px solid var(--google-blue); }
         
-        .app-mockup { background: var(--bg-body); border: 1px solid var(--border); border-radius: 16px; padding: 25px; box-shadow: 0 20px 40px rgba(0,0,0,0.4); display: flex; flex-direction: column; gap: 15px; width: 100%; }
+        .app-mockup { background: var(--bg-body); border: 1px solid var(--border); border-radius: 16px; padding: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.4); display: flex; flex-direction: column; gap: 15px; width: 100%; overflow: hidden; word-wrap: break-word; }
         
         /* GARANTIA GIGANTE */
-        .guarantee-badge-large { 
-            background: linear-gradient(135deg, rgba(52, 168, 83, 0.15), rgba(52, 168, 83, 0.05)); 
-            border: 2px solid var(--google-green); 
-            padding: clamp(25px, 5vw, 40px); 
-            border-radius: 20px; 
-            text-align: left; 
-            display: flex; 
-            align-items: center; 
-            gap: 25px; 
-            max-width: 800px; 
-            margin: 40px auto 0; 
-            box-shadow: 0 15px 35px rgba(52, 168, 83, 0.15); 
-            flex-direction: column;
-        }
-        .guarantee-icon-wrapper {
-            background: var(--google-green); 
-            width: 70px; height: 70px; 
-            border-radius: 50%; 
-            display: flex; align-items: center; justify-content: center; 
-            flex-shrink: 0;
-            box-shadow: 0 8px 20px rgba(52, 168, 83, 0.4);
-        }
+        .guarantee-badge-large { background: linear-gradient(135deg, rgba(52, 168, 83, 0.15), rgba(52, 168, 83, 0.05)); border: 2px solid var(--google-green); padding: clamp(20px, 5vw, 40px); border-radius: 20px; text-align: left; display: flex; align-items: center; gap: 20px; max-width: 800px; margin: 40px auto 0; box-shadow: 0 15px 35px rgba(52, 168, 83, 0.15); flex-direction: column; }
+        .guarantee-icon-wrapper { background: var(--google-green); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 8px 20px rgba(52, 168, 83, 0.4); }
         .guarantee-title { color: var(--google-green); font-size: clamp(1.4rem, 4vw, 1.8rem); margin-bottom: 10px; font-weight: 800; }
         .guarantee-text { font-size: clamp(1rem, 3vw, 1.15rem); color: var(--text-main); line-height: 1.6; }
 
@@ -182,6 +205,7 @@
         @media (min-width: 600px) {
             .guarantee-badge-large { flex-direction: row; }
             .exclusivity-alert { flex-direction: row; }
+            .case-grid { grid-template-columns: repeat(3, 1fr); }
         }
 
         @media (min-width: 992px) {
@@ -190,7 +214,7 @@
             .hero-content { margin: 0; }
             .hero-btns { justify-content: flex-start; }
             .hero-badges { justify-content: flex-start; }
-            .phone-mockup { transform: scale(1); justify-self: flex-end;}
+            .phone-mockup { margin-right: 0; margin-left: auto; }
             .hero h1 { margin-inline: 0; }
             .hero p { margin-inline: 0; }
         }
@@ -206,7 +230,7 @@
 <body>
 
     <script>
-        // TROQUE AQUI O LINK DO WHATSAPP
+        // O LINK DO WHATSAPP DA SUA AGÊNCIA
         const WHATSAPP_LINK = "https://api.whatsapp.com/send?phone=5511952924208&text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20a%20otimização%20no%20Google%20Meu%20Negócio."; 
     </script>
 
@@ -219,10 +243,9 @@
             
             <ul class="nav-menu" id="navMenu">
                 <li><a href="#importancia" class="nav-link">Por que o Google?</a></li>
-                <li><a href="#servicos" class="nav-link">Nossos Serviços</a></li>
-                <li><a href="#beneficios" class="nav-link">Benefícios</a></li>
+                <li><a href="#servicos" class="nav-link">Serviços</a></li>
+                <li><a href="#transformacao" class="nav-link">Resultados</a></li>
                 <li><a href="#bonus" class="nav-link" style="color: var(--google-green); font-weight: 800;">App Exclusivo</a></li>
-                <li><a href="#depoimentos" class="nav-link">Depoimentos</a></li>
                 <li><a href="#faq" class="nav-link">FAQ</a></li>
                 <li><a href="#contato" class="nav-link">Contato</a></li>
             </ul>
@@ -238,43 +261,39 @@
         <section class="hero">
             <div class="hero-wrapper">
                 <div class="hero-content" data-aos="fade-right">
-                    <h1>Coloque seu negócio no <span>topo do Google</span> e atraia clientes todos os dias.</h1>
-                    <p>Seu cliente está pesquisando pelo seu serviço agora mesmo. Ele vai encontrar você ou o seu concorrente? Otimizamos seu perfil no Google Meu Negócio para você dominar as buscas locais.</p>
+                    <h1>Coloque o seu negócio no <span>topo do Google</span> e atraia clientes todos os dias.</h1>
+                    <p>O seu cliente está pesquisando pelo seu serviço agora mesmo. Ele vai encontrar o seu negócio ou o seu concorrente? Otimizamos o seu perfil no Google Meu Negócio para dominar as buscas locais.</p>
                     <div class="hero-btns" style="display: flex; gap: 15px; flex-wrap: wrap;">
                         <button onclick="window.open(WHATSAPP_LINK)" class="btn btn-primary">Quero Dominar as Buscas</button>
-                        <a href="#importancia" class="btn btn-outline">Entender como funciona</a>
+                        <a href="#transformacao" class="btn btn-outline">Ver Antes e Depois</a>
                     </div>
                     <div class="hero-badges" style="display: flex; gap: 20px; font-size: 0.85rem; color: var(--text-dim); font-weight: 500; text-transform: uppercase; letter-spacing: 1px; flex-wrap: wrap; margin-top: 40px;">
                         <span class="badge-item">Mais Visibilidade</span>
                         <span class="badge-item">Clientes da sua Região</span>
                         <span class="badge-item">+80 Negócios Atendidos</span>
-                        <span class="badge-item">App Exclusivo Incluso</span>
+                        <span class="badge-item">App Exclusivo Incluído</span>
                     </div>
                 </div>
                 
-                <!-- MOCKUP GOOGLE MEU NEGÓCIO SUPER REALISTA -->
+                <!-- MOCKUP GOOGLE MEU NEGÓCIO -->
                 <div class="phone-mockup" data-aos="fade-left" data-aos-delay="200">
                     <div class="gmb-search">
                         <div class="gmb-search-bar">
                             <svg width="20" height="20" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
-                            Seu Serviço na minha região
+                            O Seu Serviço na minha região
                         </div>
                     </div>
                     
-                    <div class="gmb-map">
-                        <div class="gmb-pin"></div>
-                    </div>
+                    <div class="gmb-map"><div class="gmb-pin"></div></div>
                     
                     <div class="gmb-card">
-                        <div class="gmb-title">HubSymples - Nome do seu Negócio Aqui</div>
+                        <div class="gmb-title">HubSymples - O seu Negócio Aqui</div>
                         <div class="gmb-rating">
                             <span style="color: #3c4043; font-weight: 500;">5,0</span>
                             <span class="gmb-stars">★★★★★</span>
                             <span>(154)</span>
                         </div>
-                        <div class="gmb-category">
-                            Agência Local • A 1,5 km
-                        </div>
+                        <div class="gmb-category">Especialista Local • A 1,5 km</div>
                         
                         <div class="gmb-actions">
                             <div class="gmb-action-item">
@@ -287,11 +306,7 @@
                             </div>
                             <div class="gmb-action-item">
                                 <div class="gmb-action-icon outline"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg></div>
-                                Salvar
-                            </div>
-                            <div class="gmb-action-item">
-                                <div class="gmb-action-icon outline"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg></div>
-                                Compartilhar
+                                Guardar
                             </div>
                         </div>
                         
@@ -299,17 +314,12 @@
                             <div class="gmb-tab active">Visão geral</div>
                             <div class="gmb-tab">Atualizações</div>
                             <div class="gmb-tab">Serviços</div>
-                            <div class="gmb-tab">Avaliações</div>
                         </div>
                         
                         <div style="margin-top: 15px; font-size: 14px; color: #3c4043;">
                             <div style="display: flex; gap: 10px; margin-bottom: 12px;">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1a73e8" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
                                 <div><span style="color:#1a73e8; font-weight:500;">Aberto</span> ⋅ Fecha às 18:00</div>
-                            </div>
-                            <div style="display: flex; gap: 10px; margin-bottom: 12px;">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5f6368" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                                Av. Principal do Centro, 123
                             </div>
                         </div>
                     </div>
@@ -320,16 +330,15 @@
         <section id="importancia" class="grid-2" data-aos="fade-up">
             <div>
                 <span class="section-tag">A Realidade do Mercado</span>
-                <h2>Se você não está no Google Maps, seu negócio é invisível.</h2>
-                <p style="margin-top: 20px; font-size: 1.1rem;">Hoje, 97% dos consumidores pesquisam serviços e negócios locais online antes de fazer uma compra ou visita.</p>
-                <p style="margin-top: 15px; color: var(--text-dim);">Estar no Google não é mais um diferencial, é uma obrigação. A HubSymples transforma o seu perfil em uma máquina de captação de clientes, otimizando fotos, palavras-chave, avaliações e categorias para que o algoritmo do Google priorize você.</p>
-                
+                <h2>Se não está no Google Maps, o seu negócio é invisível.</h2>
+                <p style="margin-top: 20px; font-size: 1.1rem;">Hoje em dia, 97% dos consumidores pesquisam serviços e negócios locais online antes de fazerem uma compra ou entrarem em contato.</p>
+                <p style="margin-top: 15px; color: var(--text-dim);">Estar no Google não é mais um diferencial, é uma obrigação. A HubSymples transforma o seu perfil numa máquina de captação de clientes, otimizando fotos, palavras-chave, avaliações e categorias.</p>
                 <button onclick="window.open(WHATSAPP_LINK)" class="btn btn-primary" style="margin-top: 30px;">Solicitar Diagnóstico do Meu Perfil</button>
             </div>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
                 <div class="value-card"><span class="stat">97%</span><span style="font-size: 0.9rem; color: var(--text-dim);">Buscam serviços locais no Google</span></div>
                 <div class="value-card"><span class="stat">3x</span><span style="font-size: 0.9rem; color: var(--text-dim);">Mais ligações com perfil verificado</span></div>
-                <div class="value-card"><span class="stat">70%</span><span style="font-size: 0.9rem; color: var(--text-dim);">Visitam a loja após busca online</span></div>
+                <div class="value-card"><span class="stat">70%</span><span style="font-size: 0.9rem; color: var(--text-dim);">Requisitam orçamento após pesquisa</span></div>
                 <div class="value-card"><span class="stat">5★</span><span style="font-size: 0.9rem; color: var(--text-dim);">Aumentam a confiança do cliente</span></div>
             </div>
         </section>
@@ -370,7 +379,7 @@
                 </div>
             </div>
 
-            <!-- NOVO BLOCO: PACOTES PERSONALIZADOS -->
+            <!-- BLOCO: PACOTES PERSONALIZADOS -->
             <div style="margin-top: 60px; background: linear-gradient(135deg, rgba(26,115,232,0.05), rgba(52,168,83,0.05)); border: 1px dashed rgba(26, 115, 232, 0.4); border-radius: 24px; padding: clamp(30px, 6vw, 50px); text-align: center; position: relative; overflow: hidden;" data-aos="fade-up">
                 <span class="section-tag" style="color: var(--google-blue);">Vá Além do Google</span>
                 <h3 style="font-size: clamp(1.5rem, 4vw, 2rem); margin-bottom: 15px; font-weight: 800;">Pacotes Personalizados & Soluções Completas</h3>
@@ -391,8 +400,6 @@
 
                 <button onclick="window.open(WHATSAPP_LINK)" class="btn btn-outline" style="border-color: rgba(26, 115, 232, 0.5); color: var(--text-main); background: rgba(26, 115, 232, 0.1);">Conversar sobre Pacote Personalizado</button>
             </div>
-            <!-- FIM DO BLOCO -->
-
         </section>
 
         <section id="beneficios">
@@ -413,29 +420,187 @@
                     <h2>Para quem é a nossa otimização?</h2>
                     <p style="margin-top: 20px; font-size: 1.1rem; color: var(--text-dim);">Qualquer negócio que atenda clientes em uma região específica precisa estar no Google Meu Negócio.</p>
                     <div style="margin-top: 20px; display: flex; flex-wrap: wrap; gap: 10px;">
+                        <span style="background: var(--border); padding: 8px 16px; border-radius: 20px; font-size: 0.9rem;">Diaristas e Faxina</span>
+                        <span style="background: var(--border); padding: 8px 16px; border-radius: 20px; font-size: 0.9rem;">Encanadores e Eletricistas</span>
+                        <span style="background: var(--border); padding: 8px 16px; border-radius: 20px; font-size: 0.9rem;">Mecânicos e Oficinas</span>
                         <span style="background: var(--border); padding: 8px 16px; border-radius: 20px; font-size: 0.9rem;">Motoristas (Uber/99/Particular)</span>
                         <span style="background: var(--border); padding: 8px 16px; border-radius: 20px; font-size: 0.9rem;">Anfitriões (Airbnb/Temporada)</span>
                         <span style="background: var(--border); padding: 8px 16px; border-radius: 20px; font-size: 0.9rem;">Clínicas e Consultórios</span>
-                        <span style="background: var(--border); padding: 8px 16px; border-radius: 20px; font-size: 0.9rem;">Advogados</span>
-                        <span style="background: var(--border); padding: 8px 16px; border-radius: 20px; font-size: 0.9rem;">Oficinas Mecânicas</span>
+                        <span style="background: var(--border); padding: 8px 16px; border-radius: 20px; font-size: 0.9rem;">Advogados e Profissionais Liberais</span>
                         <span style="background: var(--border); padding: 8px 16px; border-radius: 20px; font-size: 0.9rem;">Restaurantes e Deliveries</span>
                         <span style="background: var(--border); padding: 8px 16px; border-radius: 20px; font-size: 0.9rem;">Lojas Físicas</span>
-                        <span style="background: var(--border); padding: 8px 16px; border-radius: 20px; font-size: 0.9rem;">Prestadores de Serviços</span>
+                        <span style="background: var(--border); padding: 8px 16px; border-radius: 20px; font-size: 0.9rem;">Autônomos em Geral</span>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- SECÇÃO: ANTES E DEPOIS (Mockups Limpos e Responsivos) -->
+        <section id="transformacao" data-aos="fade-up">
+            <div style="text-align: center; margin-bottom: 30px;">
+                <span class="section-tag" style="color: var(--google-purple);">O Poder da Otimização</span>
+                <h2>Veja a diferença na prática</h2>
+                <p style="color: var(--text-dim); margin-top: 15px; font-size: 1.1rem;">Por que o seu concorrente recebe mais chamadas do que você? A resposta está na aparência do seu perfil nas buscas do cliente.</p>
+            </div>
+            
+            <div class="comparison-phones">
+                <!-- Celular Ruim (Antes) -->
+                <div class="phone-wrapper">
+                    <div class="phone-label label-bad">Como você está hoje</div>
+                    <div class="phone-mockup" style="box-shadow: 0 15px 35px rgba(234, 67, 53, 0.2); border-color: #2a1111;">
+                        <div class="gmb-search">
+                            <div class="gmb-search-bar">
+                                <svg width="20" height="20" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+                                Prestador de Serviço
+                            </div>
+                        </div>
+                        
+                        <div class="gmb-map" style="background: #e0e0e0; display: flex; align-items: center; justify-content: center; color: #70757a; font-size: 14px; font-weight: bold;">(Sem foto de capa)</div>
+                        
+                        <div class="gmb-card">
+                            <div class="gmb-title" style="color: #5f6368; font-size: 18px;">joão serviços locais</div>
+                            <div class="gmb-rating">
+                                <span style="color: #d93025; font-weight: 500;">3,2</span>
+                                <span style="color: #fbbc04; font-size: 14px; letter-spacing: 1px;">★★★<span style="color:#e0e0e0">★★</span></span>
+                                <span>(4)</span>
+                            </div>
+                            <div class="gmb-category" style="color: #d93025; font-weight: bold;">Faltam informações • Não verificado</div>
+                            
+                            <div class="gmb-actions" style="opacity: 0.5; pointer-events: none; border-bottom: none;">
+                                <div class="gmb-action-item"><div class="gmb-action-icon outline" style="background: #f1f3f4; border-color: #f1f3f4; color: #a8aab0;">?</div>Ligar</div>
+                                <div class="gmb-action-item"><div class="gmb-action-icon outline" style="background: #f1f3f4; border-color: #f1f3f4; color: #a8aab0;">?</div>Rotas</div>
+                            </div>
+                            
+                            <div style="margin-top: 15px; font-size: 14px; color: #70757a; border-top: 1px solid #ebebeb; padding-top: 15px;">
+                                <div style="display: flex; gap: 10px; margin-bottom: 12px; color: #d93025;">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                                    <div>Horário não informado</div>
+                                </div>
+                                <div style="display: flex; gap: 10px; margin-bottom: 12px; color: #d93025;">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                                    Endereço não cadastrado
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="comparison-vs">VS</div>
+
+                <!-- Celular Bom (Depois) -->
+                <div class="phone-wrapper">
+                    <div class="phone-label label-good">Com a HubSymples</div>
+                    <div class="phone-mockup" style="box-shadow: 0 15px 35px rgba(52, 168, 83, 0.2); border-color: #112a18;">
+                        <div class="gmb-search">
+                            <div class="gmb-search-bar">
+                                <svg width="20" height="20" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+                                Prestador de Serviço
+                            </div>
+                        </div>
+                        
+                        <div class="gmb-map" style="background: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22120%22><rect width=%22300%22 height=%22120%22 fill=%22%23e8eaed%22/><path d=%22M0 40 Q 150 80 300 20 L 300 120 L 0 120 Z%22 fill=%22%23d8ebc1%22/><path d=%22M50 0 L 100 120%22 stroke=%22%23fff%22 stroke-width=%226%22/><path d=%22M0 80 L 300 50%22 stroke=%22%23fbbc04%22 stroke-width=%228%22/></svg>') center/cover; position: relative;">
+                            <div class="gmb-pin"></div>
+                            <div style="position: absolute; bottom: 5px; right: 5px; background: rgba(0,0,0,0.6); color: white; padding: 4px 8px; border-radius: 4px; font-size: 11px; font-family: sans-serif;">Ver fotos</div>
+                        </div>
+                        
+                        <div class="gmb-card">
+                            <div class="gmb-title">João Serviços Premium <span style="color: var(--google-blue); font-size: 12px; vertical-align: middle;">✓ Verificado</span></div>
+                            <div class="gmb-rating">
+                                <span style="color: #3c4043; font-weight: 500;">5,0</span>
+                                <span class="gmb-stars">★★★★★</span>
+                                <span>(89)</span>
+                            </div>
+                            <div class="gmb-category">Especialista Local • A 1,5 km</div>
+                            
+                            <div class="gmb-actions">
+                                <div class="gmb-action-item">
+                                    <div class="gmb-action-icon" style="background: var(--google-blue);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></div>
+                                    Ligar
+                                </div>
+                                <div class="gmb-action-item">
+                                    <div class="gmb-action-icon" style="background: var(--google-blue);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"></polygon></svg></div>
+                                    Rotas
+                                </div>
+                                <div class="gmb-action-item">
+                                    <div class="gmb-action-icon outline"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></div>
+                                    WhatsApp
+                                </div>
+                            </div>
+                            
+                            <div class="gmb-tabs">
+                                <div class="gmb-tab active">Visão geral</div>
+                                <div class="gmb-tab">Atualizações</div>
+                                <div class="gmb-tab">Serviços</div>
+                            </div>
+                            
+                            <div style="margin-top: 15px; font-size: 14px; color: #3c4043;">
+                                <div style="display: flex; gap: 10px; margin-bottom: 12px;">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1a73e8" stroke-width="2" style="flex-shrink: 0;"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                    <div><span style="color:#1a73e8; font-weight:500;">Aberto</span> ⋅ Fecha às 18:00</div>
+                                </div>
+                                <div style="display: flex; gap: 10px; margin-bottom: 12px;">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5f6368" stroke-width="2" style="flex-shrink: 0;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                                    Av. Principal do Centro, 123
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECÇÃO: ESTUDO DE CASO (Focado em Restaurante / Dor do iFood e Panfletos) -->
+        <section id="estudo-caso" data-aos="fade-up">
+            <div class="case-study-box">
+                <span class="section-tag" style="color: var(--google-blue);">Estudo de Caso Real</span>
+                <h3 style="font-size: clamp(1.5rem, 4vw, 2.2rem); margin-bottom: 15px; font-weight: 800; color: #fff;">De refém das taxas de aplicativos a pedidos diretos todos os dias</h3>
+                <p style="color: var(--text-dim); max-width: 800px; font-size: 1.1rem; line-height: 1.6;">Acompanhe a história de um restaurante local que servia pratos incríveis, mas perdia a maior parte do lucro para os aplicativos de entrega. Veja como viramos esse jogo a nosso favor.</p>
+                
+                <div class="case-grid">
+                    <div class="case-step">
+                        <div class="case-step-title">
+                            <div class="case-icon-wrapper" style="background: rgba(234, 67, 53, 0.2); color: var(--google-red);">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                            </div>
+                            A Dor (O Problema)
+                        </div>
+                        <p style="color: var(--text-dim); font-size: 0.95rem;">O restaurante atraía clientes apenas distribuindo panfletos na rua ou dependendo 100% do iFood. O grande problema? <b>As taxas abusivas de entrega devoravam toda a margem de lucro.</b> Além disso, quando um morador pesquisava no Google por "restaurante perto de mim", só encontrava a concorrência.</p>
+                    </div>
+                    
+                    <div class="case-step">
+                        <div class="case-step-title">
+                            <div class="case-icon-wrapper" style="background: rgba(26, 115, 232, 0.2); color: var(--google-blue);">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+                            </div>
+                            A Solução Aplicada
+                        </div>
+                        <p style="color: var(--text-dim); font-size: 0.95rem;">Assumimos o Perfil no Google de forma profissional. Adicionamos fotos apetitosas dos pratos, otimizamos as palavras-chave focadas na região e <b>criamos um botão direto para pedidos via WhatsApp</b>, retirando o intermediário do caminho.</p>
+                    </div>
+
+                    <div class="case-step">
+                        <div class="case-step-title">
+                            <div class="case-icon-wrapper" style="background: rgba(52, 168, 83, 0.2); color: var(--google-green);">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            </div>
+                            O Resultado
+                        </div>
+                        <p style="color: var(--text-dim); font-size: 0.95rem;">O restaurante saltou para a 1ª página do Google no bairro. Passou a receber orçamentos e reservas de mesa todos os dias, gerando um fluxo de caixa sólido e com <b>100% do lucro no bolso do dono</b>, sem gastar mais um centavo em panfletos ou comissões.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECÇÃO: BÓNUS EXCLUSIVO -->
         <section id="bonus" data-aos="fade-up">
             <div class="contato-box grid-2" style="background: linear-gradient(135deg, rgba(52, 168, 83, 0.08), var(--bg-card)); border-color: rgba(52, 168, 83, 0.3); text-align: left;">
                 <div>
                     <span class="section-tag" style="color: var(--google-green);">Diferencial Único no Mercado</span>
                     <h2>Ganhe um Aplicativo para o seu Negócio</h2>
                     <p style="color: var(--text-dim); margin-top: 20px; font-size: 1.1rem;">
-                        Nós não entregamos apenas visibilidade. Ao fechar a otimização de Google Meu Negócio conosco, você ganha acesso a um <b>aplicativo focado no seu nicho</b> para colocar a gestão do seu dia a dia na palma da mão.
+                        Nós não entregamos apenas visibilidade. Ao fechar a otimização de Google Meu Negócio conosco, ganha acesso a um <b>aplicativo focado no seu nicho</b> para colocar a gestão do seu dia a dia na palma da mão.
                     </p>
                     <p style="color: var(--text-dim); margin-top: 15px; font-size: 1.1rem;">
-                        Uma ferramenta <b>ideal para profissionais liberais e prestadores de serviços</b> que precisam de agilidade e controle no dia a dia. Também é a solução perfeita para pequenos e médios negócios.
+                        Uma ferramenta <b>ideal para profissionais liberais e prestadores de serviços</b> que precisam de agilidade e controle. Também é a solução perfeita para pequenos e médios negócios organizarem a sua agenda e orçamentos.
                     </p>
                     <div style="margin-top: 25px; display: flex; flex-direction: column; gap: 10px;">
                         <span style="display: flex; align-items: center; gap: 10px; font-weight: 500; color: var(--text-main);">
@@ -444,19 +609,16 @@
                         <span style="display: flex; align-items: center; gap: 10px; font-weight: 500; color: var(--text-main);">
                             <svg viewBox="0 0 24 24" width="20" height="20" stroke="var(--google-green)" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg> App de Orçamentos Prontos
                         </span>
-                        <span style="display: flex; align-items: center; gap: 10px; font-weight: 500; color: var(--text-dim);">
-                            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg> Ou avaliamos criar sob medida para si.
-                        </span>
                     </div>
                 </div>
                 
                 <div class="app-mockup" data-aos="zoom-in" data-aos-delay="200">
                     <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 15px;">
                         <div style="display: flex; align-items: center; gap: 10px;">
-                            <div style="width: 35px; height: 35px; background: var(--google-green); border-radius: 8px;"></div>
+                            <div style="width: 35px; height: 35px; background: var(--google-green); border-radius: 8px; flex-shrink: 0;"></div>
                             <div>
-                                <div style="font-weight: bold; font-size: 0.9rem;">Seu App de Gestão</div>
-                                <div style="font-size: 0.75rem; color: var(--text-dim);">Painel do Administrador</div>
+                                <div style="font-weight: bold; font-size: 0.9rem;">O Seu App de Gestão</div>
+                                <div style="font-size: 0.75rem; color: var(--text-dim);">Painel de Controle</div>
                             </div>
                         </div>
                     </div>
@@ -474,9 +636,6 @@
                         <div style="background: rgba(255,255,255,0.02); padding: 12px; font-size: 0.85rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between;">
                             <span>João Cliente</span> <span style="color: var(--google-yellow);">14:00 - Confirmado</span>
                         </div>
-                        <div style="background: rgba(255,255,255,0.02); padding: 12px; font-size: 0.85rem; display: flex; justify-content: space-between;">
-                            <span>Maria Silva</span> <span style="color: var(--google-blue);">15:30 - Orçamento</span>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -486,7 +645,6 @@
             <div style="text-align: center; margin-bottom: 20px;">
                 <span class="section-tag" style="color: var(--google-yellow);">Resultados Reais</span>
                 <h2>Mais de 80 profissionais e negócios locais já dominam as buscas</h2>
-                <p style="color: var(--text-dim); margin-top: 15px; font-size: 1.1rem;">Veja como a otimização no Google Meu Negócio transformou a captação de clientes de forma contínua e realista.</p>
             </div>
 
             <div class="testimonials-grid">
@@ -506,7 +664,7 @@
                         <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
                         <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
                     </div>
-                    <p style="color: var(--text-dim); font-style: italic;">"Notamos um aumento de cerca de 20% nos agendamentos ao longo dos meses. A equipe da HubSymples organizou todo o nosso perfil e hoje somos uma das principais opções para quem busca dentista na nossa região."</p>
+                    <p style="color: var(--text-dim); font-style: italic;">"Notámos um aumento de cerca de 20% nos agendamentos. Hoje somos uma das principais opções para quem procura um dentista na nossa região."</p>
                 </div>
 
                 <!-- Depoimento 2 -->
@@ -525,48 +683,10 @@
                         <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
                         <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
                     </div>
-                    <p style="color: var(--text-dim); font-style: italic;">"Eu não sabia que o Google Maps era tão importante. Depois do trabalho de otimização, passamos a receber ligações e pedidos de orçamento quase todos os dias de clientes novos."</p>
+                    <p style="color: var(--text-dim); font-style: italic;">"Passámos a receber chamadas e pedidos de orçamento quase todos os dias de clientes novos."</p>
                 </div>
 
                 <!-- Depoimento 3 -->
-                <div class="testimonial-card">
-                    <div class="testimonial-header">
-                        <div class="testimonial-avatar" style="background: var(--google-green);">P</div>
-                        <div class="testimonial-info">
-                            <h4>Pizzaria Bella Napoli</h4>
-                            <span>Delivery e Restaurante</span>
-                        </div>
-                    </div>
-                    <div class="stars">
-                        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                    </div>
-                    <p style="color: var(--text-dim); font-style: italic;">"Muitos clientes novos estão chegando e dizendo que acharam a pizzaria pelo Google. Também ganhamos várias avaliações positivas com a estratégia que nos aplicaram."</p>
-                </div>
-
-                <!-- Depoimento 4 -->
-                <div class="testimonial-card">
-                    <div class="testimonial-header">
-                        <div class="testimonial-avatar" style="background: var(--google-yellow); color: #000;">A</div>
-                        <div class="testimonial-info">
-                            <h4>Chalé Alta Vista</h4>
-                            <span>Aluguel por Temporada</span>
-                        </div>
-                    </div>
-                    <div class="stars">
-                        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                    </div>
-                    <p style="color: var(--text-dim); font-style: italic;">"Antes eu dependia 100% do Airbnb e perdia muito lucro com as taxas. Agora os hóspedes encontram o chalé no Google Maps e fecham a reserva direto pelo WhatsApp. Mudou o nosso negócio!"</p>
-                </div>
-
-                <!-- Depoimento 5 (Motorista) -->
                 <div class="testimonial-card">
                     <div class="testimonial-header">
                         <div class="testimonial-avatar" style="background: #333; color: #fff;">R</div>
@@ -582,13 +702,8 @@
                         <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
                         <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
                     </div>
-                    <p style="color: var(--text-dim); font-style: italic;">"Cansado de deixar 30% ou mais das corridas para os aplicativos. Com o meu perfil otimizado, hoje tenho clientes fixos que me chamam direto no WhatsApp para translados e viagens. Minha renda aumentou muito!"</p>
+                    <p style="color: var(--text-dim); font-style: italic;">"Hoje tenho clientes fixos que me chamam direto no WhatsApp para viagens. O meu rendimento aumentou muito sem depender da Uber/99!"</p>
                 </div>
-            </div>
-            
-            <div style="text-align: center; margin-top: 40px; display: flex; flex-direction: column; align-items: center; gap: 15px;">
-                <p style="color: var(--text-main); font-weight: 600; font-size: 1.1rem;">Junte-se a dezenas de profissionais locais que já dominam o Google em suas regiões.</p>
-                <button onclick="window.open(WHATSAPP_LINK)" class="btn btn-primary">Quero os mesmos resultados</button>
             </div>
         </section>
 
@@ -600,12 +715,16 @@
                     <div class="faq-answer"><p>Não! A plataforma Google Meu Negócio é gratuita. O que você paga é o nosso serviço de <b>otimização estratégica profissional</b> para garantir que seu perfil ranqueie acima dos concorrentes.</p></div>
                 </div>
                 <div class="faq-item">
+                    <button class="faq-question">Quais são as formas de pagamento? <span class="faq-icon">+</span></button>
+                    <div class="faq-answer"><p>Aceitamos pagamentos via <b>Pix</b> (com aprovação imediata) e <b>Cartão de Crédito</b>. Facilitamos o investimento para que o seu negócio comece a lucrar com o Google o mais rápido possível!</p></div>
+                </div>
+                <div class="faq-item">
                     <button class="faq-question">Sou motorista de aplicativo (Uber/99), serve para mim? <span class="faq-icon">+</span></button>
                     <div class="faq-answer"><p>Sim! É a estratégia perfeita para quem quer virar motorista particular. Otimizamos seu perfil para que passageiros da sua região te encontrem para viagens, translados para aeroportos e corridas agendadas, tudo 100% sem as taxas dos aplicativos.</p></div>
                 </div>
                 <div class="faq-item">
                     <button class="faq-question">Como funciona o aplicativo que ganho de bônus? <span class="faq-icon">+</span></button>
-                    <div class="faq-answer"><p>Nós possuímos uma biblioteca de aplicativos pré-desenvolvidos para ajudar na gestão de diferentes nichos (agendamentos de salão, controle de orçamentos para prestadores, etc). Ao fechar o serviço de Google Meu Negócio, você escolhe o app que mais se adapta a você. Caso precise de funções exclusivas, nossa equipe avalia a viabilidade de desenvolver um app sob medida para o seu negócio!</p></div>
+                    <div class="faq-answer"><p>Nós possuímos uma biblioteca de aplicativos pré-desenvolvidos para ajudar na gestão de diferentes nichos (agendamentos de salão, controle de orçamentos para prestadores, etc). Ao fechar o serviço de Google Meu Negócio conosco, você escolhe o app que mais se adapta a você. Caso precise de funções exclusivas, nossa equipe avalia a viabilidade de desenvolver um app sob medida para o seu negócio!</p></div>
                 </div>
                 <div class="faq-item">
                     <button class="faq-question">Já alugo pelo Airbnb/Booking, preciso do Google? <span class="faq-icon">+</span></button>
@@ -613,7 +732,7 @@
                 </div>
                 <div class="faq-item">
                     <button class="faq-question">Não tenho loja física, posso ter perfil no Google? <span class="faq-icon">+</span></button>
-                    <div class="faq-answer"><p>Sim! Mesmo que você seja um prestador de serviços em domicílio (como encanadores, eletricistas) ou atenda online, podemos configurar um perfil de "Área de Cobertura" para você aparecer na sua região.</p></div>
+                    <div class="faq-answer"><p>Sim! Mesmo que você seja um prestador de serviços em domicílio (como encanadores, eletricistas) ou atenda online, podemos configurar um perfil de "Área de Cobertura" para você aparecer na sua região sem exibir um endereço residencial.</p></div>
                 </div>
                 <div class="faq-item">
                     <button class="faq-question">Em quanto tempo vejo resultados? <span class="faq-icon">+</span></button>
@@ -621,7 +740,7 @@
                 </div>
                 <div class="faq-item">
                     <button class="faq-question">O que acontece se eu não otimizar meu perfil? <span class="faq-icon">+</span></button>
-                    <div class="faq-answer"><p>Seu perfil fica "invisível" nas páginas secundárias do Google. Quando um cliente pesquisar pelo seu serviço, o Google vai mostrar os 3 concorrentes que estão melhor otimizados e com mais avaliações.</p></div>
+                    <div class="faq-answer"><p>Seu perfil fica "invisível" nas páginas secundárias do Google. Quando um cliente pesquisar pelo seu serviço, o Google vai mostrar as 3 empresas concorrentes que estão melhor otimizadas e com mais avaliações.</p></div>
                 </div>
             </div>
         </section>
@@ -634,25 +753,41 @@
                     <span style="font-size: 2.5rem; line-height: 1;">⚠️</span>
                     <div>
                         <h4 style="color: #ff6b6b; font-size: 1.2rem; margin-bottom: 5px;">Política de Exclusividade Regional</h4>
-                        <p style="font-size: 0.95rem; color: #d1d5db; line-height: 1.5;">Para garantir que os nossos clientes dominem o topo do Google sem competição interna, <b>atendemos apenas 1 profissional ou negócio do mesmo nicho por região/bairro</b>. Verifique a disponibilidade para o seu segmento agora.</p>
+                        <p style="font-size: 0.95rem; color: #d1d5db; line-height: 1.5;">Para garantir que os nossos clientes dominem o topo do Google sem competição interna, <b>atendemos apenas 1 profissional ou negócio do mesmo nicho por região</b>.</p>
                     </div>
                 </div>
 
                 <h2>Pronto para ser a escolha Nº 1 na sua cidade?</h2>
-                <p style="color: var(--text-dim); margin-bottom: 40px; font-size: 1.1rem; max-width: 600px; margin-inline: auto;">Fale com nossos especialistas agora. Faremos uma análise gratuita de como seu nome ou negócio aparece no Google hoje e mostraremos o que precisa ser feito.</p>
-                <button onclick="window.open(WHATSAPP_LINK)" class="btn btn-primary" style="padding: 22px 50px; font-size: 1.2rem; margin-bottom: 10px;">Falar com Especialista no WhatsApp</button>
+                <p style="color: var(--text-dim); margin-bottom: 40px; font-size: 1.1rem; max-width: 600px; margin-inline: auto;">Fale com a nossa equipe de especialistas. Faremos uma análise gratuita de como o seu nome ou negócio aparece no Google hoje.</p>
                 
-                <!-- GARANTIA GIGANTE RISCO ZERO -->
+                <button onclick="window.open(WHATSAPP_LINK)" class="btn btn-primary" style="padding: 22px 50px; font-size: 1.2rem; margin-bottom: 5px;">Falar com a Equipe no WhatsApp</button>
+                <div style="font-size: 0.85rem; color: var(--text-dim); margin-bottom: 30px;">(Análise 100% gratuita e sem compromisso)</div>
+                
+                <!-- GARANTIA GIGANTE -->
                 <div class="guarantee-badge-large">
                     <div class="guarantee-icon-wrapper">
                         <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
                     </div>
                     <div>
-                        <h3 class="guarantee-title">Garantia Risco Zero - 7 Dias</h3>
-                        <p class="guarantee-text">Subimos e deixamos seu perfil 100% otimizado no topo das buscas em <b>7 dias</b>. Se você não aprovar o trabalho ou não gostar do resultado, <b>nós devolvemos 100% do seu investimento.</b></p>
+                        <h3 class="guarantee-title">Entrega Rápida - 7 Dias</h3>
+                        <p class="guarantee-text">Subimos e deixamos o seu perfil 100% otimizado e estruturado para receber clientes em <b>no máximo 7 dias</b>.</p>
                     </div>
                 </div>
 
+                <!-- FORMAS DE PAGAMENTO -->
+                <div style="margin-top: 35px; display: flex; flex-direction: column; align-items: center; gap: 15px;">
+                    <span style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600; color: var(--text-dim);">Pagamento 100% Seguro</span>
+                    <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
+                        <span style="display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.05); padding: 10px 20px; border-radius: 12px; border: 1px solid var(--border); font-weight: 600; color: #32BCAD;">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M11.999 1.139L2.839 10.3c-.45.45-.45 1.18 0 1.63l9.16 9.16c.45.45 1.18.45 1.63 0l9.16-9.16c.45-.45.45-1.18 0-1.63l-9.16-9.16c-.45-.45-1.18-.45-1.63 0z"/></svg>
+                            Pix
+                        </span>
+                        <span style="display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.05); padding: 10px 20px; border-radius: 12px; border: 1px solid var(--border); font-weight: 600; color: var(--text-main);">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+                            Cartão de Crédito
+                        </span>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
@@ -662,7 +797,7 @@
             <div class="logo-text" style="font-size: 1.8rem;">HubSymples</div>
         </div>
         <p class="footer-text">© <script>document.write(new Date().getFullYear())</script> HubSymples. Especialistas em Posicionamento Local.</p>
-        <p class="footer-motto" style="margin-top: 10px; color: var(--text-dim);">Seu negócio no topo. Seus concorrentes para trás.</p>
+        <p class="footer-motto" style="margin-top: 10px; color: var(--text-dim);">O seu negócio no topo. Os seus concorrentes para trás.</p>
     </footer>
 
     <!-- Botão Flutuante do WhatsApp -->
@@ -712,3 +847,4 @@
     </script>
 </body>
 </html>
+
