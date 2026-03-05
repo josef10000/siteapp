@@ -12,33 +12,6 @@
     <meta property="og:type" content="website">
     <meta name="robots" content="index, follow">
 
-    <!-- SEO TÉCNICO (Schema Markup JSON-LD) -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "ProfessionalService",
-      "name": "HubSymples",
-      "description": "Especialistas em Criação de Sites, Landing Pages, Google Meu Negócio e Apps de Gestão. Ajudamos empresas a passar credibilidade e atrair mais clientes na internet.",
-      "image": "https://i.imgur.com/WVOsHDW.png",
-      "telephone": "+5511952924208",
-      "url": "https://hubsymples.com.br",
-      "address": {
-        "@type": "PostalAddress",
-        "addressCountry": "BR"
-      },
-      "priceRange": "$$",
-      "serviceArea": {
-        "@type": "GeoCircle",
-        "geoMidpoint": {
-            "@type": "GeoCoordinates",
-            "latitude": -23.5505,
-            "longitude": -46.6333
-        },
-        "geoRadius": "50000"
-      }
-    }
-    </script>
-
     <!-- Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>">
 
@@ -82,7 +55,7 @@
         .btn-outline { background: transparent; color: var(--text-main); border: 1px solid var(--border); }
         .btn-outline:hover { background: var(--border); }
 
-        /* HEADER */
+        /* HEADER & LANGUAGE SWITCHER */
         header { position: fixed; top: 0; width: 100%; z-index: 1000; background: var(--bg-nav); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); } 
         .nav-container { max-width: var(--container); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 12px 20px; }
         .logo-container { display: flex; align-items: center; gap: 12px; }
@@ -91,7 +64,14 @@
         .nav-menu { display: flex; gap: 20px; align-items: center; }
         .nav-link { font-size: 0.95rem; color: var(--item-color, var(--text-dim)); transition: var(--transition); font-weight: 700; opacity: 0.75; }
         .nav-link:hover, .nav-link.active { opacity: 1; transform: translateY(-1px); }
-        .menu-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+        
+        .lang-switcher { display: flex; gap: 8px; margin-right: 10px; align-items: center; }
+        .lang-btn { background: transparent; border: 2px solid transparent; cursor: pointer; transition: 0.2s; border-radius: 50%; padding: 2px; display: flex; align-items: center; justify-content: center; filter: grayscale(100%) opacity(0.4); }
+        .lang-btn img { width: 22px; height: 22px; border-radius: 50%; object-fit: cover; }
+        .lang-btn:hover { filter: grayscale(0%) opacity(1); transform: scale(1.1); }
+        .lang-btn.active { filter: grayscale(0%) opacity(1); border-color: var(--google-blue); background: rgba(255,255,255,0.05); }
+
+        .menu-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; margin-left: 10px; }
         .menu-toggle span { width: 25px; height: 3px; background: var(--text-main); border-radius: 2px; }
 
         /* HERO */
@@ -109,8 +89,8 @@
         .browser-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
         .dot-r { background: #ff5f56; } .dot-y { background: #ffbd2e; } .dot-g { background: #27c93f; }
         .browser-url { margin-left: 10px; background: #161b22; border: 1px solid #30363d; border-radius: 12px; padding: 4px 15px; font-size: clamp(10px, 2vw, 12px); color: #8b949e; flex-grow: 1; text-align: center; display: flex; justify-content: center; align-items: center; gap: 5px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
-        .browser-content { background: #ffffff; padding: 0; position: relative; width: 100%; aspect-ratio: 16/9; min-height: 250px; overflow: hidden; }
-        .browser-content img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+        .browser-content { background: #000000; padding: 0; position: relative; width: 100%; overflow: hidden; }
+        .browser-content img { width: 100%; height: auto; display: block; }
 
         /* GRID & CARDS */
         .grid-2 { display: grid; grid-template-columns: 1fr; gap: 40px; align-items: center; } 
@@ -135,11 +115,11 @@
         .calc-total { font-size: clamp(2.2rem, 4vw, 3.5rem); font-weight: 900; color: #58a6ff; line-height: 1.1; margin-bottom: 15px; }
         .calc-results p { color: var(--text-dim); font-size: 1rem; line-height: 1.5; }
 
-        /* PORTFÓLIO VIVO - CARROSSEL DE SITES */
+        /* PORTFÓLIO VIVO */
         .portfolio-wrapper { position: relative; width: 100%; max-width: 800px; margin: 0 auto; }
-        .portfolio-track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; gap: 20px; padding-bottom: 20px; -ms-overflow-style: none; scrollbar-width: none; }
+        .portfolio-track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; gap: 20px; padding-bottom: 20px; -ms-overflow-style: none; scrollbar-width: none; align-items: flex-start; }
         .portfolio-track::-webkit-scrollbar { display: none; }
-        .portfolio-slide { scroll-snap-align: center; flex: 0 0 100%; width: 100%; }
+        .portfolio-slide { scroll-snap-align: center; flex: 0 0 100%; min-width: 100%; }
         
         .carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); background: var(--bg-card); border: 1px solid var(--border); color: white; width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10; box-shadow: 0 5px 15px rgba(0,0,0,0.5); transition: var(--transition); }
         .carousel-btn:hover { background: var(--google-blue); border-color: var(--google-blue); }
@@ -147,7 +127,7 @@
         .carousel-btn.next { right: -22px; }
         @media (max-width: 650px) { .carousel-btn.prev { left: -10px; } .carousel-btn.next { right: -10px; } }
 
-        /* ANTES E DEPOIS - MOCKUPS COM CELULARES (REALISTAS) */
+        /* MOCKUPS GOOGLE MEU NEGÓCIO */
         .comparison-phones { display: flex; flex-wrap: wrap; gap: 40px; justify-content: center; margin-top: 40px; align-items: center; }
         .phone-wrapper { display: flex; flex-direction: column; align-items: center; gap: 20px; width: 100%; max-width: 340px; flex: 1 1 300px; }
         .phone-label { font-weight: 800; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; padding: 10px 25px; border-radius: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); text-align: center; }
@@ -155,7 +135,6 @@
         .label-good { background: var(--google-green); color: white; border: 2px solid #5ce67a; }
         .comparison-vs { font-size: 2.5rem; font-weight: 900; color: var(--text-dim); }
 
-        /* NOVA INTERFACE REAL DO GOOGLE */
         .real-phone { width: 100%; max-width: 330px; height: 620px; background: #fff; border-radius: 40px; border: 12px solid #161b22; position: relative; overflow: hidden; box-shadow: 0 25px 50px -12px rgba(0,0,0, 0.5); display: flex; flex-direction: column; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; text-align: left; }
         .real-phone::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 130px; height: 25px; background: #161b22; border-bottom-left-radius: 18px; border-bottom-right-radius: 18px; z-index: 20; }
         
@@ -233,11 +212,12 @@
         .faq-question { width: 100%; padding: 24px 0; display: flex; justify-content: space-between; align-items: center; background: none; border: none; color: var(--text-main); font-size: 1.1rem; font-weight: 600; text-align: left; cursor: pointer; }
         .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; color: var(--text-dim); }
         .faq-answer p { padding-bottom: 24px; }
-        .faq-item.active .faq-answer { max-height: 250px; }
+        .faq-item.active .faq-answer { max-height: 350px; }
 
         footer { border-top: 1px solid var(--border); padding: 80px 20px; text-align: center; }
         .whatsapp-float { position: fixed; bottom: 30px; right: 30px; background: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3); z-index: 999; transition: var(--transition); }
-        .whatsapp-float:hover { transform: scale(1.1); }
+        .email-float { position: fixed; bottom: 105px; right: 35px; background: var(--google-blue); color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(26, 115, 232, 0.3); z-index: 999; transition: var(--transition); }
+        .whatsapp-float:hover, .email-float:hover { transform: scale(1.1); }
         
         /* MEDIA QUERIES */
         @media (min-width: 600px) {
@@ -266,7 +246,6 @@
 <body>
 
     <script>
-        // O LINK DO WHATSAPP DA SUA AGÊNCIA
         const WHATSAPP_LINK = "https://api.whatsapp.com/send?phone=5511952924208&text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20planos%20da%20HubSymples."; 
     </script>
 
@@ -278,34 +257,39 @@
             </a>
             
             <ul class="nav-menu" id="navMenu">
-                <li><a href="#pilar-sites" class="nav-link" style="--item-color: var(--google-blue);">Sites</a></li>
-                <li><a href="#pilar-google" class="nav-link" style="--item-color: var(--google-red);">Google</a></li>
-                <li><a href="#pilar-apps" class="nav-link" style="--item-color: var(--google-green);">Apps</a></li>
-                <li><a href="#planos" class="nav-link" style="--item-color: var(--google-yellow);">Planos</a></li>
+                <li><a href="#pilar-sites" class="nav-link" style="--item-color: var(--google-blue);" data-i18n="nav-sites">Sites</a></li>
+                <li><a href="#pilar-google" class="nav-link" style="--item-color: var(--google-red);" data-i18n="nav-google">Google</a></li>
+                <li><a href="#pilar-apps" class="nav-link" style="--item-color: var(--google-green);" data-i18n="nav-apps">Apps</a></li>
+                <li><a href="#planos" class="nav-link" style="--item-color: var(--google-yellow);" data-i18n="nav-plans">Planos</a></li>
             </ul>
 
             <div class="header-actions" style="display: flex; gap: 15px; align-items: center;">
-                <button onclick="window.open(WHATSAPP_LINK)" class="btn btn-primary" style="padding: 10px 20px; font-size: 0.85rem;">Falar com Especialista</button>
+                <div class="lang-switcher">
+                    <button class="lang-btn" onclick="changeLanguage('pt')" id="btn-pt" title="Português"><img src="https://flagcdn.com/w40/br.png" alt="BR"></button>
+                    <button class="lang-btn" onclick="changeLanguage('en')" id="btn-en" title="English"><img src="https://flagcdn.com/w40/us.png" alt="US"></button>
+                    <button class="lang-btn" onclick="changeLanguage('es')" id="btn-es" title="Español"><img src="https://flagcdn.com/w40/es.png" alt="ES"></button>
+                </div>
+                <button onclick="window.open(WHATSAPP_LINK)" class="btn btn-primary" style="padding: 10px 20px; font-size: 0.85rem;" data-i18n="nav-btn">Falar com Especialista</button>
                 <div class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></div>
             </div>
         </nav>
     </header>
 
     <main>
-        <!-- HERO SECTION (Foco em Sites) -->
+        <!-- HERO SECTION -->
         <section class="hero">
             <div class="hero-wrapper" style="grid-template-columns: 1fr; gap: 40px;">
                 <div class="hero-content" data-aos="fade-up" style="max-width: 800px; text-align: center; margin: 0 auto;">
-                    <h1>Sua empresa precisa de um site que <span>vende por você 24h por dia</span>.</h1>
-                    <p>Construímos a "casa própria" do seu negócio na internet com Sites Profissionais de alta conversão. Depois, usamos o Google para lotar o seu WhatsApp de clientes.</p>
+                    <h1 data-i18n="hero-title">Sua empresa precisa de um site que <span style="color: var(--google-blue)">vende por você 24h por dia</span>.</h1>
+                    <p data-i18n="hero-desc">Construímos a "casa própria" do seu negócio na internet com Sites Profissionais de alta conversão. Depois, usamos o Google para lotar o seu WhatsApp de clientes.</p>
                     <div class="hero-btns" style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
-                        <a href="#planos" class="btn btn-primary" style="padding: 18px 36px; font-size: 1.1rem;">Construir Meu Site Profissional</a>
-                        <a href="#pilar-sites" class="btn btn-outline" style="padding: 18px 36px; font-size: 1.1rem;">Ver Portfólio</a>
+                        <a href="#planos" class="btn btn-primary" style="padding: 18px 36px; font-size: 1.1rem;" data-i18n="hero-btn1">Construir Meu Site Profissional</a>
+                        <a href="#pilar-sites" class="btn btn-outline" style="padding: 18px 36px; font-size: 1.1rem;" data-i18n="hero-btn2">Ver Portfólio</a>
                     </div>
                     <div class="hero-badges" style="margin-top: 30px;">
-                        <span class="badge-item">Criação de Sites Rápida</span>
-                        <span class="badge-item">Google Meu Negócio</span>
-                        <span class="badge-item">Apps de Gestão</span>
+                        <span class="badge-item" data-i18n="badge-1">Criação de Sites Rápida</span>
+                        <span class="badge-item" data-i18n="badge-2">Google Meu Negócio</span>
+                        <span class="badge-item" data-i18n="badge-3">Apps de Gestão</span>
                     </div>
                 </div>
             </div>
@@ -314,176 +298,128 @@
         <!-- SECÇÃO: REALIDADE DO MERCADO -->
         <section id="importancia" class="grid-2" data-aos="fade-up">
             <div>
-                <span class="section-tag">A Realidade do Mercado</span>
-                <h2>Se você não tem um site, o cliente procura quem tem.</h2>
-                <p style="margin-top: 20px; font-size: 1.1rem;">Hoje em dia, a maioria dos consumidores pesquisa empresas online antes de fazer uma compra. Ter apenas um Instagram ou Facebook não passa credibilidade suficiente.</p>
-                <p style="margin-top: 15px; color: var(--text-dim);">Um Site Profissional atua como o seu melhor vendedor. Ele exibe seus serviços de forma elegante, tira dúvidas e direciona o cliente pronto para comprar direto para o seu WhatsApp.</p>
+                <span class="section-tag" data-i18n="market-tag">A Realidade do Mercado</span>
+                <h2 data-i18n="market-title">Se você não tem um site, o cliente procura quem tem.</h2>
+                <p style="margin-top: 20px; font-size: 1.1rem;" data-i18n="market-p1">Hoje em dia, a maioria dos consumidores pesquisa empresas online antes de fazer uma compra. Ter apenas um Instagram ou Facebook não passa credibilidade suficiente.</p>
+                <p style="margin-top: 15px; color: var(--text-dim);" data-i18n="market-p2">Um Site Profissional atua como o seu melhor vendedor. Ele exibe seus serviços de forma elegante, tira dúvidas e direciona o cliente pronto para comprar direto para o seu WhatsApp.</p>
             </div>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                <div class="value-card"><span class="stat" style="color: var(--google-blue);">75%</span><span class="stat-text">Julgam a empresa pelo site</span></div>
-                <div class="value-card"><span class="stat" style="color: var(--google-red);">97%</span><span class="stat-text">Buscam serviços no Google</span></div>
-                <div class="value-card"><span class="stat" style="color: var(--google-green);">24/7</span><span class="stat-text">Vendas automáticas no site</span></div>
-                <div class="value-card"><span class="stat" style="color: var(--google-yellow);">3x</span><span class="stat-text">Mais contatos e orçamentos</span></div>
+                <div class="value-card"><span class="stat" style="color: var(--google-blue);" data-i18n="stat1-val">75%</span><span class="stat-text" data-i18n="stat1-text">Julgam a empresa pelo site</span></div>
+                <div class="value-card"><span class="stat" style="color: var(--google-red);" data-i18n="stat2-val">97%</span><span class="stat-text" data-i18n="stat2-text">Buscam serviços no Google</span></div>
+                <div class="value-card"><span class="stat" style="color: var(--google-green);" data-i18n="stat3-val">24/7</span><span class="stat-text" data-i18n="stat3-text">Vendas automáticas no site</span></div>
+                <div class="value-card"><span class="stat" style="color: var(--google-yellow);" data-i18n="stat4-val">3x</span><span class="stat-text" data-i18n="stat4-text">Mais contatos e orçamentos</span></div>
             </div>
         </section>
 
-        <!-- SECÇÃO: CALCULADORA DE PREJUÍZO (Foco Credibilidade/Site) -->
+        <!-- SECÇÃO: CALCULADORA DE PREJUÍZO -->
         <section id="calculadora" data-aos="fade-up">
             <div class="calc-box">
-                <span class="section-tag" style="color: var(--google-blue);">A Calculadora do Prejuízo Invisível</span>
-                <h3 style="font-size: clamp(1.5rem, 4vw, 2.2rem); margin-bottom: 15px; font-weight: 800; color: #fff;">Quanto você perde por não passar credibilidade?</h3>
-                <p style="color: var(--text-dim); font-size: 1.1rem; max-width: 800px;">Simule quantos clientes você atende hoje. Nós calculamos o valor aproximado que os concorrentes com Sites Profissionais e boa presença no Google estão roubando da sua empresa todo mês.</p>
+                <span class="section-tag" style="color: var(--google-blue);" data-i18n="calc-tag">A Calculadora do Prejuízo Invisível</span>
+                <h3 style="font-size: clamp(1.5rem, 4vw, 2.2rem); margin-bottom: 15px; font-weight: 800; color: #fff;" data-i18n="calc-title">Quanto você perde por não passar credibilidade?</h3>
+                <p style="color: var(--text-dim); font-size: 1.1rem; max-width: 800px;" data-i18n="calc-desc">Simule quantos clientes você atende hoje. Nós calculamos o valor aproximado que os concorrentes com Sites Profissionais e boa presença no Google estão roubando da sua empresa todo mês.</p>
                 
                 <div class="calc-grid">
                     <div>
                         <div class="calc-input-group">
-                            <label>Quantos clientes você atende por mês?</label>
+                            <label data-i18n="calc-label1">Quantos clientes você atende por mês?</label>
                             <input type="range" id="clientesMes" class="calc-range" min="10" max="1000" step="10" value="100" oninput="calcularPrejuizo()">
                             <div class="calc-val-display" id="clientesVal">100 clientes</div>
                         </div>
                         <div class="calc-input-group">
-                            <label>Qual o valor médio (Ticket) gasto por cliente?</label>
+                            <label data-i18n="calc-label2">Qual o valor médio (Ticket) gasto por cliente?</label>
                             <input type="range" id="ticketMedio" class="calc-range" min="30" max="5000" step="10" value="150" oninput="calcularPrejuizo()">
                             <div class="calc-val-display" id="ticketVal">R$ 150,00</div>
                         </div>
                     </div>
                     
                     <div class="calc-results">
-                        <h4>Prejuízo Estimado por Mês:</h4>
+                        <h4 data-i18n="calc-res-title">Prejuízo Estimado por Mês:</h4>
                         <div class="calc-total" id="prejuizoTotal">R$ 4.500,00</div>
-                        <p>Este é o valor aproximado que você deixa na mesa por perder cerca de <b><span id="clientesPerdidos" style="color: #fff; font-weight: bold;">30</span> potenciais clientes</b> que visitam suas redes e acabam fechando com a concorrência que possui um site mais profissional.</p>
-                        <button onclick="window.open(WHATSAPP_LINK)" class="btn btn-outline" style="margin-top: 20px; border-color: var(--google-blue); color: #58a6ff; font-weight: bold;">Parar de Perder Clientes</button>
+                        <p data-i18n="calc-res-desc">Este é o valor aproximado que você deixa na mesa por perder cerca de <b><span id="clientesPerdidos" style="color: #fff; font-weight: bold;">30</span> potenciais clientes</b> que visitam suas redes e acabam fechando com a concorrência que possui um site mais profissional.</p>
+                        <button onclick="window.open(WHATSAPP_LINK)" class="btn btn-outline" style="margin-top: 20px; border-color: var(--google-blue); color: #58a6ff; font-weight: bold;" data-i18n="calc-btn">Parar de Perder Clientes</button>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- PILAR 1: SITES E LANDING PAGES (COM PORTFÓLIO VIVO) -->
+        <!-- PILAR 1: SITES -->
         <section id="pilar-sites" data-aos="fade-up">
             <div style="text-align: center; margin-bottom: 40px;">
-                <span class="section-tag" style="color: var(--google-blue);">Passo 1: A Sua Base Sólida</span>
-                <h2>Criação de Sites e Landing Pages</h2>
-                <p style="margin-top: 15px; font-size: 1.1rem; color: var(--text-dim); max-width: 700px; margin-inline: auto;">Não mande seus clientes para um link genérico ou para as redes sociais cheias de distrações. Construímos sua página de alta conversão, com domínio próprio e 100% otimizada para celulares.</p>
+                <span class="section-tag" style="color: var(--google-blue);" data-i18n="step1-tag">Passo 1: A Sua Base Sólida</span>
+                <h2 data-i18n="step1-title">Criação de Sites e Landing Pages</h2>
+                <p style="margin-top: 15px; font-size: 1.1rem; color: var(--text-dim); max-width: 700px; margin-inline: auto;" data-i18n="step1-desc">Não mande os seus clientes para um link genérico ou para as redes sociais cheias de distrações. Construímos a sua página de alta conversão, com domínio próprio e 100% otimizada para telemóveis.</p>
             </div>
             
-            <!-- PORTFÓLIO VIVO (CARROSSEL RESPONSIVO) -->
             <div class="portfolio-wrapper">
                 <button class="carousel-btn prev" onclick="moveCarousel(-1)">❮</button>
                 <button class="carousel-btn next" onclick="moveCarousel(1)">❯</button>
                 
                 <div class="portfolio-track" id="portfolioTrack">
-                    <!-- Slide 1 -->
-                    <div class="portfolio-slide">
-                        <div class="browser-mockup">
-                            <div class="browser-header">
-                                <div class="browser-dot dot-r"></div><div class="browser-dot dot-y"></div><div class="browser-dot dot-g"></div>
-                                <div class="browser-url"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg> clinicaodonto.com.br</div>
-                            </div>
-                            <div class="browser-content">
-                                <img src="https://i.imgur.com/tfFjuU4.png" alt="Portfólio Site 1">
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Slide 2 -->
-                    <div class="portfolio-slide">
-                        <div class="browser-mockup">
-                            <div class="browser-header">
-                                <div class="browser-dot dot-r"></div><div class="browser-dot dot-y"></div><div class="browser-dot dot-g"></div>
-                                <div class="browser-url"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg> silvaadvogados.com.br</div>
-                            </div>
-                            <div class="browser-content">
-                                <img src="https://i.imgur.com/f8bo1H3.png" alt="Portfólio Site 2">
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Slide 3 -->
-                    <div class="portfolio-slide">
-                        <div class="browser-mockup">
-                            <div class="browser-header">
-                                <div class="browser-dot dot-r"></div><div class="browser-dot dot-y"></div><div class="browser-dot dot-g"></div>
-                                <div class="browser-url"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg> seunegocio.com.br</div>
-                            </div>
-                            <div class="browser-content">
-                                <img src="https://i.imgur.com/xefLVjP.png" alt="Portfólio Site 3">
-                            </div>
-                        </div>
-                    </div>
+                    <!-- Slides mantidos com as imagens do utilizador -->
+                    <div class="portfolio-slide"><div class="browser-mockup"><div class="browser-header"><div class="browser-dot dot-r"></div><div class="browser-dot dot-y"></div><div class="browser-dot dot-g"></div><div class="browser-url"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg> clinicaodonto.com.br</div></div><div class="browser-content"><img src="https://i.imgur.com/tfFjuU4.png" alt="Portefólio Site 1"></div></div></div>
+                    <div class="portfolio-slide"><div class="browser-mockup"><div class="browser-header"><div class="browser-dot dot-r"></div><div class="browser-dot dot-y"></div><div class="browser-dot dot-g"></div><div class="browser-url"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg> silvaadvogados.com.br</div></div><div class="browser-content"><img src="https://i.imgur.com/f8bo1H3.png" alt="Portefólio Site 2"></div></div></div>
+                    <div class="portfolio-slide"><div class="browser-mockup"><div class="browser-header"><div class="browser-dot dot-r"></div><div class="browser-dot dot-y"></div><div class="browser-dot dot-g"></div><div class="browser-url"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg> seunegocio.com.br</div></div><div class="browser-content"><img src="https://i.imgur.com/xefLVjP.png" alt="Portefólio Site 3"></div></div></div>
+                    <div class="portfolio-slide"><div class="browser-mockup"><div class="browser-header"><div class="browser-dot dot-r"></div><div class="browser-dot dot-y"></div><div class="browser-dot dot-g"></div><div class="browser-url"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg> projetonovo.com.br</div></div><div class="browser-content"><img src="https://i.imgur.com/WiElj5S.png" alt="Portefólio Site 4"></div></div></div>
                 </div>
             </div>
             
             <div style="text-align: center; margin-top: 40px;">
-                <button onclick="window.open(WHATSAPP_LINK)" class="btn btn-primary">Quero um Site como esses</button>
+                <button onclick="window.open(WHATSAPP_LINK)" class="btn btn-primary" data-i18n="step1-btn">Quero um Site como estes</button>
             </div>
         </section>
 
         <!-- PILAR 2: GOOGLE MEU NEGÓCIO -->
         <section id="pilar-google" data-aos="fade-up">
             <div style="text-align: center; margin-bottom: 50px;">
-                <span class="section-tag" style="color: var(--google-red);">Passo 2: Tráfego Orgânico</span>
-                <h2>Domine o Google Meu Negócio</h2>
-                <p style="color: var(--text-dim); margin-top: 15px; font-size: 1.1rem; max-width: 700px; margin-inline: auto;">Depois de ter um site profissional, nós usamos o Google para enviar centenas de clientes da sua região diretamente para ele. Pare de ser invisível na sua cidade.</p>
+                <span class="section-tag" style="color: var(--google-red);" data-i18n="step2-tag">Passo 2: Tráfego Orgânico</span>
+                <h2 data-i18n="step2-title">Domine o Google Meu Negócio</h2>
+                <p style="color: var(--text-dim); margin-top: 15px; font-size: 1.1rem; max-width: 700px; margin-inline: auto;" data-i18n="step2-desc">Depois de ter um site profissional, nós usamos o Google para enviar centenas de clientes da sua região diretamente para ele. Pare de ser invisível na sua cidade.</p>
             </div>
             
             <div class="comparison-phones">
-                <!-- Celular Ruim (Antes - Realista) -->
                 <div class="phone-wrapper">
-                    <div class="phone-label label-bad">Como a maioria está</div>
+                    <div class="phone-label label-bad" data-i18n="bad-label">Como a maioria está</div>
                     <div class="real-phone" style="border-color: #2a1111; box-shadow: 0 15px 35px rgba(234, 67, 53, 0.15);">
                         <div class="rg-header">
                             <div class="rg-search">
-                                <span style="display: flex; gap: 10px; align-items: center;">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-                                    restaurante perto de mim
+                                <span style="display: flex; gap: 10px; align-items: center;" data-i18n="search-placeholder">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg> restaurante perto de mim
                                 </span>
                                 <svg viewBox="0 0 24 24" fill="none" stroke="#4285f4" stroke-width="2"><path d="M12 2a3 3 0 00-3 3v7a3 3 0 006 0V5a3 3 0 00-3-3z"></path><path d="M19 10v2a7 7 0 01-14 0v-2M12 19v4M8 23h8"></path></svg>
                             </div>
                             <div class="rg-tabs">
-                                <div class="rg-tab active">Visão geral</div>
-                                <div class="rg-tab">Avaliações</div>
-                                <div class="rg-tab">Fotos</div>
+                                <div class="rg-tab active" data-i18n="tab-overview">Visão geral</div>
+                                <div class="rg-tab" data-i18n="tab-reviews">Avaliações</div>
+                                <div class="rg-tab" data-i18n="tab-photos">Fotos</div>
                             </div>
                         </div>
-                        
                         <div class="rg-photos">
                             <div class="rg-photo-empty">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-bottom: 8px;"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
-                                Adicionar foto
+                                <span data-i18n="add-photo">Adicionar foto</span>
                             </div>
                         </div>
-
                         <div class="rg-content">
-                            <div class="rg-title">
-                                restaurante do joão
-                            </div>
-                            <div class="rg-rating-line">
-                                <span style="color: #d93025; font-weight: 500;">3,2</span>
-                                <span class="rg-stars">
-                                    ★ ★ ★ <span class="rg-stars bad">★ ★</span>
-                                </span>
-                                <span>(4)</span>
-                            </div>
+                            <div class="rg-title" style="display: block;" data-i18n="bad-title">restaurante do joão</div>
+                            <div class="rg-rating-line"><span style="color: #d93025; font-weight: 500;">3,2</span><span class="rg-stars">★ ★ ★ <span class="rg-stars bad">★ ★</span></span><span>(4)</span></div>
                             
                             <div class="rg-buttons">
-                                <div class="rg-btn disabled">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg> Ligar
-                                </div>
-                                <div class="rg-btn disabled">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 2v20M2 12h20"></path></svg> Site
-                                </div>
+                                <div class="rg-btn disabled"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg> <span data-i18n="btn-call">Ligar</span></div>
+                                <div class="rg-btn disabled"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 2v20M2 12h20"></path></svg> <span data-i18n="btn-site">Site</span></div>
                             </div>
 
                             <div style="border-top: 1px solid #ebebeb; padding-top: 16px; margin-top: 8px;">
                                 <div class="rg-info-line">
                                     <svg class="rg-info-icon gray" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                                    <span style="color: #70757a;">Endereço não informado corretamente.</span>
+                                    <span style="color: #70757a;" data-i18n="bad-info1">Endereço não informado corretamente.</span>
                                 </div>
                                 <div class="rg-info-line">
                                     <svg class="rg-info-icon gray" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                                    <span style="color: #d93025; font-weight: 500;">Fechado temporariamente</span>
+                                    <span style="color: #d93025; font-weight: 500;" data-i18n="bad-info2">Fechado temporariamente</span>
                                 </div>
                                 <div class="rg-info-line">
                                     <svg class="rg-info-icon gray" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
-                                    <span style="color: #d93025;">Você gerencia este perfil? Reivindique-o agora.</span>
+                                    <span style="color: #d93025;" data-i18n="bad-info3">Você gerencia este perfil? Reivindique-o agora.</span>
                                 </div>
                             </div>
                         </div>
@@ -492,67 +428,48 @@
 
                 <div class="comparison-vs">VS</div>
 
-                <!-- Celular Bom (Depois - Realista) -->
                 <div class="phone-wrapper">
-                    <div class="phone-label label-good">Com a HubSymples</div>
+                    <div class="phone-label label-good" data-i18n="good-label">Com a HubSymples</div>
                     <div class="real-phone" style="border-color: #112a18; box-shadow: 0 15px 35px rgba(52, 168, 83, 0.15);">
                         <div class="rg-header">
                             <div class="rg-search">
-                                <span style="display: flex; gap: 10px; align-items: center;">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-                                    restaurante perto de mim
+                                <span style="display: flex; gap: 10px; align-items: center;" data-i18n="search-placeholder">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg> restaurante perto de mim
                                 </span>
                                 <svg viewBox="0 0 24 24" fill="none" stroke="#4285f4" stroke-width="2"><path d="M12 2a3 3 0 00-3 3v7a3 3 0 006 0V5a3 3 0 00-3-3z"></path><path d="M19 10v2a7 7 0 01-14 0v-2M12 19v4M8 23h8"></path></svg>
                             </div>
                             <div class="rg-tabs">
-                                <div class="rg-tab active">Visão geral</div>
-                                <div class="rg-tab">Cardápio</div>
-                                <div class="rg-tab">Avaliações</div>
-                                <div class="rg-tab">Fotos</div>
+                                <div class="rg-tab active" data-i18n="tab-overview">Visão geral</div>
+                                <div class="rg-tab" data-i18n="tab-menu">Cardápio</div>
+                                <div class="rg-tab" data-i18n="tab-reviews">Avaliações</div>
                             </div>
                         </div>
-                        
-                        <div class="rg-photos">
-                            <div class="rg-photo-main" style="background-image: url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
-                        </div>
-
+                        <div class="rg-photos"><div class="rg-photo-main" style="background-image: url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div></div>
                         <div class="rg-content">
                             <div class="rg-title">
-                                <div>Restaurante & Grill Premium
-                                    <div class="rg-verified"><svg width="12" height="12" viewBox="0 0 24 24" fill="#1a73e8"><path d="M12 2L3 6v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V6l-9-4zm-2 16l-4-4 1.41-1.41L10 15.17l6.59-6.59L18 10l-8 8z"></path></svg> Verificado</div>
+                                <div><span data-i18n="good-title">Restaurante & Grill Premium</span>
+                                    <div class="rg-verified"><svg width="12" height="12" viewBox="0 0 24 24" fill="#1a73e8"><path d="M12 2L3 6v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V6l-9-4zm-2 16l-4-4 1.41-1.41L10 15.17l6.59-6.59L18 10l-8 8z"></path></svg> <span data-i18n="verified">Verificado</span></div>
                                 </div>
                             </div>
-                            <div class="rg-rating-line">
-                                <span style="color: #3c4043; font-weight: 500;">5,0</span>
-                                <span class="rg-stars">
-                                    ★ ★ ★ ★ ★
-                                </span>
-                                <span>(342)</span>
-                            </div>
-                            
+                            <div class="rg-rating-line"><span style="color: #3c4043; font-weight: 500;">5,0</span><span class="rg-stars">★ ★ ★ ★ ★</span><span>(342)</span></div>
+
                             <div class="rg-buttons">
-                                <div class="rg-btn primary">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg> Ligar
-                                </div>
-                                <div class="rg-btn">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"></polygon></svg> Rotas
-                                </div>
-                                <div class="rg-btn">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 2v20M2 12h20"></path></svg> Site
-                                </div>
+                                <div class="rg-btn primary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg> <span data-i18n="btn-call">Ligar</span></div>
+                                <div class="rg-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"></polygon></svg> <span data-i18n="btn-dir">Rotas</span></div>
+                                <div class="rg-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 2v20M2 12h20"></path></svg> <span data-i18n="btn-site">Site</span></div>
                             </div>
 
                             <div style="border-top: 1px solid #ebebeb; padding-top: 16px; margin-top: 8px;">
                                 <div class="rg-info-line">
                                     <svg class="rg-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                                    <span>Av. Principal, 1000 - Centro<br><span style="color: #70757a; font-size: 13px;">A 1,5 km de distância</span></span>
+                                    <span><span data-i18n="good-info1">Av. Principal, 1000 - Centro</span><br><span style="color: #70757a; font-size: 13px;" data-i18n="good-info1-dist">A 1,5 km de distância</span></span>
                                 </div>
                                 <div class="rg-info-line">
                                     <svg class="rg-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                                    <span><span style="color: #1e8e3e; font-weight: 500;">Aberto</span> ⋅ Fecha às 23:00</span>
+                                    <span data-i18n="good-info2"><span style="color: #1e8e3e; font-weight: 500;">Aberto</span> ⋅ Fecha às 23:00</span>
                                 </div>
                                 <div class="rg-info-line" style="margin-top: 16px; background: #f8f9fa; padding: 12px; border-radius: 8px;">
-                                    <div style="font-weight: 500; font-size: 13px; color: #202124;">"A comida é fantástica e o atendimento excelente!"</div>
+                                    <div style="font-weight: 500; font-size: 13px; color: #202124;" data-i18n="good-info3">"A comida é fantástica e o atendimento excelente!"</div>
                                 </div>
                             </div>
                         </div>
@@ -560,22 +477,21 @@
                 </div>
             </div>
             
-            <!-- ESTUDO DE CASO -->
             <div class="case-study-box">
-                <span class="section-tag" style="color: var(--google-blue);">Estudo de Caso Real</span>
-                <h3 style="font-size: clamp(1.5rem, 4vw, 2.2rem); margin-bottom: 15px; font-weight: 800; color: #fff;">De refém das taxas a pedidos diretos todos os dias</h3>
+                <span class="section-tag" style="color: var(--google-blue);" data-i18n="case-tag">Estudo de Caso Real</span>
+                <h3 style="font-size: clamp(1.5rem, 4vw, 2.2rem); margin-bottom: 15px; font-weight: 800; color: #fff;" data-i18n="case-title">De refém das taxas a pedidos diretos todos os dias</h3>
                 <div class="case-grid">
                     <div class="case-step">
-                        <div class="case-step-title"><div class="case-icon-wrapper" style="background: rgba(234, 67, 53, 0.2); color: var(--google-red);">⚠️</div>A Dor</div>
-                        <p style="color: var(--text-dim); font-size: 0.95rem;">Um restaurante dependia 100% do iFood. <b>As taxas abusivas devoravam todo o lucro.</b> Quando alguém buscava "restaurante perto de mim", só encontrava a concorrência.</p>
+                        <div class="case-step-title"><div class="case-icon-wrapper" style="background: rgba(234, 67, 53, 0.2); color: var(--google-red);">⚠️</div><span data-i18n="case-dor-title">A Dor</span></div>
+                        <p style="color: var(--text-dim); font-size: 0.95rem;" data-i18n="case-dor-desc">Um restaurante dependia 100% do iFood. <b>As taxas abusivas devoravam todo o lucro.</b> Quando alguém buscava "restaurante perto de mim", só encontrava a concorrência.</p>
                     </div>
                     <div class="case-step">
-                        <div class="case-step-title"><div class="case-icon-wrapper" style="background: rgba(26, 115, 232, 0.2); color: var(--google-blue);">🛠️</div>A Solução</div>
-                        <p style="color: var(--text-dim); font-size: 0.95rem;">Assumimos o Perfil no Google, adicionamos as fotos dos pratos e conectamos ao <b>Site Profissional e botão direto para o WhatsApp</b>, removendo o intermediário.</p>
+                        <div class="case-step-title"><div class="case-icon-wrapper" style="background: rgba(26, 115, 232, 0.2); color: var(--google-blue);">🛠️</div><span data-i18n="case-sol-title">A Solução</span></div>
+                        <p style="color: var(--text-dim); font-size: 0.95rem;" data-i18n="case-sol-desc">Assumimos o Perfil no Google, adicionamos as fotos dos pratos e conectamos ao <b>Site Profissional e botão direto para o WhatsApp</b>, removendo o intermediário.</p>
                     </div>
                     <div class="case-step">
-                        <div class="case-step-title"><div class="case-icon-wrapper" style="background: rgba(52, 168, 83, 0.2); color: var(--google-green);">📈</div>O Resultado</div>
-                        <p style="color: var(--text-dim); font-size: 0.95rem;">O restaurante saltou para o topo das buscas. Começou a receber pedidos diretamente no WhatsApp e a encher o salão, mantendo 100% do lucro no bolso.</p>
+                        <div class="case-step-title"><div class="case-icon-wrapper" style="background: rgba(52, 168, 83, 0.2); color: var(--google-green);">📈</div><span data-i18n="case-res-title">O Resultado</span></div>
+                        <p style="color: var(--text-dim); font-size: 0.95rem;" data-i18n="case-res-desc">O restaurante saltou para o topo das buscas. Começou a receber pedidos diretamente no WhatsApp e a encher o salão, mantendo 100% do lucro no bolso.</p>
                     </div>
                 </div>
             </div>
@@ -584,173 +500,106 @@
         <!-- PILAR 3: APPS DE GESTÃO -->
         <section id="pilar-apps" class="grid-2" data-aos="fade-up">
             <div style="order: 2;">
-                <span class="section-tag" style="color: var(--google-green);">Passo 3: Gestão e Escala</span>
-                <h2>Aplicativos exclusivos para o seu negócio na palma da mão.</h2>
-                <p style="color: var(--text-dim); margin-top: 20px; font-size: 1.1rem;">
-                    Quando o seu Site e o Google começarem a trazer dezenas de clientes, cadernos de papel e o WhatsApp caótico deixam de funcionar. Oferecemos aplicativos de gestão focados no seu nicho.
-                </p>
+                <span class="section-tag" style="color: var(--google-green);" data-i18n="step3-tag">Passo 3: Gestão e Escala</span>
+                <h2 data-i18n="step3-title">Aplicativos exclusivos para o seu negócio na palma da mão.</h2>
+                <p style="color: var(--text-dim); margin-top: 20px; font-size: 1.1rem;" data-i18n="step3-desc">Quando o seu Site e o Google começarem a trazer dezenas de clientes, cadernos de papel e o WhatsApp caótico deixam de funcionar. Oferecemos aplicativos de gestão focados no seu nicho.</p>
                 <div style="margin-top: 25px; display: flex; flex-direction: column; gap: 10px;">
-                    <span style="display: flex; align-items: center; gap: 10px; font-weight: 500; color: var(--text-main);">
-                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="var(--google-green)" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg> Aplicativo de Agendamentos
-                    </span>
-                    <span style="display: flex; align-items: center; gap: 10px; font-weight: 500; color: var(--text-main);">
-                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="var(--google-green)" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg> Aplicativo de Orçamentos e CRM
-                    </span>
+                    <span style="display: flex; align-items: center; gap: 10px; font-weight: 500; color: var(--text-main);"><svg viewBox="0 0 24 24" width="20" height="20" stroke="var(--google-green)" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="app-feat1">Aplicativo de Agendamentos</span></span>
+                    <span style="display: flex; align-items: center; gap: 10px; font-weight: 500; color: var(--text-main);"><svg viewBox="0 0 24 24" width="20" height="20" stroke="var(--google-green)" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="app-feat2">Aplicativo de Orçamentos e CRM</span></span>
                 </div>
             </div>
-            
             <div class="app-mockup" data-aos="zoom-in" data-aos-delay="200" style="order: 1;">
                 <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 15px;">
-                    <div style="display: flex; align-items: center; gap: 10px;">
-                        <div style="width: 35px; height: 35px; background: var(--google-green); border-radius: 8px; flex-shrink: 0;"></div>
-                        <div>
-                            <div style="font-weight: bold; font-size: 0.9rem;">Seu App de Gestão</div>
-                            <div style="font-size: 0.75rem; color: var(--text-dim);">Painel de Controle</div>
-                        </div>
-                    </div>
+                    <div style="display: flex; align-items: center; gap: 10px;"><div style="width: 35px; height: 35px; background: var(--google-green); border-radius: 8px; flex-shrink: 0;"></div><div><div style="font-weight: bold; font-size: 0.9rem;">App Dashboard</div></div></div>
                 </div>
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 10px;">
-                    <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 8px; text-align: center;">
-                        <div style="font-size: 1.5rem; font-weight: bold; color: var(--google-blue);">12</div>
-                        <div style="font-size: 0.8rem; color: var(--text-dim);">Agendamentos</div>
-                    </div>
-                    <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 8px; text-align: center;">
-                        <div style="font-size: 1.5rem; font-weight: bold; color: var(--google-green);">R$ 1.2k</div>
-                        <div style="font-size: 0.8rem; color: var(--text-dim);">Faturamento</div>
-                    </div>
-                </div>
-                <div style="margin-top: 10px; border-radius: 8px; overflow: hidden;">
-                    <div style="background: rgba(255,255,255,0.02); padding: 12px; font-size: 0.85rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between;">
-                        <span>João Cliente</span> <span style="color: var(--google-yellow);">14:00 - Confirmado</span>
-                    </div>
+                    <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 8px; text-align: center;"><div style="font-size: 1.5rem; font-weight: bold; color: var(--google-blue);">12</div><div style="font-size: 0.8rem; color: var(--text-dim);">New</div></div>
+                    <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 8px; text-align: center;"><div style="font-size: 1.5rem; font-weight: bold; color: var(--google-green);">+85%</div><div style="font-size: 0.8rem; color: var(--text-dim);">Sales</div></div>
                 </div>
             </div>
         </section>
 
         <!-- PERSONALIZADOR DE PLANOS -->
         <section id="planos" class="pricing-section" data-aos="fade-up">
-            <span class="section-tag" style="color: var(--google-yellow);">Flexibilidade Total</span>
-            <h2>Monte o seu pacote personalizado</h2>
-            <p style="color: var(--text-dim); margin-top: 15px; font-size: 1.1rem; max-width: 700px; margin-inline: auto;">Selecione exatamente as soluções que o seu negócio precisa agora e fale com um especialista da HubSymples.</p>
+            <span class="section-tag" style="color: var(--google-yellow);" data-i18n="plan-tag">Flexibilidade Total</span>
+            <h2 data-i18n="plan-title">Monte o seu pacote personalizado</h2>
+            <p style="color: var(--text-dim); margin-top: 15px; font-size: 1.1rem; max-width: 700px; margin-inline: auto;" data-i18n="plan-desc">Selecione exatamente as soluções que o seu negócio precisa agora e fale com um especialista da HubSymples.</p>
 
             <div class="customizer-grid">
-                <!-- Módulo Sites -->
                 <div class="customizer-card" onclick="toggleCustomItem('site', this, 'active-site')">
                     <div class="customizer-header">
-                        <div class="custom-icon-wrapper" style="color: var(--google-blue);">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
-                        </div>
-                        <div class="custom-checkbox">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                        </div>
+                        <div class="custom-icon-wrapper" style="color: var(--google-blue);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg></div>
+                        <div class="custom-checkbox"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
                     </div>
-                    <div>
-                        <h3>Site Profissional</h3>
-                        <p>Landing page focada em conversão, design perfeito para celular e botões diretos para o seu WhatsApp.</p>
-                    </div>
+                    <div><h3 data-i18n="plan-card1-title">Site Profissional</h3><p data-i18n="plan-card1-desc">Landing page focada em conversão, design perfeito para celular e botões diretos para o seu WhatsApp.</p></div>
                 </div>
 
-                <!-- Módulo Google -->
                 <div class="customizer-card" onclick="toggleCustomItem('google', this, 'active-google')">
                     <div class="customizer-header">
-                        <div class="custom-icon-wrapper" style="color: var(--google-red);">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                        </div>
-                        <div class="custom-checkbox">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                        </div>
+                        <div class="custom-icon-wrapper" style="color: var(--google-red);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg></div>
+                        <div class="custom-checkbox"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
                     </div>
-                    <div>
-                        <h3>Google Meu Negócio</h3>
-                        <p>Otimização completa para topo das buscas, SEO Local, avaliações 5 estrelas e Banners com QR Code.</p>
-                    </div>
+                    <div><h3 data-i18n="plan-card2-title">Google Meu Negócio</h3><p data-i18n="plan-card2-desc">Otimização completa para topo das buscas, SEO Local, avaliações 5 estrelas e Banners com QR Code.</p></div>
                 </div>
 
-                <!-- Módulo Apps -->
                 <div class="customizer-card" onclick="toggleCustomItem('app', this, 'active-app')">
                     <div class="customizer-header">
-                        <div class="custom-icon-wrapper" style="color: var(--google-green);">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-                        </div>
-                        <div class="custom-checkbox">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                        </div>
+                        <div class="custom-icon-wrapper" style="color: var(--google-green);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></div>
+                        <div class="custom-checkbox"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
                     </div>
-                    <div>
-                        <h3>Aplicativo de Gestão</h3>
-                        <p>App exclusivo com funções sob medida (agendamentos, orçamentos, CRM) para controlar a sua empresa.</p>
-                    </div>
+                    <div><h3 data-i18n="plan-card3-title">Aplicativo de Gestão</h3><p data-i18n="plan-card3-desc">App exclusivo com funções sob medida (agendamentos, orçamentos, CRM) para controlar a sua empresa.</p></div>
                 </div>
             </div>
 
             <div class="customizer-action">
-                <button onclick="sendCustomizedPlan()" class="btn btn-primary" style="padding: 20px 50px; font-size: 1.2rem; box-shadow: 0 10px 30px rgba(26, 115, 232, 0.3);">
-                    Solicitar Orçamento das Soluções
-                </button>
-                <span id="custom-feedback" style="font-size: 0.9rem; color: var(--text-dim); transition: 0.3s;">Selecione pelo menos 1 serviço acima para montar o pacote.</span>
+                <button onclick="sendCustomizedPlan()" class="btn btn-primary" style="padding: 20px 50px; font-size: 1.2rem; box-shadow: 0 10px 30px rgba(26, 115, 232, 0.3);" data-i18n="plan-btn">Solicitar Orçamento das Soluções</button>
+                <span id="custom-feedback" style="font-size: 0.9rem; color: var(--text-dim); transition: 0.3s;" data-i18n="plan-feed-empty">Selecione pelo menos 1 serviço acima para montar o pacote.</span>
             </div>
 
-            <!-- GARANTIA E PAGAMENTO -->
+            <!-- GARANTIA -->
             <div class="guarantee-badge-large" data-aos="zoom-in">
-                <div class="guarantee-icon-wrapper">
-                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                </div>
-                <div>
-                    <h3 class="guarantee-title">Entrega de Altíssima Qualidade</h3>
-                    <p class="guarantee-text">Nossa equipe é focada em conversão. Desenvolvemos seu Site Profissional rapidamente e garantimos a otimização de SEO para você já começar a atrair clientes na internet.</p>
-                </div>
+                <div class="guarantee-icon-wrapper"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg></div>
+                <div><h3 class="guarantee-title" data-i18n="guarantee-title">Entrega de Altíssima Qualidade</h3><p class="guarantee-text" data-i18n="guarantee-desc">Nossa equipe é focada em conversão. Desenvolvemos seu Site Profissional rapidamente e garantimos a otimização de SEO para você já começar a atrair clientes na internet.</p></div>
             </div>
 
             <div style="margin-top: 35px; display: flex; flex-direction: column; align-items: center; gap: 15px;">
-                <span style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600; color: var(--text-dim);">Pagamento 100% Seguro</span>
+                <span style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600; color: var(--text-dim);" data-i18n="pay-title">Pagamento 100% Seguro</span>
                 <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
-                    <span style="display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.05); padding: 10px 20px; border-radius: 12px; border: 1px solid var(--border); font-weight: 600; color: #32BCAD;">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M11.999 1.139L2.839 10.3c-.45.45-.45 1.18 0 1.63l9.16 9.16c.45.45 1.18.45 1.63 0l9.16-9.16c.45-.45.45-1.18 0-1.63l-9.16-9.16c-.45-.45-1.18-.45-1.63 0z"/></svg> Pix
-                    </span>
-                    <span style="display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.05); padding: 10px 20px; border-radius: 12px; border: 1px solid var(--border); font-weight: 600; color: var(--text-main);">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg> Cartão de Crédito
-                    </span>
+                    <span style="display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.05); padding: 10px 20px; border-radius: 12px; border: 1px solid var(--border); font-weight: 600; color: #32BCAD;"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M11.999 1.139L2.839 10.3c-.45.45-.45 1.18 0 1.63l9.16 9.16c.45.45 1.18.45 1.63 0l9.16-9.16c.45-.45.45-1.18 0-1.63l-9.16-9.16c-.45-.45-1.18-.45-1.63 0z"/></svg> <span data-i18n="pay-pix">Pix</span></span>
+                    <span style="display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.05); padding: 10px 20px; border-radius: 12px; border: 1px solid var(--border); font-weight: 600; color: var(--text-main);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg> <span data-i18n="pay-card">Cartão de Crédito</span></span>
                 </div>
             </div>
         </section>
 
         <!-- FAQ -->
         <section id="faq">
-            <div style="text-align: center; margin-bottom: 30px;"><span class="section-tag">Dúvidas</span><h2>Perguntas Frequentes</h2></div>
+            <div style="text-align: center; margin-bottom: 30px;"><span class="section-tag" data-i18n="faq-tag">Dúvidas</span><h2 data-i18n="faq-title">Perguntas Frequentes</h2></div>
             <div class="faq-container">
-                <div class="faq-item">
-                    <button class="faq-question">Os sites possuem mensalidade? <span class="faq-icon">+</span></button>
-                    <div class="faq-answer"><p>A Criação do Site é um pagamento único. Para manter o site online no ar para o mundo todo ver, existe apenas um pequeno custo anual ou mensal do servidor (hospedagem) e domínio (seu www), que nós ajudamos a configurar no seu pacote com valores muito acessíveis.</p></div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question">Vocês fazem o Google Meu Negócio também? <span class="faq-icon">+</span></button>
-                    <div class="faq-answer"><p>Sim! Inclusive é o nosso combo mais vendido: Site + Google. A plataforma do Google é gratuita, o que você paga é o nosso serviço de <b>otimização estratégica profissional</b> para garantir que seu site fique no topo das buscas.</p></div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question">Como funciona o Aplicativo de Gestão? <span class="faq-icon">+</span></button>
-                    <div class="faq-answer"><p>Você e a nossa equipe vão alinhar quais são as prioridades do seu negócio. Podemos configurar um App focado em agendamentos, um CRM para gestão de clientes, ou uma ferramenta que resolva as dores exatas que você tem hoje na organização do seu serviço.</p></div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question">Sou prestador de serviço autônomo, serve para mim? <span class="faq-icon">+</span></button>
-                    <div class="faq-answer"><p>Com certeza. Ter um site próprio como "seunome.com.br" separa você dos amadores. Clientes tendem a confiar (e pagar mais caro) para profissionais que demonstram credibilidade através de uma Landing Page bem estruturada e um Google bem avaliado.</p></div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question">Quais são as formas de pagamento? <span class="faq-icon">+</span></button>
-                    <div class="faq-answer"><p>Aceitamos pagamentos via <b>Pix</b> (com aprovação imediata) e <b>Cartão de Crédito</b>. Facilitamos o investimento para que sua empresa se digitalize o mais rápido possível!</p></div>
-                </div>
+                <div class="faq-item"><button class="faq-question"><span data-i18n="q1">Os sites possuem mensalidade?</span> <span class="faq-icon">+</span></button><div class="faq-answer"><p data-i18n="a1">A Criação do Site é um pagamento único. Para manter o site online no ar para o mundo todo ver, existe apenas um pequeno custo anual ou mensal do servidor (hospedagem) e domínio (seu www), que nós ajudamos a configurar no seu pacote com valores muito acessíveis.</p></div></div>
+                <div class="faq-item"><button class="faq-question"><span data-i18n="q2">Vocês fazem o Google Meu Negócio também?</span> <span class="faq-icon">+</span></button><div class="faq-answer"><p data-i18n="a2">Sim! Inclusive é o nosso combo mais vendido: Site + Google. A plataforma do Google é gratuita, o que você paga é o nosso serviço de <b>otimização estratégica profissional</b> para garantir que seu site fique no topo das buscas.</p></div></div>
+                <div class="faq-item"><button class="faq-question"><span data-i18n="q3">Como funciona o Aplicativo de Gestão?</span> <span class="faq-icon">+</span></button><div class="faq-answer"><p data-i18n="a3">Você e a nossa equipe vão alinhar quais são as prioridades do seu negócio. Podemos configurar um App focado em agendamentos, um CRM para gestão de clientes, ou uma ferramenta que resolva as dores exatas que você tem hoje na organização do seu serviço.</p></div></div>
+                <div class="faq-item"><button class="faq-question"><span data-i18n="q4">Sou prestador de serviço autônomo, serve para mim?</span> <span class="faq-icon">+</span></button><div class="faq-answer"><p data-i18n="a4">Com certeza. Ter um site próprio como "seunome.com.br" separa você dos amadores. Clientes tendem a confiar (e pagar mais caro) para profissionais que demonstram credibilidade através de uma Landing Page bem estruturada e um Google bem avaliado.</p></div></div>
+                <div class="faq-item"><button class="faq-question"><span data-i18n="q5">Quais são as formas de pagamento?</span> <span class="faq-icon">+</span></button><div class="faq-answer"><p data-i18n="a5">Aceitamos pagamentos via <b>Pix</b> (com aprovação imediata) e <b>Cartão de Crédito</b>. Facilitamos o investimento para que sua empresa se digitalize o mais rápido possível!</p></div></div>
             </div>
         </section>
     </main>
 
     <footer>
-        <div class="footer-logo">
-            <div class="logo-text" style="font-size: 1.8rem;">HubSymples</div>
-        </div>
-        <p class="footer-text">© <script>document.write(new Date().getFullYear())</script> HubSymples. O Seu Hub de Soluções Digitais.</p>
-        <p class="footer-motto" style="margin-top: 10px; color: var(--text-dim);">Do seu próprio Site ao App de Gestão. Escalamos o seu negócio.</p>
+        <div class="footer-logo"><div class="logo-text" style="font-size: 1.8rem;">HubSymples</div></div>
+        <p class="footer-text">© <script>document.write(new Date().getFullYear())</script> HubSymples. <span data-i18n="footer-text">O Seu Hub de Soluções Digitais.</span></p>
+        <p class="footer-motto" style="margin-top: 10px; color: var(--text-dim);" data-i18n="footer-motto">Do seu próprio Site ao App de Gestão. Escalamos o seu negócio.</p>
+        
+        <a href="mailto:hubsymples@gmail.com" style="display: inline-flex; align-items: center; gap: 8px; margin-top: 25px; color: var(--google-blue); font-weight: 600; text-decoration: none; padding: 12px 24px; border-radius: 30px; background: rgba(26, 115, 232, 0.1); transition: 0.3s;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            hubsymples@gmail.com
+        </a>
     </footer>
 
-    <!-- Botão Flutuante do WhatsApp -->
+    <!-- Botões Flutuantes de Contato -->
+    <a href="mailto:hubsymples@gmail.com" class="email-float" aria-label="E-mail" title="Enviar E-mail">
+        <svg style="width: 24px; height: 24px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+    </a>
+
     <a href="#" onclick="window.open(WHATSAPP_LINK)" class="whatsapp-float" aria-label="WhatsApp">
         <svg style="width: 32px; height: 32px;" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.72.94 3.659 1.437 5.634 1.437h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
     </a>
@@ -759,36 +608,234 @@
     <script>
         AOS.init({ duration: 800, once: true, offset: 100 });
 
-        // CALCULADORA DE PREJUÍZO
+        // === SISTEMA DE TRADUÇÃO (i18n) ===
+        const translations = {
+            pt: {
+                "nav-sites": "Sites", "nav-google": "Google", "nav-apps": "Apps", "nav-plans": "Planos", "nav-btn": "Falar com Especialista",
+                "hero-title": "Sua empresa precisa de um site que <span style='color: var(--google-blue)'>vende por você 24h por dia</span>.",
+                "hero-desc": "Construímos a \"casa própria\" do seu negócio na internet com Sites Profissionais de alta conversão. Depois, usamos o Google para lotar o seu WhatsApp de clientes.",
+                "hero-btn1": "Construir Meu Site Profissional", "hero-btn2": "Ver Portfólio",
+                "badge-1": "Criação de Sites Rápida", "badge-2": "Google Meu Negócio", "badge-3": "Apps de Gestão",
+                "market-tag": "A Realidade do Mercado", "market-title": "Se você não tem um site, o cliente procura quem tem.",
+                "market-p1": "Hoje em dia, a maioria dos consumidores pesquisa empresas online antes de fazer uma compra. Ter apenas um Instagram ou Facebook não passa credibilidade suficiente.",
+                "market-p2": "Um Site Profissional atua como o seu melhor vendedor. Ele exibe seus serviços de forma elegante, tira dúvidas e direciona o cliente pronto para comprar direto para o seu WhatsApp.",
+                "stat1-val": "75%", "stat1-text": "Julgam a empresa pelo site", "stat2-val": "97%", "stat2-text": "Buscam serviços no Google", "stat3-val": "24/7", "stat3-text": "Vendas automáticas no site", "stat4-val": "3x", "stat4-text": "Mais contatos e orçamentos",
+                "calc-tag": "A Calculadora do Prejuízo Invisível", "calc-title": "Quanto você perde por não passar credibilidade?",
+                "calc-desc": "Simule quantos clientes você atende hoje. Nós calculamos o valor aproximado que os concorrentes com Sites Profissionais e boa presença no Google estão roubando da sua empresa todo mês.",
+                "calc-label1": "Quantos clientes você atende por mês?", "calc-label2": "Qual o valor médio (Ticket) gasto por cliente?",
+                "calc-res-title": "Prejuízo Estimado por Mês:",
+                "calc-res-desc": "Este é o valor aproximado que você deixa na mesa por perder cerca de <b><span id='clientesPerdidos' style='color: #fff; font-weight: bold;'>30</span> potenciais clientes</b> que visitam suas redes e acabam fechando com a concorrência que possui um site mais profissional.",
+                "calc-btn": "Parar de Perder Clientes",
+                "step1-tag": "Passo 1: A Sua Base Sólida", "step1-title": "Criação de Sites e Landing Pages",
+                "step1-desc": "Não mande os seus clientes para um link genérico ou para as redes sociais cheias de distrações. Construímos a sua página de alta conversão, com domínio próprio e 100% otimizada para telemóveis.", "step1-btn": "Quero um Site como estes",
+                "step2-tag": "Passo 2: Tráfego Orgânico", "step2-title": "Domine o Google Meu Negócio",
+                "step2-desc": "Depois de ter um site profissional, nós usamos o Google para enviar centenas de clientes da sua região diretamente para ele. Pare de ser invisível na sua cidade.",
+                "bad-label": "Como a maioria está", "good-label": "Com a HubSymples", "search-placeholder": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' style='width:18px;height:18px;'><path d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'></path></svg> restaurante perto de mim",
+                "tab-overview": "Visão geral", "tab-reviews": "Avaliações", "tab-photos": "Fotos", "tab-menu": "Cardápio", "add-photo": "Adicionar foto",
+                "bad-title": "restaurante do joão", "good-title": "Restaurante & Grill Premium", "verified": "Verificado",
+                "btn-call": "Ligar", "btn-dir": "Rotas", "btn-site": "Site",
+                "bad-info1": "Endereço não informado corretamente.", "bad-info2": "Fechado temporariamente", "bad-info3": "Você gerencia este perfil? Reivindique-o agora.",
+                "good-info1": "Av. Principal, 1000 - Centro", "good-info1-dist": "A 1,5 km de distância",
+                "good-info2": "<span style='color: #1e8e3e; font-weight: 500;'>Aberto</span> ⋅ Fecha às 23:00",
+                "good-info3": "\"A comida é fantástica e o atendimento excelente!\"",
+                "case-tag": "Estudo de Caso Real", "case-title": "De refém das taxas a pedidos diretos todos os dias",
+                "case-dor-title": "A Dor", "case-dor-desc": "Um restaurante dependia 100% do iFood. <b>As taxas abusivas devoravam todo o lucro.</b> Quando alguém buscava \"restaurante perto de mim\", só encontrava a concorrência.",
+                "case-sol-title": "A Solução", "case-sol-desc": "Assumimos o Perfil no Google, adicionamos as fotos dos pratos e conectamos ao <b>Site Profissional e botão direto para o WhatsApp</b>, removendo o intermediário.",
+                "case-res-title": "O Resultado", "case-res-desc": "O restaurante saltou para o topo das buscas. Começou a receber pedidos diretamente no WhatsApp e a encher o salão, mantendo 100% do lucro no bolso.",
+                "step3-tag": "Passo 3: Gestão e Escala", "step3-title": "Aplicativos exclusivos para o seu negócio na palma da mão.",
+                "step3-desc": "Quando o seu Site e o Google começarem a trazer dezenas de clientes, cadernos de papel e o WhatsApp caótico deixam de funcionar. Oferecemos aplicativos de gestão focados no seu nicho.",
+                "app-feat1": "Aplicativo de Agendamentos", "app-feat2": "Aplicativo de Orçamentos e CRM",
+                "plan-tag": "Flexibilidade Total", "plan-title": "Monte o seu pacote personalizado",
+                "plan-desc": "Selecione exatamente as soluções que o seu negócio precisa agora e fale com um especialista da HubSymples.",
+                "plan-card1-title": "Site Profissional", "plan-card1-desc": "Landing page focada em conversão, design perfeito para celular e botões diretos para o seu WhatsApp.",
+                "plan-card2-title": "Google Meu Negócio", "plan-card2-desc": "Otimização completa para topo das buscas, SEO Local, avaliações 5 estrelas e Banners com QR Code.",
+                "plan-card3-title": "Aplicativo de Gestão", "plan-card3-desc": "App exclusivo com funções sob medida (agendamentos, orçamentos, CRM) para controlar a sua empresa.",
+                "plan-btn": "Solicitar Orçamento das Soluções", "plan-feed-empty": "Selecione pelo menos 1 serviço acima para montar o pacote.", "plan-feed-active": "serviço(s) selecionado(s). Pronto para avançar!",
+                "guarantee-title": "Entrega de Altíssima Qualidade", "guarantee-desc": "Nossa equipe é focada em conversão. Desenvolvemos seu Site Profissional rapidamente e garantimos a otimização de SEO para você já começar a atrair clientes na internet.",
+                "pay-title": "Pagamento 100% Seguro", "pay-pix": "Pix", "pay-card": "Cartão de Crédito",
+                "faq-tag": "Dúvidas", "faq-title": "Perguntas Frequentes",
+                "q1": "Os sites possuem mensalidade?", "a1": "A Criação do Site é um pagamento único. Para manter o site online no ar para o mundo todo ver, existe apenas um pequeno custo anual ou mensal do servidor (hospedagem) e domínio (seu www), que nós ajudamos a configurar no seu pacote com valores muito acessíveis.",
+                "q2": "Vocês fazem o Google Meu Negócio também?", "a2": "Sim! Inclusive é o nosso combo mais vendido: Site + Google. A plataforma do Google é gratuita, o que você paga é o nosso serviço de <b>otimização estratégica profissional</b> para garantir que seu site fique no topo das buscas.",
+                "q3": "Como funciona o Aplicativo de Gestão?", "a3": "Você e a nossa equipe vão alinhar quais são as prioridades do seu negócio. Podemos configurar um App focado em agendamentos, um CRM para gestão de clientes, ou uma ferramenta que resolva as dores exatas que você tem hoje na organização do seu serviço.",
+                "q4": "Sou prestador de serviço autônomo, serve para mim?", "a4": "Com certeza. Ter um site próprio como \"seunome.com.br\" separa você dos amadores. Clientes tendem a confiar (e pagar mais caro) para profissionais que demonstram credibilidade através de uma Landing Page bem estruturada e um Google bem avaliado.",
+                "q5": "Quais são as formas de pagamento?", "a5": "Aceitamos pagamentos via <b>Pix</b> (com aprovação imediata) e <b>Cartão de Crédito</b>. Facilitamos o investimento para que sua empresa se digitalize o mais rápido possível!",
+                "footer-text": "O Seu Hub de Soluções Digitais.", "footer-motto": "Do seu próprio Site ao App de Gestão. Escalamos o seu negócio."
+            },
+            en: {
+                "nav-sites": "Websites", "nav-google": "Google", "nav-apps": "Apps", "nav-plans": "Plans", "nav-btn": "Talk to an Expert",
+                "hero-title": "Your company needs a website that <span style='color: var(--google-blue)'>sells for you 24/7</span>.",
+                "hero-desc": "We build your business's \"own home\" on the internet with high-conversion Professional Websites. Then, we use Google to flood your WhatsApp with customers.",
+                "hero-btn1": "Build My Pro Website", "hero-btn2": "View Portfolio",
+                "badge-1": "Fast Website Creation", "badge-2": "Google Business Profile", "badge-3": "Management Apps",
+                "market-tag": "Market Reality", "market-title": "If you don't have a website, your customer goes to someone who does.",
+                "market-p1": "Nowadays, most consumers search for businesses online before making a purchase. Having only Instagram or Facebook doesn't convey enough credibility.",
+                "market-p2": "A Professional Website acts as your best salesperson. It elegantly displays your services, answers questions, and directs customers ready to buy straight to your WhatsApp.",
+                "stat1-val": "75%", "stat1-text": "Judge a company by its website", "stat2-val": "97%", "stat2-text": "Search for services on Google", "stat3-val": "24/7", "stat3-text": "Automatic sales on the site", "stat4-val": "3x", "stat4-text": "More contacts and quotes",
+                "calc-tag": "The Invisible Loss Calculator", "calc-title": "How much do you lose by lacking credibility?",
+                "calc-desc": "Simulate how many customers you serve today. We calculate the approximate amount that competitors with Professional Websites and a good Google presence are stealing from your company every month.",
+                "calc-label1": "How many customers do you serve per month?", "calc-label2": "What is the average amount (Ticket) spent per customer?",
+                "calc-res-title": "Estimated Loss per Month:",
+                "calc-res-desc": "This is the approximate amount you leave on the table by losing around <b><span id='clientesPerdidos' style='color: #fff; font-weight: bold;'>30</span> potential customers</b> who visit your social media and end up closing with competitors who have a more professional website.",
+                "calc-btn": "Stop Losing Customers",
+                "step1-tag": "Step 1: Your Solid Foundation", "step1-title": "Website and Landing Page Creation",
+                "step1-desc": "Don't send your customers to a generic link or social media full of distractions. We build your high-conversion page, with your own domain and 100% mobile-optimized.", "step1-btn": "I want a Website like these",
+                "step2-tag": "Step 2: Organic Traffic", "step2-title": "Dominate Google Business Profile",
+                "step2-desc": "Once you have a professional website, we use Google to send hundreds of local customers directly to it. Stop being invisible in your city.",
+                "bad-label": "How most are doing", "good-label": "With HubSymples", "search-placeholder": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' style='width:18px;height:18px;'><path d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'></path></svg> restaurants near me",
+                "tab-overview": "Overview", "tab-reviews": "Reviews", "tab-photos": "Photos", "tab-menu": "Menu", "add-photo": "Add photo",
+                "bad-title": "john's restaurant", "good-title": "Premium Grill & Restaurant", "verified": "Verified",
+                "btn-call": "Call", "btn-dir": "Directions", "btn-site": "Website",
+                "bad-info1": "Address not properly provided.", "bad-info2": "Temporarily closed", "bad-info3": "Own this business? Claim it now.",
+                "good-info1": "1000 Main St - Downtown", "good-info1-dist": "0.9 miles away",
+                "good-info2": "<span style='color: #1e8e3e; font-weight: 500;'>Open</span> ⋅ Closes at 11:00 PM",
+                "good-info3": "\"The food is fantastic and the service is excellent!\"",
+                "case-tag": "Real Case Study", "case-title": "From app fees hostage to direct daily orders",
+                "case-dor-title": "The Pain", "case-dor-desc": "A restaurant relied 100% on delivery apps. <b>Abusive fees ate up all the profit.</b> When someone searched \"restaurants near me\", they only found competitors.",
+                "case-sol-title": "The Solution", "case-sol-desc": "We took over their Google Profile, added food photos, and connected it to their <b>Professional Website and direct WhatsApp button</b>, removing the middleman.",
+                "case-res-title": "The Result", "case-res-desc": "The restaurant jumped to the top of searches. Started receiving direct orders on WhatsApp and filling the dining room, keeping 100% of the profit.",
+                "step3-tag": "Step 3: Management & Scaling", "step3-title": "Exclusive apps for your business in the palm of your hand.",
+                "step3-desc": "When your Website and Google start bringing in dozens of customers, paper notebooks and chaotic WhatsApp stop working. We offer management apps focused on your niche.",
+                "app-feat1": "Scheduling App", "app-feat2": "Quoting and CRM App",
+                "plan-tag": "Total Flexibility", "plan-title": "Build your customized package",
+                "plan-desc": "Select exactly the solutions your business needs right now and talk to a HubSymples expert.",
+                "plan-card1-title": "Professional Website", "plan-card1-desc": "High-conversion landing page, perfect mobile design, and direct buttons to your WhatsApp.",
+                "plan-card2-title": "Google Business Profile", "plan-card2-desc": "Full optimization for top search results, Local SEO, 5-star reviews, and QR Code Banners.",
+                "plan-card3-title": "Management App", "plan-card3-desc": "Exclusive app with custom features (scheduling, quotes, CRM) to manage your company.",
+                "plan-btn": "Request Solutions Quote", "plan-feed-empty": "Select at least 1 service above to build your package.", "plan-feed-active": "service(s) selected. Ready to proceed!",
+                "guarantee-title": "Highest Quality Delivery", "guarantee-desc": "Our team is focused on conversion. We develop your Professional Website quickly and ensure SEO optimization so you can start attracting customers online right away.",
+                "pay-title": "100% Secure Payment", "pay-pix": "Instant Transfer", "pay-card": "Credit Card",
+                "faq-tag": "Questions", "faq-title": "Frequently Asked Questions",
+                "q1": "Do the websites have a monthly fee?", "a1": "Website creation is a one-time payment. To keep the website online for the world to see, there is only a small annual or monthly cost for the server (hosting) and domain (your www), which we help you set up in your package with very affordable prices.",
+                "q2": "Do you also do Google Business Profile?", "a2": "Yes! In fact, it's our best-selling combo: Website + Google. The Google platform is free, what you pay for is our <b>professional strategic optimization</b> service to ensure your site stays at the top of searches.",
+                "q3": "How does the Management App work?", "a3": "You and our team will align on what your business priorities are. We can set up an App focused on scheduling, a CRM for customer management, or a tool that solves the exact pain points you have today in organizing your service.",
+                "q4": "I am an independent service provider, is this for me?", "a4": "Absolutely. Having your own website like \"yourname.com\" separates you from amateurs. Customers tend to trust (and pay more to) professionals who demonstrate credibility through a well-structured Landing Page and a highly-rated Google profile.",
+                "q5": "What are the payment methods?", "a5": "We accept payments via <b>Instant Bank Transfer</b> and <b>Credit Card</b>. We make the investment easy so your company can digitize as soon as possible!",
+                "footer-text": "Your Digital Solutions Hub.", "footer-motto": "From your own Website to Management App. We scale your business."
+            },
+            es: {
+                "nav-sites": "Sitios Web", "nav-google": "Google", "nav-apps": "Apps", "nav-plans": "Planes", "nav-btn": "Hablar con Experto",
+                "hero-title": "Tu empresa necesita un sitio web que <span style='color: var(--google-blue)'>venda por ti 24/7</span>.",
+                "hero-desc": "Construimos la \"casa propia\" de tu negocio en internet con Sitios Web Profesionales de alta conversión. Luego, usamos Google para llenar tu WhatsApp de clientes.",
+                "hero-btn1": "Construir Mi Sitio Web", "hero-btn2": "Ver Portafolio",
+                "badge-1": "Creación Web Rápida", "badge-2": "Perfil en Google", "badge-3": "Apps de Gestión",
+                "market-tag": "Realidad del Mercado", "market-title": "Si no tienes un sitio web, el cliente busca a quien sí lo tiene.",
+                "market-p1": "Hoy en día, la mayoría de los consumidores investigan empresas en línea antes de realizar una compra. Tener solo Instagram o Facebook no transmite suficiente credibilidad.",
+                "market-p2": "Un Sitio Web Profesional actúa como tu mejor vendedor. Muestra tus servicios de forma elegante, responde dudas y dirige al cliente listo para comprar directamente a tu WhatsApp.",
+                "stat1-val": "75%", "stat1-text": "Juzgan la empresa por su web", "stat2-val": "97%", "stat2-text": "Buscan servicios en Google", "stat3-val": "24/7", "stat3-text": "Ventas automáticas en la web", "stat4-val": "3x", "stat4-text": "Más contactos y presupuestos",
+                "calc-tag": "Calculadora de Pérdida", "calc-title": "¿Cuánto pierdes por no transmitir credibilidad?",
+                "calc-desc": "Simula cuántos clientes atiendes hoy. Calculamos el valor aproximado que la competencia con Sitios Web Profesionales y buena presencia en Google te está robando cada mes.",
+                "calc-label1": "¿Cuántos clientes atiendes al mes?", "calc-label2": "¿Cuál es el valor medio (Ticket) que gasta cada cliente?",
+                "calc-res-title": "Pérdida Estimada por Mes:",
+                "calc-res-desc": "Este es el valor aproximado que dejas sobre la mesa al perder cerca de <b><span id='clientesPerdidos' style='color: #fff; font-weight: bold;'>30</span> clientes potenciales</b> que visitan tus redes y terminan cerrando con la competencia que tiene una web más profesional.",
+                "calc-btn": "Dejar de Perder Clientes",
+                "step1-tag": "Paso 1: Tu Base Sólida", "step1-title": "Creación de Sitios Web y Landing Pages",
+                "step1-desc": "No envíes a tus clientes a un enlace genérico o a redes sociales llenas de distracciones. Construimos tu página de alta conversión, con dominio propio y 100% optimizada para celulares.", "step1-btn": "Quiero un Sitio Web como estos",
+                "step2-tag": "Paso 2: Tráfico Orgánico", "step2-title": "Domina tu Perfil en Google",
+                "step2-desc": "Una vez que tienes un sitio web profesional, usamos Google para enviar cientos de clientes de tu zona directamente a él. Deja de ser invisible en tu ciudad.",
+                "bad-label": "Cómo está la mayoría", "good-label": "Con HubSymples", "search-placeholder": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' style='width:18px;height:18px;'><path d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'></path></svg> restaurantes cerca de mi",
+                "tab-overview": "Resumen", "tab-reviews": "Reseñas", "tab-photos": "Fotos", "tab-menu": "Menú", "add-photo": "Añadir foto",
+                "bad-title": "restaurante de juan", "good-title": "Restaurante & Grill Premium", "verified": "Verificado",
+                "btn-call": "Llamar", "btn-dir": "Rutas", "btn-site": "Sitio Web",
+                "bad-info1": "Dirección no informada correctamente.", "bad-info2": "Cerrado temporalmente", "bad-info3": "¿Eres propietario? Reclámalo ahora.",
+                "good-info1": "Av. Principal, 1000 - Centro", "good-info1-dist": "A 1,5 km de distancia",
+                "good-info2": "<span style='color: #1e8e3e; font-weight: 500;'>Abierto</span> ⋅ Cierra a las 23:00",
+                "good-info3": "\"¡La comida es fantástica y la atención excelente!\"",
+                "case-tag": "Caso de Estudio Real", "case-title": "De rehén de comisiones a pedidos directos diarios",
+                "case-dor-title": "El Problema", "case-dor-desc": "Un restaurante dependía 100% de apps de delivery. <b>Las comisiones abusivas devoraban todas las ganancias.</b> Cuando alguien buscaba \"restaurantes cerca de mí\", solo encontraba a la competencia.",
+                "case-sol-title": "La Solución", "case-sol-desc": "Tomamos el control de su Perfil en Google, añadimos fotos de los platos y lo conectamos a su <b>Sitio Web Profesional y botón directo a WhatsApp</b>, eliminando al intermediario.",
+                "case-res-title": "El Resultado", "case-res-desc": "El restaurante saltó a la cima de las búsquedas. Comenzó a recibir pedidos directamente en WhatsApp y a llenar el local, manteniendo el 100% de las ganancias.",
+                "step3-tag": "Paso 3: Gestión y Escala", "step3-title": "Apps exclusivas para tu negocio en la palma de tu mano.",
+                "step3-desc": "Cuando tu Sitio Web y Google empiecen a traer docenas de clientes, los cuadernos de papel y el caos de WhatsApp dejarán de funcionar. Ofrecemos aplicaciones de gestión enfocadas en tu nicho.",
+                "app-feat1": "App de Reservas", "app-feat2": "App de Presupuestos y CRM",
+                "plan-tag": "Flexibilidad Total", "plan-title": "Arma tu paquete personalizado",
+                "plan-desc": "Selecciona exactamente las soluciones que tu negocio necesita ahora y habla con un experto de HubSymples.",
+                "plan-card1-title": "Sitio Web Profesional", "plan-card1-desc": "Landing page enfocada en conversión, diseño perfecto para móviles y botones directos a tu WhatsApp.",
+                "plan-card2-title": "Perfil en Google", "plan-card2-desc": "Optimización completa para liderar búsquedas, SEO Local, reseñas 5 estrellas y Banners con Código QR.",
+                "plan-card3-title": "App de Gestión", "plan-card3-desc": "App exclusiva con funciones a medida (reservas, presupuestos, CRM) para controlar tu empresa.",
+                "plan-btn": "Solicitar Presupuesto", "plan-feed-empty": "Selecciona al menos 1 servicio arriba para armar el paquete.", "plan-feed-active": "servicio(s) seleccionado(s). ¡Listo para avanzar!",
+                "guarantee-title": "Entrega de Altísima Calidad", "guarantee-desc": "Nuestro equipo está enfocado en la conversión. Desarrollamos tu Sitio Web Profesional rápidamente y garantizamos la optimización SEO para que empieces a atraer clientes en internet cuanto antes.",
+                "pay-title": "Pago 100% Seguro", "pay-pix": "Transferencia Rápida", "pay-card": "Tarjeta de Crédito",
+                "faq-tag": "Dudas", "faq-title": "Preguntas Frecuentes",
+                "q1": "¿Los sitios web tienen mensualidad?", "a1": "La creación del Sitio Web es un pago único. Para mantener el sitio web en línea para que todo el mundo lo vea, solo existe un pequeño costo anual o mensual por el servidor (hosting) y el dominio (tu www), que te ayudamos a configurar en tu paquete con precios muy accesibles.",
+                "q2": "¿También hacen el Perfil de Google?", "a2": "¡Sí! De hecho, es nuestro combo más vendido: Sitio Web + Google. La plataforma de Google es gratuita, lo que pagas es nuestro servicio de <b>optimización estratégica profesional</b> para garantizar que tu sitio esté en la cima de las búsquedas.",
+                "q3": "¿Cómo funciona la App de Gestión?", "a3": "Tú y nuestro equipo alinearán cuáles son las prioridades de tu negocio. Podemos configurar una App enfocada en citas, un CRM para la gestión de clientes, o una herramienta que resuelva los dolores exactos que tienes hoy en la organización de tu servicio.",
+                "q4": "Soy un proveedor de servicios independiente, ¿esto es para mí?", "a4": "Por supuesto. Tener un sitio web propio como \"tunombre.com\" te separa de los aficionados. Los clientes tienden a confiar (y pagar más) a los profesionales que demuestran credibilidad a través de una Landing Page bien estructurada y un Google bien evaluado.",
+                "q5": "¿Cuáles son los métodos de pago?", "a5": "Aceptamos pagos a través de <b>Transferencia Bancaria Inmediata</b> y <b>Tarjeta de Crédito</b>. ¡Facilitamos la inversión para que tu empresa se digitalice lo más rápido posible!",
+                "footer-text": "Tu Hub de Soluciones Digitales.", "footer-motto": "Desde tu propio Sitio Web hasta la App de Gestión. Escalamos tu negocio."
+            }
+        };
+
+        // LÓGICA DE DETECÇÃO AUTOMÁTICA
+        let currentLang = localStorage.getItem('hubLang') || navigator.language.substring(0, 2);
+        if (!['pt', 'en', 'es'].includes(currentLang)) currentLang = 'en';
+
+        function changeLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('hubLang', lang);
+
+            // Efeito visual nos botões de bandeira
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`btn-${lang}`).classList.add('active');
+
+            // Troca de Textos na Tela
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    el.innerHTML = translations[lang][key];
+                }
+            });
+
+            // Atualiza texto da calculadora com a moeda correta
+            calcularPrejuizo();
+        }
+
+        // CALCULADORA DE PREJUÍZO (Adaptada para Idiomas)
         function calcularPrejuizo() {
-            const clientes = document.getElementById('clientesMes').value;
-            const ticket = document.getElementById('ticketMedio').value;
+            const clientesEl = document.getElementById('clientesMes');
+            const ticketEl = document.getElementById('ticketMedio');
+            if (!clientesEl || !ticketEl) return;
+
+            const clientes = clientesEl.value;
+            const ticket = ticketEl.value;
             
-            document.getElementById('clientesVal').textContent = `${clientes} clientes`;
+            // Textos dinâmicos
+            const labelClientes = currentLang === 'en' ? 'customers' : (currentLang === 'es' ? 'clientes' : 'clientes');
+            document.getElementById('clientesVal').textContent = `${clientes} ${labelClientes}`;
             
-            // Formatando o valor em R$
-            const formatadorBRL = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
+            // Formatador de Moeda baseado no idioma
+            const currencyConfig = {
+                'pt': { locale: 'pt-BR', curr: 'BRL' },
+                'en': { locale: 'en-US', curr: 'USD' },
+                'es': { locale: 'es-ES', curr: 'EUR' }
+            };
+            const c = currencyConfig[currentLang] || currencyConfig['pt'];
+            const formatadorBRL = new Intl.NumberFormat(c.locale, { style: 'currency', currency: c.curr });
+            
             document.getElementById('ticketVal').textContent = formatadorBRL.format(ticket);
             
-            // Lógica: Perde cerca de 30% do mercado por não ter site profissional / estar mal rankeado
             const clientesPerdidos = Math.ceil(clientes * 0.30);
             const prejuizoTotal = clientesPerdidos * ticket;
             
-            document.getElementById('clientesPerdidos').textContent = clientesPerdidos;
+            // Como a div clientesPerdidos fica dentro de uma tradução, a tradução pode apagá-la. 
+            // Precisamos ter certeza que o elemento existe antes de tentar colocar texto nele.
+            const perdidosEl = document.getElementById('clientesPerdidos');
+            if (perdidosEl) perdidosEl.textContent = clientesPerdidos;
+            
             document.getElementById('prejuizoTotal').textContent = formatadorBRL.format(prejuizoTotal);
         }
-        
-        // Iniciar calculadora
-        calcularPrejuizo();
+
+        // Inicia o site traduzindo para a língua nativa do utilizador
+        changeLanguage(currentLang);
 
         // CARROSSEL DE SITES
         const track = document.getElementById('portfolioTrack');
         function moveCarousel(direction) {
-            const scrollAmount = track.clientWidth + 20; // 20 é o gap
+            if (!track) return;
+            const scrollAmount = track.clientWidth + 20;
             track.scrollBy({ left: scrollAmount * direction, behavior: 'smooth' });
         }
 
-        // LÓGICA DO PERSONALIZADOR DE PLANOS
+        // LÓGICA DO PERSONALIZADOR DE PLANOS (Mensagens Adaptadas)
         let selectedModules = [];
         function toggleCustomItem(itemId, element, activeClass) {
             element.classList.toggle(activeClass);
@@ -800,10 +847,10 @@
             const feedback = document.getElementById('custom-feedback');
             if (selectedModules.length > 0) {
                 feedback.style.color = 'var(--google-blue)';
-                feedback.textContent = `${selectedModules.length} serviço(s) selecionado(s). Pronto para avançar!`;
+                feedback.textContent = `${selectedModules.length} ${translations[currentLang]['plan-feed-active']}`;
             } else {
                 feedback.style.color = 'var(--text-dim)';
-                feedback.textContent = 'Selecione pelo menos 1 serviço acima para montar o pacote.';
+                feedback.textContent = translations[currentLang]['plan-feed-empty'];
             }
         }
 
@@ -812,12 +859,22 @@
                 window.open(WHATSAPP_LINK);
                 return;
             }
+            
+            // Traduz o nome dos módulos no WhatsApp
             let modulesText = selectedModules.map(id => {
-                if(id === 'site') return '*Site Profissional*';
-                if(id === 'google') return '*Google Meu Negócio*';
-                if(id === 'app') return '*Aplicativo de Gestão*';
+                if(id === 'site') return currentLang === 'en' ? '*Pro Website*' : (currentLang === 'es' ? '*Sitio Web Pro*' : '*Site Profissional*');
+                if(id === 'google') return currentLang === 'en' ? '*Google Profile*' : (currentLang === 'es' ? '*Perfil de Google*' : '*Google Meu Negócio*');
+                if(id === 'app') return currentLang === 'en' ? '*Management App*' : (currentLang === 'es' ? '*App de Gestión*' : '*Aplicativo de Gestão*');
             }).join(', ');
-            let text = `Olá! Estive no site da HubSymples e gostaria de montar um plano personalizado para o meu negócio.\n\nTenho interesse nas seguintes soluções: ${modulesText}.\n\nPodemos conversar sobre um orçamento?`;
+
+            // Traduz a mensagem do WhatsApp
+            let msgs = {
+                pt: `Olá! Estive no site da HubSymples e gostaria de montar um plano personalizado para o meu negócio.\n\nTenho interesse nas seguintes soluções: ${modulesText}.\n\nPodemos conversar sobre um orçamento?`,
+                en: `Hello! I was on the HubSymples website and would like to build a custom plan for my business.\n\nI'm interested in the following solutions: ${modulesText}.\n\nCan we talk about a quote?`,
+                es: `¡Hola! Estuve en el sitio de HubSymples y me gustaría armar un plan personalizado para mi negocio.\n\nEstoy interesado en las siguientes soluciones: ${modulesText}.\n\n¿Podemos hablar sobre un presupuesto?`
+            };
+
+            let text = msgs[currentLang] || msgs['pt'];
             let url = `https://api.whatsapp.com/send?phone=5511952924208&text=${encodeURIComponent(text)}`;
             window.open(url);
         }
@@ -825,8 +882,10 @@
         // MENU MOBILE
         const menuToggle = document.getElementById('menuToggle');
         const navMenu = document.getElementById('navMenu');
-        menuToggle.addEventListener('click', () => navMenu.classList.toggle('open'));
-        document.querySelectorAll('.nav-link').forEach(link => link.addEventListener('click', () => navMenu.classList.remove('open')));
+        if (menuToggle && navMenu) {
+            menuToggle.addEventListener('click', () => navMenu.classList.toggle('open'));
+            document.querySelectorAll('.nav-link').forEach(link => link.addEventListener('click', () => navMenu.classList.remove('open')));
+        }
 
         // FAQ
         document.querySelectorAll('.faq-question').forEach(button => {
