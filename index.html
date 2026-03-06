@@ -367,7 +367,7 @@
                 <li><a href="#pilar-sites" class="nav-link" data-i18n="nav-sites">Sites</a></li>
                 <li><a href="#pilar-google" class="nav-link" data-i18n="nav-google">Google</a></li>
                 <li><a href="#planos" class="nav-link" data-i18n="nav-plans">Planos</a></li>
-                <li><a href="#faq" class="nav-link" data-i18n="nav-faq">Dúvidas</a></li>
+                <li><a href="#contato-faq" class="nav-link" data-i18n="nav-faq">Dúvidas</a></li>
             </ul>
 
             <div class="header-actions" style="display: flex; gap: 15px; align-items: center;">
@@ -381,6 +381,7 @@
         <section class="hero" id="topo">
             <div class="hero-content" data-aos="fade-up">
                 <div class="hero-text">
+                    <!-- As tags h1 e p serão preenchidas aleatoriamente pelo script -->
                     <h1 data-i18n="hero-title" id="main-title">Seu site pronto pra vender em poucos dias <span style="color: var(--google-blue)">(e trazer clientes pelo Google)</span>.</h1>
                     <p data-i18n="hero-desc">Criamos um site profissional com botão de WhatsApp, prova social e estrutura local. Você aprova o modelo e nós publicamos.</p>
                     
@@ -1043,10 +1044,6 @@
             pt: {
                 "nav-btn": "WhatsApp: orçamento em 2 min",
                 "nav-sites": "Sites", "nav-google": "Google", "nav-plans": "Planos", "nav-faq": "Dúvidas",
-                "hero-title": "Seu site pronto pra vender em poucos dias <span style='color: var(--google-blue)'>(e trazer clientes pelo Google)</span>.",
-                "hero-desc": "Criamos um site profissional com botão de WhatsApp, prova social e estrutura local. Você aprova o modelo e nós publicamos.",
-                "hero-btn1": "Quero meu site no WhatsApp", "hero-btn2": "Ver portfólio (demos reais)",
-                "badge-1": "✅ Sem enrolação", "badge-2": "✅ Mobile rápido", "badge-3": "✅ Você aprova antes",
                 
                 "theme-title": "Teste o seu nicho ao vivo",
                 "theme-desc": "Digite o seu ramo de atuação ou escolha uma opção para ver o site se adaptar para você.",
@@ -1113,12 +1110,14 @@
                 "niches-title": "Especialistas em criar sites para:", "niches-list": "Advogados • Clínicas de Estética • Odontologia • Restaurantes • Imobiliárias • Prestadores de Serviço • Contabilidade • Autônomos",
                 "footer-text": "O Seu Hub de Soluções Digitais.", "footer-motto": "Seu site pronto pra vender.",
                 
-                "action-sim": "Simulador", "action-wa": "WhatsApp"
+                "action-sim": "Simulador", "action-wa": "WhatsApp",
+                "hero-btn1": "Quero meu site no WhatsApp", "hero-btn2": "Ver portfólio (demos reais)",
+                "badge-1": "✅ Sem enrolação", "badge-2": "✅ Mobile rápido", "badge-3": "✅ Você aprova antes"
             },
             en: {
                 "nav-sites": "Websites", "nav-google": "Google", "nav-plans": "Plans", "nav-faq": "FAQ",
                 "hero-title": "Your website ready to sell in days <span style='color: var(--google-blue)'>(and bring Google clients)</span>.",
-                "hero-desc": "We create a professional site with a WhatsApp button, social proof, and local structure. You approve the model, we launch it fast.",
+                "hero-desc": "We create a professional site with a WhatsApp button, social proof, and local structure. You approve the model, we publish it fast.",
                 "hero-btn1": "I want my website via WhatsApp", "hero-btn2": "View portfolio (real demos)",
                 "badge-1": "✅ No fluff", "badge-2": "✅ Fast mobile", "badge-3": "✅ You approve first",
 
@@ -1192,7 +1191,7 @@
             es: {
                 "nav-sites": "Sitios", "nav-google": "Google", "nav-plans": "Planes", "nav-faq": "Dudas",
                 "hero-title": "Tu sitio listo para vender en días <span style='color: var(--google-blue)'>(y traer clientes por Google)</span>.",
-                "hero-desc": "Creamos un sitio profesional con botón de WhatsApp, prueba social y estructura local. Apruebas el modelo y lo lanzamos rápido.",
+                "hero-desc": "Creamos un sitio profesional con botón de WhatsApp, prueba social y estructura local. Apruebas el modelo y lo publicamos rápido.",
                 "hero-btn1": "Quiero mi sitio en WhatsApp", "hero-btn2": "Ver portafolio (demos reales)",
                 "badge-1": "✅ Sin rodeos", "badge-2": "✅ Móvil rápido", "badge-3": "✅ Apruebas antes",
                 
@@ -1284,6 +1283,7 @@
         const randomTitle = ptHeadlines[Math.floor(Math.random() * ptHeadlines.length)];
         const randomDesc = ptSubheadlines[Math.floor(Math.random() * ptSubheadlines.length)];
 
+        // Injetar no dicionário ANTES da primeira tradução
         translations.pt['hero-title'] = randomTitle;
         translations.pt['hero-desc'] = randomDesc;
 
@@ -1316,7 +1316,7 @@
             resetChat();
         }
 
-        // Inicia Tradução
+        // Inicia Tradução pela primeira vez (vai usar as frases aleatórias se for em PT)
         changeLanguage(currentLang);
 
         // CARROSSEL DE SITES
@@ -1362,5 +1362,6 @@
     </script>
 </body>
 </html>
+
 
 
