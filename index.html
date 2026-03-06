@@ -21,9 +21,11 @@
     <style>
         /* DESIGN TOKENS */
         :root {
-            --bg-body: #0a0c10;
-            --bg-card: #161b22;
-            --bg-nav: rgba(10, 12, 16, 0.85);
+            --bg-body: #050505;
+            --bg-nav: rgba(5, 5, 5, 0.4);
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-blur: blur(20px);
             --primary: #3b82f6; 
             --accent: #10b981; 
             --google-blue: #1a73e8; 
@@ -40,11 +42,31 @@
 
         /* RESET & BASE */
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
-        body { font-family: 'Inter', -apple-system, sans-serif; background-color: var(--bg-body); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
+        body { 
+            font-family: 'Inter', -apple-system, sans-serif; 
+            background-color: var(--bg-body); 
+            color: var(--text-main); 
+            line-height: 1.6; 
+            overflow-x: hidden;
+        }
         h1, h2, h3 { line-height: 1.2; font-weight: 700; color: #fff; }
         a { text-decoration: none; color: inherit; }
         ul { list-style: none; }
         
+        /* ESFERAS FLUTUANTES (BACKGROUND) */
+        .bg-shapes { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; overflow: hidden; pointer-events: none; }
+        .shape { position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.45; animation: floatShape 20s infinite alternate ease-in-out; transition: background 1.5s ease; }
+        .shape-1 { width: 50vw; height: 50vw; max-width: 600px; max-height: 600px; background: var(--google-blue); top: -10%; left: -10%; animation-duration: 25s; }
+        .shape-2 { width: 60vw; height: 60vw; max-width: 700px; max-height: 700px; background: var(--google-purple); bottom: -20%; right: -10%; animation-duration: 28s; animation-direction: alternate-reverse; }
+        .shape-3 { width: 40vw; height: 40vw; max-width: 500px; max-height: 500px; background: var(--google-green); top: 30%; left: 50%; animation-duration: 22s; }
+        
+        @keyframes floatShape {
+            0% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(5%, -5%) scale(1.1); }
+            66% { transform: translate(-3%, 3%) scale(0.9); }
+            100% { transform: translate(5%, 5%) scale(1.05); }
+        }
+
         /* SCROLLBAR CUSTOMIZADA (TEMA ESCURO) */
         ::-webkit-scrollbar { width: 10px; height: 10px; }
         ::-webkit-scrollbar-track { background: var(--bg-body); }
@@ -55,21 +77,43 @@
         section { padding: clamp(60px, 10vw, 100px) 20px; max-width: var(--container); margin: 0 auto; }
 
         /* BUTTONS */
-        .btn { display: inline-flex; align-items: center; justify-content: center; padding: 14px 28px; border-radius: 8px; font-weight: 600; cursor: pointer; transition: var(--transition); font-size: 1rem; border: none; gap: 10px; text-align: center; }
-        .btn-primary { background: linear-gradient(135deg, var(--google-blue), #2563eb); color: white; }
+        .btn { display: inline-flex; align-items: center; justify-content: center; padding: 14px 28px; border-radius: 8px; font-weight: 600; cursor: pointer; transition: var(--transition); font-size: 1rem; border: none; gap: 10px; text-align: center; text-decoration: none; }
+        .btn-primary { background: linear-gradient(135deg, var(--google-blue), var(--google-purple)); color: white; transition: background 0.5s ease, transform 0.3s; }
         .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(26, 115, 232, 0.4); }
-        .btn-outline { background: transparent; color: var(--text-main); border: 1px solid var(--border); }
-        .btn-outline:hover { background: var(--border); }
+        .btn-outline { background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); color: var(--text-main); border: 1px solid var(--glass-border); }
+        .btn-outline:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2); }
 
         /* HEADER & LANGUAGE SWITCHER */
-        header { position: fixed; top: 0; width: 100%; z-index: 1000; background: var(--bg-nav); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); } 
+        header { position: fixed; top: 0; width: 100%; z-index: 1000; background: var(--bg-nav); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border-bottom: 1px solid var(--glass-border); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); } 
         .nav-container { max-width: var(--container); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 12px 20px; }
         .logo-container { display: flex; align-items: center; gap: 12px; }
         .logo-img { height: 90px; width: auto; object-fit: contain; }
-        .logo-text { font-size: 1.4rem; font-weight: 800; letter-spacing: -0.5px; background: linear-gradient(to right, var(--google-blue), var(--google-green)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: block; }
-        .nav-menu { display: flex; gap: 20px; align-items: center; }
-        .nav-link { font-size: 0.95rem; color: var(--item-color, var(--text-dim)); transition: var(--transition); font-weight: 700; opacity: 0.75; }
-        .nav-link:hover, .nav-link.active { opacity: 1; transform: translateY(-1px); }
+        .logo-text { font-size: 1.4rem; font-weight: 800; letter-spacing: -0.5px; background: linear-gradient(to right, var(--google-blue), var(--google-green)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: block; transition: background 0.5s ease; }
+        
+        /* MENU LINKS - LIQUID SILVER / PREMIUM METAL */
+        .nav-menu { display: flex; gap: 10px; align-items: center; }
+        .nav-link { 
+            font-size: 0.9rem; 
+            color: #e2e8f0; 
+            transition: var(--transition); 
+            font-weight: 600; 
+            padding: 8px 18px; 
+            border-radius: 30px; 
+            background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.01)); 
+            backdrop-filter: var(--glass-blur); 
+            -webkit-backdrop-filter: var(--glass-blur); 
+            border: 1px solid rgba(255, 255, 255, 0.15); 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1), inset 0 1px 1px rgba(255, 255, 255, 0.3); 
+            text-decoration: none; 
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5); 
+        }
+        .nav-link:hover, .nav-link.active { 
+            color: #ffffff; 
+            background: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.05)); 
+            border-color: var(--google-blue); 
+            transform: translateY(-2px); 
+            box-shadow: 0 8px 25px rgba(255,255,255,0.1), inset 0 1px 2px rgba(255, 255, 255, 0.6); 
+        }
         
         .lang-switcher { display: flex; gap: 8px; margin-right: 10px; align-items: center; }
         .lang-btn { background: transparent; border: 2px solid transparent; cursor: pointer; transition: 0.2s; border-radius: 50%; padding: 2px; display: flex; align-items: center; justify-content: center; filter: grayscale(100%) opacity(0.4); }
@@ -81,24 +125,39 @@
         .menu-toggle span { width: 25px; height: 3px; background: var(--text-main); border-radius: 2px; }
 
         /* HERO */
-        .hero { padding-top: clamp(140px, 15vw, 180px); padding-bottom: clamp(60px, 10vw, 100px); text-align: center; }
-        .hero h1 { font-size: clamp(2.2rem, 5vw, 4rem); margin-bottom: 24px; max-width: 950px; margin-inline: auto; line-height: 1.1; letter-spacing: -1px; }
-        .hero h1 span { color: var(--google-blue); }
+        .hero { padding-top: clamp(140px, 15vw, 180px); padding-bottom: clamp(60px, 10vw, 80px); text-align: center; }
+        .hero h1 { font-size: clamp(2.2rem, 5vw, 4rem); margin-bottom: 24px; max-width: 950px; margin-inline: auto; line-height: 1.1; letter-spacing: -1px; transition: color 0.5s ease; }
+        .hero h1 span { color: var(--google-blue); transition: color 0.5s ease; }
         .hero p { font-size: 1.25rem; color: var(--text-dim); max-width: 750px; margin: 0 auto 35px; }
         .hero-badges { display: flex; gap: 20px; justify-content: center; font-size: 0.95rem; color: var(--text-main); font-weight: 600; flex-wrap: wrap; margin-top: 25px;}
 
-        /* O QUE VOCÊ RECEBE (GRID) */
+        /* NOVO: SIMULADOR DE NICHOS (LIVE THEMING) */
+        .theme-container { background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border: 1px solid var(--glass-border); border-radius: 24px; padding: clamp(25px, 5vw, 40px); max-width: 700px; margin: 0 auto 40px; box-shadow: 0 8px 32px rgba(0,0,0,0.2); text-align: center; transition: border-color 0.5s ease; }
+        .theme-input-group { display: flex; gap: 10px; margin-bottom: 20px; justify-content: center; }
+        .theme-input { flex: 1; max-width: 400px; padding: 14px 20px; border-radius: 12px; border: 1px solid var(--glass-border); background: rgba(255,255,255,0.05); color: white; font-size: 1rem; outline: none; transition: 0.3s; }
+        .theme-input:focus { border-color: var(--google-blue); background: rgba(255,255,255,0.1); }
+        .theme-chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+        .theme-chip { padding: 8px 16px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03); color: var(--text-main); cursor: pointer; font-size: 0.9rem; font-weight: 500; transition: var(--transition); }
+        .theme-chip:hover { border-color: var(--google-blue); color: white; background: rgba(26, 115, 232, 0.1); transform: translateY(-2px); }
+        
+        .active-theme-banner { position: fixed; top: 85px; left: 50%; transform: translateX(-50%); background: rgba(10, 12, 16, 0.85); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid var(--google-blue); padding: 10px 25px; border-radius: 30px; z-index: 1001; display: flex; align-items: center; gap: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); animation: popDown 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); width: max-content; max-width: 90%; transition: border-color 0.5s ease; }
+        .active-theme-banner span { font-size: 0.9rem; font-weight: 600; color: white; }
+        .btn-reset-theme { background: transparent; border: 1px solid #ff6b6b; color: #ff6b6b; border-radius: 20px; padding: 6px 14px; font-size: 0.8rem; font-weight: bold; cursor: pointer; transition: 0.2s; }
+        .btn-reset-theme:hover { background: #ff6b6b; color: white; }
+        @keyframes popDown { from { transform: translate(-50%, -20px); opacity: 0; } to { transform: translate(-50%, 0); opacity: 1; } }
+
+        /* O QUE VOCÊ RECEBE (GRID) - GLASSMORPHISM */
         .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin-top: 40px; text-align: left; }
-        .feature-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); padding: 20px; border-radius: 12px; display: flex; align-items: flex-start; gap: 15px; transition: var(--transition); }
-        .feature-card:hover { background: rgba(26, 115, 232, 0.05); border-color: var(--google-blue); transform: translateY(-3px); }
+        .feature-card { background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border: 1px solid var(--glass-border); padding: 20px; border-radius: 16px; display: flex; align-items: flex-start; gap: 15px; transition: var(--transition); box-shadow: 0 4px 30px rgba(0,0,0,0.1); }
+        .feature-card:hover { background: rgba(255,255,255,0.08); border-color: var(--google-blue); transform: translateY(-3px); }
         .feature-icon { font-size: 1.5rem; flex-shrink: 0; }
 
-        /* MOCKUP DO BROWSER E PORTFÓLIO */
-        .browser-mockup { background: var(--bg-card); border-radius: 12px; border: 1px solid var(--border); overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.5); width: 100%; max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; }
-        .browser-header { background: #0d1117; padding: 10px 15px; display: flex; gap: 8px; border-bottom: 1px solid var(--border); align-items: center; }
+        /* MOCKUP DO BROWSER E PORTFÓLIO - GLASSMORPHISM */
+        .browser-mockup { background: rgba(10, 12, 16, 0.4); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border-radius: 12px; border: 1px solid var(--glass-border); overflow: hidden; box-shadow: 0 8px 32px 0 rgba(0,0,0,0.3); width: 100%; max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; transition: border-color 0.5s ease; }
+        .browser-header { background: rgba(255, 255, 255, 0.05); padding: 10px 15px; display: flex; gap: 8px; border-bottom: 1px solid var(--glass-border); align-items: center; }
         .browser-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
         .dot-r { background: #ff5f56; } .dot-y { background: #ffbd2e; } .dot-g { background: #27c93f; }
-        .browser-url { margin-left: 10px; background: #161b22; border: 1px solid #30363d; border-radius: 12px; padding: 4px 15px; font-size: clamp(10px, 2vw, 12px); color: #8b949e; flex-grow: 1; text-align: center; display: flex; justify-content: center; align-items: center; gap: 5px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+        .browser-url { margin-left: 10px; background: rgba(0, 0, 0, 0.2); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 12px; padding: 4px 15px; font-size: clamp(10px, 2vw, 12px); color: #8b949e; flex-grow: 1; text-align: center; display: flex; justify-content: center; align-items: center; gap: 5px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
         .browser-content { background: #000000; padding: 0; position: relative; width: 100%; overflow: hidden; }
         .browser-content img { width: 100%; height: auto; display: block; }
 
@@ -107,135 +166,142 @@
         .portfolio-track::-webkit-scrollbar { display: none; }
         .portfolio-slide { scroll-snap-align: center; flex: 0 0 100%; min-width: 100%; display: flex; flex-direction: column; gap: 15px; }
         
-        .carousel-btn { position: absolute; top: 40%; transform: translateY(-50%); background: var(--bg-card); border: 1px solid var(--border); color: white; width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10; box-shadow: 0 5px 15px rgba(0,0,0,0.5); transition: var(--transition); }
+        .carousel-btn { position: absolute; top: 40%; transform: translateY(-50%); background: var(--glass-bg); backdrop-filter: var(--glass-blur); border: 1px solid var(--glass-border); color: white; width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10; box-shadow: 0 5px 15px rgba(0,0,0,0.2); transition: var(--transition); }
         .carousel-btn:hover { background: var(--google-blue); border-color: var(--google-blue); }
         .carousel-btn.prev { left: -22px; }
         .carousel-btn.next { right: -22px; }
         
-        /* DEPOIMENTOS */
+        /* DEPOIMENTOS - GLASSMORPHISM */
         .testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 30px; }
-        .testi-card { background: linear-gradient(135deg, var(--bg-card), #10141a); border: 1px solid var(--border); border-radius: 16px; padding: 25px; box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+        .testi-card { background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border: 1px solid var(--glass-border); border-radius: 16px; padding: 25px; box-shadow: 0 8px 32px 0 rgba(0,0,0,0.2); transition: border-color 0.5s ease; }
         .testi-quote { color: #fff; font-size: 1.05rem; font-style: italic; line-height: 1.5; margin-bottom: 15px; }
-        .testi-author { color: var(--google-blue); font-weight: 700; font-size: 0.9rem; }
+        .testi-author { color: var(--google-blue); font-weight: 700; font-size: 0.9rem; transition: color 0.5s ease; }
 
         /* GRID & CARDS */
         .grid-2 { display: grid; grid-template-columns: 1fr; gap: 40px; align-items: center; } 
-        .section-tag { color: var(--google-blue); font-weight: 800; text-transform: uppercase; font-size: 0.85rem; margin-bottom: 15px; display: block; letter-spacing: 1px; }
+        .section-tag { color: var(--google-blue); font-weight: 800; text-transform: uppercase; font-size: 0.85rem; margin-bottom: 15px; display: block; letter-spacing: 1px; transition: color 0.5s ease; }
 
-        /* MOCKUPS GOOGLE MEU NEGÓCIO */
-        .comparison-phones { display: flex; flex-wrap: wrap; gap: 40px; justify-content: center; margin-top: 40px; align-items: center; }
-        .phone-wrapper { display: flex; flex-direction: column; align-items: center; gap: 20px; width: 100%; max-width: 340px; flex: 1 1 300px; }
-        .phone-label { font-weight: 800; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; padding: 10px 25px; border-radius: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); text-align: center; }
-        .label-bad { background: var(--google-red); color: white; border: 2px solid #ff6b6b; }
-        .label-good { background: var(--google-green); color: white; border: 2px solid #5ce67a; }
-        .comparison-vs { font-size: 2.5rem; font-weight: 900; color: var(--text-dim); }
-
-        .real-phone { width: 100%; max-width: 330px; height: 620px; background: #fff; border-radius: 40px; border: 12px solid #161b22; position: relative; overflow: hidden; box-shadow: 0 25px 50px -12px rgba(0,0,0, 0.5); display: flex; flex-direction: column; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; text-align: left; }
-        .real-phone::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 130px; height: 25px; background: #161b22; border-bottom-left-radius: 18px; border-bottom-right-radius: 18px; z-index: 20; }
-        
-        .rg-header { padding: 45px 16px 0; background: #fff; border-bottom: 1px solid #ebebeb; }
-        .rg-search { background: #fff; border: 1px solid #dfe1e5; border-radius: 24px; padding: 10px 16px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.08); font-size: 14px; color: #202124; }
-        .rg-tabs { display: flex; gap: 18px; padding: 16px 4px 0; font-size: 13px; color: #5f6368; font-weight: 500; overflow-x: auto; scrollbar-width: none; }
-        .rg-tabs::-webkit-scrollbar { display: none; }
-        .rg-tab { padding-bottom: 12px; white-space: nowrap; }
-        .rg-tab.active { color: #1a73e8; border-bottom: 3px solid #1a73e8; }
-        
-        .rg-photos { height: 150px; display: flex; background: #f8f9fa; position: relative; }
-        .rg-photo-main { flex: 1; background-size: cover; background-position: center; position: relative; }
-        .rg-photo-empty { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #70757a; font-size: 12px; border: 1px dashed #bdc1c6; margin: 10px; border-radius: 8px; background: #f1f3f4; }
-        
-        .rg-content { padding: 16px; flex-grow: 1; overflow-y: auto; background: #fff; }
-        .rg-title { font-size: 22px; font-weight: 500; color: #202124; line-height: 1.25; margin-bottom: 6px; }
-        .rg-verified { color: #1a73e8; display: inline-flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 500; background: #e8f0fe; padding: 4px 8px; border-radius: 4px; margin-top: 6px; }
-        
-        .rg-rating-line { display: flex; align-items: center; gap: 6px; font-size: 14px; color: #70757a; margin-bottom: 12px; }
-        .rg-stars { color: #fbbc04; font-size: 14px; display: flex; gap: 1px; }
-        .rg-stars.bad { color: #bdc1c6; }
-        
-        .rg-info-line { display: flex; align-items: flex-start; gap: 12px; font-size: 14px; color: #3c4043; margin-bottom: 12px; line-height: 1.4; }
-        .rg-info-icon { width: 18px; height: 18px; color: #1a73e8; flex-shrink: 0; margin-top: 2px; }
-        .rg-info-icon.gray { color: #70757a; }
-        
-        .rg-buttons { display: flex; gap: 10px; margin: 16px 0; overflow-x: auto; scrollbar-width: none; padding-bottom: 5px; }
-        .rg-buttons::-webkit-scrollbar { display: none; }
-        .rg-btn { flex: 0 0 auto; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 8px 20px; border-radius: 20px; font-size: 14px; font-weight: 500; border: 1px solid #dadce0; color: #1a73e8; }
-        .rg-btn.primary { background: #1a73e8; color: #fff; border-color: #1a73e8; }
-        .rg-btn.disabled { background: #f1f3f4; color: #a8aab0; border-color: #f1f3f4; }
-
-        /* ESTUDO DE CASO */
-        .case-study-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: 24px; padding: clamp(30px, 6vw, 50px); margin-top: 40px; position: relative; overflow: hidden; }
+        /* ESTUDO DE CASO - GLASSMORPHISM */
+        .case-study-box { background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border: 1px solid var(--glass-border); border-radius: 24px; padding: clamp(30px, 6vw, 50px); margin-top: 40px; position: relative; overflow: hidden; box-shadow: 0 8px 32px 0 rgba(0,0,0,0.2); transition: border-color 0.5s ease; }
         .case-study-box::before { content: ''; position: absolute; top: 0; left: 0; width: 6px; height: 100%; background: linear-gradient(to bottom, var(--google-red), var(--google-green)); }
         .case-grid { display: grid; grid-template-columns: 1fr; gap: 20px; margin-top: 25px; }
         @media (min-width: 600px) { .case-grid { grid-template-columns: 1fr 1fr; } }
         .case-step { background: rgba(255,255,255,0.03); padding: 25px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.05); }
 
-        /* MOCKUP DO APP */
-        .app-mockup { background: var(--bg-body); border: 1px solid var(--border); border-radius: 16px; padding: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.4); display: flex; flex-direction: column; gap: 15px; width: 100%; max-width: 400px; margin: 0 auto; overflow: hidden; }
-
-        /* NOVO: SEÇÃO DE AGENDAMENTO (ESCASSEZ E CALENDLY) */
-        .booking-container { background: linear-gradient(135deg, rgba(59, 130, 246, 0.08), rgba(16, 185, 129, 0.03)); border: 1px solid rgba(59, 130, 246, 0.2); border-radius: 24px; padding: clamp(30px, 5vw, 60px); display: grid; grid-template-columns: 1fr; gap: 40px; align-items: center; position: relative; overflow: hidden; }
+        /* SEÇÃO DE AGENDAMENTO (ESCASSEZ E CALENDLY) - GLASSMORPHISM */
+        .booking-container { background: rgba(255, 255, 255, 0.02); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border: 1px solid var(--glass-border); border-radius: 24px; padding: clamp(30px, 5vw, 60px); display: grid; grid-template-columns: 1fr; gap: 40px; align-items: center; position: relative; overflow: hidden; margin-top: 60px; box-shadow: 0 8px 32px 0 rgba(0,0,0,0.2); transition: border-color 0.5s ease; }
         @media (min-width: 850px) { .booking-container { grid-template-columns: 1fr 1fr; } }
         
         .booking-tag { display: inline-flex; align-items: center; gap: 8px; background: rgba(234, 67, 53, 0.15); color: #ff6b6b; padding: 8px 18px; border-radius: 30px; font-size: 0.9rem; font-weight: 700; margin-bottom: 20px; border: 1px solid rgba(234, 67, 53, 0.3); }
         .booking-tag span.pulse-dot { display: block; width: 10px; height: 10px; background: #ff6b6b; border-radius: 50%; animation: pulse 2s infinite; }
         @keyframes pulse { 0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.7); } 70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(255, 107, 107, 0); } 100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 107, 107, 0); } }
 
-        /* PLANOS FIXOS */
+        /* PLANOS FIXOS - GLASSMORPHISM */
         .pricing-section { text-align: center; }
         .plans-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 40px; text-align: left; }
-        .plan-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 30px; transition: all 0.2s ease; display: flex; flex-direction: column; }
-        .plan-card:hover { border-color: var(--google-blue); transform: translateY(-5px); }
+        .plan-card { background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border: 1px solid var(--glass-border); border-radius: 20px; padding: 30px; transition: all 0.5s ease; display: flex; flex-direction: column; box-shadow: 0 8px 32px 0 rgba(0,0,0,0.2); }
+        .plan-card:hover { background: rgba(255,255,255,0.06); border-color: var(--google-blue); transform: translateY(-5px); }
         .plan-card h3 { font-size: 1.4rem; font-weight: 800; color: #fff; margin-bottom: 5px; }
-        .plan-target { color: var(--google-blue); font-size: 0.9rem; font-weight: 600; margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid var(--border); }
+        .plan-target { color: var(--google-blue); font-size: 0.9rem; font-weight: 600; margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid var(--glass-border); transition: color 0.5s ease; }
         .plan-list { margin-top: 10px; display: flex; flex-direction: column; gap: 12px; flex-grow: 1; }
         .plan-list li { display: flex; align-items: flex-start; gap: 10px; color: var(--text-main); font-size: 0.95rem; }
-        .plan-list li svg { color: var(--google-blue); flex-shrink: 0; margin-top: 3px; }
+        .plan-list li svg { color: var(--google-blue); flex-shrink: 0; margin-top: 3px; transition: stroke 0.5s ease; }
 
-        /* FORMULÁRIO RÁPIDO */
-        .lead-form-container { background: linear-gradient(135deg, var(--bg-card), #0d1117); border-radius: 24px; padding: clamp(30px, 5vw, 50px); max-width: 700px; margin: 60px auto 0; border: 1px solid rgba(26, 115, 232, 0.3); box-shadow: 0 15px 40px rgba(0,0,0,0.4); }
-        .lead-input { width: 100%; padding: 16px; border-radius: 12px; border: 1px solid var(--border); background: rgba(255,255,255,0.03); color: white; font-size: 1rem; outline: none; transition: 0.3s; }
-        .lead-input:focus { border-color: var(--google-blue); background: rgba(26, 115, 232, 0.05); }
+        /* WIDGET CHAT SIMULADOR (FLUTUANTE) - LIQUID GLASS */
+        .chat-float-btn { position: fixed; bottom: 170px; right: 35px; background: rgba(168, 85, 247, 0.25); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border: 1px solid rgba(255, 255, 255, 0.15); color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 32px 0 rgba(168, 85, 247, 0.3); z-index: 999; transition: var(--transition); cursor: pointer; }
+        .chat-float-btn:hover { transform: scale(1.1); background: rgba(168, 85, 247, 0.45); border-color: rgba(255, 255, 255, 0.3); }
+
+        .chat-window { position: fixed; bottom: 100px; right: 35px; width: 360px; max-width: calc(100vw - 40px); background: rgba(10, 12, 16, 0.6); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border: 1px solid var(--glass-border); border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); z-index: 1000; display: none; flex-direction: column; overflow: hidden; transform-origin: bottom right; animation: popIn 0.3s ease; transition: border-color 0.5s ease; }
+        .chat-window.open { display: flex; }
+        @keyframes popIn { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
+        
+        .chat-header { background: rgba(255,255,255,0.05); padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--glass-border); }
+        .chat-header h3 { font-size: 1.1rem; margin: 0; color: #fff; }
+        .close-chat { background: transparent; border: none; color: var(--text-dim); font-size: 1.5rem; cursor: pointer; transition: 0.2s; line-height: 1; }
+        .close-chat:hover { color: white; }
+        
+        .chat-body { padding: 20px; max-height: 350px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
+        .msg { max-width: 85%; padding: 12px 16px; border-radius: 16px; line-height: 1.4; font-size: 0.95rem; animation: fadeIn 0.3s ease; }
+        .bot { align-self: flex-start; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: var(--text-main); border-bottom-left-radius: 4px; }
+        .user { align-self: flex-end; background: var(--google-blue); color: #fff; border-bottom-right-radius: 4px; transition: background 0.5s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .choices { display: flex; flex-wrap: wrap; gap: 8px; padding: 0 20px 20px; }
+        .choice { padding: 8px 15px; border-radius: 20px; border: 1px solid var(--google-blue); background: transparent; color: var(--google-blue); cursor: pointer; font-weight: 600; transition: all 0.5s ease; font-size: 0.85rem; }
+        .choice:hover { background: var(--google-blue); color: white; }
+
+        .chat-actions { padding: 15px 20px; border-top: 1px solid var(--glass-border); display: flex; gap: 10px; flex-direction: column; background: rgba(0,0,0,0.2); }
+
+        /* FORMULÁRIO RÁPIDO - GLASSMORPHISM */
+        .lead-form-container { background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border-radius: 24px; padding: clamp(30px, 5vw, 50px); max-width: 700px; margin: 60px auto 0; border: 1px solid var(--glass-border); box-shadow: 0 15px 40px rgba(0,0,0,0.4); transition: border-color 0.5s ease; }
+        .lead-input { width: 100%; padding: 16px; border-radius: 12px; border: 1px solid var(--glass-border); background: rgba(255,255,255,0.05); color: white; font-size: 1rem; outline: none; transition: 0.3s; }
+        .lead-input:focus { border-color: var(--google-blue); background: rgba(26, 115, 232, 0.1); }
         .form-row { display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 15px; }
         .form-row > * { flex: 1 1 200px; }
 
         /* FAQ */
         .faq-container { max-width: 800px; margin: 50px auto 0; }
-        .faq-item { border-bottom: 1px solid var(--border); }
+        .faq-item { border-bottom: 1px solid var(--glass-border); }
         .faq-question { width: 100%; padding: 24px 0; display: flex; justify-content: space-between; align-items: center; background: none; border: none; color: var(--text-main); font-size: 1.1rem; font-weight: 600; text-align: left; cursor: pointer; }
         .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; color: var(--text-dim); }
         .faq-answer p { padding-bottom: 24px; }
         .faq-item.active .faq-answer { max-height: 250px; }
 
         /* NICHES SEO MARQUEE */
-        .seo-niches { background: #000; padding: 20px; text-align: center; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); overflow: hidden; }
+        .seo-niches { background: rgba(0,0,0,0.4); padding: 20px; text-align: center; border-top: 1px solid var(--glass-border); border-bottom: 1px solid var(--glass-border); overflow: hidden; backdrop-filter: var(--glass-blur); }
         .seo-niches p { color: var(--text-dim); font-size: 0.95rem; font-weight: 600; letter-spacing: 0.5px; }
 
-        /* FOOTER & FLOATERS */
+        /* FOOTER & FLOATERS - LIQUID GLASS */
         footer { padding: 60px 20px; text-align: center; }
         
-        .whatsapp-float { position: fixed; bottom: 30px; right: 30px; background: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3); z-index: 999; transition: var(--transition); }
-        .email-float { position: fixed; bottom: 105px; right: 35px; background: var(--google-blue); color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(26, 115, 232, 0.3); z-index: 999; transition: var(--transition); }
-        .whatsapp-float:hover, .email-float:hover { transform: scale(1.1); }
-
-        /* BALÃO DE MENSAGEM DO WHATSAPP */
-        .wa-tooltip { position: fixed; bottom: 42px; right: 105px; background: #fff; color: #111; padding: 10px 18px; border-radius: 20px; border-bottom-right-radius: 0; font-size: 0.95rem; font-weight: 700; box-shadow: 0 8px 25px rgba(0,0,0,0.2); z-index: 999; pointer-events: none; animation: floatBounce 3s infinite ease-in-out; white-space: nowrap; }
-        @keyframes floatBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+        .whatsapp-float { position: fixed; bottom: 30px; right: 30px; background: rgba(37, 211, 102, 0.25); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border: 1px solid rgba(255, 255, 255, 0.15); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 32px 0 rgba(37, 211, 102, 0.3); z-index: 999; transition: var(--transition); }
+        .whatsapp-float:hover { transform: scale(1.1); background: rgba(37, 211, 102, 0.45); border-color: rgba(255, 255, 255, 0.3); }
+        
+        .email-float { position: fixed; bottom: 105px; right: 35px; background: rgba(26, 115, 232, 0.25); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border: 1px solid rgba(255, 255, 255, 0.15); color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 32px 0 rgba(26, 115, 232, 0.3); z-index: 999; transition: var(--transition); }
+        .email-float:hover { transform: scale(1.1); background: rgba(26, 115, 232, 0.45); border-color: rgba(255, 255, 255, 0.3); }
 
         @media (min-width: 992px) {
             .grid-2 { grid-template-columns: 1fr 1fr; }
         }
 
+        /* OTIMIZAÇÃO MENU MOBILE PREMIUM */
         @media (max-width: 768px) {
-            .nav-menu { position: fixed; top: 65px; left: -100%; width: 100%; height: calc(100vh - 65px); background: var(--bg-body); flex-direction: column; padding: 40px; transition: 0.4s; align-items: center; justify-content: center; gap: 30px; }
+            .nav-menu { 
+                position: fixed; top: 65px; left: -100%; width: 100%; height: calc(100vh - 65px); 
+                background: rgba(5, 5, 5, 0.75); 
+                backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); 
+                flex-direction: column; padding: 50px 20px; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
+                align-items: center; justify-content: flex-start; gap: 20px; 
+            } 
             .nav-menu.open { left: 0; }
+            .nav-link { 
+                width: 100%; 
+                max-width: 320px; 
+                text-align: center; 
+                padding: 16px; 
+                font-size: 1.15rem; 
+                border-radius: 16px; 
+            }
             .menu-toggle { display: flex; }
             .header-actions .btn { display: none; }
-            .wa-tooltip { display: none; } /* Esconde o balão no mobile para não cobrir a tela */
             @media (max-width: 650px) { .carousel-btn.prev { left: -10px; } .carousel-btn.next { right: -10px; } }
         }
     </style>
 </head>
 <body>
+
+    <!-- BANNER DE SIMULAÇÃO ATIVA -->
+    <div id="activeThemeBanner" class="active-theme-banner" style="display: none;">
+        <span><span data-i18n="theme-banner-text">🔮 Modo Simulação Ativo:</span> <b id="activeNicheName" style="color: var(--google-blue);">Barbearia</b></span>
+        <button onclick="resetTheme()" class="btn-reset-theme" data-i18n="theme-banner-btn">Voltar ao Normal</button>
+    </div>
+
+    <!-- BACKGROUND ANIMADO -->
+    <div class="bg-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
 
     <script>
         const WHATSAPP_LINK = "https://api.whatsapp.com/send?phone=5511952924208&text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20planos%20de%20site%20da%20HubSymples."; 
@@ -249,11 +315,10 @@
             </a>
             
             <ul class="nav-menu" id="navMenu">
-                <!-- Links agora com a cor padrão (Branco/Prateado), sem as cores do Google -->
-                <li><a href="#pilar-sites" class="nav-link" style="--item-color: var(--text-main);" data-i18n="nav-sites">Sites</a></li>
-                <li><a href="#pilar-google" class="nav-link" style="--item-color: var(--text-main);" data-i18n="nav-google">Google</a></li>
-                <li><a href="#planos" class="nav-link" style="--item-color: var(--text-main);" data-i18n="nav-plans">Planos</a></li>
-                <li><a href="#faq" class="nav-link" style="--item-color: var(--text-main);" data-i18n="nav-faq">Dúvidas</a></li>
+                <li><a href="#pilar-sites" class="nav-link" data-i18n="nav-sites">Sites</a></li>
+                <li><a href="#pilar-google" class="nav-link" data-i18n="nav-google">Google</a></li>
+                <li><a href="#planos" class="nav-link" data-i18n="nav-plans">Planos</a></li>
+                <li><a href="#faq" class="nav-link" data-i18n="nav-faq">Dúvidas</a></li>
             </ul>
 
             <div class="header-actions" style="display: flex; gap: 15px; align-items: center;">
@@ -262,7 +327,6 @@
                     <button class="lang-btn" onclick="changeLanguage('en')" id="btn-en" title="English"><img src="https://flagcdn.com/w40/us.png" alt="US"></button>
                     <button class="lang-btn" onclick="changeLanguage('es')" id="btn-es" title="Español"><img src="https://flagcdn.com/w40/es.png" alt="ES"></button>
                 </div>
-                <button onclick="window.open(WHATSAPP_LINK)" class="btn btn-primary" style="padding: 10px 20px; font-size: 0.85rem;" data-i18n="nav-btn">WhatsApp: orçamento em 2 min</button>
                 <div class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></div>
             </div>
         </nav>
@@ -270,9 +334,9 @@
 
     <main>
         <!-- HERO SECTION -->
-        <section class="hero">
+        <section class="hero" id="topo">
             <div data-aos="fade-up" style="max-width: 800px; margin: 0 auto;">
-                <h1 data-i18n="hero-title">Seu site pronto pra vender em poucos dias <span style="color: var(--google-blue)">(e trazer clientes pelo Google)</span>.</h1>
+                <h1 data-i18n="hero-title" id="main-title">Seu site pronto pra vender em poucos dias <span style="color: var(--google-blue)">(e trazer clientes pelo Google)</span>.</h1>
                 <p data-i18n="hero-desc">Criamos um site profissional com botão de WhatsApp, prova social e estrutura local. Você aprova o modelo e a gente coloca no ar rápido.</p>
                 
                 <div class="hero-btns" style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
@@ -286,6 +350,25 @@
                     <span data-i18n="badge-2">✅ Mobile rápido</span>
                     <span style="color: var(--border);">•</span>
                     <span data-i18n="badge-3">✅ Você aprova antes</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- SIMULADOR DE NICHOS (LIVE THEMING) -->
+        <section id="live-theme" data-aos="fade-up" style="padding-top: 0;">
+            <div class="theme-container">
+                <h2 data-i18n="theme-title" style="text-align: center; margin-bottom: 10px; font-size: 1.8rem;">Teste o seu nicho ao vivo</h2>
+                <p data-i18n="theme-desc" style="text-align: center; color: var(--text-dim); margin-bottom: 25px;">Digite o seu ramo de atuação ou escolha uma opção para ver o site se adaptar para você.</p>
+                
+                <div class="theme-input-group">
+                    <input type="text" id="nicheInput" class="theme-input" placeholder="Ex: Barbearia, Dentista..." data-i18n-placeholder="theme-placeholder">
+                    <button class="btn btn-primary" onclick="applyTheme()" data-i18n="theme-btn">Simular</button>
+                </div>
+                <div class="theme-chips">
+                    <span class="theme-chip" onclick="setNicheAndApply('Barbearia')">💈 Barbearia</span>
+                    <span class="theme-chip" onclick="setNicheAndApply('Clínica')">⚕️ Clínica</span>
+                    <span class="theme-chip" onclick="setNicheAndApply('Advogado')">⚖️ Advogado</span>
+                    <span class="theme-chip" onclick="setNicheAndApply('Restaurante')">🍽️ Restaurante</span>
                 </div>
             </div>
         </section>
@@ -306,10 +389,6 @@
                 <div class="feature-card"><div class="feature-icon">🔍</div><div data-i18n="recv-6">SEO básico (Google entende seu site)</div></div>
                 <div class="feature-card"><div class="feature-icon">🚀</div><div data-i18n="recv-7">Publicação + ajustes finais pós-ar</div></div>
             </div>
-            
-            <div style="text-align: center; margin-top: 40px;">
-                <button onclick="window.open(WHATSAPP_LINK)" class="btn btn-outline" style="border-color: var(--google-blue); color: #fff;" data-i18n="recv-btn">Quero isso no meu negócio (WhatsApp)</button>
-            </div>
         </section>
 
         <!-- PASSO 1: SITE E PORTFÓLIO -->
@@ -325,14 +404,12 @@
                     <li>✅ <span data-i18n="step1-b3">pronta pra celular</span></li>
                     <li>✅ <span data-i18n="step1-b4">com portfólio/fotos e prova social</span></li>
                 </ul>
-                
-                <button onclick="window.open(WHATSAPP_LINK)" class="btn btn-primary" style="margin-top: 30px;" data-i18n="step1-btn">Me manda seu nicho que eu te mostro um modelo</button>
             </div>
             
             <!-- PORTFÓLIO VIVO -->
             <div style="text-align: center; margin-top: 80px; margin-bottom: 30px;">
                 <h3 data-i18n="port-title" style="font-size: 1.8rem; margin-bottom: 10px;">Portfólio (demos reais)</h3>
-                <p data-i18n="port-desc" style="color: var(--text-dim); margin-bottom: 20px;">Esses são exemplos do tipo de site que eu faço. Quer um no seu nicho? Eu te mando um modelo parecido.</p>
+                <p data-i18n="port-desc" style="color: var(--text-dim); margin-bottom: 20px;">Estes são exemplos dos sites que desenvolvemos. Quer um para o seu nicho? Nossa equipe envia um modelo parecido.</p>
                 <button onclick="window.open(WHATSAPP_LINK)" class="btn btn-primary" style="margin-bottom: 30px;" data-i18n="port-btn">Quero um site assim (WhatsApp)</button>
             </div>
 
@@ -347,7 +424,6 @@
                             <div class="browser-header"><div class="browser-dot dot-r"></div><div class="browser-dot dot-y"></div><div class="browser-dot dot-g"></div><div class="browser-url">clinicaodonto.com.br</div></div>
                             <div class="browser-content"><img src="https://i.imgur.com/tfFjuU4.png" alt="Portfólio Site 1"></div>
                         </div>
-                        <button onclick="window.open(WHATSAPP_LINK)" class="btn btn-outline" style="align-self: center;" data-i18n="port-item-btn">Quero um igual</button>
                     </div>
                     <!-- Slide 2 -->
                     <div class="portfolio-slide">
@@ -355,7 +431,6 @@
                             <div class="browser-header"><div class="browser-dot dot-r"></div><div class="browser-dot dot-y"></div><div class="browser-dot dot-g"></div><div class="browser-url">silvaadvogados.com.br</div></div>
                             <div class="browser-content"><img src="https://i.imgur.com/f8bo1H3.png" alt="Portfólio Site 2"></div>
                         </div>
-                        <button onclick="window.open(WHATSAPP_LINK)" class="btn btn-outline" style="align-self: center;" data-i18n="port-item-btn">Quero um igual</button>
                     </div>
                     <!-- Slide 3 -->
                     <div class="portfolio-slide">
@@ -363,7 +438,6 @@
                             <div class="browser-header"><div class="browser-dot dot-r"></div><div class="browser-dot dot-y"></div><div class="browser-dot dot-g"></div><div class="browser-url">seunegocio.com.br</div></div>
                             <div class="browser-content"><img src="https://i.imgur.com/xefLVjP.png" alt="Portfólio Site 3"></div>
                         </div>
-                        <button onclick="window.open(WHATSAPP_LINK)" class="btn btn-outline" style="align-self: center;" data-i18n="port-item-btn">Quero um igual</button>
                     </div>
                     <!-- Slide 4 -->
                     <div class="portfolio-slide">
@@ -371,7 +445,6 @@
                             <div class="browser-header"><div class="browser-dot dot-r"></div><div class="browser-dot dot-y"></div><div class="browser-dot dot-g"></div><div class="browser-url">projetonovo.com.br</div></div>
                             <div class="browser-content"><img src="https://i.imgur.com/WiElj5S.png" alt="Portfólio Site 4"></div>
                         </div>
-                        <button onclick="window.open(WHATSAPP_LINK)" class="btn btn-outline" style="align-self: center;" data-i18n="port-item-btn">Quero um igual</button>
                     </div>
                 </div>
             </div>
@@ -406,12 +479,12 @@
                 <!-- Print Simulado do Google Insights -->
                 <div style="margin-top: 25px; border-radius: 12px; overflow:hidden; border: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.5); padding: 20px; display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap;">
                     <div style="text-align: center;">
-                        <div style="color: var(--google-blue); font-size: 2rem; font-weight: bold;">+342%</div>
+                        <div style="color: var(--google-blue); font-size: 2rem; font-weight: bold; transition: color 0.5s ease;">+342%</div>
                         <div style="color: var(--text-dim); font-size: 0.85rem;" data-i18n="case-metric1">Cliques no Perfil</div>
                     </div>
                     <div style="width: 1px; height: 40px; background: rgba(255,255,255,0.1);"></div>
                     <div style="text-align: center;">
-                        <div style="color: var(--google-green); font-size: 2rem; font-weight: bold;">+89</div>
+                        <div style="color: var(--google-green); font-size: 2rem; font-weight: bold; transition: color 0.5s ease;">+89</div>
                         <div style="color: var(--text-dim); font-size: 0.85rem;" data-i18n="case-metric2">Chamadas Iniciadas</div>
                     </div>
                 </div>
@@ -428,7 +501,7 @@
                 </div>
 
                 <div style="margin-top: 30px; text-align: left;">
-                    <button onclick="window.open(WHATSAPP_LINK)" class="btn btn-primary" data-i18n="case-btn">Quer um exemplo do seu caso? Me chama no WhatsApp.</button>
+                    <a href="#" onclick="window.open(WHATSAPP_LINK)" style="color: var(--google-blue); font-weight: 600; text-decoration: underline; font-size: 1.05rem; transition: color 0.5s ease;" data-i18n="case-btn">Quer um exemplo do seu caso? Fale com nossos especialistas no WhatsApp.</a>
                 </div>
             </div>
         </section>
@@ -441,16 +514,16 @@
                     <h2 data-i18n="booking-title" style="font-size: clamp(1.8rem, 4vw, 2.5rem); margin-bottom: 15px;">Vamos desenhar o futuro da sua empresa?</h2>
                     <p data-i18n="booking-desc" style="color: var(--text-dim); font-size: 1.1rem; margin-bottom: 25px;">Agende uma Reunião Estratégica Gratuita de 30 minutos. Vamos analisar sua presença atual e montar um plano de ação, sem compromisso.</p>
                     <ul style="margin-bottom: 30px; display: flex; flex-direction: column; gap: 12px; color: var(--text-main);">
-                        <li style="display: flex; align-items: center; gap: 10px;"><svg width="20" height="20" stroke="var(--google-blue)" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="booking-b1">Análise do seu negócio atual</span></li>
-                        <li style="display: flex; align-items: center; gap: 10px;"><svg width="20" height="20" stroke="var(--google-blue)" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="booking-b2">Estratégia de Posicionamento</span></li>
-                        <li style="display: flex; align-items: center; gap: 10px;"><svg width="20" height="20" stroke="var(--google-blue)" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="booking-b3">Orçamento personalizado</span></li>
+                        <li style="display: flex; align-items: center; gap: 10px;"><svg width="20" height="20" stroke="var(--google-blue)" stroke-width="2" fill="none" style="transition: stroke 0.5s ease;"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="booking-b1">Análise do seu negócio atual</span></li>
+                        <li style="display: flex; align-items: center; gap: 10px;"><svg width="20" height="20" stroke="var(--google-blue)" stroke-width="2" fill="none" style="transition: stroke 0.5s ease;"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="booking-b2">Estratégia de Posicionamento</span></li>
+                        <li style="display: flex; align-items: center; gap: 10px;"><svg width="20" height="20" stroke="var(--google-blue)" stroke-width="2" fill="none" style="transition: stroke 0.5s ease;"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="booking-b3">Orçamento personalizado</span></li>
                     </ul>
                 </div>
                 
                 <!-- INTEGRAÇÃO REAL DO CALENDLY -->
-                <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.4); height: 600px;">
+                <div style="background: var(--glass-bg); backdrop-filter: var(--glass-blur); border: 1px solid var(--glass-border); border-radius: 16px; overflow: hidden; box-shadow: 0 8px 32px rgba(0,0,0,0.2); height: 600px;">
                     <!-- Calendly inline widget begin -->
-                    <div class="calendly-inline-widget" data-url="https://calendly.com/jfs102019/30min?hide_event_type_details=1&hide_gdpr_banner=1&background_color=161b22&text_color=ffffff&primary_color=3b82f6" style="min-width:320px;height:100%;"></div>
+                    <div class="calendly-inline-widget" data-url="https://calendly.com/jfs102019/30min?hide_event_type_details=1&hide_gdpr_banner=1&background_color=050505&text_color=ffffff&primary_color=3b82f6" style="min-width:320px;height:100%;"></div>
                     <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
                     <!-- Calendly inline widget end -->
                 </div>
@@ -475,7 +548,7 @@
 
                 <!-- Plano 2 -->
                 <div class="plan-card" style="border-color: var(--google-blue); position: relative;">
-                    <div style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--google-blue); padding: 4px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: bold;" data-i18n="plan-rec">Mais Recomendado</div>
+                    <div style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--google-blue); padding: 4px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; transition: background 0.5s ease;" data-i18n="plan-rec">Mais Recomendado</div>
                     <h3 data-i18n="plan2-title">Plano 2 — Profissional (Site + Google)</h3>
                     <div class="plan-target" data-i18n="plan2-target">Pra quem quer aparecer mais e gerar demanda no Google.</div>
                     <ul class="plan-list">
@@ -497,7 +570,7 @@
             </div>
 
             <div style="margin-top: 40px;">
-                <button onclick="window.open(WHATSAPP_LINK)" class="btn btn-primary" style="padding: 20px 40px; font-size: 1.2rem;" data-i18n="plan-btn">Me chama no WhatsApp que eu te indico o melhor pacote.</button>
+                <button onclick="window.open(WHATSAPP_LINK)" class="btn btn-primary" style="padding: 20px 40px; font-size: 1.2rem;" data-i18n="plan-btn">Chame nossa equipe no WhatsApp e indicaremos o melhor pacote.</button>
             </div>
         </section>
 
@@ -535,6 +608,18 @@
                     <button class="faq-question"><span data-i18n="q3">Se eu já tenho Instagram, ainda preciso de site?</span> <span class="faq-icon">+</span></button>
                     <div class="faq-answer"><p data-i18n="a3">Sim. Site passa confiança, organiza tudo e vira sua vitrine no Google.</p></div>
                 </div>
+                <div class="faq-item">
+                    <button class="faq-question"><span data-i18n="q4">O site tem mensalidade ou custo de manutenção?</span> <span class="faq-icon">+</span></button>
+                    <div class="faq-answer"><p data-i18n="a4">A criação do site é um pagamento único. Depois, há apenas o custo básico de servidor (hospedagem) e domínio (seu www) para mantê-lo no ar, com opções bem acessíveis.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question"><span data-i18n="q5">O site funciona bem em celulares?</span> <span class="faq-icon">+</span></button>
+                    <div class="faq-answer"><p data-i18n="a5">Com certeza! Nossos sites são criados primeiro para o celular (Mobile First). Eles carregam rápido e têm botões fáceis de clicar para não perder nenhum cliente.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question"><span data-i18n="q6">Vocês criam sites para qualquer tipo de negócio?</span> <span class="faq-icon">+</span></button>
+                    <div class="faq-answer"><p data-i18n="a6">Sim. Já criamos desde páginas para clínicas e advogados até sites para prestadores de serviços. Nossa equipe adapta a estrutura para focar no seu cliente.</p></div>
+                </div>
             </div>
         </section>
     </main>
@@ -556,12 +641,27 @@
     </footer>
 
     <!-- Botões Flutuantes -->
+    <button class="chat-float-btn" id="openChatBtn" title="Simulador Rápido" aria-label="Abrir Chat">
+        <svg style="width: 24px; height: 24px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+    </button>
+
+    <div class="chat-window" id="chatWindow">
+        <div class="chat-header">
+            <h3 data-i18n="sim-title">Simulador (1 min)</h3>
+            <button class="close-chat" id="closeChatBtn">&times;</button>
+        </div>
+        <div class="chat-body" id="chat" aria-live="polite"></div>
+        <div class="choices" id="choices"></div>
+        <div class="chat-actions" id="actions" style="display:none;">
+            <a class="btn btn-primary" id="waBtn" target="_blank" rel="noopener" style="width: 100%;" data-i18n="sim-btn-wa">Quero meu site no WhatsApp</a>
+            <button class="btn btn-outline" id="restartBtn" type="button" style="width: 100%;" data-i18n="sim-btn-restart">Recomeçar</button>
+        </div>
+    </div>
+
     <a href="mailto:hubsymples@gmail.com" class="email-float" aria-label="E-mail" title="Enviar E-mail">
         <svg style="width: 24px; height: 24px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
     </a>
 
-    <!-- Balão de Tooltip para o WhatsApp -->
-    <div class="wa-tooltip" data-i18n="wa-tooltip">Posso te mandar um exemplo do seu site?</div>
     <a href="#" onclick="window.open(WHATSAPP_LINK)" class="whatsapp-float" aria-label="WhatsApp">
         <svg style="width: 32px; height: 32px;" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.72.94 3.659 1.437 5.634 1.437h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
     </a>
@@ -584,6 +684,320 @@
             window.open(url, '_blank');
         }
 
+        // === MÁGICA DO THEMING EM TEMPO REAL (INCLUI HIDDEN EASTER EGGS) ===
+        const liveThemes = {
+            // Temas Visíveis (Botões)
+            'barbearia': {
+                c1: '#d4af37', c2: '#8b4513', c3: '#cd853f',
+                pt: 'A vitrine digital perfeita para a sua Barbearia.',
+                en: 'The perfect digital storefront for your Barbershop.',
+                es: 'La vitrina digital perfecta para tu Barbería.'
+            },
+            'clínica': {
+                c1: '#06b6d4', c2: '#3b82f6', c3: '#0ea5e9',
+                pt: 'Um site que passa confiança para os seus pacientes.',
+                en: 'A website that builds trust with your patients.',
+                es: 'Un sitio que transmite confianza a tus pacientes.'
+            },
+            'advogado': {
+                c1: '#1e3a8a', c2: '#b45309', c3: '#1e40af',
+                pt: 'Autoridade e credibilidade para o seu Escritório.',
+                en: 'Authority and credibility for your Law Firm.',
+                es: 'Autoridad y credibilidad para tu Despacho.'
+            },
+            'restaurante': {
+                c1: '#ea580c', c2: '#e11d48', c3: '#f59e0b',
+                pt: 'Um site que dá água na boca e lota as suas mesas.',
+                en: 'A mouth-watering site that fills your tables.',
+                es: 'Un sitio que hace agua la boca y llena tus mesas.'
+            },
+            
+            // Easter Eggs (Escondidos - Só ativam se o cliente digitar)
+            'dentista': {
+                c1: '#0d9488', c2: '#0284c7', c3: '#0891b2',
+                pt: 'Sorrisos perfeitos começam com um site impecável.',
+                en: 'Perfect smiles start with a flawless website.',
+                es: 'Sonrisas perfectas comienzan con un sitio impecable.'
+            },
+            'oficina': {
+                c1: '#f97316', c2: '#475569', c3: '#ea580c',
+                pt: 'Acelere as vendas e lote a sua Oficina Mecânica.',
+                en: 'Accelerate sales and pack your Auto Shop.',
+                es: 'Acelera las ventas y llena tu Taller Mecánico.'
+            },
+            'psicologo': {
+                c1: '#8b5cf6', c2: '#2dd4bf', c3: '#a855f7',
+                pt: 'Acolhimento e profissionalismo desde o primeiro clique.',
+                en: 'Welcoming and professionalism from the first click.',
+                es: 'Acogida y profesionalismo desde el primer clic.'
+            },
+            'arquitetura': {
+                c1: '#475569', c2: '#d4af37', c3: '#64748b',
+                pt: 'Projetamos a vitrine ideal para o seu Escritório de Arquitetura.',
+                en: 'We design the ideal showcase for your Architecture Firm.',
+                es: 'Diseñamos la vitrina ideal para tu Estudio de Arquitectura.'
+            },
+            'petshop': {
+                c1: '#f59e0b', c2: '#10b981', c3: '#f97316',
+                pt: 'Mais clientes apaixonados pelo seu Pet Shop.',
+                en: 'More passionate customers for your Pet Shop.',
+                es: 'Más clientes apasionados por tu Pet Shop.'
+            },
+            'academia': {
+                c1: '#ef4444', c2: '#111827', c3: '#dc2626',
+                pt: 'Força e resultado: uma máquina de matrículas para sua Academia.',
+                en: 'Strength and results: a membership machine for your Gym.',
+                es: 'Fuerza y resultados: una máquina de matrículas para tu Gimnasio.'
+            }
+        };
+
+        let originalColors = null;
+
+        function saveColors() {
+            if (originalColors) return;
+            originalColors = {
+                c1: getComputedStyle(document.documentElement).getPropertyValue('--google-blue').trim(),
+                c2: getComputedStyle(document.documentElement).getPropertyValue('--google-purple').trim(),
+                c3: getComputedStyle(document.documentElement).getPropertyValue('--google-green').trim()
+            };
+        }
+
+        function setNicheAndApply(niche) {
+            document.getElementById('nicheInput').value = niche;
+            applyTheme();
+        }
+
+        function applyTheme() {
+            saveColors();
+            let input = document.getElementById('nicheInput').value.trim();
+            if (!input) return;
+
+            let key = input.toLowerCase();
+            let themeConfig = null;
+            
+            // Mapeamento Inteligente de Palavras-chave
+            if (key.includes('barb') || key.includes('cabel') || key.includes('salao') || key.includes('salão')) themeConfig = liveThemes['barbearia'];
+            else if (key.includes('clíni') || key.includes('clini') || key.includes('med') || key.includes('estet')) themeConfig = liveThemes['clínica'];
+            else if (key.includes('adv') || key.includes('jur') || key.includes('lei') || key.includes('direito')) themeConfig = liveThemes['advogado'];
+            else if (key.includes('rest') || key.includes('comida') || key.includes('pizz') || key.includes('caf') || key.includes('lanch')) themeConfig = liveThemes['restaurante'];
+            
+            // Caça aos Easter Eggs (Palavras-chave escondidas)
+            else if (key.includes('dent') || key.includes('odont')) themeConfig = liveThemes['dentista'];
+            else if (key.includes('oficina') || key.includes('mecân') || key.includes('carro') || key.includes('auto')) themeConfig = liveThemes['oficina'];
+            else if (key.includes('psic') || key.includes('terap') || key.includes('mente')) themeConfig = liveThemes['psicologo'];
+            else if (key.includes('arq') || key.includes('eng') || key.includes('const')) themeConfig = liveThemes['arquitetura'];
+            else if (key.includes('pet') || key.includes('vet') || key.includes('cachor') || key.includes('anim')) themeConfig = liveThemes['petshop'];
+            else if (key.includes('acad') || key.includes('fit') || key.includes('gym') || key.includes('cross') || key.includes('trein')) themeConfig = liveThemes['academia'];
+            
+            // Se não encontrar nenhum, gera um Tema Dinâmico Genérico
+            else {
+                themeConfig = {
+                    c1: '#8b5cf6', c2: '#ec4899', c3: '#14b8a6',
+                    pt: `A vitrine digital perfeita para: <span style="color: var(--google-blue)">${input}</span>`,
+                    en: `The perfect digital storefront for: <span style="color: var(--google-blue)">${input}</span>`,
+                    es: `La vitrina digital perfecta para: <span style="color: var(--google-blue)">${input}</span>`
+                };
+            }
+
+            // Aplica as Cores nas Variáveis (Muda o site todo!)
+            document.documentElement.style.setProperty('--google-blue', themeConfig.c1);
+            document.documentElement.style.setProperty('--google-purple', themeConfig.c2);
+            document.documentElement.style.setProperty('--google-green', themeConfig.c3);
+
+            // Muda o Texto Principal com base na Linguagem
+            let h1 = document.getElementById('main-title');
+            if (currentLang === 'en') h1.innerHTML = themeConfig.en;
+            else if (currentLang === 'es') h1.innerHTML = themeConfig.es;
+            else h1.innerHTML = themeConfig.pt;
+
+            // Mostra o Banner de Simulação no topo
+            document.getElementById('activeNicheName').innerText = input;
+            document.getElementById('activeThemeBanner').style.display = 'flex';
+            
+            // Rola suavemente para o topo para ver o impacto visual
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function resetTheme() {
+            if (!originalColors) return;
+            // Devolve as cores originais
+            document.documentElement.style.setProperty('--google-blue', originalColors.c1);
+            document.documentElement.style.setProperty('--google-purple', originalColors.c2);
+            document.documentElement.style.setProperty('--google-green', originalColors.c3);
+            
+            // Restaura o texto original forçando a tradução novamente
+            changeLanguage(currentLang); 
+
+            // Esconde o Banner flutuante e limpa a caixa
+            document.getElementById('activeThemeBanner').style.display = 'none';
+            document.getElementById('nicheInput').value = '';
+        }
+
+        // === LÓGICA DO CHAT SIMULADOR ===
+        const chatEl = document.getElementById("chat");
+        const choicesEl = document.getElementById("choices");
+        const actionsEl = document.getElementById("actions");
+        const waBtn = document.getElementById("waBtn");
+        const restartBtn = document.getElementById("restartBtn");
+        
+        // Modal Logic
+        const chatWindow = document.getElementById("chatWindow");
+        const openChatBtn = document.getElementById("openChatBtn");
+        const closeChatBtn = document.getElementById("closeChatBtn");
+
+        let userCity = ""; // Variável para armazenar a cidade detectada
+
+        // Função para detectar a cidade pelo IP
+        async function fetchUserCity() {
+            try {
+                const response = await fetch('http://ip-api.com/json/');
+                const data = await response.json();
+                if (data.status === 'success' && data.city) {
+                    userCity = data.city;
+                }
+            } catch (error) {
+                console.log("Erro ao detectar localização:", error);
+            }
+        }
+        
+        // Busca a cidade assim que a página carrega
+        fetchUserCity();
+
+        openChatBtn.addEventListener("click", () => {
+            chatWindow.classList.add("open");
+            if (chatIdx === 0 && chatEl.innerHTML === "") {
+                resetChat(); // Inicia o chat se estiver vazio
+            }
+        });
+
+        closeChatBtn.addEventListener("click", () => {
+            chatWindow.classList.remove("open");
+        });
+
+        let chatState = { niche: "", city: "", hasWebsite: "", goal: "", deadline: "", recommended: "" };
+        let chatIdx = 0;
+
+        // Função que pega as perguntas e respostas baseadas no idioma E injeta a cidade
+        function getChatSteps() {
+            // Opções de cidade baseadas no idioma
+            let cityOptions = ["São Paulo", "Osasco", "Carapicuíba", "Outra"];
+            if (currentLang === 'en') cityOptions = ["New York", "London", "Miami", "Other"];
+            if (currentLang === 'es') cityOptions = ["Madrid", "Bogotá", "Buenos Aires", "Otra"];
+
+            // Se detectamos a cidade do usuário, substituímos a primeira opção
+            if (userCity) {
+                let otherText = currentLang === 'en' ? "Other" : (currentLang === 'es' ? "Otra" : "Outra");
+                cityOptions = [userCity, otherText];
+            }
+
+            if (currentLang === 'en') {
+                return [
+                    { key: "niche", bot: "What is your niche?", choices: ["Beauty Salon", "Dental Clinic", "Barbershop", "Restaurant", "Other"] },
+                    { key: "city", bot: "What is your city?", choices: cityOptions },
+                    { key: "hasWebsite", bot: "Do you already have a website?", choices: ["No", "Yes, but it needs work", "Yes, it's okay"] },
+                    { key: "goal", bot: "Your main goal is:", choices: ["More WhatsApp contacts", "Trust and online presence", "Both"] },
+                    { key: "deadline", bot: "When do you need it live?", choices: ["ASAP", "In up to 7 days", "No rush"] }
+                ];
+            } else if (currentLang === 'es') {
+                return [
+                    { key: "niche", bot: "¿Cuál es tu nicho?", choices: ["Salón de belleza", "Clínica dental", "Barbería", "Restaurante", "Otro"] },
+                    { key: "city", bot: "¿Cuál es tu ciudad?", choices: cityOptions },
+                    { key: "hasWebsite", bot: "¿Ya tienes sitio web?", choices: ["No tengo", "Tengo, pero es débil", "Tengo y está bien"] },
+                    { key: "goal", bot: "Tu objetivo principal es:", choices: ["Más contactos en WhatsApp", "Confianza y presencia online", "Ambos"] },
+                    { key: "deadline", bot: "¿Para cuándo lo necesitas en línea?", choices: ["Lo antes posible", "En hasta 7 días", "Sin prisa"] }
+                ];
+            } else {
+                return [
+                    { key: "niche", bot: "Qual é o seu nicho?", choices: ["Salão de beleza", "Clínica odontológica", "Barbearia", "Restaurante", "Outro"] },
+                    { key: "city", bot: "Qual sua cidade?", choices: cityOptions },
+                    { key: "hasWebsite", bot: "Você já tem site hoje?", choices: ["Não tenho", "Tenho, mas é fraco", "Tenho e está ok"] },
+                    { key: "goal", bot: "Seu objetivo principal é:", choices: ["Mais contatos no WhatsApp", "Confiança e presença online", "Os dois"] },
+                    { key: "deadline", bot: "Pra quando você quer isso no ar?", choices: ["O quanto antes", "Em até 7 dias", "Sem pressa"] }
+                ];
+            }
+        }
+
+        function addChatMsg(text, who) {
+            const div = document.createElement("div");
+            div.className = `msg ${who}`;
+            div.textContent = text;
+            chatEl.appendChild(div);
+            // Faz o scroll descer suavemente
+            setTimeout(() => { chatEl.scrollTop = chatEl.scrollHeight; }, 50);
+        }
+
+        function setChatChoices(choices, onPick) {
+            choicesEl.innerHTML = "";
+            choices.forEach((c) => {
+                const btn = document.createElement("button");
+                btn.type = "button";
+                btn.className = "choice";
+                btn.textContent = c;
+                btn.addEventListener("click", () => onPick(c));
+                choicesEl.appendChild(btn);
+            });
+        }
+
+        function recommendChat() {
+            let rec = currentLang === 'en' ? "Essential (Website)" : (currentLang === 'es' ? "Esencial (Sitio Web)" : "Essencial (Site)");
+            let goalAns = chatState.goal;
+            let deadAns = chatState.deadline;
+            
+            // Lógica simples de recomendação (atualizada para as novas respostas de objetivo)
+            if (goalAns.includes("presen") || goalAns.includes("presence") || goalAns.includes("dois") || goalAns.includes("Both") || goalAns.includes("Ambos")) {
+                rec = currentLang === 'en' ? "Professional (Website + Google)" : (currentLang === 'es' ? "Profesional (Sitio + Google)" : "Profissional (Site + Google)");
+            }
+            if ((goalAns.includes("dois") || goalAns.includes("Both") || goalAns.includes("Ambos")) && 
+                (deadAns.includes("antes") || deadAns.includes("ASAP") || deadAns.includes("posible") || deadAns.includes("7"))) {
+                rec = currentLang === 'en' ? "Professional — Fast Delivery" : (currentLang === 'es' ? "Profesional — Entrega Rápida" : "Profissional (Site + Google) — entrega rápida");
+            }
+            
+            chatState.recommended = rec;
+
+            // Mensagem final do robô
+            let botFinalMsg = `Fechado. Pelo seu caso, a nossa equipe recomenda o plano: ${rec}. Quer que enviemos um exemplo do seu site e o orçamento no WhatsApp?`;
+            if (currentLang === 'en') botFinalMsg = `Done. For your case, our team recommends: ${rec}. Want us to send an example and the quote on WhatsApp?`;
+            if (currentLang === 'es') botFinalMsg = `Hecho. Para tu caso, nuestro equipo recomienda: ${rec}. ¿Quieres que enviemos un ejemplo y la cotización por WhatsApp?`;
+
+            addChatMsg(botFinalMsg, "bot");
+
+            // Monta a mensagem final para o WhatsApp
+            let msg = `Oi! Quero um site.\nNicho: ${chatState.niche}\nCidade: ${chatState.city}\nSite atual: ${chatState.hasWebsite}\nObjetivo: ${chatState.goal}\nPrazo: ${chatState.deadline}\n\nRecomendação do simulador: ${chatState.recommended}\nPode me mandar um exemplo e o orçamento?`;
+            if (currentLang === 'en') msg = `Hi! I want a website.\nNiche: ${chatState.niche}\nCity: ${chatState.city}\nCurrent site: ${chatState.hasWebsite}\nGoal: ${chatState.goal}\nDeadline: ${chatState.deadline}\n\nSimulator recommendation: ${chatState.recommended}\nCan you send me an example and the quote?`;
+            if (currentLang === 'es') msg = `¡Hola! Quiero un sitio web.\nNicho: ${chatState.niche}\nCiudad: ${chatState.city}\nSitio actual: ${chatState.hasWebsite}\nObjetivo: ${chatState.goal}\nPlazo: ${chatState.deadline}\n\nRecomendación del simulador: ${chatState.recommended}\n¿Puedes enviarme un ejemplo y la cotización?`;
+
+            const phone = "5511952924208"; 
+            const url = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
+            waBtn.href = url;
+
+            actionsEl.style.display = "flex";
+            choicesEl.innerHTML = "";
+        }
+
+        function nextChatStep() {
+            const steps = getChatSteps();
+            if (chatIdx >= steps.length) return recommendChat();
+            const step = steps[chatIdx];
+            addChatMsg(step.bot, "bot");
+            setChatChoices(step.choices, (answer) => {
+                chatState[step.key] = answer;
+                addChatMsg(answer, "user");
+                chatIdx++;
+                nextChatStep();
+            });
+        }
+
+        function resetChat() {
+            if(!chatEl) return;
+            chatEl.innerHTML = "";
+            actionsEl.style.display = "none";
+            chatIdx = 0;
+            Object.keys(chatState).forEach(k => chatState[k] = "");
+            nextChatStep();
+        }
+
+        if(restartBtn) restartBtn.addEventListener("click", resetChat);
+
         // === SISTEMA DE TRADUÇÃO (i18n) ===
         const translations = {
             pt: {
@@ -594,6 +1008,13 @@
                 "hero-btn1": "Quero meu site no WhatsApp", "hero-btn2": "Ver portfólio (demos reais)",
                 "badge-1": "✅ Sem enrolação", "badge-2": "✅ Mobile rápido", "badge-3": "✅ Você aprova antes",
                 
+                "theme-title": "Teste o seu nicho ao vivo",
+                "theme-desc": "Digite o seu ramo de atuação ou escolha uma opção para ver o site se adaptar para você.",
+                "theme-placeholder": "Ex: Barbearia, Dentista...",
+                "theme-btn": "Simular",
+                "theme-banner-text": "🔮 Modo Simulação Ativo:",
+                "theme-banner-btn": "Voltar ao Normal",
+
                 "recv-title": "O que entra no seu site (sem surpresas)",
                 "recv-desc": "Tudo pronto pra gerar contato e passar confiança — principalmente no celular.",
                 "recv-1": "Design profissional do seu nicho", "recv-2": "Mobile perfeito + carregamento rápido",
@@ -605,9 +1026,9 @@
                 "step1-desc": "Sem site, você perde cliente todo dia. A gente monta uma página bonita, rápida e objetiva — com botão de WhatsApp e tudo que o cliente precisa pra confiar e chamar.",
                 "step1-b1": "1 página completa (tipo \"landing\")", "step1-b2": "focada em conversão (WhatsApp)",
                 "step1-b3": "pronta pra celular", "step1-b4": "com portfólio/fotos e prova social",
-                "step1-btn": "Me manda seu nicho que eu te mostro um modelo",
+                "step1-btn": "Envie o seu nicho e nossa equipe enviará um modelo",
 
-                "port-title": "Portfólio (demos reais)", "port-desc": "Esses são exemplos do tipo de site que eu faço. Quer um no seu nicho? Eu te mando um modelo parecido.",
+                "port-title": "Portfólio (demos reais)", "port-desc": "Estes são exemplos dos sites que desenvolvemos. Quer um para o seu nicho? Nossa equipe envia um modelo parecido.",
                 "port-btn": "Quero um site assim (WhatsApp)", "port-item-btn": "Quero um igual",
 
                 "testi-title": "O que dizem os clientes",
@@ -620,7 +1041,7 @@
                 "case-metric1": "Cliques no Perfil", "case-metric2": "Chamadas Iniciadas",
                 "case-before-title": "Antes", "case-before-desc": "Sem site, perfil confuso, pouca ação do cliente",
                 "case-after-title": "Depois", "case-after-desc": "Site claro, botão WhatsApp, informações completas, aparência profissional",
-                "case-btn": "Quer um exemplo do seu caso? Me chama no WhatsApp.",
+                "case-btn": "Quer um exemplo do seu caso? Fale com nossos especialistas no WhatsApp.",
 
                 "booking-tag": "🔥 Restam apenas 2 vagas esta semana", "booking-title": "Vamos desenhar o futuro da sua empresa?",
                 "booking-desc": "Agende uma Reunião Estratégica Gratuita de 30 minutos. Vamos analisar sua presença atual e montar um plano de ação, sem compromisso.",
@@ -633,7 +1054,12 @@
                 "plan2-b1": "Tudo do Essencial", "plan2-b2": "Otimização do Perfil no Google", "plan2-b3": "Estratégia pra melhorar presença local",
                 "plan3-title": "Plano 3 — Escala (Site + Google + App)", "plan3-target": "Pra quem quer automatizar e organizar atendimento/gestão.",
                 "plan3-b1": "Tudo do Profissional", "plan3-b2": "Aplicativo de gestão (opcional)",
-                "plan-btn": "Me chama no WhatsApp que eu te indico o melhor pacote.",
+                "plan-btn": "Chame nossa equipe no WhatsApp e indicaremos o melhor pacote.",
+
+                "sim-title": "Simulador rápido (1 minuto)",
+                "sim-desc": "Responda e a nossa equipe indicará o melhor pacote, abrindo já o seu WhatsApp com a mensagem pronta.",
+                "sim-btn-wa": "Quero meu site no WhatsApp",
+                "sim-btn-restart": "Recomeçar",
 
                 "form-title": "Ainda tem dúvidas? Receba um exemplo grátis.", "form-desc": "Preencha abaixo bem rápido que enviamos um modelo focado no seu nicho.",
                 "form-name": "Seu Nome", "form-wpp": "WhatsApp (com DDD)", "form-city": "Sua Cidade", "form-niche": "Seu Nicho de Atuação", "form-btn": "Quero um exemplo do meu site",
@@ -641,10 +1067,12 @@
                 "q1": "Em quanto tempo fica pronto?", "a1": "Depende do nicho e do material, mas a ideia é ser rápido e objetivo. Você aprova o modelo antes de publicar.",
                 "q2": "Preciso ter logo e fotos?", "a2": "Ajuda, mas não trava. A gente sobe com o essencial e melhora depois.",
                 "q3": "Se eu já tenho Instagram, ainda preciso de site?", "a3": "Sim. Site passa confiança, organiza tudo e vira sua vitrine no Google.",
+                "q4": "O site tem mensalidade ou custo de manutenção?", "a4": "A criação do site é um pagamento único. Depois, há apenas o custo básico de servidor (hospedagem) e domínio (seu www) para mantê-lo no ar, com opções bem acessíveis.",
+                "q5": "O site funciona bem em celulares?", "a5": "Com certeza! Nossos sites são criados primeiro para o celular (Mobile First). Eles carregam rápido e têm botões fáceis de clicar para não perder nenhum cliente.",
+                "q6": "Vocês criam sites para qualquer tipo de negócio?", "a6": "Sim. Já criamos desde páginas para clínicas e advogados até sites para prestadores de serviços. Nossa equipe adapta a estrutura para focar no seu cliente.",
 
                 "niches-title": "Especialistas em criar sites para:", "niches-list": "Advogados • Clínicas de Estética • Odontologia • Restaurantes • Imobiliárias • Prestadores de Serviço • Contabilidade • Autônomos",
-                "footer-text": "O Seu Hub de Soluções Digitais.", "footer-motto": "Seu site pronto pra vender.",
-                "wa-tooltip": "Posso te mandar um exemplo do seu site?"
+                "footer-text": "O Seu Hub de Soluções Digitais.", "footer-motto": "Seu site pronto pra vender."
             },
             en: {
                 "nav-btn": "WhatsApp: Quote in 2 mins",
@@ -653,6 +1081,13 @@
                 "hero-desc": "We create a professional site with a WhatsApp button, social proof, and local structure. You approve the model, we launch it fast.",
                 "hero-btn1": "I want my website via WhatsApp", "hero-btn2": "View portfolio (real demos)",
                 "badge-1": "✅ No fluff", "badge-2": "✅ Fast mobile", "badge-3": "✅ You approve first",
+
+                "theme-title": "Test your niche live",
+                "theme-desc": "Type your field of work or choose an option to see the site adapt for you.",
+                "theme-placeholder": "Ex: Barbershop, Dentist...",
+                "theme-btn": "Simulate",
+                "theme-banner-text": "🔮 Simulation Mode Active:",
+                "theme-banner-btn": "Back to Normal",
                 
                 "recv-title": "What's included in your site (no surprises)",
                 "recv-desc": "Everything ready to generate leads and build trust — especially on mobile.",
@@ -665,9 +1100,9 @@
                 "step1-desc": "Without a site, you lose clients daily. We build a beautiful, fast, and objective page — with a WhatsApp button and everything needed for trust.",
                 "step1-b1": "1 complete page (landing style)", "step1-b2": "focused on conversion (WhatsApp)",
                 "step1-b3": "mobile-ready", "step1-b4": "with portfolio/photos and social proof",
-                "step1-btn": "Send me your niche, I'll show you a model",
+                "step1-btn": "Send us your niche and our team will show you a model",
 
-                "port-title": "Portfolio (real demos)", "port-desc": "These are examples of the sites I make. Want one in your niche? I'll send you a similar model.",
+                "port-title": "Portfolio (real demos)", "port-desc": "These are examples of the sites we build. Want one in your niche? Our team will send you a similar model.",
                 "port-btn": "I want a site like this", "port-item-btn": "I want one like this",
 
                 "testi-title": "What our clients say",
@@ -680,7 +1115,7 @@
                 "case-metric1": "Profile Clicks", "case-metric2": "Calls Started",
                 "case-before-title": "Before", "case-before-desc": "No site, confusing profile, low client action",
                 "case-after-title": "After", "case-after-desc": "Clear site, WhatsApp button, complete info, pro look",
-                "case-btn": "Want an example for your case? Message me.",
+                "case-btn": "Want an example for your case? Talk to our experts on WhatsApp.",
 
                 "booking-tag": "🔥 Only 2 spots left this week", "booking-title": "Let's design the future of your company?",
                 "booking-desc": "Schedule a Free 30-minute Strategic Meeting. We will analyze your current presence and create an action plan, with no strings attached.",
@@ -693,7 +1128,12 @@
                 "plan2-b1": "Everything in Essential", "plan2-b2": "Google Profile Optimization", "plan2-b3": "Local presence strategy",
                 "plan3-title": "Plan 3 — Scale (Site + Google + App)", "plan3-target": "For those who want to automate and organize management.",
                 "plan3-b1": "Everything in Professional", "plan3-b2": "Management app (optional)",
-                "plan-btn": "Message me on WhatsApp and I'll suggest the best package.",
+                "plan-btn": "Message our team on WhatsApp and we'll suggest the best package.",
+
+                "sim-title": "Quick Simulator (1 minute)",
+                "sim-desc": "Answer this and our team will tell you the best package, opening your WhatsApp ready to send.",
+                "sim-btn-wa": "I want my website on WhatsApp",
+                "sim-btn-restart": "Restart",
 
                 "form-title": "Still have questions? Get a free example.", "form-desc": "Fill out the quick form below and we'll send you a model focused on your niche.",
                 "form-name": "Your Name", "form-wpp": "WhatsApp number", "form-city": "Your City", "form-niche": "Your Niche", "form-btn": "I want an example of my website",
@@ -701,10 +1141,12 @@
                 "q1": "How long does it take?", "a1": "Depends on the niche and materials, but the goal is fast and objective. You approve the model before publishing.",
                 "q2": "Do I need a logo and photos?", "a2": "It helps, but doesn't stop us. We launch with the essentials and improve later.",
                 "q3": "If I have Instagram, do I still need a site?", "a3": "Yes. A site builds trust, organizes everything, and becomes your Google storefront.",
+                "q4": "Does the website have a monthly fee or maintenance cost?", "a4": "The website creation is a one-time payment. After that, there is only the basic cost for hosting and domain to keep it online, with very affordable options.",
+                "q5": "Does the website work well on mobile phones?", "a5": "Absolutely! Our sites are designed Mobile First. They load fast and have easy-to-click buttons so you don't lose any leads.",
+                "q6": "Do you build websites for any type of business?", "a6": "Yes. We build everything from pages for clinics and lawyers to sites for service providers. Our team adapts the structure to focus on your ideal customer.",
 
                 "niches-title": "Experts in creating sites for:", "niches-list": "Lawyers • Aesthetic Clinics • Dentistry • Restaurants • Real Estate • Service Providers • Accounting",
-                "footer-text": "Your Digital Solutions Hub.", "footer-motto": "Your site ready to sell.",
-                "wa-tooltip": "Can I send you an example of your site?"
+                "footer-text": "Your Digital Solutions Hub.", "footer-motto": "Your site ready to sell."
             },
             es: {
                 "nav-btn": "WhatsApp: Cotización en 2 min",
@@ -714,6 +1156,13 @@
                 "hero-btn1": "Quiero mi sitio en WhatsApp", "hero-btn2": "Ver portafolio (demos reales)",
                 "badge-1": "✅ Sin rodeos", "badge-2": "✅ Móvil rápido", "badge-3": "✅ Apruebas antes",
                 
+                "theme-title": "Prueba tu nicho en vivo",
+                "theme-desc": "Escribe tu sector o elige una opción para ver cómo el sitio se adapta para ti.",
+                "theme-placeholder": "Ej: Barbería, Dentista...",
+                "theme-btn": "Simular",
+                "theme-banner-text": "🔮 Modo Simulación Activo:",
+                "theme-banner-btn": "Volver a la Normalidad",
+
                 "recv-title": "Lo que incluye tu sitio (sin sorpresas)",
                 "recv-desc": "Todo listo para generar contactos y transmitir confianza — especialmente en celular.",
                 "recv-1": "Diseño profesional para tu nicho", "recv-2": "Móvil perfecto + carga rápida",
@@ -725,9 +1174,9 @@
                 "step1-desc": "Sin sitio web pierdes clientes a diario. Armamos una página bonita, rápida y objetiva — con botón de WhatsApp y lo necesario para generar confianza.",
                 "step1-b1": "1 página completa (tipo \"landing\")", "step1-b2": "enfocada en conversión (WhatsApp)",
                 "step1-b3": "lista para celular", "step1-b4": "con portafolio/fotos y prueba social",
-                "step1-btn": "Envíame tu nicho y te muestro un modelo",
+                "step1-btn": "Envíanos tu nicho y nuestro equipo te mostrará un modelo",
 
-                "port-title": "Portafolio (demos reales)", "port-desc": "Estos son ejemplos del tipo de sitio que hago. ¿Quieres uno en tu nicho? Te envío un modelo similar.",
+                "port-title": "Portafolio (demos reales)", "port-desc": "Estos son ejemplos de los sitios que desarrollamos. ¿Quieres uno en tu nicho? Nuestro equipo te enviará un modelo similar.",
                 "port-btn": "Quiero un sitio así (WhatsApp)", "port-item-btn": "Quiero uno igual",
 
                 "testi-title": "Lo que dicen los clientes",
@@ -740,7 +1189,7 @@
                 "case-metric1": "Clics en el Perfil", "case-metric2": "Llamadas Iniciadas",
                 "case-before-title": "Antes", "case-before-desc": "Sin sitio, perfil confuso, poca acción del cliente",
                 "case-after-title": "Después", "case-after-desc": "Sitio claro, botón WhatsApp, info completa, aspecto pro",
-                "case-btn": "¿Quieres un ejemplo para tu caso? Háblame.",
+                "case-btn": "¿Quieres un ejemplo para tu caso? Habla con nuestros expertos en WhatsApp.",
 
                 "booking-tag": "🔥 Solo quedan 2 cupos esta semana", "booking-title": "¿Vamos a diseñar el futuro de tu empresa?",
                 "booking-desc": "Agenda una Reunión Estratégica Gratuita de 30 minutos. Analizaremos tu presencia actual y armaremos un plan de acción, sin compromiso.",
@@ -753,7 +1202,12 @@
                 "plan2-b1": "Todo lo del Esencial", "plan2-b2": "Optimización del Perfil en Google", "plan2-b3": "Estrategia de presencia local",
                 "plan3-title": "Plan 3 — Escala (Sitio + Google + App)", "plan3-target": "Para quienes quieren automatizar y organizar la gestión.",
                 "plan3-b1": "Todo lo del Profesional", "plan3-b2": "App de gestión (opcional)",
-                "plan-btn": "Escríbeme por WhatsApp y te indico el mejor paquete.",
+                "plan-btn": "Escribe a nuestro equipo por WhatsApp y te indicaremos el mejor paquete.",
+
+                "sim-title": "Simulador rápido (1 minuto)",
+                "sim-desc": "Responde y nuestro equipo te indicará el mejor paquete, abriendo tu WhatsApp con el mensaje listo.",
+                "sim-btn-wa": "Quiero mi sitio en WhatsApp",
+                "sim-btn-restart": "Reiniciar",
 
                 "form-title": "¿Aún tienes dudas? Recibe un ejemplo gratis.", "form-desc": "Llena los datos rápido y te enviamos un modelo enfocado en tu nicho.",
                 "form-name": "Tu Nombre", "form-wpp": "WhatsApp", "form-city": "Tu Ciudad", "form-niche": "Tu Nicho", "form-btn": "Quiero un ejemplo de mi sitio web",
@@ -761,10 +1215,12 @@
                 "q1": "¿En cuánto tiempo está listo?", "a1": "Depende del nicho y el material, pero la idea es ser rápido y objetivo. Apruebas el modelo antes de publicar.",
                 "q2": "¿Necesito tener logo y fotos?", "a2": "Ayuda, pero no frena nada. Subimos lo esencial y mejoramos después.",
                 "q3": "Si ya tengo Instagram, ¿necesito un sitio?", "a3": "Sí. El sitio transmite confianza, organiza todo y se convierte en tu vitrina en Google.",
+                "q4": "¿El sitio web tiene mensualidad o costo de mantenimiento?", "a4": "La creación del sitio web es un pago único. Después, solo hay un costo básico de servidor (hosting) y dominio para mantenerlo en línea, con opciones muy accesibles.",
+                "q5": "¿El sitio funciona bien en celulares?", "a5": "¡Por supuesto! Nuestros sitios están diseñados Mobile First. Cargan rápido y tienen botones fáciles de tocar para que no pierdas ningún cliente.",
+                "q6": "¿Crean sitios para cualquier tipo de negocio?", "a6": "Sí. Desarrollamos desde páginas para clínicas y abogados hasta sitios para proveedores de servicios. Nuestro equipo adapta la estructura para enfocarse en tu cliente.",
 
                 "niches-title": "Expertos en crear sitios para:", "niches-list": "Abogados • Clínicas Estéticas • Odontología • Restaurantes • Inmobiliarias • Proveedores de Servicios • Contadores",
-                "footer-text": "Tu Hub de Soluciones Digitales.", "footer-motto": "Tu sitio listo para vender.",
-                "wa-tooltip": "¿Puedo enviarte un ejemplo de tu sitio?"
+                "footer-text": "Tu Hub de Soluciones Digitales.", "footer-motto": "Tu sitio listo para vender."
             }
         };
 
@@ -795,6 +1251,9 @@
                     el.placeholder = translations[lang][key];
                 }
             });
+
+            // Reinicia o chat no idioma novo
+            resetChat();
         }
 
         // Inicia Tradução
