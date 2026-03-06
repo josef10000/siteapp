@@ -110,7 +110,7 @@
         .nav-link:hover, .nav-link.active { 
             color: #ffffff; 
             background: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.05)); 
-            border-color: var(--google-blue); 
+            border-color: rgba(255, 255, 255, 0.4); 
             transform: translateY(-2px); 
             box-shadow: 0 8px 25px rgba(255,255,255,0.1), inset 0 1px 2px rgba(255, 255, 255, 0.6); 
         }
@@ -140,12 +140,6 @@
         .theme-chip { padding: 8px 16px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03); color: var(--text-main); cursor: pointer; font-size: 0.9rem; font-weight: 500; transition: var(--transition); }
         .theme-chip:hover { border-color: var(--google-blue); color: white; background: rgba(26, 115, 232, 0.1); transform: translateY(-2px); }
         
-        .active-theme-banner { position: fixed; top: 85px; left: 50%; transform: translateX(-50%); background: rgba(10, 12, 16, 0.85); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid var(--google-blue); padding: 10px 25px; border-radius: 30px; z-index: 1001; display: flex; align-items: center; gap: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); animation: popDown 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); width: max-content; max-width: 90%; transition: border-color 0.5s ease; }
-        .active-theme-banner span { font-size: 0.9rem; font-weight: 600; color: white; }
-        .btn-reset-theme { background: transparent; border: 1px solid #ff6b6b; color: #ff6b6b; border-radius: 20px; padding: 6px 14px; font-size: 0.8rem; font-weight: bold; cursor: pointer; transition: 0.2s; }
-        .btn-reset-theme:hover { background: #ff6b6b; color: white; }
-        @keyframes popDown { from { transform: translate(-50%, -20px); opacity: 0; } to { transform: translate(-50%, 0); opacity: 1; } }
-
         /* O QUE VOCÊ RECEBE (GRID) - GLASSMORPHISM */
         .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin-top: 40px; text-align: left; }
         .feature-card { background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border: 1px solid var(--glass-border); padding: 20px; border-radius: 16px; display: flex; align-items: flex-start; gap: 15px; transition: var(--transition); box-shadow: 0 4px 30px rgba(0,0,0,0.1); }
@@ -251,14 +245,69 @@
         .seo-niches { background: rgba(0,0,0,0.4); padding: 20px; text-align: center; border-top: 1px solid var(--glass-border); border-bottom: 1px solid var(--glass-border); overflow: hidden; backdrop-filter: var(--glass-blur); }
         .seo-niches p { color: var(--text-dim); font-size: 0.95rem; font-weight: 600; letter-spacing: 0.5px; }
 
-        /* FOOTER & FLOATERS - LIQUID GLASS */
-        footer { padding: 60px 20px; text-align: center; }
+        /* FOOTER */
+        footer { padding: 60px 20px; text-align: center; } 
         
-        .whatsapp-float { position: fixed; bottom: 30px; right: 30px; background: rgba(37, 211, 102, 0.25); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border: 1px solid rgba(255, 255, 255, 0.15); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 32px 0 rgba(37, 211, 102, 0.3); z-index: 999; transition: var(--transition); }
-        .whatsapp-float:hover { transform: scale(1.1); background: rgba(37, 211, 102, 0.45); border-color: rgba(255, 255, 255, 0.3); }
+        /* SPEED DIAL (BOTÃO MÁGICO - LIQUID GLASS) */
+        .speed-dial-container {
+            position: fixed; bottom: 30px; right: 30px; z-index: 999;
+            display: flex; flex-direction: column; align-items: flex-end; gap: 15px;
+        }
         
-        .email-float { position: fixed; bottom: 105px; right: 35px; background: rgba(26, 115, 232, 0.25); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border: 1px solid rgba(255, 255, 255, 0.15); color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 32px 0 rgba(26, 115, 232, 0.3); z-index: 999; transition: var(--transition); }
-        .email-float:hover { transform: scale(1.1); background: rgba(26, 115, 232, 0.45); border-color: rgba(255, 255, 255, 0.3); }
+        .speed-dial-list {
+            display: flex; flex-direction: column; gap: 15px; align-items: flex-end;
+            opacity: 0; visibility: hidden; transform: translateY(20px) scale(0.9);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); pointer-events: none;
+        }
+        
+        .speed-dial-container.active .speed-dial-list {
+            opacity: 1; visibility: visible; transform: translateY(0) scale(1); pointer-events: auto;
+        }
+        
+        .sd-item { display: flex; align-items: center; gap: 12px; }
+        
+        .sd-label {
+            background: rgba(10, 12, 16, 0.7); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            color: #fff; padding: 6px 14px; border-radius: 12px; font-size: 0.85rem; font-weight: 600;
+            border: 1px solid var(--glass-border); box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            opacity: 0; transform: translateX(10px); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none; white-space: nowrap;
+        }
+        
+        .speed-dial-container.active .sd-item:nth-child(1) .sd-label { transition-delay: 0.05s; opacity: 1; transform: translateX(0); }
+        .speed-dial-container.active .sd-item:nth-child(2) .sd-label { transition-delay: 0.1s; opacity: 1; transform: translateX(0); }
+        .speed-dial-container.active .sd-item:nth-child(3) .sd-label { transition-delay: 0.15s; opacity: 1; transform: translateX(0); }
+
+        .sd-btn {
+            width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center;
+            backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border: 1px solid rgba(255,255,255,0.2);
+            color: white; text-decoration: none; box-shadow: 0 8px 25px rgba(0,0,0,0.3); transition: var(--transition); cursor: pointer;
+        }
+        .sd-btn:hover { transform: scale(1.1); border-color: rgba(255,255,255,0.4); }
+        .sd-chat { background: rgba(168, 85, 247, 0.4); }
+        .sd-email { background: rgba(26, 115, 232, 0.4); }
+        .sd-wa { background: rgba(37, 211, 102, 0.4); }
+
+        .sd-main-btn {
+            width: 65px; height: 65px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.25);
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.02)); 
+            backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
+            display: flex; justify-content: center; align-items: center; cursor: pointer; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 2px 2px rgba(255, 255, 255, 0.4); 
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); outline: none; position: relative;
+        }
+        .sd-main-btn img {
+            width: 35px; height: 35px; object-fit: contain; transition: all 0.4s ease; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+        }
+        .sd-main-btn:hover { background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0.05)); transform: scale(1.05); }
+        
+        .speed-dial-container.active .sd-main-btn img { transform: rotate(90deg) scale(0); opacity: 0; }
+        
+        .sd-main-btn::after {
+            content: '+'; position: absolute; font-size: 2.8rem; color: white; font-weight: 300; line-height: 1;
+            opacity: 0; transform: rotate(-90deg) scale(0); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .speed-dial-container.active .sd-main-btn::after { opacity: 1; transform: rotate(45deg) scale(1); } /* Transforma no X de fechar */
 
         @media (min-width: 992px) {
             .grid-2 { grid-template-columns: 1fr 1fr; }
@@ -274,14 +323,7 @@
                 align-items: center; justify-content: flex-start; gap: 20px; 
             } 
             .nav-menu.open { left: 0; }
-            .nav-link { 
-                width: 100%; 
-                max-width: 320px; 
-                text-align: center; 
-                padding: 16px; 
-                font-size: 1.15rem; 
-                border-radius: 16px; 
-            }
+            .nav-link { width: 100%; max-width: 320px; text-align: center; padding: 16px; font-size: 1.15rem; border-radius: 16px; }
             .menu-toggle { display: flex; }
             .header-actions .btn { display: none; }
             @media (max-width: 650px) { .carousel-btn.prev { left: -10px; } .carousel-btn.next { right: -10px; } }
@@ -289,12 +331,6 @@
     </style>
 </head>
 <body>
-
-    <!-- BANNER DE SIMULAÇÃO ATIVA -->
-    <div id="activeThemeBanner" class="active-theme-banner" style="display: none;">
-        <span><span data-i18n="theme-banner-text">🔮 Modo Simulação Ativo:</span> <b id="activeNicheName" style="color: var(--google-blue);">Barbearia</b></span>
-        <button onclick="resetTheme()" class="btn-reset-theme" data-i18n="theme-banner-btn">Voltar ao Normal</button>
-    </div>
 
     <!-- BACKGROUND ANIMADO -->
     <div class="bg-shapes">
@@ -322,11 +358,6 @@
             </ul>
 
             <div class="header-actions" style="display: flex; gap: 15px; align-items: center;">
-                <div class="lang-switcher">
-                    <button class="lang-btn" onclick="changeLanguage('pt')" id="btn-pt" title="Português"><img src="https://flagcdn.com/w40/br.png" alt="BR"></button>
-                    <button class="lang-btn" onclick="changeLanguage('en')" id="btn-en" title="English"><img src="https://flagcdn.com/w40/us.png" alt="US"></button>
-                    <button class="lang-btn" onclick="changeLanguage('es')" id="btn-es" title="Español"><img src="https://flagcdn.com/w40/es.png" alt="ES"></button>
-                </div>
                 <div class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></div>
             </div>
         </nav>
@@ -640,11 +671,34 @@
         </a>
     </footer>
 
-    <!-- Botões Flutuantes -->
-    <button class="chat-float-btn" id="openChatBtn" title="Simulador Rápido" aria-label="Abrir Chat">
-        <svg style="width: 24px; height: 24px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-    </button>
+    <!-- SPEED DIAL (BOTÃO MÁGICO FLUTUANTE) -->
+    <div class="speed-dial-container" id="speedDial">
+        <div class="speed-dial-list">
+            <div class="sd-item">
+                <span class="sd-label" data-i18n="action-sim">Simulador</span>
+                <button class="sd-btn sd-chat" id="openChatBtn" aria-label="Simulador">
+                    <svg style="width: 22px; height: 22px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                </button>
+            </div>
+            <div class="sd-item">
+                <span class="sd-label">E-mail</span>
+                <a href="mailto:hubsymples@gmail.com" class="sd-btn sd-email" aria-label="E-mail">
+                    <svg style="width: 22px; height: 22px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                </a>
+            </div>
+            <div class="sd-item">
+                <span class="sd-label" data-i18n="action-wa">WhatsApp</span>
+                <a href="#" onclick="window.open(WHATSAPP_LINK)" class="sd-btn sd-wa" aria-label="WhatsApp">
+                    <svg style="width: 26px; height: 26px;" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.72.94 3.659 1.437 5.634 1.437h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                </a>
+            </div>
+        </div>
+        <button class="sd-main-btn" id="speedDialMainBtn" aria-label="Opções de Contato">
+            <img src="https://i.imgur.com/WVOsHDW.png" alt="HubSymples">
+        </button>
+    </div>
 
+    <!-- JANELA DE CHAT -->
     <div class="chat-window" id="chatWindow">
         <div class="chat-header">
             <h3 data-i18n="sim-title">Simulador (1 min)</h3>
@@ -657,14 +711,6 @@
             <button class="btn btn-outline" id="restartBtn" type="button" style="width: 100%;" data-i18n="sim-btn-restart">Recomeçar</button>
         </div>
     </div>
-
-    <a href="mailto:hubsymples@gmail.com" class="email-float" aria-label="E-mail" title="Enviar E-mail">
-        <svg style="width: 24px; height: 24px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-    </a>
-
-    <a href="#" onclick="window.open(WHATSAPP_LINK)" class="whatsapp-float" aria-label="WhatsApp">
-        <svg style="width: 32px; height: 32px;" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.72.94 3.659 1.437 5.634 1.437h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-    </a>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
@@ -809,10 +855,6 @@
             if (currentLang === 'en') h1.innerHTML = themeConfig.en;
             else if (currentLang === 'es') h1.innerHTML = themeConfig.es;
             else h1.innerHTML = themeConfig.pt;
-
-            // Mostra o Banner de Simulação no topo
-            document.getElementById('activeNicheName').innerText = input;
-            document.getElementById('activeThemeBanner').style.display = 'flex';
             
             // Rola suavemente para o topo para ver o impacto visual
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -828,17 +870,36 @@
             // Restaura o texto original forçando a tradução novamente
             changeLanguage(currentLang); 
 
-            // Esconde o Banner flutuante e limpa a caixa
-            document.getElementById('activeThemeBanner').style.display = 'none';
+            // Limpa a caixa
             document.getElementById('nicheInput').value = '';
         }
 
-        // === LÓGICA DO CHAT SIMULADOR ===
+        // === LÓGICA DO CHAT SIMULADOR E SPEED DIAL ===
         const chatEl = document.getElementById("chat");
         const choicesEl = document.getElementById("choices");
         const actionsEl = document.getElementById("actions");
         const waBtn = document.getElementById("waBtn");
         const restartBtn = document.getElementById("restartBtn");
+        
+        // Speed Dial Logic
+        const speedDial = document.getElementById('speedDial');
+        const speedDialMainBtn = document.getElementById('speedDialMainBtn');
+        
+        speedDialMainBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            speedDial.classList.toggle('active');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!speedDial.contains(e.target)) {
+                speedDial.classList.remove('active');
+            }
+        });
+
+        // Fechar o Speed Dial se o utilizador clicar num dos botões menores
+        document.querySelectorAll('.sd-btn').forEach(btn => {
+            btn.addEventListener('click', () => speedDial.classList.remove('active'));
+        });
         
         // Modal Logic
         const chatWindow = document.getElementById("chatWindow");
@@ -1004,7 +1065,7 @@
                 "nav-btn": "WhatsApp: orçamento em 2 min",
                 "nav-sites": "Sites", "nav-google": "Google", "nav-plans": "Planos", "nav-faq": "Dúvidas",
                 "hero-title": "Seu site pronto pra vender em poucos dias <span style='color: var(--google-blue)'>(e trazer clientes pelo Google)</span>.",
-                "hero-desc": "Criamos um site profissional com botão de WhatsApp, prova social e estrutura local. Você aprova o modelo e a gente coloca no ar rápido.",
+                "hero-desc": "Criamos um site profissional com botão de WhatsApp, prova social e estrutura local. Você aprova o modelo e nós colocamos no ar rápido.",
                 "hero-btn1": "Quero meu site no WhatsApp", "hero-btn2": "Ver portfólio (demos reais)",
                 "badge-1": "✅ Sem enrolação", "badge-2": "✅ Mobile rápido", "badge-3": "✅ Você aprova antes",
                 
@@ -1023,7 +1084,7 @@
                 "recv-7": "Publicação + ajustes finais pós-ar", "recv-btn": "Quero isso no meu negócio (WhatsApp)",
 
                 "step1-tag": "Passo 1", "step1-title": "Seu site vira sua vitrine que vende 24h",
-                "step1-desc": "Sem site, você perde cliente todo dia. A gente monta uma página bonita, rápida e objetiva — com botão de WhatsApp e tudo que o cliente precisa pra confiar e chamar.",
+                "step1-desc": "Sem site, você perde cliente todo dia. Nós criamos uma página bonita, rápida e objetiva — com botão de WhatsApp e tudo que o cliente precisa pra confiar e chamar.",
                 "step1-b1": "1 página completa (tipo \"landing\")", "step1-b2": "focada em conversão (WhatsApp)",
                 "step1-b3": "pronta pra celular", "step1-b4": "com portfólio/fotos e prova social",
                 "step1-btn": "Envie o seu nicho e nossa equipe enviará um modelo",
@@ -1037,7 +1098,7 @@
                 "testi-3": "\"Eu não tinha site. Agora passa confiança.\"", "testi-3-author": "— Marcos, Advogado (Rio de Janeiro)",
 
                 "case-tag": "Passo 2 — Opcional", "case-title": "Estudo de caso real: de \"quase ninguém chama\" para \"todo dia tem pedido\"",
-                "case-desc": "Um negócio local estava sem site e com o perfil do Google incompleto. A gente montou uma landing objetiva, organizou serviços/horários e colocou WhatsApp no centro. Em poucos dias, já deu pra ver mais cliques e mais conversas iniciadas.",
+                "case-desc": "Um negócio local estava sem site e com o perfil do Google incompleto. Nós montamos uma landing objetiva, organizamos serviços/horários e colocamos WhatsApp no centro. Em poucos dias, já deu pra ver mais cliques e mais conversas iniciadas.",
                 "case-metric1": "Cliques no Perfil", "case-metric2": "Chamadas Iniciadas",
                 "case-before-title": "Antes", "case-before-desc": "Sem site, perfil confuso, pouca ação do cliente",
                 "case-after-title": "Depois", "case-after-desc": "Site claro, botão WhatsApp, informações completas, aparência profissional",
@@ -1065,17 +1126,18 @@
                 "form-name": "Seu Nome", "form-wpp": "WhatsApp (com DDD)", "form-city": "Sua Cidade", "form-niche": "Seu Nicho de Atuação", "form-btn": "Quero um exemplo do meu site",
 
                 "q1": "Em quanto tempo fica pronto?", "a1": "Depende do nicho e do material, mas a ideia é ser rápido e objetivo. Você aprova o modelo antes de publicar.",
-                "q2": "Preciso ter logo e fotos?", "a2": "Ajuda, mas não trava. A gente sobe com o essencial e melhora depois.",
+                "q2": "Preciso ter logo e fotos?", "a2": "Ajuda, mas não trava. Nós publicamos o essencial e melhoramos depois.",
                 "q3": "Se eu já tenho Instagram, ainda preciso de site?", "a3": "Sim. Site passa confiança, organiza tudo e vira sua vitrine no Google.",
                 "q4": "O site tem mensalidade ou custo de manutenção?", "a4": "A criação do site é um pagamento único. Depois, há apenas o custo básico de servidor (hospedagem) e domínio (seu www) para mantê-lo no ar, com opções bem acessíveis.",
                 "q5": "O site funciona bem em celulares?", "a5": "Com certeza! Nossos sites são criados primeiro para o celular (Mobile First). Eles carregam rápido e têm botões fáceis de clicar para não perder nenhum cliente.",
                 "q6": "Vocês criam sites para qualquer tipo de negócio?", "a6": "Sim. Já criamos desde páginas para clínicas e advogados até sites para prestadores de serviços. Nossa equipe adapta a estrutura para focar no seu cliente.",
 
                 "niches-title": "Especialistas em criar sites para:", "niches-list": "Advogados • Clínicas de Estética • Odontologia • Restaurantes • Imobiliárias • Prestadores de Serviço • Contabilidade • Autônomos",
-                "footer-text": "O Seu Hub de Soluções Digitais.", "footer-motto": "Seu site pronto pra vender."
+                "footer-text": "O Seu Hub de Soluções Digitais.", "footer-motto": "Seu site pronto pra vender.",
+                
+                "action-sim": "Simulador", "action-wa": "WhatsApp"
             },
             en: {
-                "nav-btn": "WhatsApp: Quote in 2 mins",
                 "nav-sites": "Websites", "nav-google": "Google", "nav-plans": "Plans", "nav-faq": "FAQ",
                 "hero-title": "Your website ready to sell in days <span style='color: var(--google-blue)'>(and bring Google clients)</span>.",
                 "hero-desc": "We create a professional site with a WhatsApp button, social proof, and local structure. You approve the model, we launch it fast.",
@@ -1146,10 +1208,11 @@
                 "q6": "Do you build websites for any type of business?", "a6": "Yes. We build everything from pages for clinics and lawyers to sites for service providers. Our team adapts the structure to focus on your ideal customer.",
 
                 "niches-title": "Experts in creating sites for:", "niches-list": "Lawyers • Aesthetic Clinics • Dentistry • Restaurants • Real Estate • Service Providers • Accounting",
-                "footer-text": "Your Digital Solutions Hub.", "footer-motto": "Your site ready to sell."
+                "footer-text": "Your Digital Solutions Hub.", "footer-motto": "Your site ready to sell.",
+                
+                "action-sim": "Simulator", "action-wa": "WhatsApp"
             },
             es: {
-                "nav-btn": "WhatsApp: Cotización en 2 min",
                 "nav-sites": "Sitios", "nav-google": "Google", "nav-plans": "Planes", "nav-faq": "Dudas",
                 "hero-title": "Tu sitio listo para vender en días <span style='color: var(--google-blue)'>(y traer clientes por Google)</span>.",
                 "hero-desc": "Creamos un sitio profesional con botón de WhatsApp, prueba social y estructura local. Apruebas el modelo y lo lanzamos rápido.",
@@ -1220,9 +1283,36 @@
                 "q6": "¿Crean sitios para cualquier tipo de negocio?", "a6": "Sí. Desarrollamos desde páginas para clínicas y abogados hasta sitios para proveedores de servicios. Nuestro equipo adapta la estructura para enfocarse en tu cliente.",
 
                 "niches-title": "Expertos en crear sitios para:", "niches-list": "Abogados • Clínicas Estéticas • Odontología • Restaurantes • Inmobiliarias • Proveedores de Servicios • Contadores",
-                "footer-text": "Tu Hub de Soluciones Digitales.", "footer-motto": "Tu sitio listo para vender."
+                "footer-text": "Tu Hub de Soluciones Digitales.", "footer-motto": "Tu sitio listo para vender.",
+                
+                "action-sim": "Simulador", "action-wa": "WhatsApp"
             }
         };
+
+        // === RANDOMIZAÇÃO DE HEADLINE E SUBHEADLINE (TESTE A/B) ===
+        const ptHeadlines = [
+            "Site profissional pronto em poucos dias — <span style='color: var(--google-blue)'>rápido, bonito e feito pra vender.</span>",
+            "Seu site premium no ar em poucos dias <span style='color: var(--google-blue)'>(com visual de empresa grande)</span>.",
+            "Um site que passa confiança e converte — <span style='color: var(--google-blue)'>entregue em poucos dias.</span>",
+            "Seu site completo, rápido e impecável no celular — <span style='color: var(--google-blue)'>pronto em poucos dias.</span>",
+            "Site de verdade <span style='color: var(--google-blue)'>(não template)</span>: design profissional + velocidade + entrega rápida.",
+            "Seu site no ar em poucos dias — <span style='color: var(--google-blue)'>com cara premium e estrutura pronta pra crescer.</span>"
+        ];
+
+        const ptSubheadlines = [
+            "Você aprova o modelo e nós publicamos. Site com estrutura clara, prova social e páginas que passam confiança.",
+            "Design profissional, carregamento rápido e organização perfeita no celular. Você recebe algo pronto pra usar como vitrine.",
+            "Nada de enrolação: processo rápido, entrega organizada e site com cara de empresa séria."
+        ];
+
+        // Sorteia as frases
+        const randomTitle = ptHeadlines[Math.floor(Math.random() * ptHeadlines.length)];
+        const randomDesc = ptSubheadlines[Math.floor(Math.random() * ptSubheadlines.length)];
+
+        // Injeta as frases sorteadas no dicionário de traduções ANTES de aplicar o idioma
+        translations.pt['hero-title'] = randomTitle;
+        translations.pt['hero-desc'] = randomDesc;
+
 
         // LÓGICA DE DETECÇÃO AUTOMÁTICA E TRADUÇÃO
         let currentLang = localStorage.getItem('hubLang') || navigator.language.substring(0, 2);
@@ -1231,10 +1321,6 @@
         function changeLanguage(lang) {
             currentLang = lang;
             localStorage.setItem('hubLang', lang);
-
-            // Efeito visual nos botões
-            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-            document.getElementById(`btn-${lang}`).classList.add('active');
 
             // Troca de Textos
             document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -1302,3 +1388,4 @@
     </script>
 </body>
 </html>
+
