@@ -208,14 +208,42 @@
         
         /* PLANOS FIXOS */
         .pricing-section { text-align: center; }
-        .plans-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 40px; text-align: left; }
-        .plan-card { background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border: 1px solid var(--glass-border); border-radius: 20px; padding: 30px; transition: all 0.5s ease; display: flex; flex-direction: column; box-shadow: 0 8px 32px 0 rgba(0,0,0,0.2); }
-        .plan-card:hover { background: rgba(255,255,255,0.06); border-color: var(--google-blue); transform: translateY(-5px); }
+        .plans-grid { display: grid; grid-template-columns: 1fr; gap: 40px; margin-top: 60px; text-align: left; }
+        @media (min-width: 800px) {
+            .plans-grid { grid-template-columns: 1fr 1fr; max-width: 900px; margin-inline: auto; align-items: center; gap: 30px; }
+        }
+        
+        .plan-card { position: relative; background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border: 1px solid var(--glass-border); border-radius: 24px; padding: 40px 30px; transition: all 0.4s ease; display: flex; flex-direction: column; box-shadow: 0 10px 40px rgba(0,0,0,0.2); }
+        .plan-card:hover { transform: translateY(-8px); box-shadow: 0 15px 50px rgba(0,0,0,0.4); }
+        
+        .plan-card.highlighted { border: 2px solid var(--google-green); box-shadow: 0 0 30px rgba(52, 168, 83, 0.15), inset 0 0 20px rgba(52, 168, 83, 0.05); background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(52, 168, 83, 0.03)); }
+        @media (min-width: 992px) {
+            .plan-card.highlighted { transform: scale(1.05); z-index: 10; }
+            .plan-card.highlighted:hover { transform: scale(1.05) translateY(-8px); box-shadow: 0 15px 50px rgba(52, 168, 83, 0.25), inset 0 0 20px rgba(52, 168, 83, 0.05); }
+        }
+        .plan-card.standard { border: 1px solid var(--glass-border); }
+        .plan-card.standard:hover { border-color: rgba(255,255,255,0.2); }
+
+        .popular-badge { position: absolute; top: -16px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, #10b981, #059669); color: white; padding: 6px 20px; border-radius: 30px; font-size: 0.85rem; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4); white-space: nowrap; }
+
         .plan-card h3 { font-size: 1.4rem; font-weight: 800; color: #fff; margin-bottom: 5px; }
-        .plan-target { color: var(--google-blue); font-size: 0.9rem; font-weight: 600; margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid var(--glass-border); transition: color 0.5s ease; }
-        .plan-list { margin-top: 10px; display: flex; flex-direction: column; gap: 12px; flex-grow: 1; }
-        .plan-list li { display: flex; align-items: flex-start; gap: 10px; color: var(--text-main); font-size: 0.95rem; }
-        .plan-list li svg { color: var(--google-blue); flex-shrink: 0; margin-top: 3px; transition: stroke 0.5s ease; }
+        .plan-price { font-size: 1.5rem; font-weight: 800; color: #fff; margin: 15px 0 20px; display: flex; align-items: baseline; gap: 5px; }
+        .plan-price .price-value { font-size: 3.5rem; line-height: 1; letter-spacing: -2px; }
+        .plan-price .price-period { font-size: 1rem; color: var(--text-dim); font-weight: 500; }
+        
+        .plan-target { color: var(--text-main); font-size: 0.95rem; font-weight: 500; line-height: 1.5; margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid var(--glass-border); }
+        
+        .plan-list { display: flex; flex-direction: column; gap: 14px; flex-grow: 1; margin-bottom: 30px; }
+        .plan-list li { display: flex; align-items: flex-start; gap: 12px; color: var(--text-main); font-size: 0.95rem; }
+        .plan-card.highlighted .plan-list li svg { color: var(--google-green); }
+        .plan-card.standard .plan-list li svg { color: var(--text-dim); }
+        .plan-list li svg { flex-shrink: 0; margin-top: 2px; width: 20px; height: 20px; }
+
+        .btn-green { background: linear-gradient(135deg, #10b981, #059669); color: white; width: 100%; padding: 16px; font-size: 1.1rem; box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3); border: none; border-radius: 12px; cursor: pointer; font-weight: 700; transition: var(--transition); }
+        .btn-green:hover { box-shadow: 0 10px 25px rgba(16, 185, 129, 0.5); transform: translateY(-2px); filter: brightness(1.1); }
+        
+        .btn-neutral { background: rgba(255,255,255,0.05); color: white; border: 1px solid rgba(255,255,255,0.2); width: 100%; padding: 16px; font-size: 1.1rem; transition: var(--transition); border-radius: 12px; cursor: pointer; font-weight: 700; }
+        .btn-neutral:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.4); transform: translateY(-2px); }
 
         /* FORMULÁRIO E FAQ - GRID 2 COLUNAS NO DESKTOP */
         .form-faq-grid { display: grid; grid-template-columns: 1fr; gap: 50px; align-items: start; padding-top: 60px;}
@@ -580,42 +608,38 @@
             <h2 data-i18n="plan-title" style="font-size: clamp(2rem, 4vw, 2.5rem);">Escolha o caminho mais rápido pro seu negócio</h2>
             
             <div class="plans-grid">
-                <!-- Plano 1 -->
-                <div class="plan-card">
-                    <h3 data-i18n="plan1-title">Plano 1 — Essencial (Site pronto)</h3>
-                    <div class="plan-target" data-i18n="plan1-target">Pra quem quer começar e ter presença profissional.</div>
+                <!-- Plano 1 (Padrão - DESTAQUE) -->
+                <div class="plan-card highlighted">
+                    <div class="popular-badge" data-i18n="plan-rec">Mais Escolhido</div>
+                    <h3 data-i18n="plan1-title">Plano Padrão</h3>
+                    <div class="plan-price">R$ <span class="price-value">80</span> <span class="price-period" data-i18n="plan-period">/ mês</span></div>
+                    <div class="plan-target" data-i18n="plan1-desc">Tudo que seu negócio precisa para ter presença online.</div>
                     <ul class="plan-list">
-                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="plan1-b1">Landing completa</span></li>
-                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="plan1-b2">WhatsApp em destaque</span></li>
-                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="plan1-b3">Publicação</span></li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="plan1-b1">Criação do site</span></li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="plan1-b2">Hospedagem incluída</span></li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="plan1-b3">Botão de WhatsApp</span></li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="plan1-b4">Sistema de agendamento / calendário</span></li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="plan1-b5">SEO avançado</span></li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="plan1-b6">Suporte</span></li>
                     </ul>
+                    <button onclick="window.open(WHATSAPP_LINK)" class="btn-green" data-i18n="plan1-btn">Criar meu site</button>
                 </div>
 
-                <!-- Plano 2 -->
-                <div class="plan-card" style="border-color: var(--google-blue); position: relative;">
-                    <div style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--google-blue); padding: 4px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; transition: background 0.5s ease;" data-i18n="plan-rec">Mais Recomendado</div>
-                    <h3 data-i18n="plan2-title">Plano 2 — Profissional (Site + Google)</h3>
-                    <div class="plan-target" data-i18n="plan2-target">Pra quem quer aparecer mais e gerar demanda no Google.</div>
+                <!-- Plano 2 (Profissional) -->
+                <div class="plan-card standard">
+                    <h3 data-i18n="plan2-title">Plano Profissional</h3>
+                    <div class="plan-price">R$ <span class="price-value">120</span> <span class="price-period" data-i18n="plan-period">/ mês</span></div>
+                    <div class="plan-target" data-i18n="plan2-desc">Para empresas que precisam de um site mais completo.</div>
                     <ul class="plan-list">
-                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> <span style="font-weight: bold;" data-i18n="plan2-b1">Tudo do Essencial</span></li>
-                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="plan2-b2">Otimização do Perfil no Google</span></li>
-                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="plan2-b3">Estratégia pra melhorar presença local</span></li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> <span style="font-weight: bold;" data-i18n="plan2-b1">Tudo do plano padrão</span></li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="plan2-b2">Até 3 páginas</span></li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="plan2-b3">Estrutura completa de site</span></li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="plan2-b4">Seções personalizadas</span></li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="plan2-b5">SEO avançado</span></li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="plan2-b6">Suporte</span></li>
                     </ul>
+                    <button onclick="window.open(WHATSAPP_LINK)" class="btn-neutral" data-i18n="plan2-btn">Quero o plano profissional</button>
                 </div>
-
-                <!-- Plano 3 -->
-                <div class="plan-card">
-                    <h3 data-i18n="plan3-title">Plano 3 — Escala (Site + Google + App)</h3>
-                    <div class="plan-target" data-i18n="plan3-target">Pra quem quer automatizar e organizar atendimento/gestão.</div>
-                    <ul class="plan-list">
-                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> <span style="font-weight: bold;" data-i18n="plan3-b1">Tudo do Profissional</span></li>
-                        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="plan3-b2">Aplicativo de gestão (opcional)</span></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div style="margin-top: 40px;">
-                <button onclick="window.open(WHATSAPP_LINK)" class="btn btn-primary" style="padding: 20px 40px; font-size: 1.2rem;" data-i18n="plan-btn">Chame nossa equipe no WhatsApp e indicaremos o melhor pacote.</button>
             </div>
         </section>
 
@@ -983,29 +1007,25 @@
         }
 
         function recommendChat() {
-            let rec = currentLang === 'en' ? "Essential (Website)" : (currentLang === 'es' ? "Esencial (Sitio Web)" : "Essencial (Site)");
+            let rec = currentLang === 'en' ? "Standard Plan" : (currentLang === 'es' ? "Plan Estándar" : "Plano Padrão");
             let goalAns = chatState.goal;
-            let deadAns = chatState.deadline;
             
+            // Se o objetivo for presença/confiança ou os dois, recomendamos o plano mais completo
             if (goalAns.includes("presen") || goalAns.includes("presence") || goalAns.includes("dois") || goalAns.includes("Both") || goalAns.includes("Ambos")) {
-                rec = currentLang === 'en' ? "Professional (Website + Google)" : (currentLang === 'es' ? "Profesional (Sitio + Google)" : "Profissional (Site + Google)");
-            }
-            if ((goalAns.includes("dois") || goalAns.includes("Both") || goalAns.includes("Ambos")) && 
-                (deadAns.includes("antes") || deadAns.includes("ASAP") || deadAns.includes("posible") || deadAns.includes("7"))) {
-                rec = currentLang === 'en' ? "Professional — Fast Delivery" : (currentLang === 'es' ? "Profesional — Entrega Rápida" : "Profissional (Site + Google) — entrega rápida");
+                rec = currentLang === 'en' ? "Professional Plan" : (currentLang === 'es' ? "Plan Profesional" : "Plano Profissional");
             }
             
             chatState.recommended = rec;
 
-            let botFinalMsg = `Fechado. Pelo seu caso, a nossa equipe recomenda o plano: ${rec}. Quer que enviemos um exemplo do seu site e o orçamento no WhatsApp?`;
-            if (currentLang === 'en') botFinalMsg = `Done. For your case, our team recommends: ${rec}. Want us to send an example and the quote on WhatsApp?`;
-            if (currentLang === 'es') botFinalMsg = `Hecho. Para tu caso, nuestro equipo recomienda: ${rec}. ¿Quieres que enviemos un ejemplo y la cotización por WhatsApp?`;
+            let botFinalMsg = `Fechado. Pelo seu caso, a nossa equipe recomenda o: ${rec}. Quer que enviemos um exemplo do seu site e os próximos passos no WhatsApp?`;
+            if (currentLang === 'en') botFinalMsg = `Done. For your case, our team recommends the: ${rec}. Want us to send an example and the next steps on WhatsApp?`;
+            if (currentLang === 'es') botFinalMsg = `Hecho. Para tu caso, nuestro equipo recomienda el: ${rec}. ¿Quieres que enviemos un ejemplo y los siguientes pasos por WhatsApp?`;
 
             addChatMsg(botFinalMsg, "bot");
 
-            let msg = `Oi! Quero um site.\nNicho: ${chatState.niche}\nCidade: ${chatState.city}\nSite atual: ${chatState.hasWebsite}\nObjetivo: ${chatState.goal}\nPrazo: ${chatState.deadline}\n\nRecomendação do simulador: ${chatState.recommended}\nPode me mandar um exemplo e o orçamento?`;
-            if (currentLang === 'en') msg = `Hi! I want a website.\nNiche: ${chatState.niche}\nCity: ${chatState.city}\nCurrent site: ${chatState.hasWebsite}\nGoal: ${chatState.goal}\nDeadline: ${chatState.deadline}\n\nSimulator recommendation: ${chatState.recommended}\nCan you send me an example and the quote?`;
-            if (currentLang === 'es') msg = `¡Hola! Quiero un sitio web.\nNicho: ${chatState.niche}\nCiudad: ${chatState.city}\nSitio actual: ${chatState.hasWebsite}\nObjetivo: ${chatState.goal}\nPlazo: ${chatState.deadline}\n\nRecomendación del simulador: ${chatState.recommended}\n¿Puedes enviarme un ejemplo y la cotización?`;
+            let msg = `Oi! Quero um site.\nNicho: ${chatState.niche}\nCidade: ${chatState.city}\nSite atual: ${chatState.hasWebsite}\nObjetivo: ${chatState.goal}\nPrazo: ${chatState.deadline}\n\nRecomendação do simulador: ${chatState.recommended}\nPode me mandar um exemplo e mais detalhes?`;
+            if (currentLang === 'en') msg = `Hi! I want a website.\nNiche: ${chatState.niche}\nCity: ${chatState.city}\nCurrent site: ${chatState.hasWebsite}\nGoal: ${chatState.goal}\nDeadline: ${chatState.deadline}\n\nSimulator recommendation: ${chatState.recommended}\nCan you send me an example and more details?`;
+            if (currentLang === 'es') msg = `¡Hola! Quiero un sitio web.\nNicho: ${chatState.niche}\nCiudad: ${chatState.city}\nSitio actual: ${chatState.hasWebsite}\nObjetivo: ${chatState.goal}\nPlazo: ${chatState.deadline}\n\nRecomendación del simulador: ${chatState.recommended}\n¿Puedes enviarme un ejemplo y más detalles?`;
 
             const phone = "5511952924208"; 
             const url = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
@@ -1072,24 +1092,26 @@
                 "testi-3": "\"Eu não tinha site. Agora passa confiança.\"", "testi-3-author": "— Marcos, Advogado (Rio de Janeiro)",
 
                 "case-tag": "Passo 2 — Opcional", "case-title": "Estudo de caso real: de \"quase ninguém chama\" para \"todo dia tem pedido\"",
-                "case-desc": "Um negócio local estava sem site e com o perfil do Google incompleto. Nós montamos uma landing objetiva, organizamos serviços/horários e colocamos WhatsApp no centro. Em poucos dias, já deu pra ver mais cliques e mais conversas iniciadas.",
+                "case-desc": "Um negócio local estava sem site e invisível no Google. Nós montamos uma landing objetiva, aplicamos SEO avançado e colocamos o WhatsApp no centro. Em poucos dias, já deu pra ver mais cliques e mais conversas iniciadas.",
                 "case-metric1": "Cliques no Perfil", "case-metric2": "Chamadas Iniciadas",
-                "case-before-title": "Antes", "case-before-desc": "Sem site, perfil confuso, pouca ação do cliente",
-                "case-after-title": "Depois", "case-after-desc": "Site claro, botão WhatsApp, informações completas, aparência profissional",
+                "case-before-title": "Antes", "case-before-desc": "Sem site, pouca presença nas buscas, pouca ação do cliente",
+                "case-after-title": "Depois", "case-after-desc": "Site claro, botão WhatsApp, SEO otimizado, aparência profissional",
                 "case-btn": "Quer um exemplo do seu caso? Fale com nossos especialistas no WhatsApp.",
 
                 "booking-tag": "🔥 Restam apenas 2 vagas esta semana", "booking-title": "Vamos desenhar o futuro da sua empresa?",
                 "booking-desc": "Agende uma Reunião Estratégica Gratuita de 30 minutos. Vamos analisar sua presença atual e montar um plano de ação, sem compromisso.",
                 "booking-b1": "Análise do seu negócio atual", "booking-b2": "Estratégia de Posicionamento", "booking-b3": "Orçamento personalizado",
 
-                "plan-title": "Escolha o caminho mais rápido pro seu negócio", "plan-rec": "Mais Recomendado",
-                "plan1-title": "Plano 1 — Essencial (Site pronto)", "plan1-target": "Pra quem quer começar e ter presença profissional.",
-                "plan1-b1": "Landing completa", "plan1-b2": "WhatsApp em destaque", "plan1-b3": "Publicação",
-                "plan2-title": "Plano 2 — Profissional (Site + Google)", "plan2-target": "Pra quem quer aparecer mais e gerar demanda no Google.",
-                "plan2-b1": "Tudo do Essencial", "plan2-b2": "Otimização do Perfil no Google", "plan2-b3": "Estratégia pra melhorar presença local",
-                "plan3-title": "Plano 3 — Escala (Site + Google + App)", "plan3-target": "Pra quem quer automatizar e organizar atendimento/gestão.",
-                "plan3-b1": "Tudo do Profissional", "plan3-b2": "Aplicativo de gestão (opcional)",
-                "plan-btn": "Chame nossa equipe no WhatsApp e indicaremos o melhor pacote.",
+                "plan-title": "Escolha o caminho mais rápido pro seu negócio", 
+                "plan-rec": "Mais Escolhido", "plan-period": "/ mês",
+                "plan1-title": "Plano Padrão", "plan1-desc": "Tudo que seu negócio precisa para ter presença online.",
+                "plan1-b1": "Criação do site", "plan1-b2": "Hospedagem incluída", "plan1-b3": "Botão de WhatsApp",
+                "plan1-b4": "Sistema de agendamento / calendário", "plan1-b5": "SEO avançado", "plan1-b6": "Suporte", "plan1-btn": "Criar meu site",
+                
+                "plan2-title": "Plano Profissional", "plan2-desc": "Para empresas que precisam de um site mais completo.",
+                "plan2-b1": "Tudo do plano padrão", "plan2-b2": "Até 3 páginas", "plan2-b3": "Estrutura completa de site",
+                "plan2-b4": "Seções personalizadas", "plan2-b5": "SEO avançado", "plan2-b6": "Suporte",
+                "plan2-btn": "Quero o plano profissional",
 
                 "sim-title": "Simulador rápido (1 minuto)",
                 "sim-desc": "Responda e a nossa equipe indicará o melhor pacote, abrindo já o seu WhatsApp com a mensagem pronta.",
@@ -1103,7 +1125,7 @@
                 "q1": "Em quanto tempo fica pronto?", "a1": "Depende do nicho e do material, mas a ideia é ser rápido e objetivo. Você aprova o modelo antes de publicar.",
                 "q2": "Preciso ter logo e fotos?", "a2": "Ajuda, mas não trava. Nós publicamos o essencial e melhoramos depois.",
                 "q3": "Se eu já tenho Instagram, ainda preciso de site?", "a3": "Sim. Site passa confiança, organiza tudo e vira sua vitrine no Google.",
-                "q4": "O site tem mensalidade ou custo de manutenção?", "a4": "A criação do site é um pagamento único. Depois, há apenas o custo básico de servidor (hospedagem) e domínio (seu www) para mantê-lo no ar, com opções bem acessíveis.",
+                "q4": "O site tem mensalidade ou custo de manutenção?", "a4": "Sim. Trabalhamos com um modelo de assinatura (mensalidade) acessível que já inclui a criação do site, hospedagem de alta velocidade e suporte contínuo. Assim, você garante um serviço premium sem precisar pagar um valor altíssimo de uma vez.",
                 "q5": "O site funciona bem em celulares?", "a5": "Com certeza! Nossos sites são criados primeiro para o celular (Mobile First). Eles carregam rápido e têm botões fáceis de clicar para não perder nenhum cliente.",
                 "q6": "Vocês criam sites para qualquer tipo de negócio?", "a6": "Sim. Já criamos desde páginas para clínicas e advogados até sites para prestadores de serviços. Nossa equipe adapta a estrutura para focar no seu cliente.",
 
@@ -1148,24 +1170,26 @@
                 "testi-3": "\"I had no website. Now I pass trust to my clients.\"", "testi-3-author": "— Mark, Lawyer",
 
                 "case-tag": "Step 2 — Optional", "case-title": "Real case study: from 'almost no calls' to 'daily orders'",
-                "case-desc": "A local business had no site and an incomplete Google profile. We built an objective landing page, organized services/hours, and put WhatsApp in the center. In a few days, they saw more clicks and more chats started.",
+                "case-desc": "A local business had no site and was invisible on Google. We built an objective landing page, applied advanced SEO, and put WhatsApp in the center. In a few days, they saw more clicks and more chats started.",
                 "case-metric1": "Profile Clicks", "case-metric2": "Calls Started",
-                "case-before-title": "Before", "case-before-desc": "No site, confusing profile, low client action",
-                "case-after-title": "After", "case-after-desc": "Clear site, WhatsApp button, complete info, pro look",
+                "case-before-title": "Before", "case-before-desc": "No site, low search presence, low client action",
+                "case-after-title": "After", "case-after-desc": "Clear site, WhatsApp button, optimized SEO, pro look",
                 "case-btn": "Want an example for your case? Talk to our experts on WhatsApp.",
 
                 "booking-tag": "🔥 Only 2 spots left this week", "booking-title": "Let's design the future of your company?",
                 "booking-desc": "Schedule a Free 30-minute Strategic Meeting. We will analyze your current presence and create an action plan, with no strings attached.",
                 "booking-b1": "Current business analysis", "booking-b2": "Positioning Strategy", "booking-b3": "Customized quote",
 
-                "plan-title": "Choose the fastest path for your business", "plan-rec": "Most Recommended",
-                "plan1-title": "Plan 1 — Essential (Site Ready)", "plan1-target": "For those starting out and needing a professional presence.",
-                "plan1-b1": "Complete Landing Page", "plan1-b2": "Highlighted WhatsApp", "plan1-b3": "Publishing",
-                "plan2-title": "Plan 2 — Professional (Site + Google)", "plan2-target": "For those who want to show up more and generate demand on Google.",
-                "plan2-b1": "Everything in Essential", "plan2-b2": "Google Profile Optimization", "plan2-b3": "Local presence strategy",
-                "plan3-title": "Plan 3 — Scale (Site + Google + App)", "plan3-target": "For those who want to automate and organize management.",
-                "plan3-b1": "Everything in Professional", "plan3-b2": "Management app (optional)",
-                "plan-btn": "Message our team on WhatsApp and we'll suggest the best package.",
+                "plan-title": "Choose the fastest path for your business", 
+                "plan-rec": "Most Chosen", "plan-period": "/ month",
+                "plan1-title": "Standard Plan", "plan1-desc": "Everything your business needs to be online.",
+                "plan1-b1": "Website creation", "plan1-b2": "Hosting included", "plan1-b3": "WhatsApp button",
+                "plan1-b4": "Scheduling / Calendar system", "plan1-b5": "Advanced SEO", "plan1-b6": "Support", "plan1-btn": "Create my site",
+                
+                "plan2-title": "Professional Plan", "plan2-desc": "For businesses that need a more complete site.",
+                "plan2-b1": "Everything in Standard", "plan2-b2": "Up to 3 pages", "plan2-b3": "Complete site structure",
+                "plan2-b4": "Custom sections", "plan2-b5": "Advanced SEO", "plan2-b6": "Support",
+                "plan2-btn": "I want the professional plan",
 
                 "sim-title": "Quick Simulator (1 minute)",
                 "sim-desc": "Answer this and our team will tell you the best package, opening your WhatsApp ready to send.",
@@ -1179,7 +1203,7 @@
                 "q1": "How long does it take?", "a1": "Depends on the niche and materials, but the goal is fast and objective. You approve the model before publishing.",
                 "q2": "Do I need a logo and photos?", "a2": "It helps, but doesn't stop us. We launch with the essentials and improve later.",
                 "q3": "If I have Instagram, do I still need a site?", "a3": "Yes. A site builds trust, organizes everything, and becomes your Google storefront.",
-                "q4": "Does the website have a monthly fee or maintenance cost?", "a4": "The website creation is a one-time payment. After that, there is only the basic cost for hosting and domain to keep it online, with very affordable options.",
+                "q4": "Does the website have a monthly fee or maintenance cost?", "a4": "Yes. We work with an affordable subscription model (monthly fee) that already includes the website creation, high-speed hosting, and ongoing support. This way, you get a premium service without having to pay a huge upfront cost.",
                 "q5": "Does the website work well on mobile phones?", "a5": "Absolutely! Our sites are designed Mobile First. They load fast and have easy-to-click buttons so you don't lose any leads.",
                 "q6": "Do you build websites for any type of business?", "a6": "Yes. We build everything from pages for clinics and lawyers to sites for service providers. Our team adapts the structure to focus on your ideal customer.",
 
@@ -1222,24 +1246,26 @@
                 "testi-3": "\"No tenía sitio web. Ahora transmito confianza.\"", "testi-3-author": "— Marcos, Abogado",
 
                 "case-tag": "Paso 2 — Opcional", "case-title": "Caso real: de \"casi nadie llama\" a \"pedidos diarios\"",
-                "case-desc": "Un negocio local no tenía sitio web y su perfil de Google estaba incompleto. Armamos una landing objetiva, organizamos horarios y pusimos WhatsApp en el centro. En pocos días, hubo más clics y más chats iniciados.",
+                "case-desc": "Un negocio local no tenía sitio web y era invisible en Google. Armamos una landing objetiva, aplicamos SEO avanzado y pusimos WhatsApp en el centro. En pocos días, hubo más clics y más chats iniciados.",
                 "case-metric1": "Clics en el Perfil", "case-metric2": "Llamadas Iniciadas",
-                "case-before-title": "Antes", "case-before-desc": "Sin sitio, perfil confuso, poca acción del cliente",
-                "case-after-title": "Después", "case-after-desc": "Sitio claro, botón WhatsApp, info completa, aspecto pro",
+                "case-before-title": "Antes", "case-before-desc": "Sin sitio, baja presencia en búsquedas, poca acción",
+                "case-after-title": "Después", "case-after-desc": "Sitio claro, botón WhatsApp, SEO optimizado, aspecto pro",
                 "case-btn": "¿Quieres un ejemplo para tu caso? Habla con nuestros expertos en WhatsApp.",
 
                 "booking-tag": "🔥 Solo quedan 2 cupos esta semana", "booking-title": "¿Vamos a diseñar el futuro de tu empresa?",
                 "booking-desc": "Agenda una Reunión Estratégica Gratuita de 30 minutos. Analizaremos tu presencia actual y armaremos un plan de acción, sin compromiso.",
                 "booking-b1": "Análisis de tu negocio actual", "booking-b2": "Estrategia de Posicionamiento", "booking-b3": "Presupuesto personalizado",
 
-                "plan-title": "Elige el camino más rápido para tu negocio", "plan-rec": "Más Recomendado",
-                "plan1-title": "Plan 1 — Esencial (Sitio listo)", "plan1-target": "Para quienes quieren empezar y tener presencia profesional.",
-                "plan1-b1": "Landing completa", "plan1-b2": "WhatsApp destacado", "plan1-b3": "Publicación",
-                "plan2-title": "Plan 2 — Profesional (Sitio + Google)", "plan2-target": "Para quienes buscan aparecer más y generar demanda en Google.",
-                "plan2-b1": "Todo lo del Esencial", "plan2-b2": "Optimización del Perfil en Google", "plan2-b3": "Estrategia de presencia local",
-                "plan3-title": "Plan 3 — Escala (Sitio + Google + App)", "plan3-target": "Para quienes quieren automatizar y organizar la gestión.",
-                "plan3-b1": "Todo lo del Profesional", "plan3-b2": "App de gestión (opcional)",
-                "plan-btn": "Escribe a nuestro equipo por WhatsApp y te indicaremos el mejor paquete.",
+                "plan-title": "Elige el camino más rápido para tu negocio", 
+                "plan-rec": "Más Elegido", "plan-period": "/ mes",
+                "plan1-title": "Plan Estándar", "plan1-desc": "Todo lo que tu negocio necesita para tener presencia online.",
+                "plan1-b1": "Creación del sitio", "plan1-b2": "Hosting incluido", "plan1-b3": "Botón de WhatsApp",
+                "plan1-b4": "Sistema de reservas / calendario", "plan1-b5": "SEO avanzado", "plan1-b6": "Soporte", "plan1-btn": "Crear mi sitio",
+                
+                "plan2-title": "Plan Profesional", "plan2-desc": "Para empresas que necesitan un sitio más completo.",
+                "plan2-b1": "Todo del plan estándar", "plan2-b2": "Hasta 3 páginas", "plan2-b3": "Estructura completa del sitio",
+                "plan2-b4": "Secciones personalizadas", "plan2-b5": "SEO avanzado", "plan2-b6": "Soporte",
+                "plan2-btn": "Quiero el plan profesional",
 
                 "sim-title": "Simulador rápido (1 minuto)",
                 "sim-desc": "Responde y nuestro equipo te indicará el mejor paquete, abriendo tu WhatsApp con el mensaje listo.",
@@ -1253,7 +1279,7 @@
                 "q1": "¿En cuánto tiempo está listo?", "a1": "Depende del nicho y el material, pero la idea es ser rápido y objetivo. Apruebas el modelo antes de publicar.",
                 "q2": "¿Necesito tener logo y fotos?", "a2": "Ayuda, pero no frena nada. Subimos lo esencial y mejoramos después.",
                 "q3": "Si ya tengo Instagram, ¿necesito un sitio?", "a3": "Sí. El sitio transmite confianza, organiza todo y se convierte en tu vitrina en Google.",
-                "q4": "¿El sitio web tiene mensualidad o costo de mantenimiento?", "a4": "La creación del sitio web es un pago único. Después, solo hay un costo básico de servidor (hosting) y dominio para mantenerlo en línea, con opciones muy accesibles.",
+                "q4": "¿El sitio web tiene mensualidad o costo de mantenimiento?", "a4": "Sí. Trabajamos con un modelo de suscripción (mensualidad) accesible que ya incluye la creación del sitio, hosting de alta velocidad y soporte continuo. Así garantizas un servicio premium sin tener que pagar un costo altísimo de una sola vez.",
                 "q5": "¿El sitio funciona bien en celulares?", "a5": "¡Por supuesto! Nuestros sitios están diseñados Mobile First. Cargan rápido y tienen botones fáciles de tocar para que no pierdas ningún cliente.",
                 "q6": "¿Crean sitios para cualquier tipo de negocio?", "a6": "Sí. Desarrollamos desde páginas para clínicas y abogados hasta sitios para proveedores de servicios. Nuestro equipo adapta la estructura para enfocarse en tu cliente.",
 
