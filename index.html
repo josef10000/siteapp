@@ -164,6 +164,31 @@
         .feature-card:hover { background: rgba(255,255,255,0.08); border-color: var(--google-blue); transform: translateY(-3px); }
         .feature-icon { font-size: 1.5rem; flex-shrink: 0; }
 
+        /* NOVO: BANNER ZERO TO LIVE EM 3 DIAS */
+        .zero-to-live-banner {
+            background: linear-gradient(135deg, rgba(26, 115, 232, 0.08), rgba(168, 85, 247, 0.03));
+            backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+            border: 1px solid rgba(26, 115, 232, 0.4);
+            border-radius: 20px;
+            padding: clamp(25px, 5vw, 40px);
+            margin-top: 50px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(26, 115, 232, 0.15), inset 0 0 20px rgba(26, 115, 232, 0.05);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+            transition: all 0.4s ease;
+        }
+        .zero-to-live-banner:hover {
+            transform: translateY(-5px);
+            border-color: rgba(26, 115, 232, 0.8);
+            box-shadow: 0 15px 50px rgba(26, 115, 232, 0.25), inset 0 0 20px rgba(26, 115, 232, 0.1);
+        }
+        .zero-to-live-banner h3 { font-size: clamp(1.4rem, 3vw, 1.8rem); color: #fff; line-height: 1.3; }
+        .zero-to-live-banner p { font-size: 1.1rem; color: var(--text-main); max-width: 850px; line-height: 1.6; }
+        .zero-to-live-banner strong { color: var(--google-blue); font-weight: 800; font-size: 1.15rem; }
+
         /* MOCKUP DO BROWSER E PORTFÓLIO */
         .browser-mockup { background: rgba(10, 12, 16, 0.4); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border-radius: 12px; border: 1px solid var(--glass-border); overflow: hidden; box-shadow: 0 8px 32px 0 rgba(0,0,0,0.3); width: 100%; max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; transition: border-color 0.5s ease; }
         .browser-header { background: rgba(255, 255, 255, 0.05); padding: 10px 15px; display: flex; gap: 8px; border-bottom: 1px solid var(--glass-border); align-items: center; }
@@ -462,6 +487,12 @@
                 <div class="feature-card"><div class="feature-icon">🔍</div><div data-i18n="recv-6">SEO básico (Google entende seu site)</div></div>
                 <div class="feature-card"><div class="feature-icon">🚀</div><div data-i18n="recv-7">Publicação + ajustes finais pós-ar</div></div>
             </div>
+
+            <!-- NOVO BANNER: ZERO A 3 DIAS -->
+            <div class="zero-to-live-banner" data-aos="zoom-in">
+                <h3 data-i18n="zero-title">Não tem logo, textos ou imagens prontas? Sem problemas.</h3>
+                <p data-i18n="zero-desc">Nós criamos a sua presença digital <strong>literalmente do zero</strong>. Definimos as melhores cores, imagens profissionais e textos que vendem para o seu nicho. Você só precisa tomar a decisão, e nós colocamos a sua empresa no ar em <strong>no máximo 3 dias</strong>.</p>
+            </div>
         </section>
 
         <!-- PASSO 1: SITE E PORTFÓLIO -->
@@ -668,28 +699,28 @@
                 <div class="faq-container">
                     <h3 style="font-size: 1.8rem; margin-bottom: 20px;" data-i18n="faq-main-title">Perguntas Frequentes</h3>
                     <div class="faq-item">
-                        <button class="faq-question"><span data-i18n="q1">Em quanto tempo fica pronto?</span> <span class="faq-icon">+</span></button>
-                        <div class="faq-answer"><p data-i18n="a1">Depende do nicho e do material, mas a ideia é ser rápido e objetivo. Você aprova o modelo antes de publicar.</p></div>
+                        <button class="faq-question"><span data-i18n="q1">Em quanto tempo o site fica pronto?</span> <span class="faq-icon">+</span></button>
+                        <div class="faq-answer"><p data-i18n="a1">Em no máximo 3 dias. Nós cuidamos de tudo, da criação da estrutura até a publicação, para você não perder tempo.</p></div>
                     </div>
                     <div class="faq-item">
-                        <button class="faq-question"><span data-i18n="q2">Preciso ter logo e fotos?</span> <span class="faq-icon">+</span></button>
-                        <div class="faq-answer"><p data-i18n="a2">Ajuda, mas não trava. Nós publicamos o essencial e melhoramos depois.</p></div>
+                        <button class="faq-question"><span data-i18n="q2">Preciso ter logo, textos e fotos prontas?</span> <span class="faq-icon">+</span></button>
+                        <div class="faq-answer"><p data-i18n="a2">Não. Se você não tiver nada pronto, nós criamos o seu site do zero, incluindo textos persuasivos e imagens profissionais para o seu nicho.</p></div>
                     </div>
                     <div class="faq-item">
-                        <button class="faq-question"><span data-i18n="q3">Se eu já tenho Instagram, ainda preciso de site?</span> <span class="faq-icon">+</span></button>
-                        <div class="faq-answer"><p data-i18n="a3">Sim. Site passa confiança, organiza tudo e vira sua vitrine no Google.</p></div>
+                        <button class="faq-question"><span data-i18n="q3">O site tem mensalidade ou custo de manutenção?</span> <span class="faq-icon">+</span></button>
+                        <div class="faq-answer"><p data-i18n="a3">Sim. Trabalhamos com um modelo de assinatura acessível (a partir de R$80/mês) que já inclui a criação do site, hospedagem rápida e suporte contínuo. Sem taxas surpresas.</p></div>
                     </div>
                     <div class="faq-item">
-                        <button class="faq-question"><span data-i18n="q4">O site tem mensalidade ou custo de manutenção?</span> <span class="faq-icon">+</span></button>
-                        <div class="faq-answer"><p data-i18n="a4">A criação do site é um pagamento único. Depois, há apenas o custo básico de servidor (hospedagem) e domínio (seu www) para mantê-lo no ar, com opções bem acessíveis.</p></div>
+                        <button class="faq-question"><span data-i18n="q4">Qual é a diferença entre os planos?</span> <span class="faq-icon">+</span></button>
+                        <div class="faq-answer"><p data-i18n="a4">O Plano Padrão é ideal para quem quer uma página forte para focar em conversão rápida e receber contatos no WhatsApp. O Profissional inclui até 3 páginas para negócios que precisam mostrar mais detalhes, como catálogos ou múltiplos serviços.</p></div>
                     </div>
                     <div class="faq-item">
-                        <button class="faq-question"><span data-i18n="q5">O site funciona bem em celulares?</span> <span class="faq-icon">+</span></button>
-                        <div class="faq-answer"><p data-i18n="a5">Com certeza! Nossos sites são criados primeiro para o celular (Mobile First). Eles carregam rápido e têm botões fáceis de clicar para não perder nenhum cliente.</p></div>
+                        <button class="faq-question"><span data-i18n="q5">Se eu já tenho Instagram, ainda preciso de site?</span> <span class="faq-icon">+</span></button>
+                        <div class="faq-answer"><p data-i18n="a5">Sim. O Instagram atrai a atenção, mas o site passa a confiança necessária para fechar a venda e garante que você seja encontrado no Google por quem está pronto para comprar.</p></div>
                     </div>
                     <div class="faq-item">
-                        <button class="faq-question"><span data-i18n="q6">Vocês criam sites para qualquer tipo de negócio?</span> <span class="faq-icon">+</span></button>
-                        <div class="faq-answer"><p data-i18n="a6">Sim. Já criamos desde páginas para clínicas e advogados até sites para prestadores de serviços. Nossa equipe adapta a estrutura para focar no seu cliente.</p></div>
+                        <button class="faq-question"><span data-i18n="q6">Vocês dão suporte depois do site pronto?</span> <span class="faq-icon">+</span></button>
+                        <div class="faq-answer"><p data-i18n="a6">Sim! Nosso modelo de assinatura inclui suporte. Precisou alterar um número de telefone, atualizar o endereço ou trocar uma foto? É só chamar nossa equipe no WhatsApp.</p></div>
                     </div>
                 </div>
 
@@ -1076,6 +1107,9 @@
                 "recv-3": "Botão WhatsApp em destaque", "recv-4": "Seção de serviços + fotos + depoimentos",
                 "recv-5": "Endereço e horários", "recv-6": "SEO básico (Google entende seu site)",
                 "recv-7": "Publicação + ajustes finais pós-ar", "recv-btn": "Quero isso no meu negócio (WhatsApp)",
+                
+                "zero-title": "Não tem logo, textos ou imagens prontas? Sem problemas.",
+                "zero-desc": "Nós criamos a sua presença digital <strong>literalmente do zero</strong>. Definimos as melhores cores, imagens profissionais e textos que vendem para o seu nicho. Você só precisa tomar a decisão, e nós colocamos a sua empresa no ar em <strong>no máximo 3 dias</strong>.",
 
                 "step1-tag": "Passo 1", "step1-title": "Seu site vira sua vitrine que vende 24h",
                 "step1-desc": "Sem site, você perde cliente todo dia. Nós criamos uma página bonita, rápida e objetiva — com botão de WhatsApp e tudo que o cliente precisa pra confiar e chamar.",
@@ -1122,12 +1156,12 @@
                 "form-title": "Ainda tem dúvidas? Receba um exemplo grátis.", "form-desc": "Preencha abaixo bem rápido que enviamos um modelo focado no seu nicho.",
                 "form-name": "Seu Nome", "form-wpp": "WhatsApp (com DDD)", "form-city": "Sua Cidade", "form-niche": "Seu Nicho de Atuação", "form-btn": "Quero um exemplo do meu site",
 
-                "q1": "Em quanto tempo fica pronto?", "a1": "Depende do nicho e do material, mas a ideia é ser rápido e objetivo. Você aprova o modelo antes de publicar.",
-                "q2": "Preciso ter logo e fotos?", "a2": "Ajuda, mas não trava. Nós publicamos o essencial e melhoramos depois.",
-                "q3": "Se eu já tenho Instagram, ainda preciso de site?", "a3": "Sim. Site passa confiança, organiza tudo e vira sua vitrine no Google.",
-                "q4": "O site tem mensalidade ou custo de manutenção?", "a4": "Sim. Trabalhamos com um modelo de assinatura (mensalidade) acessível que já inclui a criação do site, hospedagem de alta velocidade e suporte contínuo. Assim, você garante um serviço premium sem precisar pagar um valor altíssimo de uma vez.",
-                "q5": "O site funciona bem em celulares?", "a5": "Com certeza! Nossos sites são criados primeiro para o celular (Mobile First). Eles carregam rápido e têm botões fáceis de clicar para não perder nenhum cliente.",
-                "q6": "Vocês criam sites para qualquer tipo de negócio?", "a6": "Sim. Já criamos desde páginas para clínicas e advogados até sites para prestadores de serviços. Nossa equipe adapta a estrutura para focar no seu cliente.",
+                "q1": "Em quanto tempo o site fica pronto?", "a1": "Em no máximo 3 dias. Nós cuidamos de tudo, da criação da estrutura até a publicação, para você não perder tempo.",
+                "q2": "Preciso ter logo, textos e fotos prontas?", "a2": "Não. Se você não tiver nada pronto, nós criamos o seu site do zero, incluindo textos persuasivos e imagens profissionais para o seu nicho.",
+                "q3": "O site tem mensalidade ou custo de manutenção?", "a3": "Sim. Trabalhamos com um modelo de assinatura acessível (a partir de R$80/mês) que já inclui a criação do site, hospedagem rápida e suporte contínuo. Sem taxas surpresas.",
+                "q4": "Qual é a diferença entre os planos?", "a4": "O Plano Padrão é ideal para quem quer uma página forte para focar em conversão rápida e receber contatos no WhatsApp. O Profissional inclui até 3 páginas para negócios que precisam mostrar mais detalhes, como catálogos ou múltiplos serviços.",
+                "q5": "Se eu já tenho Instagram, ainda preciso de site?", "a5": "Sim. O Instagram atrai a atenção, mas o site passa a confiança necessária para fechar a venda e garante que você seja encontrado no Google por quem está pronto para comprar.",
+                "q6": "Vocês dão suporte depois do site pronto?", "a6": "Sim! Nosso modelo de assinatura inclui suporte. Precisou alterar um número de telefone, atualizar o endereço ou trocar uma foto? É só chamar nossa equipe no WhatsApp.",
 
                 "niches-title": "Especialistas em criar sites para:", "niches-list": "Advogados • Clínicas de Estética • Odontologia • Restaurantes • Imobiliárias • Prestadores de Serviço • Contabilidade • Autônomos",
                 "footer-text": "O Seu Hub de Soluções Digitais.", "footer-motto": "Seu site pronto pra vender.",
@@ -1154,6 +1188,9 @@
                 "recv-3": "Highlighted WhatsApp button", "recv-4": "Services section + photos + reviews",
                 "recv-5": "Address and hours", "recv-6": "Basic SEO (Google reads your site)",
                 "recv-7": "Publishing + post-launch tweaks", "recv-btn": "I want this for my business",
+
+                "zero-title": "Don't have a logo, texts, or images ready? No problem.",
+                "zero-desc": "We create your digital presence <strong>literally from scratch</strong>. We define the best colors, professional images, and copy that sells for your niche. You just need to make the decision, and we will have your business online in <strong>up to 3 days</strong>.",
 
                 "step1-tag": "Step 1", "step1-title": "Your site becomes a 24/7 sales window",
                 "step1-desc": "Without a site, you lose clients daily. We build a beautiful, fast, and objective page — with a WhatsApp button and everything needed for trust.",
@@ -1200,12 +1237,12 @@
                 "form-title": "Still have questions? Get a free example.", "form-desc": "Fill out the quick form below and we'll send you a model focused on your niche.",
                 "form-name": "Your Name", "form-wpp": "WhatsApp number", "form-city": "Your City", "form-niche": "Your Niche", "form-btn": "I want an example of my website",
 
-                "q1": "How long does it take?", "a1": "Depends on the niche and materials, but the goal is fast and objective. You approve the model before publishing.",
-                "q2": "Do I need a logo and photos?", "a2": "It helps, but doesn't stop us. We launch with the essentials and improve later.",
-                "q3": "If I have Instagram, do I still need a site?", "a3": "Yes. A site builds trust, organizes everything, and becomes your Google storefront.",
-                "q4": "Does the website have a monthly fee or maintenance cost?", "a4": "Yes. We work with an affordable subscription model (monthly fee) that already includes the website creation, high-speed hosting, and ongoing support. This way, you get a premium service without having to pay a huge upfront cost.",
-                "q5": "Does the website work well on mobile phones?", "a5": "Absolutely! Our sites are designed Mobile First. They load fast and have easy-to-click buttons so you don't lose any leads.",
-                "q6": "Do you build websites for any type of business?", "a6": "Yes. We build everything from pages for clinics and lawyers to sites for service providers. Our team adapts the structure to focus on your ideal customer.",
+                "q1": "How long does it take for the site to be ready?", "a1": "In a maximum of 3 days. We take care of everything, from the creation of the structure to the publication, so you don't waste time.",
+                "q2": "Do I need to have a logo, texts, and photos ready?", "a2": "No. If you don't have anything ready, we build your site from scratch, including persuasive copy and professional images for your niche.",
+                "q3": "Does the website have a monthly fee or maintenance cost?", "a3": "Yes. We work with an affordable subscription model (starting at R$80/month) that already includes the website creation, fast hosting, and ongoing support. No surprise fees.",
+                "q4": "What is the difference between the plans?", "a4": "The Standard Plan is ideal for those who want a strong page focused on fast conversion and getting WhatsApp contacts. The Professional includes up to 3 pages for businesses that need to show more details, like catalogs or multiple services.",
+                "q5": "If I already have Instagram, do I still need a website?", "a5": "Yes. Instagram attracts attention, but a website builds the trust needed to close the sale and ensures you are found on Google by those ready to buy.",
+                "q6": "Do you provide support after the site is ready?", "a6": "Yes! Our subscription model includes support. Need to change a phone number, update an address, or swap a photo? Just message our team on WhatsApp.",
 
                 "niches-title": "Experts in creating sites for:", "niches-list": "Lawyers • Aesthetic Clinics • Dentistry • Restaurants • Real Estate • Service Providers • Accounting",
                 "footer-text": "Your Digital Solutions Hub.", "footer-motto": "Your site ready to sell.",
@@ -1230,6 +1267,9 @@
                 "recv-3": "Botón WhatsApp destacado", "recv-4": "Sección de servicios + fotos + reseñas",
                 "recv-5": "Dirección y horarios", "recv-6": "SEO básico (Google lee tu sitio)",
                 "recv-7": "Publicación + ajustes finales", "recv-btn": "Quiero esto para mi negocio",
+
+                "zero-title": "¿No tienes logo, textos o imágenes listas? Sin problemas.",
+                "zero-desc": "Creamos tu presencia digital <strong>literalmente desde cero</strong>. Definimos los mejores colores, imágenes profesionales y textos que venden para tu nicho. Solo necesitas tomar la decisión, y pondremos tu empresa en línea en <strong>máximo 3 días</strong>.",
 
                 "step1-tag": "Paso 1", "step1-title": "Tu sitio será tu vitrina 24/7",
                 "step1-desc": "Sin sitio web pierdes clientes a diario. Armamos una página bonita, rápida y objetiva — con botón de WhatsApp y lo necesario para generar confianza.",
@@ -1276,12 +1316,12 @@
                 "form-title": "¿Aún tienes dudas? Recibe un ejemplo gratis.", "form-desc": "Llena los datos rápido y te enviamos un modelo enfocado en tu nicho.",
                 "form-name": "Tu Nombre", "form-wpp": "WhatsApp", "form-city": "Tu Ciudad", "form-niche": "Tu Nicho", "form-btn": "Quiero un ejemplo de mi sitio web",
 
-                "q1": "¿En cuánto tiempo está listo?", "a1": "Depende del nicho y el material, pero la idea es ser rápido y objetivo. Apruebas el modelo antes de publicar.",
-                "q2": "¿Necesito tener logo y fotos?", "a2": "Ayuda, pero no frena nada. Subimos lo esencial y mejoramos después.",
-                "q3": "Si ya tengo Instagram, ¿necesito un sitio?", "a3": "Sí. El sitio transmite confianza, organiza todo y se convierte en tu vitrina en Google.",
-                "q4": "¿El sitio web tiene mensualidad o costo de mantenimiento?", "a4": "Sí. Trabajamos con un modelo de suscripción (mensualidad) accesible que ya incluye la creación del sitio, hosting de alta velocidad y soporte continuo. Así garantizas un servicio premium sin tener que pagar un costo altísimo de una sola vez.",
-                "q5": "¿El sitio funciona bien en celulares?", "a5": "¡Por supuesto! Nuestros sitios están diseñados Mobile First. Cargan rápido y tienen botones fáciles de tocar para que no pierdas ningún cliente.",
-                "q6": "¿Crean sitios para cualquier tipo de negocio?", "a6": "Sí. Desarrollamos desde páginas para clínicas y abogados hasta sitios para proveedores de servicios. Nuestro equipo adapta la estructura para enfocarse en tu cliente.",
+                "q1": "¿En cuánto tiempo está listo el sitio?", "a1": "En un máximo de 3 días. Nos encargamos de todo, desde la creación de la estructura hasta la publicación, para que no pierdas tiempo.",
+                "q2": "¿Necesito tener logo, textos y fotos listas?", "a2": "No. Si no tienes nada listo, creamos tu sitio desde cero, incluyendo textos persuasivos e imágenes profesionales para tu nicho.",
+                "q3": "¿El sitio web tiene mensualidad o costo de mantenimiento?", "a3": "Sí. Trabajamos con un modelo de suscripción accesible (desde R$80/mes) que ya incluye la creación del sitio, hosting rápido y soporte continuo. Sin cargos sorpresa.",
+                "q4": "¿Cuál es la diferencia entre los planes?", "a4": "El Plan Estándar es ideal para quienes desean una página fuerte enfocada en conversión rápida y recibir contactos en WhatsApp. El Profesional incluye hasta 3 páginas para negocios que necesitan mostrar más detalles, como catálogos o múltiples servicios.",
+                "q5": "Si ya tengo Instagram, ¿aún necesito un sitio web?", "a5": "Sí. Instagram atrae la atención, pero un sitio web transmite la confianza necesaria para cerrar la venta y asegura que te encuentren en Google los que están listos para comprar.",
+                "q6": "¿Brindan soporte después de que el sitio esté listo?", "a6": "¡Sí! Nuestro modelo de suscripción incluye soporte. ¿Necesitas cambiar un número de teléfono, actualizar la dirección o cambiar una foto? Solo escribe a nuestro equipo en WhatsApp.",
 
                 "niches-title": "Expertos en crear sitios para:", "niches-list": "Abogados • Clínicas Estéticas • Odontología • Restaurantes • Inmobiliarias • Proveedores de Servicios • Contadores",
                 "footer-text": "Tu Hub de Soluciones Digitales.", "footer-motto": "Tu sitio listo para vender.",
