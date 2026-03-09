@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -795,28 +796,37 @@
             }
         });
 
-        // EFEITO FOMO (Urgência Social)
+        // EFEITO FOMO (Urgência Social) - MIX ESTRATÉGICO (Nomes, Empresas e Escassez)
         const fomoMessages = [
-            { pt: "🔥 Uma Barbearia em São Paulo acabou de solicitar o Plano Padrão.", en: "🔥 A Barbershop in New York just requested the Standard Plan.", es: "🔥 Una Barbería en Madrid acaba de solicitar el Plan Estándar." },
-            { pt: "⚡ Dra. Ana (Clínica) agendou a reunião estratégica.", en: "⚡ Dr. Anna (Clinic) scheduled the strategic meeting.", es: "⚡ Dra. Ana (Clínica) agendó la reunión estratégica." },
-            { pt: "🚀 Escritório de Advocacia fechou o Plano Profissional.", en: "🚀 Law Firm closed the Professional Plan.", es: "🚀 Despacho de Abogados cerró el Plan Profesional." },
-            { pt: "✨ Restaurante local pediu um exemplo de site no WhatsApp.", en: "✨ Local restaurant requested a site example on WhatsApp.", es: "✨ Restaurante local pidió un ejemplo de sitio en WhatsApp." },
-            { pt: "🔥 Pedro (Dentista) garantiu uma das vagas da semana.", en: "🔥 Peter (Dentist) secured one of this week's spots.", es: "🔥 Pedro (Dentista) aseguró uno de los cupos de la semana." },
-            { pt: "💼 Clínica de Estética iniciou o projeto agora.", en: "💼 Aesthetic Clinic started their project right now.", es: "💼 Clínica de Estética inició el proyecto ahora." },
-            { pt: "⚡ Uma Oficina Mecânica solicitou orçamento.", en: "⚡ An Auto Shop requested a quote.", es: "⚡ Un Taller Mecánico solicitó presupuesto." },
-            { pt: "🚀 Marcos (Psicólogo) fechou o Plano Padrão há 5 minutos.", en: "🚀 Mark (Psychologist) closed the Standard Plan 5 mins ago.", es: "🚀 Marcos (Psicólogo) cerró el Plan Estándar hace 5 min." },
-            { pt: "🔥 Uma Imobiliária agendou atendimento.", en: "🔥 A Real Estate agency scheduled a meeting.", es: "🔥 Una Inmobiliaria agendó atención." },
-            { pt: "✨ Consultor Financeiro escolheu o Plano Profissional.", en: "✨ Financial Consultant chose the Professional Plan.", es: "✨ Consultor Financiero eligió el Plan Profesional." },
-            { pt: "💼 Pet Shop acabou de pedir um exemplo.", en: "💼 Pet Shop just asked for an example.", es: "💼 Pet Shop acaba de pedir un ejemplo." },
-            { pt: "⚡ Estúdio de Arquitetura garantiu o Plano Profissional.", en: "⚡ Architecture Studio secured the Professional Plan.", es: "⚡ Estudio de Arquitectura aseguró el Plan Profesional." },
-            { pt: "🚀 Uma Loja de Roupas solicitou um site no WhatsApp.", en: "🚀 A Clothing Store requested a site on WhatsApp.", es: "🚀 Una Tienda de Ropa solicitó un sitio en WhatsApp." },
-            { pt: "🔥 Nutricionista iniciou o Plano Padrão.", en: "🔥 Nutritionist started the Standard Plan.", es: "🔥 Nutricionista inició el Plan Estándar." },
-            { pt: "✨ Empresa de Limpeza agendou uma reunião.", en: "✨ Cleaning Company scheduled a meeting.", es: "✨ Empresa de Limpieza agendó una reunión." },
-            { pt: "💼 João (Corretor) acabou de fechar a criação do seu site.", en: "💼 John (Broker) just closed his site creation.", es: "💼 Juan (Corredor) acaba de cerrar la creación de su sitio." },
-            { pt: "⚡ Uma Pousada reservou o Plano Profissional.", en: "⚡ A Guesthouse reserved the Professional Plan.", es: "⚡ Una Posada reservó el Plan Profesional." },
-            { pt: "🚀 Academia pediu para ver o portfólio.", en: "🚀 Gym asked to see the portfolio.", es: "🚀 Gimnasio pidió ver el portafolio." },
-            { pt: "🔥 Prestador de Serviços garantiu vaga hoje.", en: "🔥 Service Provider secured a spot today.", es: "🔥 Proveedor de Servicios aseguró cupo hoy." },
-            { pt: "✨ Clínica Veterinária iniciou contato com a equipe.", en: "✨ Vet Clinic initiated contact with the team.", es: "✨ Clínica Veterinaria inició contacto con el equipo." }
+            // Categoria 1: Nome + Nicho (Gera Conexão e Credibilidade)
+            { pt: "🔥 Pedro (Dentista) fechou o Plano Padrão.", en: "🔥 Peter (Dentist) closed the Standard Plan.", es: "🔥 Pedro (Dentista) cerró el Plan Estándar." },
+            { pt: "⚡ Dra. Ana (Clínica) agendou o bate-papo inicial.", en: "⚡ Dr. Anna (Clinic) scheduled the initial chat.", es: "⚡ Dra. Ana (Clínica) agendó la charla inicial." },
+            { pt: "🚀 Lucas (Corretor) solicitou um exemplo de site.", en: "🚀 Lucas (Broker) requested a site example.", es: "🚀 Lucas (Corredor) solicitó un ejemplo de sitio." },
+            { pt: "✨ Marcos (Psicólogo) garantiu o Plano Profissional.", en: "✨ Mark (Psychologist) secured the Professional Plan.", es: "✨ Marcos (Psicólogo) aseguró el Plan Profesional." },
+            { pt: "🔥 João (Barbearia) iniciou a criação do seu site.", en: "🔥 John (Barbershop) started his site creation.", es: "🔥 Juan (Barbería) inició la creación de su sitio." },
+            { pt: "💼 Camila (Esteticista) escolheu o Plano Padrão.", en: "💼 Camila (Esthetician) chose the Standard Plan.", es: "💼 Camila (Esteticista) eligió el Plan Estándar." },
+            { pt: "⚡ Dr. Rafael (Advogado) agendou uma reunião estratégica.", en: "⚡ Dr. Rafael (Lawyer) scheduled a strategic meeting.", es: "⚡ Dr. Rafael (Abogado) agendó una reunión estratégica." },
+            { pt: "🚀 Tiago (Mecânico) pediu o portfólio no WhatsApp.", en: "🚀 Thiago (Mechanic) asked for the portfolio on WhatsApp.", es: "🚀 Tiago (Mecánico) pidió el portafolio en WhatsApp." },
+            { pt: "🔥 Beatriz (Nutricionista) fechou o Plano Profissional.", en: "🔥 Beatrice (Nutritionist) closed the Professional Plan.", es: "🔥 Beatriz (Nutricionista) cerró el Plan Profesional." },
+            { pt: "✨ Felipe (Personal Trainer) solicitou orçamento.", en: "✨ Felipe (Personal Trainer) requested a quote.", es: "✨ Felipe (Entrenador) solicitó presupuesto." },
+            { pt: "💼 Mariana (Arquiteta) garantiu a sua vaga hoje.", en: "💼 Mariana (Architect) secured her spot today.", es: "💼 Mariana (Arquitecta) aseguró su cupo hoy." },
+            { pt: "⚡ Roberto (Contador) começou o projeto agora mesmo.", en: "⚡ Robert (Accountant) started the project right now.", es: "⚡ Roberto (Contador) comenzó el proyecto ahora mismo." },
+            
+            // Categoria 2: Empresa Genérica (Mostra alcance B2B)
+            { pt: "🔥 Um Pet Shop de SP solicitou o Plano Padrão.", en: "🔥 A Pet Shop in NY requested the Standard Plan.", es: "🔥 Un Pet Shop de Madrid solicitó el Plan Estándar." },
+            { pt: "🚀 Uma Imobiliária local agendou atendimento.", en: "🚀 A local Real Estate agency scheduled a meeting.", es: "🚀 Una Inmobiliaria local agendó atención." },
+            { pt: "✨ Um Restaurante fechou o Plano Profissional.", en: "✨ A Restaurant closed the Professional Plan.", es: "✨ Un Restaurante cerró el Plan Profesional." },
+            { pt: "💼 Uma Oficina Mecânica pediu um exemplo de site.", en: "💼 An Auto Shop asked for a site example.", es: "💼 Un Taller Mecánico pidió un ejemplo de sitio." },
+            { pt: "⚡ Clínica Veterinária reservou o Plano Profissional.", en: "⚡ Vet Clinic reserved the Professional Plan.", es: "⚡ Clínica Veterinaria reservó el Plan Profesional." },
+            { pt: "🔥 Uma Empresa de Limpeza iniciou contato com a equipe.", en: "🔥 A Cleaning Company initiated contact with the team.", es: "🔥 Una Empresa de Limpieza inició contacto con el equipo." },
+            { pt: "🚀 Um Salão de Beleza garantiu a vaga da semana.", en: "🚀 A Beauty Salon secured the spot of the week.", es: "🚀 Un Salón de Belleza aseguró el cupo de la semana." },
+
+            // Categoria 3: Escassez e Status da Agência (Quebra de Padrão Forte)
+            { pt: "🚨 Apenas 1 vaga restante para criação nesta semana.", en: "🚨 Only 1 spot left for site creation this week.", es: "🚨 Solo queda 1 cupo para creación esta semana." },
+            { pt: "✨ Nossa equipe acabou de publicar o site de uma Clínica.", en: "✨ Our team just published a Clinic's website.", es: "✨ Nuestro equipo acaba de publicar el sitio de una Clínica." },
+            { pt: "🔥 Agenda de reuniões para amanhã quase lotada.", en: "🔥 Meeting schedule for tomorrow is almost full.", es: "🔥 Agenda de reuniones para mañana casi llena." },
+            { pt: "🚀 Mais um site de Barbearia entregue com sucesso hoje.", en: "🚀 Another Barbershop site successfully delivered today.", es: "🚀 Otro sitio de Barbería entregado con éxito hoy." },
+            { pt: "⚡ Último horário disponível para consultoria amanhã.", en: "⚡ Last available slot for free consulting tomorrow.", es: "⚡ Último horario disponible para consultoría mañana." }
         ];
 
         let fomoPopup = document.getElementById('fomoPopup');
@@ -824,21 +834,25 @@
 
         function triggerFomo() {
             if(!fomoPopup || !fomoText) return;
+            
+            // Escolhe uma mensagem aleatória do novo Mix
             const msg = fomoMessages[Math.floor(Math.random() * fomoMessages.length)];
             const lang = currentLang || 'pt';
             fomoText.innerHTML = msg[lang] || msg['pt'];
             
+            // Mostra o popup
             fomoPopup.classList.add('show');
             
+            // Esconde após 5 segundos e agenda o próximo
             setTimeout(() => {
                 fomoPopup.classList.remove('show');
-                // Sorteia próximo aparecimento entre 15 e 35 segundos
+                // Sorteia próximo aparecimento entre 15 e 35 segundos (15000 a 35000 ms)
                 let nextTime = Math.floor(Math.random() * 20000) + 15000;
                 setTimeout(triggerFomo, nextTime);
-            }, 5000); // Fica 5 segundos na tela
+            }, 5000); 
         }
         
-        // Inicia o primeiro popup após 10 segundos na página
+        // Inicia o primeiro popup 10 segundos após a página carregar
         setTimeout(triggerFomo, 10000);
 
         function submitForm(e) {
@@ -1211,7 +1225,6 @@
     </script>
 </body>
 </html>
-
 
 
 
