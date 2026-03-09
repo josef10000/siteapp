@@ -101,29 +101,28 @@
         .logo-img { height: 90px; width: auto; object-fit: contain; }
         .logo-text { font-size: 1.4rem; font-weight: 800; letter-spacing: -0.5px; background: linear-gradient(to right, var(--google-blue), var(--google-green)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: block; transition: background 0.5s ease; }
         
-        /* MENU LINKS - LIQUID SILVER */
-        .nav-menu { display: flex; gap: 10px; align-items: center; }
+        /* MENU LINKS - APPLE VISION PRO (Luz Interna) */
+        .nav-menu { display: flex; gap: 5px; align-items: center; }
         .nav-link { 
-            font-size: 0.9rem; 
-            color: #e2e8f0; 
-            transition: var(--transition); 
-            font-weight: 600; 
+            font-size: 0.95rem; 
+            color: #94a3b8; /* Discreto em repouso */
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+            font-weight: 500; 
             padding: 8px 18px; 
-            border-radius: 30px; 
-            background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.01)); 
-            backdrop-filter: var(--glass-blur); 
-            -webkit-backdrop-filter: var(--glass-blur); 
-            border: 1px solid rgba(255, 255, 255, 0.15); 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1), inset 0 1px 1px rgba(255, 255, 255, 0.3); 
+            border-radius: 40px; 
+            background: transparent; /* Invisível até interagir */
+            border: 1px solid transparent;
             text-decoration: none; 
-            text-shadow: 0 1px 2px rgba(0,0,0,0.5); 
         }
         .nav-link:hover, .nav-link.active { 
             color: #ffffff; 
-            background: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.05)); 
-            border-color: rgba(255, 255, 255, 0.4); 
-            transform: translateY(-2px); 
-            box-shadow: 0 8px 25px rgba(255,255,255,0.1), inset 0 1px 2px rgba(255, 255, 255, 0.6); 
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.08); /* Brilho interno suave */
+            backdrop-filter: blur(12px); 
+            -webkit-backdrop-filter: blur(12px); 
+            border-color: rgba(255, 255, 255, 0.12); 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2), inset 0 0 10px rgba(255, 255, 255, 0.05); /* Efeito de luz a vir de dentro */
+            transform: translateY(-1px);
         }
         
         .menu-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; margin-left: 10px; }
@@ -270,6 +269,29 @@
         .btn-neutral { background: rgba(255,255,255,0.05); color: white; border: 1px solid rgba(255,255,255,0.2); width: 100%; padding: 16px; font-size: 1.1rem; transition: var(--transition); border-radius: 12px; cursor: pointer; font-weight: 700; }
         .btn-neutral:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.4); transform: translateY(-2px); }
 
+        /* NOVA SEÇÃO: COMPARAÇÃO (ANCORAGEM DE PREÇO) */
+        .comparison-grid { display: grid; grid-template-columns: 1fr; gap: 30px; margin: 50px auto 60px; max-width: 900px; text-align: left; }
+        @media (min-width: 800px) { .comparison-grid { grid-template-columns: 1fr 1fr; } }
+        
+        .comp-card { padding: 30px; border-radius: 24px; background: var(--glass-bg); backdrop-filter: var(--glass-blur); border: 1px solid var(--glass-border); box-shadow: 0 10px 30px rgba(0,0,0,0.15); display: flex; flex-direction: column; }
+        
+        .comp-card.old-way { border-color: rgba(234, 67, 53, 0.3); background: linear-gradient(180deg, rgba(234, 67, 53, 0.05), transparent); }
+        .comp-card.old-way h4 { color: #ff6b6b; font-size: 1.3rem; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+        
+        .comp-card.new-way { border-color: var(--google-green); background: linear-gradient(180deg, rgba(52, 168, 83, 0.1), transparent); box-shadow: 0 15px 40px rgba(52, 168, 83, 0.15); position: relative; }
+        .comp-card.new-way h4 { color: var(--google-green); font-size: 1.3rem; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+        .comp-card.new-way::before { content: 'ECONOMIA REAL'; position: absolute; top: -12px; right: 20px; background: var(--google-green); color: white; font-size: 0.75rem; font-weight: 800; padding: 4px 12px; border-radius: 20px; }
+
+        .comp-list { display: flex; flex-direction: column; gap: 15px; margin-bottom: 20px; flex-grow: 1; }
+        .comp-list-item { display: flex; justify-content: space-between; align-items: center; padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.95rem; }
+        .comp-list-item span:first-child { color: var(--text-dim); }
+        .comp-list-item span:last-child { font-weight: 600; color: #fff; }
+        .new-way .comp-list-item span:last-child { color: var(--google-green); }
+
+        .comp-total { display: flex; justify-content: space-between; align-items: center; font-size: 1.1rem; font-weight: 800; margin-top: auto; padding-top: 15px; border-top: 2px solid rgba(255,255,255,0.1); }
+        .old-way .comp-total span:last-child { color: #ff6b6b; font-size: 1.4rem; }
+        .new-way .comp-total span:last-child { color: var(--google-green); font-size: 1.2rem; }
+
         /* FORMULÁRIO E FAQ - GRID 2 COLUNAS NO DESKTOP */
         .form-faq-grid { display: grid; grid-template-columns: 1fr; gap: 50px; align-items: start; padding-top: 60px;}
         @media (min-width: 992px) {
@@ -379,18 +401,22 @@
 
         .chat-actions { padding: 15px 20px; border-top: 1px solid var(--glass-border); display: flex; gap: 10px; flex-direction: column; background: rgba(0,0,0,0.2); }
 
-        /* OTIMIZAÇÃO MENU MOBILE */
+        /* CURSOR DA MÁQUINA DE ESCREVER */
+        .typing-cursor {
+            display: inline-block;
+            width: 4px;
+            height: 0.9em;
+            background-color: var(--google-blue);
+            margin-left: 5px;
+            vertical-align: baseline;
+            animation: blink 0.8s step-end infinite;
+        }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+        /* OTIMIZAÇÃO MENU MOBILE (APENAS ROLAGEM, SEM HAMBÚRGUER) */
         @media (max-width: 768px) {
-            .nav-menu { 
-                position: fixed; top: 65px; left: -100%; width: 100%; height: calc(100vh - 65px); 
-                background: rgba(5, 5, 5, 0.75); 
-                backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); 
-                flex-direction: column; padding: 50px 20px; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
-                align-items: center; justify-content: flex-start; gap: 20px; 
-            } 
-            .nav-menu.open { left: 0; }
-            .nav-link { width: 100%; max-width: 320px; text-align: center; padding: 16px; font-size: 1.15rem; border-radius: 16px; }
-            .menu-toggle { display: flex; }
+            .nav-menu { display: none !important; } 
+            .menu-toggle { display: none !important; }
             .header-actions .btn { display: none; }
             @media (max-width: 650px) { .carousel-btn.prev { left: -10px; } .carousel-btn.next { right: -10px; } }
         }
@@ -611,16 +637,16 @@
         </section>
 
         <!-- SEÇÃO DE AGENDAMENTO DE REUNIÃO (ESCASSEZ) -->
+        <!-- SEÇÃO DE AGENDAMENTO DE REUNIÃO (ESCASSEZ E CALENDLY) -->
         <section id="agendamento" data-aos="fade-up">
             <div class="booking-container">
                 <div>
-                    <div class="booking-tag"><span class="pulse-dot"></span> <span data-i18n="booking-tag">🔥 Restam apenas 2 vagas esta semana</span></div>
-                    <h2 data-i18n="booking-title" style="font-size: clamp(1.8rem, 4vw, 2.5rem); margin-bottom: 15px;">Vamos desenhar o futuro da sua empresa?</h2>
-                    <p data-i18n="booking-desc" style="color: var(--text-dim); font-size: 1.1rem; margin-bottom: 25px;">Agende uma Reunião Estratégica Gratuita de 30 minutos. Vamos analisar sua presença atual e montar um plano de ação, sem compromisso.</p>
+                    <h2 data-i18n="booking-title" style="font-size: clamp(1.8rem, 4vw, 2.5rem); margin-bottom: 15px;">Vamos alinhar os detalhes do seu projeto?</h2>
+                    <p data-i18n="booking-desc" style="color: var(--text-dim); font-size: 1.1rem; margin-bottom: 25px;">Agende um bate-papo rápido. Vamos entender o que sua empresa precisa, tirar suas dúvidas sobre os planos e confirmar se somos a escolha certa para você.</p>
                     <ul style="margin-bottom: 30px; display: flex; flex-direction: column; gap: 12px; color: var(--text-main);">
-                        <li style="display: flex; align-items: center; gap: 10px;"><svg width="20" height="20" stroke="var(--google-blue)" stroke-width="2" fill="none" style="transition: stroke 0.5s ease;"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="booking-b1">Análise do seu negócio atual</span></li>
-                        <li style="display: flex; align-items: center; gap: 10px;"><svg width="20" height="20" stroke="var(--google-blue)" stroke-width="2" fill="none" style="transition: stroke 0.5s ease;"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="booking-b2">Estratégia de Posicionamento</span></li>
-                        <li style="display: flex; align-items: center; gap: 10px;"><svg width="20" height="20" stroke="var(--google-blue)" stroke-width="2" fill="none" style="transition: stroke 0.5s ease;"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="booking-b3">Orçamento personalizado</span></li>
+                        <li style="display: flex; align-items: center; gap: 10px;"><svg width="20" height="20" stroke="var(--google-blue)" stroke-width="2" fill="none" style="transition: stroke 0.5s ease;"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="booking-b1">Entender o seu negócio e objetivos</span></li>
+                        <li style="display: flex; align-items: center; gap: 10px;"><svg width="20" height="20" stroke="var(--google-blue)" stroke-width="2" fill="none" style="transition: stroke 0.5s ease;"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="booking-b2">Tirar dúvidas sobre planos e prazos</span></li>
+                        <li style="display: flex; align-items: center; gap: 10px;"><svg width="20" height="20" stroke="var(--google-blue)" stroke-width="2" fill="none" style="transition: stroke 0.5s ease;"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="booking-b3">Confirmar se nossa solução atende você</span></li>
                     </ul>
                 </div>
                 
@@ -638,20 +664,50 @@
         <section id="planos" class="pricing-section" data-aos="fade-up">
             <h2 data-i18n="plan-title" style="font-size: clamp(2rem, 4vw, 2.5rem);">Escolha o caminho mais rápido pro seu negócio</h2>
             
+            <!-- COMPARAÇÃO DE PREÇO (ANCORAGEM) -->
+            <div class="comparison-grid" data-aos="zoom-in">
+                <!-- Mercado Tradicional -->
+                <div class="comp-card old-way">
+                    <h4 data-i18n="comp-old-title"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg> Agência Tradicional</h4>
+                    <div class="comp-list">
+                        <div class="comp-list-item"><span data-i18n="comp-old-1">Criação do site</span> <span data-i18n="comp-old-1-v">R$ 2.500+</span></div>
+                        <div class="comp-list-item"><span data-i18n="comp-old-2">Hospedagem (Anual)</span> <span data-i18n="comp-old-2-v">R$ 400+</span></div>
+                        <div class="comp-list-item"><span data-i18n="comp-old-3">Manutenção (Hora)</span> <span data-i18n="comp-old-3-v">R$ 150+</span></div>
+                    </div>
+                    <div class="comp-total">
+                        <span data-i18n="comp-old-total">Custo no 1º ano:</span> 
+                        <span data-i18n="comp-old-total-v">Mais de R$ 3.000</span>
+                    </div>
+                </div>
+
+                <!-- Modelo HubSymples -->
+                <div class="comp-card new-way">
+                    <h4 data-i18n="comp-new-title"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg> Assinatura HubSymples</h4>
+                    <div class="comp-list">
+                        <div class="comp-list-item"><span data-i18n="comp-new-1">Criação Premium</span> <span data-i18n="comp-new-1-v">R$ 0 (Incluso)</span></div>
+                        <div class="comp-list-item"><span data-i18n="comp-new-2">Hospedagem Rápida</span> <span data-i18n="comp-new-2-v">R$ 0 (Inclusa)</span></div>
+                        <div class="comp-list-item"><span data-i18n="comp-new-3">Suporte Contínuo</span> <span data-i18n="comp-new-3-v">R$ 0 (Incluso)</span></div>
+                    </div>
+                    <div class="comp-total">
+                        <span data-i18n="comp-new-total">Seu custo:</span> 
+                        <span data-i18n="comp-new-total-v">Apenas a mensalidade</span>
+                    </div>
+                </div>
+            </div>
+
             <div class="plans-grid">
                 <!-- Plano 1 (Padrão - DESTAQUE) -->
                 <div class="plan-card highlighted">
                     <div class="popular-badge" data-i18n="plan-rec">Mais Escolhido</div>
                     <h3 data-i18n="plan1-title">Plano Padrão</h3>
                     <div class="plan-price">R$ <span class="price-value">80</span> <span class="price-period" data-i18n="plan-period">/ mês</span></div>
-                    <div class="plan-target" data-i18n="plan1-desc">Tudo que seu negócio precisa para ter presença online.</div>
+                    <div class="plan-target" data-i18n="plan1-desc">Ideal para autônomos e prestadores de serviços que buscam um site direto e focado em receber chamadas no WhatsApp.</div>
                     <ul class="plan-list">
                         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="plan1-b1">Criação do site</span></li>
                         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="plan1-b2">Hospedagem incluída</span></li>
                         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="plan1-b3">Botão de WhatsApp</span></li>
-                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="plan1-b4">Sistema de agendamento / calendário</span></li>
-                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="plan1-b5">SEO avançado</span></li>
-                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="plan1-b6">Suporte</span></li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="plan1-b4">SEO avançado</span></li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="plan1-b5">Suporte</span></li>
                     </ul>
                     <button onclick="window.open(WHATSAPP_LINK)" class="btn-green" data-i18n="plan1-btn">Criar meu site</button>
                 </div>
@@ -659,15 +715,14 @@
                 <!-- Plano 2 (Profissional) -->
                 <div class="plan-card standard">
                     <h3 data-i18n="plan2-title">Plano Profissional</h3>
-                    <div class="plan-price">R$ <span class="price-value">120</span> <span class="price-period" data-i18n="plan-period">/ mês</span></div>
-                    <div class="plan-target" data-i18n="plan2-desc">Para empresas que precisam de um site mais completo.</div>
+                    <div class="plan-price">R$ <span class="price-value">150</span> <span class="price-period" data-i18n="plan-period">/ mês</span></div>
+                    <div class="plan-target" data-i18n="plan2-desc">Ideal para negócios físicos e clínicas que precisam apresentar uma estrutura completa, serviços detalhados e agendamento.</div>
                     <ul class="plan-list">
                         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> <span style="font-weight: bold;" data-i18n="plan2-b1">Tudo do plano padrão</span></li>
-                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="plan2-b2">Até 3 páginas</span></li>
-                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="plan2-b3">Estrutura completa de site</span></li>
-                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="plan2-b4">Seções personalizadas</span></li>
-                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="plan2-b5">SEO avançado</span></li>
-                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="plan2-b6">Suporte</span></li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="plan2-b2">Domínio próprio (compra pelo cliente)</span></li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="plan2-b3">Estrutura completa (até 3 páginas)</span></li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="plan2-b4">Agendamento integrado no site</span></li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="plan2-b5">Suporte prioritário</span></li>
                     </ul>
                     <button onclick="window.open(WHATSAPP_LINK)" class="btn-neutral" data-i18n="plan2-btn">Quero o plano profissional</button>
                 </div>
@@ -708,11 +763,11 @@
                     </div>
                     <div class="faq-item">
                         <button class="faq-question"><span data-i18n="q3">O site tem mensalidade ou custo de manutenção?</span> <span class="faq-icon">+</span></button>
-                        <div class="faq-answer"><p data-i18n="a3">Sim. Trabalhamos com um modelo de assinatura acessível (a partir de R$80/mês) que já inclui a criação do site, hospedagem rápida e suporte contínuo. Sem taxas surpresas.</p></div>
+                        <div class="faq-answer"><p data-i18n="a3">Sim. Trabalhamos com um modelo de assinatura acessível (a partir de R$80/mês) que já inclui a criação do site, hospedagem rápida e suporte contínuo. Caso opte por ter um Domínio Próprio (.com.br), o valor anual do registro varia normalmente entre R$ 40 e R$ 50 por ano e é pago diretamente por você para garantir que o nome seja 100% da sua empresa. Você pode verificar a disponibilidade e o valor exato do seu nome acessando o <a href='https://registro.br/' target='_blank' style='color: var(--google-blue); text-decoration: underline;'>registro.br</a>.</p></div>
                     </div>
                     <div class="faq-item">
                         <button class="faq-question"><span data-i18n="q4">Qual é a diferença entre os planos?</span> <span class="faq-icon">+</span></button>
-                        <div class="faq-answer"><p data-i18n="a4">O Plano Padrão é ideal para quem quer uma página forte para focar em conversão rápida e receber contatos no WhatsApp. O Profissional inclui até 3 páginas para negócios que precisam mostrar mais detalhes, como catálogos ou múltiplos serviços.</p></div>
+                        <div class="faq-answer"><p data-i18n="a4">Eles atendem a necessidades diferentes. O <strong>Plano Padrão</strong> é perfeito para prestadores de serviços e profissionais autônomos que precisam de um site objetivo e rápido para atrair clientes direto para o WhatsApp. Já o <strong>Plano Profissional</strong> é voltado para negócios físicos (como clínicas, estéticas, escritórios e oficinas) que precisam de uma estrutura maior para detalhar serviços, mostrar seu espaço e integrar um sistema de agendamento próprio.</p></div>
                     </div>
                     <div class="faq-item">
                         <button class="faq-question"><span data-i18n="q5">Se eu já tenho Instagram, ainda preciso de site?</span> <span class="faq-icon">+</span></button>
@@ -914,11 +969,59 @@
             document.documentElement.style.setProperty('--google-green', themeConfig.c3);
 
             let h1 = document.getElementById('main-title');
-            if (currentLang === 'en') h1.innerHTML = themeConfig.en;
-            else if (currentLang === 'es') h1.innerHTML = themeConfig.es;
-            else h1.innerHTML = themeConfig.pt;
+            let newTitle = "";
+            if (currentLang === 'en') newTitle = themeConfig.en;
+            else if (currentLang === 'es') newTitle = themeConfig.es;
+            else newTitle = themeConfig.pt;
+            
+            // Em vez de mudar o HTML direto, chama a máquina de escrever
+            typeWriter(h1, newTitle, 25);
             
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // === EFEITO MÁQUINA DE ESCREVER (TYPEWRITER) ===
+        let typeWriterTimeout = null;
+
+        function typeWriter(element, htmlString, speed = 25) {
+            if (typeWriterTimeout) clearTimeout(typeWriterTimeout);
+            
+            // Trava a altura instantaneamente para evitar que o conteúdo abaixo pule
+            element.style.visibility = 'hidden';
+            element.innerHTML = htmlString;
+            const targetHeight = element.clientHeight;
+            element.style.minHeight = targetHeight + 'px';
+            element.style.visibility = 'visible';
+            element.innerHTML = '';
+
+            let index = 0;
+            let currentHTML = "";
+            
+            function type() {
+                if (index < htmlString.length) {
+                    // Pula as tags HTML completas de uma vez para não quebrar o layout
+                    if (htmlString.charAt(index) === '<') {
+                        let tagEnd = htmlString.indexOf('>', index);
+                        if (tagEnd !== -1) {
+                            currentHTML += htmlString.substring(index, tagEnd + 1);
+                            index = tagEnd + 1;
+                        } else {
+                            currentHTML += htmlString.charAt(index);
+                            index++;
+                        }
+                    } else {
+                        currentHTML += htmlString.charAt(index);
+                        index++;
+                    }
+                    
+                    element.innerHTML = currentHTML + '<span class="typing-cursor"></span>';
+                    typeWriterTimeout = setTimeout(type, speed + Math.random() * 15);
+                } else {
+                    element.innerHTML = htmlString;
+                    element.style.minHeight = 'auto'; // Libera a altura após terminar
+                }
+            }
+            type();
         }
 
         // === LÓGICA DO CHAT SIMULADOR E SPEED DIAL ===
@@ -1132,19 +1235,22 @@
                 "case-after-title": "Depois", "case-after-desc": "Site claro, botão WhatsApp, SEO otimizado, aparência profissional",
                 "case-btn": "Quer um exemplo do seu caso? Fale com nossos especialistas no WhatsApp.",
 
-                "booking-tag": "🔥 Restam apenas 2 vagas esta semana", "booking-title": "Vamos desenhar o futuro da sua empresa?",
-                "booking-desc": "Agende uma Reunião Estratégica Gratuita de 30 minutos. Vamos analisar sua presença atual e montar um plano de ação, sem compromisso.",
-                "booking-b1": "Análise do seu negócio atual", "booking-b2": "Estratégia de Posicionamento", "booking-b3": "Orçamento personalizado",
+                "booking-title": "Vamos alinhar os detalhes do seu projeto?",
+                "booking-desc": "Agende um bate-papo rápido. Vamos entender o que sua empresa precisa, tirar suas dúvidas sobre os planos e confirmar se somos a escolha certa para você.",
+                "booking-b1": "Entender o seu negócio e objetivos", "booking-b2": "Tirar dúvidas sobre planos e prazos", "booking-b3": "Confirmar se nossa solução atende você",
+
+                "comp-old-title": "Agência Tradicional", "comp-old-1": "Criação do site", "comp-old-1-v": "R$ 2.500+", "comp-old-2": "Hospedagem (Anual)", "comp-old-2-v": "R$ 400+", "comp-old-3": "Manutenção (Hora)", "comp-old-3-v": "R$ 150+", "comp-old-total": "Custo no 1º ano:", "comp-old-total-v": "Mais de R$ 3.000",
+                "comp-new-title": "Assinatura HubSymples", "comp-new-1": "Criação Premium", "comp-new-1-v": "R$ 0 (Incluso)", "comp-new-2": "Hospedagem Rápida", "comp-new-2-v": "R$ 0 (Inclusa)", "comp-new-3": "Suporte Contínuo", "comp-new-3-v": "R$ 0 (Incluso)", "comp-new-total": "Seu custo:", "comp-new-total-v": "Apenas a mensalidade",
 
                 "plan-title": "Escolha o caminho mais rápido pro seu negócio", 
                 "plan-rec": "Mais Escolhido", "plan-period": "/ mês",
-                "plan1-title": "Plano Padrão", "plan1-desc": "Tudo que seu negócio precisa para ter presença online.",
+                "plan1-title": "Plano Padrão", "plan1-desc": "Ideal para autônomos e prestadores de serviços que buscam um site direto e focado em receber chamadas no WhatsApp.",
                 "plan1-b1": "Criação do site", "plan1-b2": "Hospedagem incluída", "plan1-b3": "Botão de WhatsApp",
-                "plan1-b4": "Sistema de agendamento / calendário", "plan1-b5": "SEO avançado", "plan1-b6": "Suporte", "plan1-btn": "Criar meu site",
+                "plan1-b4": "SEO avançado", "plan1-b5": "Suporte", "plan1-btn": "Criar meu site",
                 
-                "plan2-title": "Plano Profissional", "plan2-desc": "Para empresas que precisam de um site mais completo.",
-                "plan2-b1": "Tudo do plano padrão", "plan2-b2": "Até 3 páginas", "plan2-b3": "Estrutura completa de site",
-                "plan2-b4": "Seções personalizadas", "plan2-b5": "SEO avançado", "plan2-b6": "Suporte",
+                "plan2-title": "Plano Profissional", "plan2-desc": "Ideal para negócios físicos e clínicas que precisam apresentar uma estrutura completa, serviços detalhados e agendamento.",
+                "plan2-b1": "Tudo do plano padrão", "plan2-b2": "Domínio próprio (compra pelo cliente)", "plan2-b3": "Estrutura completa (até 3 páginas)",
+                "plan2-b4": "Agendamento integrado no site", "plan2-b5": "Suporte prioritário",
                 "plan2-btn": "Quero o plano profissional",
 
                 "sim-title": "Simulador rápido (1 minuto)",
@@ -1158,8 +1264,8 @@
 
                 "q1": "Em quanto tempo o site fica pronto?", "a1": "Em no máximo 3 dias. Nós cuidamos de tudo, da criação da estrutura até a publicação, para você não perder tempo.",
                 "q2": "Preciso ter logo, textos e fotos prontas?", "a2": "Não. Se você não tiver nada pronto, nós criamos o seu site do zero, incluindo textos persuasivos e imagens profissionais para o seu nicho.",
-                "q3": "O site tem mensalidade ou custo de manutenção?", "a3": "Sim. Trabalhamos com um modelo de assinatura acessível (a partir de R$80/mês) que já inclui a criação do site, hospedagem rápida e suporte contínuo. Sem taxas surpresas.",
-                "q4": "Qual é a diferença entre os planos?", "a4": "O Plano Padrão é ideal para quem quer uma página forte para focar em conversão rápida e receber contatos no WhatsApp. O Profissional inclui até 3 páginas para negócios que precisam mostrar mais detalhes, como catálogos ou múltiplos serviços.",
+                "q3": "O site tem mensalidade ou custo de manutenção?", "a3": "Sim. Trabalhamos com um modelo de assinatura acessível (a partir de R$80/mês) que já inclui a criação do site, hospedagem rápida e suporte contínuo. Caso opte por ter um Domínio Próprio (.com.br), o valor anual do registro varia normalmente entre R$ 40 e R$ 50 por ano e é pago diretamente por você para garantir que o nome seja 100% da sua empresa. Você pode verificar a disponibilidade e o valor exato do seu nome acessando o <a href='https://registro.br/' target='_blank' style='color: var(--google-blue); text-decoration: underline;'>registro.br</a>.",
+                "q4": "Qual é a diferença entre os planos?", "a4": "Eles atendem a necessidades diferentes. O <strong>Plano Padrão</strong> é perfeito para prestadores de serviços e profissionais autônomos que precisam de um site objetivo e rápido para atrair clientes direto para o WhatsApp. Já o <strong>Plano Profissional</strong> é voltado para negócios físicos (como clínicas, estéticas, escritórios e oficinas) que precisam de uma estrutura maior para detalhar serviços, mostrar seu espaço e integrar um sistema de agendamento próprio.",
                 "q5": "Se eu já tenho Instagram, ainda preciso de site?", "a5": "Sim. O Instagram atrai a atenção, mas o site passa a confiança necessária para fechar a venda e garante que você seja encontrado no Google por quem está pronto para comprar.",
                 "q6": "Vocês dão suporte depois do site pronto?", "a6": "Sim! Nosso modelo de assinatura inclui suporte. Precisou alterar um número de telefone, atualizar o endereço ou trocar uma foto? É só chamar nossa equipe no WhatsApp.",
 
@@ -1213,19 +1319,22 @@
                 "case-after-title": "After", "case-after-desc": "Clear site, WhatsApp button, optimized SEO, pro look",
                 "case-btn": "Want an example for your case? Talk to our experts on WhatsApp.",
 
-                "booking-tag": "🔥 Only 2 spots left this week", "booking-title": "Let's design the future of your company?",
-                "booking-desc": "Schedule a Free 30-minute Strategic Meeting. We will analyze your current presence and create an action plan, with no strings attached.",
-                "booking-b1": "Current business analysis", "booking-b2": "Positioning Strategy", "booking-b3": "Customized quote",
+                "booking-title": "Let's align the details of your project?",
+                "booking-desc": "Schedule a quick chat. We'll understand what your business needs, answer your questions about the plans, and confirm if we're the right fit for you.",
+                "booking-b1": "Understand your business and goals", "booking-b2": "Answer questions about plans and deadlines", "booking-b3": "Confirm if our solution fits your needs",
+
+                "comp-old-title": "Traditional Agency", "comp-old-1": "Website creation", "comp-old-1-v": "$ 500+", "comp-old-2": "Hosting (Annual)", "comp-old-2-v": "$ 100+", "comp-old-3": "Maintenance (Hourly)", "comp-old-3-v": "$ 50+", "comp-old-total": "1st year cost:", "comp-old-total-v": "Over $ 600",
+                "comp-new-title": "HubSymples Subscription", "comp-new-1": "Premium Creation", "comp-new-1-v": "$ 0 (Included)", "comp-new-2": "Fast Hosting", "comp-new-2-v": "$ 0 (Included)", "comp-new-3": "Ongoing Support", "comp-new-3-v": "$ 0 (Included)", "comp-new-total": "Your cost:", "comp-new-total-v": "Only the monthly fee",
 
                 "plan-title": "Choose the fastest path for your business", 
                 "plan-rec": "Most Chosen", "plan-period": "/ month",
-                "plan1-title": "Standard Plan", "plan1-desc": "Everything your business needs to be online.",
+                "plan1-title": "Standard Plan", "plan1-desc": "Ideal for freelancers and service providers seeking a direct site focused on getting WhatsApp calls.",
                 "plan1-b1": "Website creation", "plan1-b2": "Hosting included", "plan1-b3": "WhatsApp button",
-                "plan1-b4": "Scheduling / Calendar system", "plan1-b5": "Advanced SEO", "plan1-b6": "Support", "plan1-btn": "Create my site",
+                "plan1-b4": "Advanced SEO", "plan1-b5": "Support", "plan1-btn": "Create my site",
                 
-                "plan2-title": "Professional Plan", "plan2-desc": "For businesses that need a more complete site.",
-                "plan2-b1": "Everything in Standard", "plan2-b2": "Up to 3 pages", "plan2-b3": "Complete site structure",
-                "plan2-b4": "Custom sections", "plan2-b5": "Advanced SEO", "plan2-b6": "Support",
+                "plan2-title": "Professional Plan", "plan2-desc": "Ideal for physical businesses and clinics that need to present a complete structure, detailed services, and scheduling.",
+                "plan2-b1": "Everything in Standard", "plan2-b2": "Custom domain (client purchases domain)", "plan2-b3": "Complete structure (up to 3 pages)",
+                "plan2-b4": "Integrated scheduling on site", "plan2-b5": "Priority support",
                 "plan2-btn": "I want the professional plan",
 
                 "sim-title": "Quick Simulator (1 minute)",
@@ -1239,8 +1348,8 @@
 
                 "q1": "How long does it take for the site to be ready?", "a1": "In a maximum of 3 days. We take care of everything, from the creation of the structure to the publication, so you don't waste time.",
                 "q2": "Do I need to have a logo, texts, and photos ready?", "a2": "No. If you don't have anything ready, we build your site from scratch, including persuasive copy and professional images for your niche.",
-                "q3": "Does the website have a monthly fee or maintenance cost?", "a3": "Yes. We work with an affordable subscription model (starting at R$80/month) that already includes the website creation, fast hosting, and ongoing support. No surprise fees.",
-                "q4": "What is the difference between the plans?", "a4": "The Standard Plan is ideal for those who want a strong page focused on fast conversion and getting WhatsApp contacts. The Professional includes up to 3 pages for businesses that need to show more details, like catalogs or multiple services.",
+                "q3": "Does the website have a monthly fee or maintenance cost?", "a3": "Yes. We work with an affordable subscription model (starting at R$80/month) that already includes the website creation, fast hosting, and ongoing support. If you want a Custom Domain (.com.br), the annual registry fee (usually between R$ 40 and R$ 50/year) is paid directly by you to ensure the name is 100% yours. You can check availability and exact pricing at <a href='https://registro.br/' target='_blank' style='color: var(--google-blue); text-decoration: underline;'>registro.br</a>.",
+                "q4": "What is the difference between the plans?", "a4": "They serve different needs. The <strong>Standard Plan</strong> is perfect for service providers and freelancers who need a fast, objective site to attract clients straight to WhatsApp. The <strong>Professional Plan</strong> is built for physical businesses (like clinics, offices, and local shops) that need a larger structure to detail services, showcase their space, and integrate a scheduling system.",
                 "q5": "If I already have Instagram, do I still need a website?", "a5": "Yes. Instagram attracts attention, but a website builds the trust needed to close the sale and ensures you are found on Google by those ready to buy.",
                 "q6": "Do you provide support after the site is ready?", "a6": "Yes! Our subscription model includes support. Need to change a phone number, update an address, or swap a photo? Just message our team on WhatsApp.",
 
@@ -1292,19 +1401,22 @@
                 "case-after-title": "Después", "case-after-desc": "Sitio claro, botón WhatsApp, SEO optimizado, aspecto pro",
                 "case-btn": "¿Quieres un ejemplo para tu caso? Habla con nuestros expertos en WhatsApp.",
 
-                "booking-tag": "🔥 Solo quedan 2 cupos esta semana", "booking-title": "¿Vamos a diseñar el futuro de tu empresa?",
-                "booking-desc": "Agenda una Reunión Estratégica Gratuita de 30 minutos. Analizaremos tu presencia actual y armaremos un plan de acción, sin compromiso.",
-                "booking-b1": "Análisis de tu negocio actual", "booking-b2": "Estrategia de Posicionamiento", "booking-b3": "Presupuesto personalizado",
+                "booking-title": "¿Vamos a alinear los detalles de tu proyecto?",
+                "booking-desc": "Agenda una charla rápida. Entenderemos qué necesita tu empresa, aclararemos dudas sobre los planes y confirmaremos si somos la opción ideal para ti.",
+                "booking-b1": "Entender tu negocio y objetivos", "booking-b2": "Aclarar dudas sobre planes y plazos", "booking-b3": "Confirmar si nuestra solución se adapta a ti",
+
+                "comp-old-title": "Agencia Tradicional", "comp-old-1": "Creación del sitio", "comp-old-1-v": "$ 500+", "comp-old-2": "Hosting (Anual)", "comp-old-2-v": "$ 100+", "comp-old-3": "Mantenimiento (Hora)", "comp-old-3-v": "$ 50+", "comp-old-total": "Costo 1er año:", "comp-old-total-v": "Más de $ 600",
+                "comp-new-title": "Suscripción HubSymples", "comp-new-1": "Creación Premium", "comp-new-1-v": "$ 0 (Incluido)", "comp-new-2": "Hosting Rápido", "comp-new-2-v": "$ 0 (Incluido)", "comp-new-3": "Soporte Continuo", "comp-new-3-v": "$ 0 (Incluido)", "comp-new-total": "Tu costo:", "comp-new-total-v": "Solo la mensualidad",
 
                 "plan-title": "Elige el camino más rápido para tu negocio", 
                 "plan-rec": "Más Elegido", "plan-period": "/ mes",
-                "plan1-title": "Plan Estándar", "plan1-desc": "Todo lo que tu negocio necesita para tener presencia online.",
+                "plan1-title": "Plan Estándar", "plan1-desc": "Ideal para autónomos y proveedores de servicios que buscan un sitio directo y enfocado en recibir llamadas por WhatsApp.",
                 "plan1-b1": "Creación del sitio", "plan1-b2": "Hosting incluido", "plan1-b3": "Botón de WhatsApp",
-                "plan1-b4": "Sistema de reservas / calendario", "plan1-b5": "SEO avanzado", "plan1-b6": "Soporte", "plan1-btn": "Crear mi sitio",
+                "plan1-b4": "SEO avanzado", "plan1-b5": "Soporte", "plan1-btn": "Crear mi sitio",
                 
-                "plan2-title": "Plan Profesional", "plan2-desc": "Para empresas que necesitan un sitio más completo.",
-                "plan2-b1": "Todo del plan estándar", "plan2-b2": "Hasta 3 páginas", "plan2-b3": "Estructura completa del sitio",
-                "plan2-b4": "Secciones personalizadas", "plan2-b5": "SEO avanzado", "plan2-b6": "Soporte",
+                "plan2-title": "Plan Profesional", "plan2-desc": "Ideal para negocios físicos y clínicas que necesitan presentar una estructura completa, servicios detallados y reservas.",
+                "plan2-b1": "Todo del plan estándar", "plan2-b2": "Dominio propio (compra por el cliente)", "plan2-b3": "Estructura completa (hasta 3 páginas)",
+                "plan2-b4": "Sistema de reservas en el sitio", "plan2-b5": "Soporte prioritario",
                 "plan2-btn": "Quiero el plan profesional",
 
                 "sim-title": "Simulador rápido (1 minuto)",
@@ -1318,8 +1430,8 @@
 
                 "q1": "¿En cuánto tiempo está listo el sitio?", "a1": "En un máximo de 3 días. Nos encargamos de todo, desde la creación de la estructura hasta la publicación, para que no pierdas tiempo.",
                 "q2": "¿Necesito tener logo, textos y fotos listas?", "a2": "No. Si no tienes nada listo, creamos tu sitio desde cero, incluyendo textos persuasivos e imágenes profesionales para tu nicho.",
-                "q3": "¿El sitio web tiene mensualidad o costo de mantenimiento?", "a3": "Sí. Trabajamos con un modelo de suscripción accesible (desde R$80/mes) que ya incluye la creación del sitio, hosting rápido y soporte continuo. Sin cargos sorpresa.",
-                "q4": "¿Cuál es la diferencia entre los planes?", "a4": "El Plan Estándar es ideal para quienes desean una página fuerte enfocada en conversión rápida y recibir contactos en WhatsApp. El Profesional incluye hasta 3 páginas para negocios que necesitan mostrar más detalles, como catálogos o múltiples servicios.",
+                "q3": "¿El sitio web tiene mensualidad o costo de mantenimiento?", "a3": "Sí. Trabajamos con un modelo de suscripción accesible (desde R$80/mes) que incluye la creación del sitio, hosting rápido y soporte continuo. Si deseas un Dominio Propio (.com.br), el registro anual (normalmente entre R$ 40 y R$ 50/año) lo pagas directamente tú para garantizar que el nombre sea 100% de tu empresa. Puedes verificar la disponibilidad y precios exactos en <a href='https://registro.br/' target='_blank' style='color: var(--google-blue); text-decoration: underline;'>registro.br</a>.",
+                "q4": "¿Cuál es la diferencia entre los planes?", "a4": "Atienden necesidades distintas. El <strong>Plan Estándar</strong> es perfecto para proveedores de servicios y autónomos que necesitan un sitio objetivo y rápido para atraer clientes directo al WhatsApp. El <strong>Plan Profesional</strong> está diseñado para negocios físicos (como clínicas, oficinas y talleres) que necesitan una estructura mayor para detallar servicios, mostrar su espacio e integrar un sistema de reservas propio.",
                 "q5": "Si ya tengo Instagram, ¿aún necesito un sitio web?", "a5": "Sí. Instagram atrae la atención, pero un sitio web transmite la confianza necesaria para cerrar la venta y asegura que te encuentren en Google los que están listos para comprar.",
                 "q6": "¿Brindan soporte después de que el sitio esté listo?", "a6": "¡Sí! Nuestro modelo de suscripción incluye soporte. ¿Necesitas cambiar un número de teléfono, actualizar la dirección o cambiar una foto? Solo escribe a nuestro equipo en WhatsApp.",
 
@@ -1366,9 +1478,20 @@
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if (translations[lang] && translations[lang][key]) {
-                    el.innerHTML = translations[lang][key];
+                    // O main-title recebe o efeito de digitação, não é injetado diretamente
+                    if (el.id === 'main-title') {
+                        // Ignora aqui para ser feito abaixo
+                    } else {
+                        el.innerHTML = translations[lang][key];
+                    }
                 }
             });
+
+            // Dispara o efeito Typewriter na Headline Principal ao abrir ou resetar
+            let h1 = document.getElementById('main-title');
+            if (h1 && translations[lang]['hero-title']) {
+                typeWriter(h1, translations[lang]['hero-title'], 25);
+            }
 
             // Troca de Placeholders (Inputs do formulário)
             document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
@@ -1428,6 +1551,7 @@
     </script>
 </body>
 </html>
+
 
 
 
