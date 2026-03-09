@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -89,7 +88,39 @@
         ::-webkit-scrollbar-thumb { background: #30363d; border-radius: 5px; }
         ::-webkit-scrollbar-thumb:hover { background: #8b949e; }
 
-        section { padding: clamp(60px, 10vw, 100px) 20px; max-width: var(--container); margin: 0 auto; }
+        section { padding: clamp(60px, 10vw, 100px) 20px; max-width: var(--container); margin: 0 auto; position: relative; }
+
+        /* TEXTURAS / BLOCOS DE COR SUTIS (NOVO) */
+        .glow-band::before {
+            content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+            width: 100vw; height: 100%; z-index: -1; pointer-events: none;
+        }
+        /* Faixa Azul */
+        .band-blue::before {
+            background: linear-gradient(180deg, transparent 0%, rgba(26,115,232,0.03) 20%, rgba(26,115,232,0.03) 80%, transparent 100%);
+            border-top: 1px solid rgba(26,115,232,0.05); border-bottom: 1px solid rgba(26,115,232,0.05);
+        }
+        /* Faixa Roxa */
+        .band-purple::before {
+            background: linear-gradient(180deg, transparent 0%, rgba(168,85,247,0.03) 20%, rgba(168,85,247,0.03) 80%, transparent 100%);
+            border-top: 1px solid rgba(168,85,247,0.05); border-bottom: 1px solid rgba(168,85,247,0.05);
+        }
+        /* Faixa Verde */
+        .band-green::before {
+            background: linear-gradient(180deg, transparent 0%, rgba(52,168,83,0.03) 20%, rgba(52,168,83,0.03) 80%, transparent 100%);
+            border-top: 1px solid rgba(52,168,83,0.05); border-bottom: 1px solid rgba(52,168,83,0.05);
+        }
+
+        /* NEON DOT (Substitui os Checks) */
+        .neon-dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background-color: var(--whatsapp);
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(37, 211, 102, 0.8), 0 0 20px rgba(37, 211, 102, 0.4);
+            flex-shrink: 0;
+        }
 
         /* BUTTONS ATUALIZADOS PARA VERDE WHATSAPP */
         .btn { display: inline-flex; align-items: center; justify-content: center; padding: 14px 28px; border-radius: 8px; font-weight: 600; cursor: pointer; transition: var(--transition); font-size: 1rem; border: none; gap: 10px; text-align: center; text-decoration: none; }
@@ -101,8 +132,12 @@
         /* HEADER & LANGUAGE SWITCHER */
         header { position: fixed; top: 0; width: 100%; z-index: 1000; background: var(--bg-nav); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border-bottom: 1px solid var(--glass-border); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); } 
         .nav-container { max-width: var(--container); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 12px 20px; }
-        .logo-container { display: flex; align-items: center; gap: 12px; }
-        .logo-img { height: 90px; width: auto; object-fit: contain; }
+        .logo-container { display: flex; align-items: center; gap: 12px; cursor: pointer; }
+        
+        /* EFEITO HOVER NA LOGO PRINCIPAL */
+        .logo-img { height: 90px; width: auto; object-fit: contain; opacity: 0.8; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .logo-container:hover .logo-img { opacity: 1; filter: drop-shadow(0 0 12px rgba(26, 115, 232, 0.5)); transform: scale(1.05); }
+        
         .logo-text { font-size: 1.4rem; font-weight: 800; letter-spacing: -0.5px; background: linear-gradient(to right, var(--google-blue), var(--google-green)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: block; transition: background 0.5s ease; }
         
         /* MENU LINKS - APPLE VISION PRO */
@@ -150,6 +185,7 @@
         .hero-visual { display: flex; flex-direction: column; gap: 15px; }
         .hero-badge-card { background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border: 1px solid var(--glass-border); padding: 20px 25px; border-radius: 20px; font-size: 1.1rem; font-weight: 600; display: flex; align-items: center; gap: 15px; box-shadow: 0 8px 32px rgba(0,0,0,0.1); transition: transform 0.3s; }
         .hero-badge-card:hover { transform: translateX(-10px); border-color: var(--google-blue); }
+        .hero-badge-card .neon-dot { width: 12px; height: 12px; }
 
         /* SIMULADOR DE NICHOS */
         .theme-container { background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border: 1px solid var(--glass-border); border-radius: 24px; padding: clamp(25px, 5vw, 40px); max-width: 800px; margin: 0 auto 40px; box-shadow: 0 8px 32px rgba(0,0,0,0.2); text-align: center; transition: border-color 0.5s ease; }
@@ -234,11 +270,9 @@
 
         .plans-grid { display: grid; grid-template-columns: 1fr; gap: 40px; margin-top: 60px; text-align: left; }
         @media (min-width: 800px) {
-            /* Alterado para align-items: stretch para que os cards fiquem do mesmo tamanho */
             .plans-grid { grid-template-columns: 1fr 1fr; max-width: 900px; margin-inline: auto; align-items: stretch; gap: 30px; }
         }
         
-        /* Estilo unificado para os dois cards, sem destaque de tamanho ou borda especial */
         .plan-card { position: relative; background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border: 1px solid var(--glass-border); border-radius: 24px; padding: 40px 30px; transition: all 0.4s ease; display: flex; flex-direction: column; box-shadow: 0 10px 40px rgba(0,0,0,0.2); height: 100%; }
         .plan-card:hover { transform: translateY(-8px); box-shadow: 0 15px 50px rgba(0,0,0,0.4); border-color: rgba(255,255,255,0.2); }
 
@@ -251,8 +285,8 @@
         
         .plan-list { display: flex; flex-direction: column; gap: 14px; flex-grow: 1; margin-bottom: 30px; }
         .plan-list li { display: flex; align-items: flex-start; gap: 12px; color: var(--text-main); font-size: 0.95rem; }
-        /* Ícones uniformes para ambos os planos */
-        .plan-list li svg { color: var(--whatsapp); flex-shrink: 0; margin-top: 2px; width: 20px; height: 20px; }
+        .plan-list li .neon-dot { margin-top: 6px; }
+        .plan-list li svg { color: var(--text-dim); flex-shrink: 0; margin-top: 2px; width: 20px; height: 20px; }
 
         .btn-green { background: linear-gradient(135deg, #25D366, #128C7E); color: white; width: 100%; padding: 16px; font-size: 1.1rem; box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3); border: none; border-radius: 12px; cursor: pointer; font-weight: 700; transition: var(--transition); }
         .btn-green:hover { box-shadow: 0 10px 25px rgba(37, 211, 102, 0.5); transform: translateY(-2px); filter: brightness(1.1); }
@@ -440,9 +474,9 @@
                 </div>
                 
                 <div class="hero-visual">
-                    <div class="hero-badge-card"><span style="font-size: 1.5rem;">✅</span> <span data-i18n="badge-1">Sem enrolação</span></div>
-                    <div class="hero-badge-card"><span style="font-size: 1.5rem;">✅</span> <span data-i18n="badge-2">Mobile rápido</span></div>
-                    <div class="hero-badge-card"><span style="font-size: 1.5rem;">✅</span> <span data-i18n="badge-3">Você aprova antes</span></div>
+                    <div class="hero-badge-card"><span class="neon-dot"></span> <span data-i18n="badge-1">Sem enrolação</span></div>
+                    <div class="hero-badge-card"><span class="neon-dot"></span> <span data-i18n="badge-2">Mobile rápido</span></div>
+                    <div class="hero-badge-card"><span class="neon-dot"></span> <span data-i18n="badge-3">Você aprova antes</span></div>
                 </div>
             </div>
         </section>
@@ -466,8 +500,8 @@
             </div>
         </section>
 
-        <!-- O QUE VOCÊ RECEBE -->
-        <section id="o-que-recebe" data-aos="fade-up" style="padding-top: 0;">
+        <!-- O QUE VOCÊ RECEBE (COM FAIXA AZUL) -->
+        <section id="o-que-recebe" class="glow-band band-blue" data-aos="fade-up" style="padding-top: 60px;">
             <div style="text-align: center; margin-bottom: 40px;">
                 <h2 data-i18n="recv-title" style="font-size: clamp(1.8rem, 4vw, 2.5rem);">O que entra no seu site (sem surpresas)</h2>
                 <p style="color: var(--text-dim); font-size: 1.1rem; margin-top: 15px;" data-i18n="recv-desc">Tudo pronto pra gerar contato e passar confiança — principalmente no celular.</p>
@@ -490,18 +524,18 @@
             </div>
         </section>
 
-        <!-- PASSO 1 E PORTFÓLIO -->
-        <section id="pilar-sites" data-aos="fade-up">
+        <!-- PASSO 1 E PORTFÓLIO (COM FAIXA ROXA) -->
+        <section id="pilar-sites" class="glow-band band-purple" data-aos="fade-up">
             <div style="text-align: center; margin-bottom: 50px;">
-                <span class="section-tag" data-i18n="step1-tag">Passo 1</span>
+                <span class="section-tag" style="color: var(--google-purple);" data-i18n="step1-tag">O Seu Novo Site</span>
                 <h2 data-i18n="step1-title">Seu site vira sua vitrine que vende 24h</h2>
                 <p style="margin-top: 15px; font-size: 1.1rem; color: var(--text-dim); max-width: 700px; margin-inline: auto;" data-i18n="step1-desc">Sem site, você perde cliente todo dia. Nós criamos uma página bonita, rápida e objetiva — com botão de WhatsApp e tudo que o cliente precisa pra confiar e chamar.</p>
                 
                 <ul style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-top: 25px; color: var(--text-main); font-weight: 500;">
-                    <li>✅ <span data-i18n="step1-b1">1 página completa (tipo "landing")</span></li>
-                    <li>✅ <span data-i18n="step1-b2">focada em conversão (WhatsApp)</span></li>
-                    <li>✅ <span data-i18n="step1-b3">pronta pra celular</span></li>
-                    <li>✅ <span data-i18n="step1-b4">com portfólio/fotos e prova social</span></li>
+                    <li style="display: flex; align-items: center; gap: 8px;"><span class="neon-dot" style="width: 8px; height: 8px;"></span> <span data-i18n="step1-b1">1 página completa (tipo "landing")</span></li>
+                    <li style="display: flex; align-items: center; gap: 8px;"><span class="neon-dot" style="width: 8px; height: 8px;"></span> <span data-i18n="step1-b2">focada em conversão (WhatsApp)</span></li>
+                    <li style="display: flex; align-items: center; gap: 8px;"><span class="neon-dot" style="width: 8px; height: 8px;"></span> <span data-i18n="step1-b3">pronta pra celular</span></li>
+                    <li style="display: flex; align-items: center; gap: 8px;"><span class="neon-dot" style="width: 8px; height: 8px;"></span> <span data-i18n="step1-b4">com portfólio/fotos e prova social</span></li>
                 </ul>
             </div>
             
@@ -544,7 +578,7 @@
             </div>
         </section>
 
-        <!-- DEPOIMENTOS -->
+        <!-- DEPOIMENTOS (FUNDO TRANSPARENTE PARA RESPIRAR) -->
         <section id="depoimentos" data-aos="fade-up">
             <h2 style="text-align:center; font-size: clamp(1.8rem, 4vw, 2.2rem);" data-i18n="testi-title">O que dizem os clientes</h2>
             <div class="testi-grid">
@@ -563,10 +597,10 @@
             </div>
         </section>
 
-        <!-- ESTUDO DE CASO -->
-        <section id="pilar-google" data-aos="fade-up">
+        <!-- ESTUDO DE CASO (COM FAIXA VERDE) -->
+        <section id="pilar-google" class="glow-band band-green" data-aos="fade-up">
             <div class="case-study-box">
-                <span class="section-tag" data-i18n="case-tag">Passo 2 — Opcional</span>
+                <span class="section-tag" style="color: var(--google-green);" data-i18n="case-tag">Resultados Reais</span>
                 <h3 style="font-size: clamp(1.8rem, 4vw, 2.2rem); margin-bottom: 15px; font-weight: 800; color: #fff;" data-i18n="case-title">Estudo de caso real: de "quase ninguém chama" para "todo dia tem pedido"</h3>
                 <p style="color: var(--text-dim); font-size: 1.1rem;" data-i18n="case-desc">Um negócio local estava sem site e invisível no Google. Nós montamos uma landing objetiva, aplicamos SEO avançado e colocamos o WhatsApp no centro. Em poucos dias, já deu pra ver mais cliques e mais conversas iniciadas.</p>
                 
@@ -594,21 +628,21 @@
                 </div>
 
                 <div style="margin-top: 30px; text-align: left;">
-                    <a href="#" onclick="window.open(WHATSAPP_LINK)" style="color: var(--google-blue); font-weight: 600; text-decoration: underline; font-size: 1.05rem; transition: color 0.5s ease;" data-i18n="case-btn">Quer um exemplo do seu caso? Fale com nossos especialistas no WhatsApp.</a>
+                    <a href="#" onclick="window.open(WHATSAPP_LINK)" style="color: var(--google-green); font-weight: 600; text-decoration: underline; font-size: 1.05rem; transition: color 0.5s ease;" data-i18n="case-btn">Quer um exemplo do seu caso? Fale com nossos especialistas no WhatsApp.</a>
                 </div>
             </div>
         </section>
 
-        <!-- AGENDAMENTO -->
+        <!-- AGENDAMENTO (FUNDO TRANSPARENTE) -->
         <section id="agendamento" data-aos="fade-up">
             <div class="booking-container">
                 <div>
                     <h2 data-i18n="booking-title" style="font-size: clamp(1.8rem, 4vw, 2.5rem); margin-bottom: 15px;">Vamos alinhar os detalhes do seu projeto?</h2>
                     <p data-i18n="booking-desc" style="color: var(--text-dim); font-size: 1.1rem; margin-bottom: 25px;">Agende um bate-papo rápido. Vamos entender o que sua empresa precisa, tirar suas dúvidas sobre os planos e confirmar se somos a escolha certa para você.</p>
                     <ul style="margin-bottom: 30px; display: flex; flex-direction: column; gap: 12px; color: var(--text-main);">
-                        <li style="display: flex; align-items: center; gap: 10px;"><svg width="20" height="20" stroke="var(--google-blue)" stroke-width="2" fill="none" style="transition: stroke 0.5s ease;"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="booking-b1">Entender o seu negócio e objetivos</span></li>
-                        <li style="display: flex; align-items: center; gap: 10px;"><svg width="20" height="20" stroke="var(--google-blue)" stroke-width="2" fill="none" style="transition: stroke 0.5s ease;"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="booking-b2">Tirar dúvidas sobre planos e prazos</span></li>
-                        <li style="display: flex; align-items: center; gap: 10px;"><svg width="20" height="20" stroke="var(--google-blue)" stroke-width="2" fill="none" style="transition: stroke 0.5s ease;"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="booking-b3">Confirmar se nossa solução atende você</span></li>
+                        <li style="display: flex; align-items: center; gap: 10px;"><span class="neon-dot"></span> <span data-i18n="booking-b1">Entender o seu negócio e objetivos</span></li>
+                        <li style="display: flex; align-items: center; gap: 10px;"><span class="neon-dot"></span> <span data-i18n="booking-b2">Tirar dúvidas sobre planos e prazos</span></li>
+                        <li style="display: flex; align-items: center; gap: 10px;"><span class="neon-dot"></span> <span data-i18n="booking-b3">Confirmar se nossa solução atende você</span></li>
                     </ul>
                 </div>
                 
@@ -619,8 +653,8 @@
             </div>
         </section>
 
-        <!-- PLANOS -->
-        <section id="planos" class="pricing-section" data-aos="fade-up">
+        <!-- PLANOS (COM FAIXA AZUL) -->
+        <section id="planos" class="pricing-section glow-band band-blue" data-aos="fade-up">
             <h2 data-i18n="plan-title" style="font-size: clamp(2rem, 4vw, 2.5rem);">Escolha o caminho mais rápido pro seu negócio</h2>
             
             <div class="comparison-grid" data-aos="zoom-in">
@@ -654,11 +688,11 @@
                     
                     <!-- Lista com marcações visuais comparativas -->
                     <ul class="plan-list">
-                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="plan1-b1">Criação do site</span></li>
-                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="plan1-b2">Hospedagem incluída</span></li>
-                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="plan1-b3">Botão de WhatsApp</span></li>
-                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="plan1-b4">SEO avançado</span></li>
-                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="plan1-b5">Suporte</span></li>
+                        <li><span class="neon-dot"></span> <span data-i18n="plan1-b1">Criação do site</span></li>
+                        <li><span class="neon-dot"></span> <span data-i18n="plan1-b2">Hospedagem incluída</span></li>
+                        <li><span class="neon-dot"></span> <span data-i18n="plan1-b3">Botão de WhatsApp</span></li>
+                        <li><span class="neon-dot"></span> <span data-i18n="plan1-b4">SEO avançado</span></li>
+                        <li><span class="neon-dot"></span> <span data-i18n="plan1-b5">Suporte</span></li>
                         
                         <!-- Itens não inclusos (âncora) -->
                         <li style="opacity: 0.35;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> <span data-i18n="plan2-b2">Domínio próprio</span></li>
@@ -674,18 +708,18 @@
                     <div class="plan-price">R$ <span class="price-value">150</span> <span class="price-period" data-i18n="plan-period">/ mês</span></div>
                     <div class="plan-target" data-i18n="plan2-desc">Ideal para negócios físicos e clínicas que precisam apresentar uma estrutura completa, serviços detalhados e agendamento.</div>
                     <ul class="plan-list">
-                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> <span style="font-weight: bold;" data-i18n="plan2-b1">Tudo do plano padrão</span></li>
-                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="plan2-b2">Domínio próprio (compra pelo cliente)</span></li>
-                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="plan2-b3">Estrutura completa (até 3 páginas)</span></li>
-                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="plan2-b4">Agendamento integrado no site</span></li>
-                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="plan2-b5">Suporte prioritário</span></li>
+                        <li><span class="neon-dot"></span> <span style="font-weight: bold;" data-i18n="plan2-b1">Tudo do plano padrão</span></li>
+                        <li><span class="neon-dot"></span> <span data-i18n="plan2-b2">Domínio próprio (compra pelo cliente)</span></li>
+                        <li><span class="neon-dot"></span> <span data-i18n="plan2-b3">Estrutura completa (até 3 páginas)</span></li>
+                        <li><span class="neon-dot"></span> <span data-i18n="plan2-b4">Agendamento integrado no site</span></li>
+                        <li><span class="neon-dot"></span> <span data-i18n="plan2-b5">Suporte prioritário</span></li>
                     </ul>
                     <button onclick="window.open(WHATSAPP_LINK)" class="btn-green" data-i18n="plan2-btn">Quero o plano profissional</button>
                 </div>
             </div>
         </section>
 
-        <!-- FORMULÁRIO E FAQ -->
+        <!-- FORMULÁRIO E FAQ (FUNDO TRANSPARENTE) -->
         <section id="contato-faq" data-aos="fade-up">
             <div class="form-faq-grid">
                 
@@ -1056,18 +1090,18 @@
                 "recv-title": "O que entra no seu site (sem surpresas)", "recv-desc": "Tudo pronto pra gerar contato e passar confiança — principalmente no celular.",
                 "recv-1": "Design profissional do seu nicho", "recv-2": "Mobile perfeito + carregamento rápido", "recv-3": "Botão WhatsApp em destaque", "recv-4": "Seção de serviços + fotos + depoimentos", "recv-5": "Endereço e horários", "recv-6": "SEO básico (Google entende seu site)", "recv-7": "Publicação + ajustes finais pós-ar", "recv-btn": "Quero isso no meu negócio (WhatsApp)",
                 "zero-title": "Não tem logo, textos ou imagens prontas? Sem problemas.", "zero-desc": "Nós criamos a sua presença digital <strong>literalmente do zero</strong>. Definimos as melhores cores, imagens profissionais e textos que vendem para o seu nicho. Você só precisa tomar a decisão, e nós colocamos a sua empresa no ar em <strong>no máximo 3 dias</strong>.",
-                "step1-tag": "Passo 1", "step1-title": "Seu site vira sua vitrine que vende 24h", "step1-desc": "Sem site, você perde cliente todo dia. Nós criamos uma página bonita, rápida e objetiva — com botão de WhatsApp e tudo que o cliente precisa pra confiar e chamar.",
+                "step1-tag": "O Seu Novo Site", "step1-title": "Seu site vira sua vitrine que vende 24h", "step1-desc": "Sem site, você perde cliente todo dia. Nós criamos uma página bonita, rápida e objetiva — com botão de WhatsApp e tudo que o cliente precisa pra confiar e chamar.",
                 "step1-b1": "1 página completa (tipo \"landing\")", "step1-b2": "focada em conversão (WhatsApp)", "step1-b3": "pronta pra celular", "step1-b4": "com portfólio/fotos e prova social", "step1-btn": "Envie o seu nicho e nossa equipe enviará um modelo",
                 "port-title": "Portfólio (demos reais)", "port-desc": "Estes são exemplos dos sites que desenvolvemos. Quer um para o seu nicho? Nossa equipe envia um modelo parecido.", "port-btn": "Quero um site assim (WhatsApp)", "port-item-btn": "Quero um igual",
                 "testi-title": "O que dizem os clientes", "testi-1": "\"Ficou profissional e começaram a chamar no WhatsApp.\"", "testi-1-author": "— João, Barbearia (São Paulo)", "testi-2": "\"Entrega rápida e ótimo no celular.\"", "testi-2-author": "— Dra. Ana, Clínica (Curitiba)", "testi-3": "\"Eu não tinha site. Agora passa confiança.\"", "testi-3-author": "— Marcos, Advogado (Rio de Janeiro)",
-                "case-tag": "Passo 2 — Opcional", "case-title": "Estudo de caso real: de \"quase ninguém chama\" para \"todo dia tem pedido\"", "case-desc": "Um negócio local estava sem site e invisível no Google. Nós montamos uma landing objetiva, aplicamos SEO avançado e colocamos o WhatsApp no centro. Em poucos dias, já deu pra ver mais cliques e mais conversas iniciadas.",
+                "case-tag": "Resultados Reais", "case-title": "Estudo de caso real: de \"quase ninguém chama\" para \"todo dia tem pedido\"", "case-desc": "Um negócio local estava sem site e invisível no Google. Nós montamos uma landing objetiva, aplicamos SEO avançado e colocamos o WhatsApp no centro. Em poucos dias, já deu pra ver mais cliques e mais conversas iniciadas.",
                 "case-metric1": "Cliques no Perfil", "case-metric2": "Chamadas Iniciadas", "case-before-title": "Antes", "case-before-desc": "Sem site, pouca presença nas buscas, pouca ação do cliente", "case-after-title": "Depois", "case-after-desc": "Site claro, botão WhatsApp, SEO otimizado, aparência profissional", "case-btn": "Quer um exemplo do seu caso? Fale com nossos especialistas no WhatsApp.",
                 "booking-title": "Vamos alinhar os detalhes do seu projeto?", "booking-desc": "Agende um bate-papo rápido. Vamos entender o que sua empresa precisa, tirar suas dúvidas sobre os planos e confirmar se somos a escolha certa para você.", "booking-b1": "Entender o seu negócio e objetivos", "booking-b2": "Tirar dúvidas sobre planos e prazos", "booking-b3": "Confirmar se nossa solução atende você",
                 "comp-old-title": "Agência Tradicional", "comp-old-1": "Criação do site", "comp-old-1-v": "R$ 2.500+", "comp-old-2": "Hospedagem (Anual)", "comp-old-2-v": "R$ 400+", "comp-old-3": "Manutenção (Hora)", "comp-old-3-v": "R$ 150+", "comp-old-total": "Custo no 1º ano:", "comp-old-total-v": "Mais de R$ 3.000",
                 "comp-new-title": "Assinatura HubSymples", "comp-new-1": "Criação Premium", "comp-new-1-v": "R$ 0 (Incluso)", "comp-new-2": "Hospedagem Rápida", "comp-new-2-v": "R$ 0 (Inclusa)", "comp-new-3": "Suporte Contínuo", "comp-new-3-v": "R$ 0 (Incluso)", "comp-new-total": "Seu custo:", "comp-new-total-v": "Apenas a mensalidade",
                 "plan-title": "Escolha o caminho mais rápido pro seu negócio", "plan-rec": "Mais Escolhido", "plan-period": "/ mês",
                 "plan1-title": "Plano Padrão", "plan1-desc": "Ideal para autônomos e prestadores de serviços que buscam um site direto e focado em receber chamadas no WhatsApp.", "plan1-b1": "Criação do site", "plan1-b2": "Hospedagem incluída", "plan1-b3": "Botão de WhatsApp", "plan1-b4": "SEO avançado", "plan1-b5": "Suporte", "plan1-btn": "Criar meu site",
-                "plan2-title": "Plano Profissional", "plan2-desc": "Ideal para negócios físicos e clínicas que precisam apresentar uma estrutura completa, serviços detalhados e agendamento.", "plan2-b1": "Tudo do plano padrão", "plan2-b2": "Domínio próprio", "plan2-b3": "Estrutura completa (até 3 páginas)", "plan2-b4": "Agendamento integrado no site", "plan2-b5": "Suporte prioritário", "plan2-btn": "Quero o plano profissional",
+                "plan2-title": "Plano Profissional", "plan2-desc": "Ideal para negócios físicos e clínicas que precisam apresentar uma estrutura completa, serviços detalhados e agendamento.", "plan2-b1": "Tudo do plano padrão", "plan2-b2": "Domínio próprio (compra pelo cliente)", "plan2-b3": "Estrutura completa (até 3 páginas)", "plan2-b4": "Agendamento integrado no site", "plan2-b5": "Suporte prioritário", "plan2-btn": "Quero o plano profissional",
                 "sim-title": "Simulador rápido (1 min)", "sim-desc": "Responda e a nossa equipe indicará o melhor pacote, abrindo já o seu WhatsApp com a mensagem pronta.", "sim-btn-wa": "Quero meu site no WhatsApp", "sim-btn-restart": "Recomeçar",
                 "faq-main-title": "Perguntas Frequentes", "form-title": "Ainda tem dúvidas? Receba um exemplo grátis.", "form-desc": "Preencha abaixo bem rápido que enviamos um modelo focado no seu nicho.", "form-name": "Seu Nome", "form-wpp": "WhatsApp (com DDD)", "form-city": "Sua Cidade", "form-niche": "Seu Nicho de Atuação", "form-btn": "Quero um exemplo do meu site",
                 "form-secure": "🔒 Seus dados estão seguros. Não enviamos spam. Tempo médio de resposta: 2 a 5 minutos.",
@@ -1080,7 +1114,7 @@
                 "niches-title": "Especialistas em criar sites para:", "niches-list": "Advogados • Clínicas de Estética • Odontologia • Restaurantes • Imobiliárias • Prestadores de Serviço • Contabilidade • Autônomos",
                 "footer-text": "O Seu Hub de Soluções Digitais.", "footer-motto": "Seu site pronto pra vender.", "footer-secure": "Pagamento 100% seguro processado por:",
                 "action-sim": "Simulador", "action-wa": "WhatsApp", "hero-btn1": "Quero meu site no WhatsApp", "hero-btn2": "Ver portfólio (demos reais)",
-                "badge-1": "✅ Sem enrolação", "badge-2": "✅ Mobile rápido", "badge-3": "✅ Você aprova antes",
+                "badge-1": "Sem enrolação", "badge-2": "Mobile rápido", "badge-3": "Você aprova antes",
                 "mobile-sticky": "Falar no WhatsApp", "fomo-time": "Neste momento"
             },
             en: {
@@ -1088,10 +1122,10 @@
                 "theme-title": "Test your niche live", "theme-desc": "Type your field of work or choose an option to see the site adapt for you.", "theme-placeholder": "Ex: Barbershop, Dentist...", "theme-btn": "Simulate",
                 "recv-title": "What's included in your site (no surprises)", "recv-desc": "Everything ready to generate leads and build trust — especially on mobile.", "recv-1": "Professional design for your niche", "recv-2": "Perfect mobile + fast loading", "recv-3": "Highlighted WhatsApp button", "recv-4": "Services section + photos + reviews", "recv-5": "Address and hours", "recv-6": "Basic SEO (Google reads your site)", "recv-7": "Publishing + post-launch tweaks", "recv-btn": "I want this for my business",
                 "zero-title": "Don't have a logo, texts, or images ready? No problem.", "zero-desc": "We create your digital presence <strong>literally from scratch</strong>. We define the best colors, professional images, and copy that sells for your niche. You just need to make the decision, and we will have your business online in <strong>up to 3 days</strong>.",
-                "step1-tag": "Step 1", "step1-title": "Your site becomes a 24/7 sales window", "step1-desc": "Without a site, you lose clients daily. We build a beautiful, fast, and objective page — with a WhatsApp button and everything needed for trust.", "step1-b1": "1 complete page (landing style)", "step1-b2": "focused on conversion (WhatsApp)", "step1-b3": "mobile-ready", "step1-b4": "with portfolio/photos and social proof", "step1-btn": "Send us your niche and our team will show you a model",
+                "step1-tag": "Your New Website", "step1-title": "Your site becomes a 24/7 sales window", "step1-desc": "Without a site, you lose clients daily. We build a beautiful, fast, and objective page — with a WhatsApp button and everything needed for trust.", "step1-b1": "1 complete page (landing style)", "step1-b2": "focused on conversion (WhatsApp)", "step1-b3": "mobile-ready", "step1-b4": "with portfolio/photos and social proof", "step1-btn": "Send us your niche and our team will show you a model",
                 "port-title": "Portfolio (real demos)", "port-desc": "These are examples of the sites we build. Want one in your niche? Our team will send you a similar model.", "port-btn": "I want a site like this", "port-item-btn": "I want one like this",
                 "testi-title": "What our clients say", "testi-1": "\"It looks professional and I started getting WhatsApp calls.\"", "testi-1-author": "— John, Barbershop", "testi-2": "\"Fast delivery and looks great on mobile.\"", "testi-2-author": "— Dr. Anna, Clinic", "testi-3": "\"I had no website. Now I pass trust to my clients.\"", "testi-3-author": "— Mark, Lawyer",
-                "case-tag": "Step 2 — Optional", "case-title": "Real case study: from 'almost no calls' to 'daily orders'", "case-desc": "A local business had no site and was invisible on Google. We built an objective landing page, applied advanced SEO, and put WhatsApp in the center. In a few days, they saw more clicks and more chats started.", "case-metric1": "Profile Clicks", "case-metric2": "Calls Started", "case-before-title": "Before", "case-before-desc": "No site, low search presence, low client action", "case-after-title": "After", "case-after-desc": "Clear site, WhatsApp button, optimized SEO, pro look", "case-btn": "Want an example for your case? Talk to our experts on WhatsApp.",
+                "case-tag": "Real Results", "case-title": "Real case study: from 'almost no calls' to 'daily orders'", "case-desc": "A local business had no site and was invisible on Google. We built an objective landing page, applied advanced SEO, and put WhatsApp in the center. In a few days, they saw more clicks and more chats started.", "case-metric1": "Profile Clicks", "case-metric2": "Calls Started", "case-before-title": "Before", "case-before-desc": "No site, low search presence, low client action", "case-after-title": "After", "case-after-desc": "Clear site, WhatsApp button, optimized SEO, pro look", "case-btn": "Want an example for your case? Talk to our experts on WhatsApp.",
                 "booking-title": "Let's align the details of your project?", "booking-desc": "Schedule a quick chat. We'll understand what your business needs, answer your questions about the plans, and confirm if we're the right fit for you.", "booking-b1": "Understand your business and goals", "booking-b2": "Answer questions about plans and deadlines", "booking-b3": "Confirm if our solution fits your needs",
                 "comp-old-title": "Traditional Agency", "comp-old-1": "Website creation", "comp-old-1-v": "$ 500+", "comp-old-2": "Hosting (Annual)", "comp-old-2-v": "$ 100+", "comp-old-3": "Maintenance (Hourly)", "comp-old-3-v": "$ 50+", "comp-old-total": "1st year cost:", "comp-old-total-v": "Over $ 600",
                 "comp-new-title": "HubSymples Subscription", "comp-new-1": "Premium Creation", "comp-new-1-v": "$ 0 (Included)", "comp-new-2": "Fast Hosting", "comp-new-2-v": "$ 0 (Included)", "comp-new-3": "Ongoing Support", "comp-new-3-v": "$ 0 (Included)", "comp-new-total": "Your cost:", "comp-new-total-v": "Only the monthly fee",
@@ -1110,7 +1144,7 @@
                 "niches-title": "Experts in creating sites for:", "niches-list": "Lawyers • Aesthetic Clinics • Dentistry • Restaurants • Real Estate • Service Providers • Accounting",
                 "footer-text": "Your Digital Solutions Hub.", "footer-motto": "Your site ready to sell.", "footer-secure": "100% secure payment processed by:",
                 "action-sim": "Simulator", "action-wa": "WhatsApp", "hero-btn1": "I want my website via WhatsApp", "hero-btn2": "View portfolio (real demos)",
-                "badge-1": "✅ No fluff", "badge-2": "✅ Fast mobile", "badge-3": "✅ You approve first",
+                "badge-1": "No fluff", "badge-2": "Fast mobile", "badge-3": "You approve first",
                 "mobile-sticky": "Chat on WhatsApp", "fomo-time": "Just now"
             },
             es: {
@@ -1118,10 +1152,10 @@
                 "theme-title": "Prueba tu nicho en vivo", "theme-desc": "Escribe tu sector o elige una opción para ver cómo el sitio se adapta para ti.", "theme-placeholder": "Ej: Barbería, Dentista...", "theme-btn": "Simular",
                 "recv-title": "Lo que incluye tu sitio (sin sorpresas)", "recv-desc": "Todo listo para generar contactos y transmitir confianza — especialmente en celular.", "recv-1": "Diseño profesional para tu nicho", "recv-2": "Móvil perfecto + carga rápida", "recv-3": "Botón WhatsApp destacado", "recv-4": "Sección de servicios + fotos + reseñas", "recv-5": "Dirección y horarios", "recv-6": "SEO básico (Google lee tu sitio)", "recv-7": "Publicación + ajustes finales", "recv-btn": "Quiero esto para mi negocio",
                 "zero-title": "¿No tienes logo, textos o imágenes listas? Sin problemas.", "zero-desc": "Creamos tu presencia digital <strong>literalmente desde cero</strong>. Definimos los mejores colores, imágenes profesionales y textos que venden para tu nicho. Solo necesitas tomar la decisión, y pondremos tu empresa en línea en <strong>máximo 3 días</strong>.",
-                "step1-tag": "Paso 1", "step1-title": "Tu sitio será tu vitrina 24/7", "step1-desc": "Sin sitio web pierdes clientes a diario. Armamos una página bonita, rápida y objetiva — con botón de WhatsApp y lo necesario para generar confianza.", "step1-b1": "1 página completa (tipo \"landing\")", "step1-b2": "enfocada en conversión (WhatsApp)", "step1-b3": "lista para celular", "step1-b4": "con portafolio/fotos y prueba social", "step1-btn": "Envíanos tu nicho y nuestro equipo te mostrará un modelo",
+                "step1-tag": "Tu Nuevo Sitio", "step1-title": "Tu sitio será tu vitrina 24/7", "step1-desc": "Sin sitio web pierdes clientes a diario. Armamos una página bonita, rápida y objetiva — con botón de WhatsApp y lo necesario para generar confianza.", "step1-b1": "1 página completa (tipo \"landing\")", "step1-b2": "enfocada en conversión (WhatsApp)", "step1-b3": "lista para celular", "step1-b4": "con portafolio/fotos y prueba social", "step1-btn": "Envíanos tu nicho y nuestro equipo te mostrará un modelo",
                 "port-title": "Portafolio (demos reales)", "port-desc": "Estos son ejemplos de los sitios que desarrollamos. ¿Quieres uno en tu nicho? Nuestro equipo te enviará un modelo similar.", "port-btn": "Quiero un sitio así (WhatsApp)", "port-item-btn": "Quiero uno igual",
                 "testi-title": "Lo que dicen los clientes", "testi-1": "\"Quedó profesional y empezaron a llamar al WhatsApp.\"", "testi-1-author": "— Juan, Barbería", "testi-2": "\"Entrega rápida y excelente en celular.\"", "testi-2-author": "— Dra. Ana, Clínica", "testi-3": "\"No tenía sitio web. Ahora transmito confianza.\"", "testi-3-author": "— Marcos, Abogado",
-                "case-tag": "Paso 2 — Opcional", "case-title": "Caso real: de \"casi nadie llama\" a \"pedidos diarios\"", "case-desc": "Un negocio local no tenía sitio web y era invisible en Google. Armamos una landing objetiva, aplicamos SEO avanzado y pusimos WhatsApp en el centro. En pocos días, hubo más clics y más chats iniciados.", "case-metric1": "Clics en el Perfil", "case-metric2": "Llamadas Iniciadas", "case-before-title": "Antes", "case-before-desc": "Sin sitio, baja presencia en búsquedas, poca acción", "case-after-title": "Después", "case-after-desc": "Sitio claro, botón WhatsApp, SEO optimizado, aspecto pro", "case-btn": "¿Quieres un ejemplo para tu caso? Habla con nuestros expertos en WhatsApp.",
+                "case-tag": "Resultados Reales", "case-title": "Caso real: de \"casi nadie llama\" a \"pedidos diarios\"", "case-desc": "Un negocio local no tenía sitio web y era invisible en Google. Armamos una landing objetiva, aplicamos SEO avanzado y pusimos WhatsApp en el centro. En pocos días, hubo más clics y más chats iniciados.", "case-metric1": "Clics en el Perfil", "case-metric2": "Llamadas Iniciadas", "case-before-title": "Antes", "case-before-desc": "Sin sitio, baja presencia en búsquedas, poca acción", "case-after-title": "Después", "case-after-desc": "Sitio claro, botón WhatsApp, SEO optimizado, aspecto pro", "case-btn": "¿Quieres un ejemplo para tu caso? Habla con nuestros expertos en WhatsApp.",
                 "booking-title": "¿Vamos a alinear los detalles de tu proyecto?", "booking-desc": "Agenda una charla rápida. Entenderemos qué necesita tu empresa, aclararemos dudas sobre los planes y confirmaremos si somos la opción ideal para ti.", "booking-b1": "Entender tu negocio y objetivos", "booking-b2": "Aclarar dudas sobre planes y plazos", "booking-b3": "Confirmar si nuestra solución se adapta a ti",
                 "comp-old-title": "Agencia Tradicional", "comp-old-1": "Creación del sitio", "comp-old-1-v": "$ 500+", "comp-old-2": "Hosting (Anual)", "comp-old-2-v": "$ 100+", "comp-old-3": "Mantenimiento (Hora)", "comp-old-3-v": "$ 50+", "comp-old-total": "Costo 1er año:", "comp-old-total-v": "Más de $ 600",
                 "comp-new-title": "Suscripción HubSymples", "comp-new-1": "Creación Premium", "comp-new-1-v": "$ 0 (Incluido)", "comp-new-2": "Hosting Rápido", "comp-new-2-v": "$ 0 (Incluido)", "comp-new-3": "Soporte Continuo", "comp-new-3-v": "$ 0 (Incluido)", "comp-new-total": "Tu costo:", "comp-new-total-v": "Solo la mensualidad",
@@ -1140,7 +1174,7 @@
                 "niches-title": "Expertos en crear sitios para:", "niches-list": "Abogados • Clínicas Estéticas • Odontología • Restaurantes • Inmobiliarias • Proveedores de Servicios • Contadores",
                 "footer-text": "Tu Hub de Soluciones Digitales.", "footer-motto": "Tu sitio listo para vender.", "footer-secure": "Pago 100% seguro procesado por:",
                 "action-sim": "Simulador", "action-wa": "WhatsApp", "hero-btn1": "Quiero mi sitio en WhatsApp", "hero-btn2": "Ver portafolio (demos reales)",
-                "badge-1": "✅ Sin rodeos", "badge-2": "✅ Móvil rápido", "badge-3": "✅ Apruebas antes",
+                "badge-1": "Sin rodeos", "badge-2": "Móvil rápido", "badge-3": "Apruebas antes",
                 "mobile-sticky": "Hablar en WhatsApp", "fomo-time": "En este momento"
             }
         };
@@ -1225,6 +1259,5 @@
     </script>
 </body>
 </html>
-
 
 
