@@ -124,21 +124,22 @@
 
         /* BUTTONS ATUALIZADOS PARA VERDE WHATSAPP */
         .btn { display: inline-flex; align-items: center; justify-content: center; padding: 14px 28px; border-radius: 8px; font-weight: 600; cursor: pointer; transition: var(--transition); font-size: 1rem; border: none; gap: 10px; text-align: center; text-decoration: none; }
-        .btn-primary { background: linear-gradient(135deg, var(--whatsapp), var(--whatsapp-dark)); color: white; transition: background 0.5s ease, transform 0.3s; }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4); }
-        .btn-outline { background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); color: var(--text-main); border: 1px solid var(--glass-border); }
-        .btn-outline:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2); }
+        .btn-primary { background: linear-gradient(135deg, var(--whatsapp), var(--whatsapp-dark)); color: white; transition: background 0.5s ease, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .btn-primary:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4); }
+        .btn-outline { background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); color: var(--text-main); border: 1px solid var(--glass-border); transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .btn-outline:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2); transform: translateY(-3px) scale(1.02); box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
 
         /* HEADER & LANGUAGE SWITCHER */
         header { position: fixed; top: 0; width: 100%; z-index: 1000; background: var(--bg-nav); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border-bottom: 1px solid var(--glass-border); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); } 
         .nav-container { max-width: var(--container); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 12px 20px; }
-        .logo-container { display: flex; align-items: center; gap: 12px; cursor: pointer; }
+        .logo-container { display: flex; align-items: center; gap: 12px; cursor: pointer; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
         
-        /* EFEITO HOVER NA LOGO PRINCIPAL */
-        .logo-img { height: 90px; width: auto; object-fit: contain; opacity: 0.8; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
-        .logo-container:hover .logo-img { opacity: 1; filter: drop-shadow(0 0 12px rgba(26, 115, 232, 0.5)); transform: scale(1.05); }
+        /* EFEITO HOVER E AUMENTO NA LOGO PRINCIPAL */
+        .logo-img { height: 110px; width: auto; object-fit: contain; opacity: 0.85; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .logo-container:hover .logo-img { opacity: 1; filter: drop-shadow(0 0 15px rgba(26, 115, 232, 0.6)); transform: scale(1.08) rotate(-2deg); }
         
-        .logo-text { font-size: 1.4rem; font-weight: 800; letter-spacing: -0.5px; background: linear-gradient(to right, var(--google-blue), var(--google-green)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: block; transition: background 0.5s ease; }
+        .logo-text { font-size: 1.7rem; font-weight: 800; letter-spacing: -0.5px; background: linear-gradient(to right, var(--google-blue), var(--google-green)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: block; transition: all 0.4s ease; }
+        .logo-container:hover .logo-text { filter: drop-shadow(0 0 8px rgba(26, 115, 232, 0.3)); transform: scale(1.02); }
         
         /* MENU LINKS - APPLE VISION PRO */
         .nav-menu { display: flex; gap: 5px; align-items: center; }
@@ -182,13 +183,14 @@
         .hero-btns { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; }
         @media (min-width: 992px) { .hero-btns { justify-content: flex-start; } }
 
-        .hero-visual { display: flex; flex-direction: column; gap: 15px; }
-        .hero-badge-card { background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border: 1px solid var(--glass-border); padding: 20px 25px; border-radius: 20px; font-size: 1.1rem; font-weight: 600; display: flex; align-items: center; gap: 15px; box-shadow: 0 8px 32px rgba(0,0,0,0.1); transition: transform 0.3s; }
-        .hero-badge-card:hover { transform: translateX(-10px); border-color: var(--google-blue); }
+        .hero-visual { display: flex; flex-direction: column; gap: 15px; perspective: 1000px; }
+        .hero-badge-card { background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border: 1px solid var(--glass-border); padding: 20px 25px; border-radius: 20px; font-size: 1.1rem; font-weight: 600; display: flex; align-items: center; gap: 15px; box-shadow: 0 8px 32px rgba(0,0,0,0.1); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .hero-badge-card:hover { transform: translateY(-5px) scale(1.04); border-color: var(--google-blue); box-shadow: 0 15px 40px rgba(26, 115, 232, 0.2); }
         .hero-badge-card .neon-dot { width: 12px; height: 12px; }
 
         /* SIMULADOR DE NICHOS */
-        .theme-container { background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border: 1px solid var(--glass-border); border-radius: 24px; padding: clamp(25px, 5vw, 40px); max-width: 800px; margin: 0 auto 40px; box-shadow: 0 8px 32px rgba(0,0,0,0.2); text-align: center; transition: border-color 0.5s ease; }
+        .theme-container { background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border: 1px solid var(--glass-border); border-radius: 24px; padding: clamp(25px, 5vw, 40px); max-width: 800px; margin: 0 auto 40px; box-shadow: 0 8px 32px rgba(0,0,0,0.2); text-align: center; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .theme-container:hover { transform: translateY(-5px) scale(1.02); box-shadow: 0 15px 50px rgba(0,0,0,0.3); border-color: rgba(255,255,255,0.15); }
         .theme-input-group { display: flex; gap: 10px; margin-bottom: 20px; justify-content: center; }
         .theme-input { flex: 1; max-width: 400px; padding: 14px 20px; border-radius: 12px; border: 1px solid var(--glass-border); background: rgba(255,255,255,0.05); color: white; font-size: 1rem; outline: none; transition: 0.3s; }
         .theme-input:focus { border-color: var(--google-blue); background: rgba(255,255,255,0.1); }
@@ -198,18 +200,19 @@
 
         /* O QUE VOCÊ RECEBE */
         .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; margin-top: 40px; text-align: left; }
-        .feature-card { background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border: 1px solid var(--glass-border); padding: 20px; border-radius: 16px; display: flex; align-items: flex-start; gap: 15px; transition: var(--transition); box-shadow: 0 4px 30px rgba(0,0,0,0.1); }
-        .feature-card:hover { background: rgba(255,255,255,0.08); border-color: var(--google-blue); transform: translateY(-3px); }
+        .feature-card { background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border: 1px solid var(--glass-border); padding: 20px; border-radius: 16px; display: flex; align-items: flex-start; gap: 15px; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 30px rgba(0,0,0,0.1); }
+        .feature-card:hover { background: rgba(255,255,255,0.08); border-color: var(--google-blue); transform: translateY(-8px) scale(1.04); box-shadow: 0 15px 40px rgba(26, 115, 232, 0.15); }
         .feature-icon { font-size: 1.5rem; flex-shrink: 0; }
 
-        .zero-to-live-banner { background: linear-gradient(135deg, rgba(26, 115, 232, 0.08), rgba(168, 85, 247, 0.03)); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border: 1px solid rgba(26, 115, 232, 0.4); border-radius: 20px; padding: clamp(25px, 5vw, 40px); margin-top: 50px; text-align: center; box-shadow: 0 10px 40px rgba(26, 115, 232, 0.15), inset 0 0 20px rgba(26, 115, 232, 0.05); display: flex; flex-direction: column; gap: 15px; align-items: center; transition: all 0.4s ease; }
-        .zero-to-live-banner:hover { transform: translateY(-5px); border-color: rgba(26, 115, 232, 0.8); box-shadow: 0 15px 50px rgba(26, 115, 232, 0.25), inset 0 0 20px rgba(26, 115, 232, 0.1); }
+        .zero-to-live-banner { background: linear-gradient(135deg, rgba(26, 115, 232, 0.08), rgba(168, 85, 247, 0.03)); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border: 1px solid rgba(26, 115, 232, 0.4); border-radius: 20px; padding: clamp(25px, 5vw, 40px); margin-top: 50px; text-align: center; box-shadow: 0 10px 40px rgba(26, 115, 232, 0.15), inset 0 0 20px rgba(26, 115, 232, 0.05); display: flex; flex-direction: column; gap: 15px; align-items: center; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .zero-to-live-banner:hover { transform: translateY(-8px) scale(1.02); border-color: rgba(26, 115, 232, 0.8); box-shadow: 0 20px 50px rgba(26, 115, 232, 0.25), inset 0 0 20px rgba(26, 115, 232, 0.1); }
         .zero-to-live-banner h3 { font-size: clamp(1.4rem, 3vw, 1.8rem); color: #fff; line-height: 1.3; }
         .zero-to-live-banner p { font-size: 1.1rem; color: var(--text-main); max-width: 850px; line-height: 1.6; }
         .zero-to-live-banner strong { color: var(--google-blue); font-weight: 800; font-size: 1.15rem; }
 
         /* PORTFOLIO */
-        .browser-mockup { background: rgba(10, 12, 16, 0.4); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border-radius: 12px; border: 1px solid var(--glass-border); overflow: hidden; box-shadow: 0 8px 32px 0 rgba(0,0,0,0.3); width: 100%; max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; transition: border-color 0.5s ease; }
+        .browser-mockup { background: rgba(10, 12, 16, 0.4); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border-radius: 12px; border: 1px solid var(--glass-border); overflow: hidden; box-shadow: 0 8px 32px 0 rgba(0,0,0,0.3); width: 100%; max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .browser-mockup:hover { transform: translateY(-10px) scale(1.02); box-shadow: 0 25px 60px rgba(0,0,0,0.5); border-color: var(--google-purple); }
         .browser-header { background: rgba(255, 255, 255, 0.05); padding: 10px 15px; display: flex; gap: 8px; border-bottom: 1px solid var(--glass-border); align-items: center; }
         .browser-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
         .dot-r { background: #ff5f56; } .dot-y { background: #ffbd2e; } .dot-g { background: #27c93f; }
@@ -228,33 +231,40 @@
         .carousel-btn.next { right: -22px; }
         
         /* DEPOIMENTOS */
-        .testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 30px; }
-        .testi-card { background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border: 1px solid var(--glass-border); border-radius: 16px; padding: 25px; box-shadow: 0 8px 32px 0 rgba(0,0,0,0.2); transition: border-color 0.5s ease; }
+        .testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 30px; perspective: 1000px; }
+        .testi-card { background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border: 1px solid var(--glass-border); border-radius: 16px; padding: 25px; box-shadow: 0 8px 32px 0 rgba(0,0,0,0.2); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .testi-card:hover { transform: translateY(-8px) scale(1.04); box-shadow: 0 15px 45px rgba(0,0,0,0.4); border-color: rgba(255,255,255,0.2); }
         .testi-quote { color: #fff; font-size: 1.05rem; font-style: italic; line-height: 1.5; margin-bottom: 15px; }
         .testi-author { color: var(--google-blue); font-weight: 700; font-size: 0.9rem; transition: color 0.5s ease; }
 
         .section-tag { color: var(--google-blue); font-weight: 800; text-transform: uppercase; font-size: 0.85rem; margin-bottom: 15px; display: block; letter-spacing: 1px; transition: color 0.5s ease; }
 
         /* ESTUDO DE CASO */
-        .case-study-box { background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border: 1px solid var(--glass-border); border-radius: 24px; padding: clamp(30px, 6vw, 50px); margin-top: 40px; position: relative; overflow: hidden; box-shadow: 0 8px 32px 0 rgba(0,0,0,0.2); transition: border-color 0.5s ease; }
+        .case-study-box { background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border: 1px solid var(--glass-border); border-radius: 24px; padding: clamp(30px, 6vw, 50px); margin-top: 40px; position: relative; overflow: hidden; box-shadow: 0 8px 32px 0 rgba(0,0,0,0.2); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .case-study-box:hover { transform: translateY(-6px) scale(1.01); box-shadow: 0 15px 50px rgba(0,0,0,0.3); border-color: rgba(255,255,255,0.2); }
         .case-study-box::before { content: ''; position: absolute; top: 0; left: 0; width: 6px; height: 100%; background: linear-gradient(to bottom, var(--google-red), var(--google-green)); }
         .case-grid { display: grid; grid-template-columns: 1fr; gap: 20px; margin-top: 25px; }
         @media (min-width: 600px) { .case-grid { grid-template-columns: 1fr 1fr; } }
-        .case-step { background: rgba(255,255,255,0.03); padding: 25px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.05); }
+        .case-step { background: rgba(255,255,255,0.03); padding: 25px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.05); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .case-step:hover { transform: translateY(-5px) scale(1.03); box-shadow: 0 12px 30px rgba(0,0,0,0.25); background: rgba(255,255,255,0.05); }
 
         /* AGENDAMENTO */
-        .booking-container { background: rgba(255, 255, 255, 0.02); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border: 1px solid var(--glass-border); border-radius: 24px; padding: clamp(30px, 5vw, 60px); display: grid; grid-template-columns: 1fr; gap: 40px; align-items: center; position: relative; overflow: hidden; margin-top: 60px; box-shadow: 0 8px 32px 0 rgba(0,0,0,0.2); transition: border-color 0.5s ease; }
+        .booking-container { background: rgba(255, 255, 255, 0.02); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border: 1px solid var(--glass-border); border-radius: 24px; padding: clamp(30px, 5vw, 60px); display: grid; grid-template-columns: 1fr; gap: 40px; align-items: center; position: relative; overflow: hidden; margin-top: 60px; box-shadow: 0 8px 32px 0 rgba(0,0,0,0.2); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .booking-container:hover { transform: translateY(-5px) scale(1.01); box-shadow: 0 15px 45px rgba(0,0,0,0.3); border-color: rgba(255,255,255,0.2); }
         @media (min-width: 850px) { .booking-container { grid-template-columns: 1fr 1fr; } }
         
         /* ANCORAGEM E PLANOS */
         .pricing-section { text-align: center; }
-        .comparison-grid { display: grid; grid-template-columns: 1fr; gap: 30px; margin: 50px auto 60px; max-width: 900px; text-align: left; }
+        .comparison-grid { display: grid; grid-template-columns: 1fr; gap: 30px; margin: 50px auto 60px; max-width: 900px; text-align: left; perspective: 1000px; }
         @media (min-width: 800px) { .comparison-grid { grid-template-columns: 1fr 1fr; } }
         
-        .comp-card { padding: 30px; border-radius: 24px; background: var(--glass-bg); backdrop-filter: var(--glass-blur); border: 1px solid var(--glass-border); box-shadow: 0 10px 30px rgba(0,0,0,0.15); display: flex; flex-direction: column; }
+        .comp-card { padding: 30px; border-radius: 24px; background: var(--glass-bg); backdrop-filter: var(--glass-blur); border: 1px solid var(--glass-border); box-shadow: 0 10px 30px rgba(0,0,0,0.15); display: flex; flex-direction: column; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
         .comp-card.old-way { border-color: rgba(234, 67, 53, 0.3); background: linear-gradient(180deg, rgba(234, 67, 53, 0.05), transparent); }
+        .comp-card.old-way:hover { transform: translateY(-8px) scale(1.03); box-shadow: 0 20px 40px rgba(234, 67, 53, 0.15); border-color: rgba(234, 67, 53, 0.6); }
         .comp-card.old-way h4 { color: #ff6b6b; font-size: 1.3rem; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+        
         .comp-card.new-way { border-color: var(--google-green); background: linear-gradient(180deg, rgba(52, 168, 83, 0.1), transparent); box-shadow: 0 15px 40px rgba(52, 168, 83, 0.15); position: relative; }
+        .comp-card.new-way:hover { transform: translateY(-8px) scale(1.03); box-shadow: 0 25px 50px rgba(52, 168, 83, 0.25); border-color: #4ade80; }
         .comp-card.new-way h4 { color: var(--google-green); font-size: 1.3rem; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
         .comp-card.new-way::before { content: 'ECONOMIA REAL'; position: absolute; top: -12px; right: 20px; background: var(--google-green); color: white; font-size: 0.75rem; font-weight: 800; padding: 4px 12px; border-radius: 20px; }
 
@@ -268,13 +278,13 @@
         .old-way .comp-total span:last-child { color: #ff6b6b; font-size: 1.4rem; }
         .new-way .comp-total span:last-child { color: var(--google-green); font-size: 1.2rem; }
 
-        .plans-grid { display: grid; grid-template-columns: 1fr; gap: 40px; margin-top: 60px; text-align: left; }
+        .plans-grid { display: grid; grid-template-columns: 1fr; gap: 40px; margin-top: 60px; text-align: left; perspective: 1000px; }
         @media (min-width: 800px) {
             .plans-grid { grid-template-columns: 1fr 1fr; max-width: 900px; margin-inline: auto; align-items: stretch; gap: 30px; }
         }
         
-        .plan-card { position: relative; background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border: 1px solid var(--glass-border); border-radius: 24px; padding: 40px 30px; transition: all 0.4s ease; display: flex; flex-direction: column; box-shadow: 0 10px 40px rgba(0,0,0,0.2); height: 100%; }
-        .plan-card:hover { transform: translateY(-8px); box-shadow: 0 15px 50px rgba(0,0,0,0.4); border-color: rgba(255,255,255,0.2); }
+        .plan-card { position: relative; background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border: 1px solid var(--glass-border); border-radius: 24px; padding: 40px 30px; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); display: flex; flex-direction: column; box-shadow: 0 10px 40px rgba(0,0,0,0.2); height: 100%; }
+        .plan-card:hover { transform: translateY(-12px) scale(1.04); box-shadow: 0 25px 60px rgba(0,0,0,0.4); border-color: rgba(255,255,255,0.3); z-index: 10; }
 
         .plan-card h3 { font-size: 1.4rem; font-weight: 800; color: #fff; margin-bottom: 5px; }
         .plan-price { font-size: 1.5rem; font-weight: 800; color: #fff; margin: 15px 0 20px; display: flex; align-items: baseline; gap: 5px; }
@@ -297,7 +307,8 @@
             .form-faq-grid { grid-template-columns: 1fr 1fr; gap: 60px; }
         }
 
-        .lead-form-container { background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border-radius: 24px; padding: clamp(30px, 5vw, 40px); border: 1px solid var(--glass-border); box-shadow: 0 15px 40px rgba(0,0,0,0.4); transition: border-color 0.5s ease; }
+        .lead-form-container { background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border-radius: 24px; padding: clamp(30px, 5vw, 40px); border: 1px solid var(--glass-border); box-shadow: 0 15px 40px rgba(0,0,0,0.4); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .lead-form-container:hover { transform: translateY(-6px) scale(1.02); box-shadow: 0 20px 50px rgba(0,0,0,0.5); border-color: rgba(255,255,255,0.2); }
         .lead-input { width: 100%; padding: 16px; border-radius: 12px; border: 1px solid var(--glass-border); background: rgba(255,255,255,0.05); color: white; font-size: 1rem; outline: none; transition: 0.3s; margin-bottom: 15px; }
         .lead-input:focus { border-color: var(--google-blue); background: rgba(26, 115, 232, 0.1); }
         .form-row { display: flex; gap: 15px; flex-wrap: wrap; }
@@ -528,14 +539,14 @@
         <section id="pilar-sites" class="glow-band band-purple" data-aos="fade-up">
             <div style="text-align: center; margin-bottom: 50px;">
                 <span class="section-tag" style="color: var(--google-purple);" data-i18n="step1-tag">O Seu Novo Site</span>
-                <h2 data-i18n="step1-title">Seu site vira sua vitrine que vende 24h</h2>
-                <p style="margin-top: 15px; font-size: 1.1rem; color: var(--text-dim); max-width: 700px; margin-inline: auto;" data-i18n="step1-desc">Sem site, você perde cliente todo dia. Nós criamos uma página bonita, rápida e objetiva — com botão de WhatsApp e tudo que o cliente precisa pra confiar e chamar.</p>
+                <h2 data-i18n="step1-title">Sua vitrine automática que vende 24 horas por dia</h2>
+                <p style="margin-top: 15px; font-size: 1.1rem; color: var(--text-dim); max-width: 800px; margin-inline: auto;" data-i18n="step1-desc">Chega de perder horas explicando o básico no direct ou perder clientes por não passar credibilidade. Nós criamos uma central de conversão que funciona 24 horas por dia: centraliza seus serviços, exibe suas avaliações e envia clientes qualificados direto para o seu WhatsApp.</p>
                 
-                <ul style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-top: 25px; color: var(--text-main); font-weight: 500;">
-                    <li style="display: flex; align-items: center; gap: 8px;"><span class="neon-dot" style="width: 8px; height: 8px;"></span> <span data-i18n="step1-b1">1 página completa (tipo "landing")</span></li>
-                    <li style="display: flex; align-items: center; gap: 8px;"><span class="neon-dot" style="width: 8px; height: 8px;"></span> <span data-i18n="step1-b2">focada em conversão (WhatsApp)</span></li>
-                    <li style="display: flex; align-items: center; gap: 8px;"><span class="neon-dot" style="width: 8px; height: 8px;"></span> <span data-i18n="step1-b3">pronta pra celular</span></li>
-                    <li style="display: flex; align-items: center; gap: 8px;"><span class="neon-dot" style="width: 8px; height: 8px;"></span> <span data-i18n="step1-b4">com portfólio/fotos e prova social</span></li>
+                <ul style="display: flex; flex-direction: column; align-items: flex-start; max-width: 600px; margin: 30px auto 0; gap: 15px; color: var(--text-main); font-weight: 500; text-align: left;">
+                    <li style="display: flex; align-items: center; gap: 12px;"><span class="neon-dot"></span> <span data-i18n="step1-b1">Pareça uma empresa gigante (mesmo se trabalhar sozinho)</span></li>
+                    <li style="display: flex; align-items: center; gap: 12px;"><span class="neon-dot"></span> <span data-i18n="step1-b2">Pare de explicar preços e serviços no direct do Instagram</span></li>
+                    <li style="display: flex; align-items: center; gap: 12px;"><span class="neon-dot"></span> <span data-i18n="step1-b3">Seja encontrado no Google por quem já está pronto para comprar</span></li>
+                    <li style="display: flex; align-items: center; gap: 12px;"><span class="neon-dot"></span> <span data-i18n="step1-b4">Centralize sua prova social e passe confiança imediata</span></li>
                 </ul>
             </div>
             
@@ -583,15 +594,15 @@
             <h2 style="text-align:center; font-size: clamp(1.8rem, 4vw, 2.2rem);" data-i18n="testi-title">O que dizem os clientes</h2>
             <div class="testi-grid">
                 <div class="testi-card">
-                    <p class="testi-quote" data-i18n="testi-1">"Ficou profissional e começaram a chamar no WhatsApp."</p>
+                    <p class="testi-quote" data-i18n="testi-1">"Antes eu dependia só do Instagram. Agora, o site filtra os curiosos e quem clica no WhatsApp já chega perguntando os horários disponíveis. Mudou meu jogo."</p>
                     <span class="testi-author" data-i18n="testi-1-author">— João, Barbearia (São Paulo)</span>
                 </div>
                 <div class="testi-card">
-                    <p class="testi-quote" data-i18n="testi-2">"Entrega rápida e ótimo no celular."</p>
+                    <p class="testi-quote" data-i18n="testi-2">"Os pacientes sempre elogiam o site. Passar credibilidade na área da saúde é tudo, e agora eu pareço ter a maior clínica da região. E ficou pronto em 3 dias!"</p>
                     <span class="testi-author" data-i18n="testi-2-author">— Dra. Ana, Clínica (Curitiba)</span>
                 </div>
                 <div class="testi-card">
-                    <p class="testi-quote" data-i18n="testi-3">"Eu não tinha site. Agora passa confiança."</p>
+                    <p class="testi-quote" data-i18n="testi-3">"Advocacia exige postura. Ter um site com meus casos de sucesso e especialidades centralizadas fez o número de mensagens frias cair e as reuniões qualificadas dobrarem."</p>
                     <span class="testi-author" data-i18n="testi-3-author">— Marcos, Advogado (Rio de Janeiro)</span>
                 </div>
             </div>
@@ -601,8 +612,8 @@
         <section id="pilar-google" class="glow-band band-green" data-aos="fade-up">
             <div class="case-study-box">
                 <span class="section-tag" style="color: var(--google-green);" data-i18n="case-tag">Resultados Reais</span>
-                <h3 style="font-size: clamp(1.8rem, 4vw, 2.2rem); margin-bottom: 15px; font-weight: 800; color: #fff;" data-i18n="case-title">Estudo de caso real: de "quase ninguém chama" para "todo dia tem pedido"</h3>
-                <p style="color: var(--text-dim); font-size: 1.1rem;" data-i18n="case-desc">Um negócio local estava sem site e invisível no Google. Nós montamos uma landing objetiva, aplicamos SEO avançado e colocamos o WhatsApp no centro. Em poucos dias, já deu pra ver mais cliques e mais conversas iniciadas.</p>
+                <h3 style="font-size: clamp(1.8rem, 4vw, 2.2rem); margin-bottom: 15px; font-weight: 800; color: #fff;" data-i18n="case-title">Estudo de caso: de "refém do Instagram" para "todo dia tem pedido no WhatsApp"</h3>
+                <p style="color: var(--text-dim); font-size: 1.1rem;" data-i18n="case-desc">Uma clínica parceira estava refém do algoritmo das redes sociais e perdia clientes para concorrentes menores que apareciam no Google. Desenhamos uma estrutura focada em conversão: fotos reais do espaço, depoimentos em destaque e um botão flutuante. O resultado no 1º mês:</p>
                 
                 <div style="margin-top: 25px; border-radius: 12px; overflow:hidden; border: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.5); padding: 20px; display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap;">
                     <div style="text-align: center;">
@@ -612,23 +623,23 @@
                     <div style="width: 1px; height: 40px; background: rgba(255,255,255,0.1);"></div>
                     <div style="text-align: center;">
                         <div style="color: var(--google-green); font-size: 2rem; font-weight: bold; transition: color 0.5s ease;">+89</div>
-                        <div style="color: var(--text-dim); font-size: 0.85rem;" data-i18n="case-metric2">Chamadas Iniciadas</div>
+                        <div style="color: var(--text-dim); font-size: 0.85rem;" data-i18n="case-metric2">Chamadas Qualificadas</div>
                     </div>
                 </div>
                 
                 <div class="case-grid">
                     <div class="case-step" style="border-left: 3px solid var(--google-red);">
                         <h4 style="color: var(--google-red); font-size: 1.2rem; margin-bottom: 10px;" data-i18n="case-before-title">Antes</h4>
-                        <p style="color: var(--text-main);" data-i18n="case-before-desc">Sem site, pouca presença nas buscas, pouca ação do cliente</p>
+                        <p style="color: var(--text-main);" data-i18n="case-before-desc">Invisível nas buscas, respondia sempre as mesmas dúvidas no direct e passava imagem de "amador".</p>
                     </div>
                     <div class="case-step" style="border-left: 3px solid var(--google-green);">
                         <h4 style="color: var(--google-green); font-size: 1.2rem; margin-bottom: 10px;" data-i18n="case-after-title">Depois</h4>
-                        <p style="color: var(--text-main);" data-i18n="case-after-desc">Site claro, botão WhatsApp, SEO otimizado, aparência profissional</p>
+                        <p style="color: var(--text-main);" data-i18n="case-after-desc">Posicionamento premium, tráfego do Google, e clientes chegando no WhatsApp já sabendo o que querem.</p>
                     </div>
                 </div>
 
                 <div style="margin-top: 30px; text-align: left;">
-                    <a href="#" onclick="window.open(WHATSAPP_LINK)" style="color: var(--google-green); font-weight: 600; text-decoration: underline; font-size: 1.05rem; transition: color 0.5s ease;" data-i18n="case-btn">Quer um exemplo do seu caso? Fale com nossos especialistas no WhatsApp.</a>
+                    <a href="#" onclick="window.open(WHATSAPP_LINK)" style="color: var(--google-green); font-weight: 600; text-decoration: underline; font-size: 1.05rem; transition: color 0.5s ease;" data-i18n="case-btn">Quer um posicionamento igual no seu nicho? Fale no WhatsApp.</a>
                 </div>
             </div>
         </section>
@@ -767,6 +778,10 @@
                         <button class="faq-question"><span data-i18n="q6">Vocês dão suporte depois do site pronto?</span> <span class="faq-icon">+</span></button>
                         <div class="faq-answer"><p data-i18n="a6">Sim! Nosso modelo de assinatura inclui suporte. Precisou alterar um número de telefone, atualizar o endereço ou trocar uma foto? É só chamar nossa equipe no WhatsApp.</p></div>
                     </div>
+                    <div class="faq-item">
+                        <button class="faq-question"><span data-i18n="q7">Quais são as formas de pagamento aceitas?</span> <span class="faq-icon">+</span></button>
+                        <div class="faq-answer"><p data-i18n="a7">Aceitamos Pix, cartões de crédito e débito. Todo o processo é realizado de forma 100% segura através da plataforma Asaas.</p></div>
+                    </div>
                 </div>
 
             </div>
@@ -782,12 +797,37 @@
         <p class="footer-text">© <script>document.write(new Date().getFullYear())</script> HubSymples. <span data-i18n="footer-text">O Seu Hub de Soluções Digitais.</span></p>
         <p class="footer-motto" style="margin-top: 10px; color: var(--text-dim);" data-i18n="footer-motto">Seu site pronto pra vender.</p>
         
-        <div style="margin-top: 50px; padding-top: 30px; border-top: 1px solid var(--glass-border); display: flex; flex-direction: column; align-items: center; gap: 12px;">
+        <div style="margin-top: 50px; padding-top: 30px; border-top: 1px solid var(--glass-border); display: flex; flex-direction: column; align-items: center; gap: 15px;">
             <div style="display: flex; align-items: center; gap: 8px; color: var(--text-dim); font-size: 0.85rem; font-weight: 500;">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--google-green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
                 <span data-i18n="footer-secure">Pagamento 100% seguro processado por:</span>
             </div>
-            <img src="https://i.imgur.com/4ciYRAz.png" alt="Asaas Pagamentos" style="height: 140px; max-width: 100%; object-fit: contain; opacity: 0.6; transition: opacity 0.3s ease; cursor: default;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.6'">
+            
+            <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: clamp(30px, 6vw, 60px);">
+                <!-- Logo Asaas -->
+                <img src="https://i.imgur.com/4ciYRAz.png" alt="Asaas Pagamentos" style="height: 150px; max-width: 100%; object-fit: contain; opacity: 0.7; transition: opacity 0.3s ease; cursor: default; margin: -20px 0;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">
+                
+                <!-- Bandeiras de Cartão e Pix -->
+                <div style="display: flex; gap: 25px; align-items: flex-end; flex-wrap: wrap; justify-content: center;">
+                    <!-- Crédito -->
+                    <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
+                        <span style="font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase; font-weight: 700; letter-spacing: 1px;" data-i18n="pay-credit">Crédito</span>
+                        <img src="https://i.imgur.com/pbgPOS6.png" alt="Crédito" style="height: 42px; max-width: 100%; object-fit: contain; opacity: 0.8; transition: opacity 0.3s ease;" title="Cartões de Crédito" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">
+                    </div>
+                    
+                    <!-- Débito -->
+                    <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
+                        <span style="font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase; font-weight: 700; letter-spacing: 1px;" data-i18n="pay-debit">Débito</span>
+                        <img src="https://i.imgur.com/Q2TG7rS.png" alt="Débito" style="height: 42px; max-width: 100%; object-fit: contain; opacity: 0.8; transition: opacity 0.3s ease;" title="Cartões de Débito" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">
+                    </div>
+
+                    <!-- Pix -->
+                    <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
+                        <span style="font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase; font-weight: 700; letter-spacing: 1px;" data-i18n="pay-pix">Pix</span>
+                        <img src="https://i.imgur.com/qrFibjp.png" alt="Pix" style="height: 42px; max-width: 100%; object-fit: contain; opacity: 0.8; transition: opacity 0.3s ease;" title="Pix" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">
+                    </div>
+                </div>
+            </div>
         </div>
     </footer>
 
@@ -1090,12 +1130,12 @@
                 "recv-title": "O que entra no seu site (sem surpresas)", "recv-desc": "Tudo pronto pra gerar contato e passar confiança — principalmente no celular.",
                 "recv-1": "Design profissional do seu nicho", "recv-2": "Mobile perfeito + carregamento rápido", "recv-3": "Botão WhatsApp em destaque", "recv-4": "Seção de serviços + fotos + depoimentos", "recv-5": "Endereço e horários", "recv-6": "SEO básico (Google entende seu site)", "recv-7": "Publicação + ajustes finais pós-ar", "recv-btn": "Quero isso no meu negócio (WhatsApp)",
                 "zero-title": "Não tem logo, textos ou imagens prontas? Sem problemas.", "zero-desc": "Nós criamos a sua presença digital <strong>literalmente do zero</strong>. Definimos as melhores cores, imagens profissionais e textos que vendem para o seu nicho. Você só precisa tomar a decisão, e nós colocamos a sua empresa no ar em <strong>no máximo 3 dias</strong>.",
-                "step1-tag": "O Seu Novo Site", "step1-title": "Seu site vira sua vitrine que vende 24h", "step1-desc": "Sem site, você perde cliente todo dia. Nós criamos uma página bonita, rápida e objetiva — com botão de WhatsApp e tudo que o cliente precisa pra confiar e chamar.",
-                "step1-b1": "1 página completa (tipo \"landing\")", "step1-b2": "focada em conversão (WhatsApp)", "step1-b3": "pronta pra celular", "step1-b4": "com portfólio/fotos e prova social", "step1-btn": "Envie o seu nicho e nossa equipe enviará um modelo",
+                "step1-tag": "O Seu Novo Site", "step1-title": "Sua vitrine automática que vende 24 horas por dia", "step1-desc": "Chega de perder horas explicando o básico no direct ou perder clientes por não passar credibilidade. Nós criamos uma central de conversão que funciona 24 horas por dia: centraliza seus serviços, exibe suas avaliações e envia clientes qualificados direto para o seu WhatsApp.",
+                "step1-b1": "Pareça uma empresa gigante (mesmo se trabalhar sozinho)", "step1-b2": "Pare de explicar preços e serviços no direct do Instagram", "step1-b3": "Seja encontrado no Google por quem já está pronto para comprar", "step1-b4": "Centralize sua prova social e passe confiança imediata", "step1-btn": "Envie o seu nicho e nossa equipe enviará um modelo",
                 "port-title": "Portfólio (demos reais)", "port-desc": "Estes são exemplos dos sites que desenvolvemos. Quer um para o seu nicho? Nossa equipe envia um modelo parecido.", "port-btn": "Quero um site assim (WhatsApp)", "port-item-btn": "Quero um igual",
-                "testi-title": "O que dizem os clientes", "testi-1": "\"Ficou profissional e começaram a chamar no WhatsApp.\"", "testi-1-author": "— João, Barbearia (São Paulo)", "testi-2": "\"Entrega rápida e ótimo no celular.\"", "testi-2-author": "— Dra. Ana, Clínica (Curitiba)", "testi-3": "\"Eu não tinha site. Agora passa confiança.\"", "testi-3-author": "— Marcos, Advogado (Rio de Janeiro)",
-                "case-tag": "Resultados Reais", "case-title": "Estudo de caso real: de \"quase ninguém chama\" para \"todo dia tem pedido\"", "case-desc": "Um negócio local estava sem site e invisível no Google. Nós montamos uma landing objetiva, aplicamos SEO avançado e colocamos o WhatsApp no centro. Em poucos dias, já deu pra ver mais cliques e mais conversas iniciadas.",
-                "case-metric1": "Cliques no Perfil", "case-metric2": "Chamadas Iniciadas", "case-before-title": "Antes", "case-before-desc": "Sem site, pouca presença nas buscas, pouca ação do cliente", "case-after-title": "Depois", "case-after-desc": "Site claro, botão WhatsApp, SEO otimizado, aparência profissional", "case-btn": "Quer um exemplo do seu caso? Fale com nossos especialistas no WhatsApp.",
+                "testi-title": "O que dizem os clientes", "testi-1": "\"Antes eu dependia só do Instagram. Agora, o site filtra os curiosos e quem clica no WhatsApp já chega perguntando os horários disponíveis. Mudou meu jogo.\"", "testi-1-author": "— João, Barbearia (São Paulo)", "testi-2": "\"Os pacientes sempre elogiam o site. Passar credibilidade na área da saúde é tudo, e agora eu pareço ter a maior clínica da região. E ficou pronto em 3 dias!\"", "testi-2-author": "— Dra. Ana, Clínica (Curitiba)", "testi-3": "\"Advocacia exige postura. Ter um site com meus casos de sucesso e especialidades centralizadas fez o número de mensagens frias cair e as reuniões qualificadas dobrarem.\"", "testi-3-author": "— Marcos, Advogado (Rio de Janeiro)",
+                "case-tag": "Resultados Reais", "case-title": "Estudo de caso: de \"refém do Instagram\" para \"todo dia tem pedido no WhatsApp\"", "case-desc": "Uma clínica parceira estava refém do algoritmo das redes sociais e perdia clientes para concorrentes menores que apareciam no Google. Desenhamos uma estrutura focada em conversão: fotos reais do espaço, depoimentos em destaque e um botão flutuante. O resultado no 1º mês:",
+                "case-metric1": "Cliques no Perfil", "case-metric2": "Chamadas Qualificadas", "case-before-title": "Antes", "case-before-desc": "Invisível nas buscas, respondia sempre as mesmas dúvidas no direct e passava imagem de 'amador'.", "case-after-title": "Depois", "case-after-desc": "Posicionamento premium, tráfego do Google, e clientes chegando no WhatsApp já sabendo o que querem.", "case-btn": "Quer um posicionamento igual no seu nicho? Fale no WhatsApp.",
                 "booking-title": "Vamos alinhar os detalhes do seu projeto?", "booking-desc": "Agende um bate-papo rápido. Vamos entender o que sua empresa precisa, tirar suas dúvidas sobre os planos e confirmar se somos a escolha certa para você.", "booking-b1": "Entender o seu negócio e objetivos", "booking-b2": "Tirar dúvidas sobre planos e prazos", "booking-b3": "Confirmar se nossa solução atende você",
                 "comp-old-title": "Agência Tradicional", "comp-old-1": "Criação do site", "comp-old-1-v": "R$ 2.500+", "comp-old-2": "Hospedagem (Anual)", "comp-old-2-v": "R$ 400+", "comp-old-3": "Manutenção (Hora)", "comp-old-3-v": "R$ 150+", "comp-old-total": "Custo no 1º ano:", "comp-old-total-v": "Mais de R$ 3.000",
                 "comp-new-title": "Assinatura HubSymples", "comp-new-1": "Criação Premium", "comp-new-1-v": "R$ 0 (Incluso)", "comp-new-2": "Hospedagem Rápida", "comp-new-2-v": "R$ 0 (Inclusa)", "comp-new-3": "Suporte Contínuo", "comp-new-3-v": "R$ 0 (Incluso)", "comp-new-total": "Seu custo:", "comp-new-total-v": "Apenas a mensalidade",
@@ -1111,8 +1151,10 @@
                 "q4": "Qual é a diferença entre os planos?", "a4": "Eles atendem a necessidades diferentes. O <strong>Plano Padrão</strong> é perfeito para prestadores de serviços e profissionais autônomos que precisam de um site objetivo e rápido para atrair clientes direto para o WhatsApp. Já o <strong>Plano Profissional</strong> é voltado para negócios físicos (como clínicas, estéticas e oficinas) que precisam de uma estrutura maior para detalhar serviços e integrar agendamento próprio.",
                 "q5": "Se eu já tenho Instagram, ainda preciso de site?", "a5": "Sim. O Instagram atrai a atenção, mas o site passa a confiança necessária para fechar a venda e garante que você seja encontrado no Google por quem está pronto para comprar.",
                 "q6": "Vocês dão suporte depois do site pronto?", "a6": "Sim! Nosso modelo de assinatura inclui suporte. Precisou alterar um número de telefone, atualizar o endereço ou trocar uma foto? É só chamar nossa equipe no WhatsApp.",
+                "q7": "Quais são as formas de pagamento aceitas?", "a7": "Aceitamos Pix, cartões de crédito e débito. <strong>Detalhe importante:</strong> por ser uma assinatura mensal (estilo Netflix) e não um parcelamento, o plano <strong>não compromete o limite total</strong> do seu cartão de crédito. Você só precisa ter de limite o valor da mensalidade daquele mês. Todo o processo é 100% seguro via Asaas.",
                 "niches-title": "Especialistas em criar sites para:", "niches-list": "Advogados • Clínicas de Estética • Odontologia • Restaurantes • Imobiliárias • Prestadores de Serviço • Contabilidade • Autônomos",
                 "footer-text": "O Seu Hub de Soluções Digitais.", "footer-motto": "Seu site pronto pra vender.", "footer-secure": "Pagamento 100% seguro processado por:",
+                "pay-credit": "Crédito", "pay-debit": "Débito", "pay-pix": "Pix",
                 "action-sim": "Simulador", "action-wa": "WhatsApp", "hero-btn1": "Quero meu site no WhatsApp", "hero-btn2": "Ver portfólio (demos reais)",
                 "badge-1": "Sem enrolação", "badge-2": "Mobile rápido", "badge-3": "Você aprova antes",
                 "mobile-sticky": "Falar no WhatsApp", "fomo-time": "Neste momento"
@@ -1122,10 +1164,10 @@
                 "theme-title": "Test your niche live", "theme-desc": "Type your field of work or choose an option to see the site adapt for you.", "theme-placeholder": "Ex: Barbershop, Dentist...", "theme-btn": "Simulate",
                 "recv-title": "What's included in your site (no surprises)", "recv-desc": "Everything ready to generate leads and build trust — especially on mobile.", "recv-1": "Professional design for your niche", "recv-2": "Perfect mobile + fast loading", "recv-3": "Highlighted WhatsApp button", "recv-4": "Services section + photos + reviews", "recv-5": "Address and hours", "recv-6": "Basic SEO (Google reads your site)", "recv-7": "Publishing + post-launch tweaks", "recv-btn": "I want this for my business",
                 "zero-title": "Don't have a logo, texts, or images ready? No problem.", "zero-desc": "We create your digital presence <strong>literally from scratch</strong>. We define the best colors, professional images, and copy that sells for your niche. You just need to make the decision, and we will have your business online in <strong>up to 3 days</strong>.",
-                "step1-tag": "Your New Website", "step1-title": "Your site becomes a 24/7 sales window", "step1-desc": "Without a site, you lose clients daily. We build a beautiful, fast, and objective page — with a WhatsApp button and everything needed for trust.", "step1-b1": "1 complete page (landing style)", "step1-b2": "focused on conversion (WhatsApp)", "step1-b3": "mobile-ready", "step1-b4": "with portfolio/photos and social proof", "step1-btn": "Send us your niche and our team will show you a model",
+                "step1-tag": "Your New Website", "step1-title": "Your automated 24/7 sales storefront", "step1-desc": "Stop wasting hours explaining the basics in DMs or losing clients due to a lack of credibility. We build a conversion hub that works 24/7: it centralizes your services, showcases your reviews, and sends qualified leads straight to your WhatsApp.", "step1-b1": "Look like a massive company (even if you work alone)", "step1-b2": "Stop explaining prices and services in DMs", "step1-b3": "Be found by ready-to-buy clients on Google", "step1-b4": "Centralize your social proof and build instant trust", "step1-btn": "Send us your niche and our team will show you a model",
                 "port-title": "Portfolio (real demos)", "port-desc": "These are examples of the sites we build. Want one in your niche? Our team will send you a similar model.", "port-btn": "I want a site like this", "port-item-btn": "I want one like this",
-                "testi-title": "What our clients say", "testi-1": "\"It looks professional and I started getting WhatsApp calls.\"", "testi-1-author": "— John, Barbershop", "testi-2": "\"Fast delivery and looks great on mobile.\"", "testi-2-author": "— Dr. Anna, Clinic", "testi-3": "\"I had no website. Now I pass trust to my clients.\"", "testi-3-author": "— Mark, Lawyer",
-                "case-tag": "Real Results", "case-title": "Real case study: from 'almost no calls' to 'daily orders'", "case-desc": "A local business had no site and was invisible on Google. We built an objective landing page, applied advanced SEO, and put WhatsApp in the center. In a few days, they saw more clicks and more chats started.", "case-metric1": "Profile Clicks", "case-metric2": "Calls Started", "case-before-title": "Before", "case-before-desc": "No site, low search presence, low client action", "case-after-title": "After", "case-after-desc": "Clear site, WhatsApp button, optimized SEO, pro look", "case-btn": "Want an example for your case? Talk to our experts on WhatsApp.",
+                "testi-title": "What our clients say", "testi-1": "\"Before, I only relied on Instagram. Now, the site filters out window-shoppers, and whoever clicks on WhatsApp is ready to book. Changed my game.\"", "testi-1-author": "— John, Barbershop", "testi-2": "\"Patients always praise the site. Credibility in healthcare is everything, and now I look like the biggest clinic around. Done in 3 days!\"", "testi-2-author": "— Dr. Anna, Clinic", "testi-3": "\"Law requires authority. Having a site with my specialties centralized dropped cold messages and doubled my qualified meetings.\"", "testi-3-author": "— Mark, Lawyer",
+                "case-tag": "Real Results", "case-title": "Case study: from 'hostage to Instagram' to 'daily WhatsApp orders'", "case-desc": "A partner clinic was hostage to social media algorithms and losing clients to smaller competitors on Google. We designed a conversion-focused structure: real photos, highlighted reviews, and a floating button. 1st month results:", "case-metric1": "Profile Clicks", "case-metric2": "Qualified Calls", "case-before-title": "Before", "case-before-desc": "Invisible in searches, answering the same questions in DMs, looked 'amateur'.", "case-after-title": "After", "case-after-desc": "Premium positioning, Google traffic, and clients reaching WhatsApp already knowing what they want.", "case-btn": "Want the same positioning in your niche? Chat on WhatsApp.",
                 "booking-title": "Let's align the details of your project?", "booking-desc": "Schedule a quick chat. We'll understand what your business needs, answer your questions about the plans, and confirm if we're the right fit for you.", "booking-b1": "Understand your business and goals", "booking-b2": "Answer questions about plans and deadlines", "booking-b3": "Confirm if our solution fits your needs",
                 "comp-old-title": "Traditional Agency", "comp-old-1": "Website creation", "comp-old-1-v": "$ 500+", "comp-old-2": "Hosting (Annual)", "comp-old-2-v": "$ 100+", "comp-old-3": "Maintenance (Hourly)", "comp-old-3-v": "$ 50+", "comp-old-total": "1st year cost:", "comp-old-total-v": "Over $ 600",
                 "comp-new-title": "HubSymples Subscription", "comp-new-1": "Premium Creation", "comp-new-1-v": "$ 0 (Included)", "comp-new-2": "Fast Hosting", "comp-new-2-v": "$ 0 (Included)", "comp-new-3": "Ongoing Support", "comp-new-3-v": "$ 0 (Included)", "comp-new-total": "Your cost:", "comp-new-total-v": "Only the monthly fee",
@@ -1141,8 +1183,10 @@
                 "q4": "What is the difference between the plans?", "a4": "They serve different needs. The <strong>Standard Plan</strong> is perfect for service providers who need a fast site to attract clients straight to WhatsApp. The <strong>Professional Plan</strong> is built for physical businesses that need a larger structure and integrate a scheduling system.",
                 "q5": "If I already have Instagram, do I still need a website?", "a5": "Yes. Instagram attracts attention, but a website builds the trust needed to close the sale and ensures you are found on Google.",
                 "q6": "Do you provide support after the site is ready?", "a6": "Yes! Our subscription model includes support. Need to change a phone number or photo? Just message our team.",
+                "q7": "What payment methods are accepted?", "a7": "We accept Pix, credit cards, and debit cards. <strong>Important detail:</strong> because it's a true monthly subscription (like Netflix) and not an installment plan, it <strong>does not take up the total limit</strong> of your credit card. You only need enough limit for that single month's fee. The entire process is 100% secure via Asaas.",
                 "niches-title": "Experts in creating sites for:", "niches-list": "Lawyers • Aesthetic Clinics • Dentistry • Restaurants • Real Estate • Service Providers • Accounting",
                 "footer-text": "Your Digital Solutions Hub.", "footer-motto": "Your site ready to sell.", "footer-secure": "100% secure payment processed by:",
+                "pay-credit": "Credit", "pay-debit": "Debit", "pay-pix": "Pix",
                 "action-sim": "Simulator", "action-wa": "WhatsApp", "hero-btn1": "I want my website via WhatsApp", "hero-btn2": "View portfolio (real demos)",
                 "badge-1": "No fluff", "badge-2": "Fast mobile", "badge-3": "You approve first",
                 "mobile-sticky": "Chat on WhatsApp", "fomo-time": "Just now"
@@ -1152,10 +1196,10 @@
                 "theme-title": "Prueba tu nicho en vivo", "theme-desc": "Escribe tu sector o elige una opción para ver cómo el sitio se adapta para ti.", "theme-placeholder": "Ej: Barbería, Dentista...", "theme-btn": "Simular",
                 "recv-title": "Lo que incluye tu sitio (sin sorpresas)", "recv-desc": "Todo listo para generar contactos y transmitir confianza — especialmente en celular.", "recv-1": "Diseño profesional para tu nicho", "recv-2": "Móvil perfecto + carga rápida", "recv-3": "Botón WhatsApp destacado", "recv-4": "Sección de servicios + fotos + reseñas", "recv-5": "Dirección y horarios", "recv-6": "SEO básico (Google lee tu sitio)", "recv-7": "Publicación + ajustes finales", "recv-btn": "Quiero esto para mi negocio",
                 "zero-title": "¿No tienes logo, textos o imágenes listas? Sin problemas.", "zero-desc": "Creamos tu presencia digital <strong>literalmente desde cero</strong>. Definimos los mejores colores, imágenes profesionales y textos que venden para tu nicho. Solo necesitas tomar la decisión, y pondremos tu empresa en línea en <strong>máximo 3 días</strong>.",
-                "step1-tag": "Tu Nuevo Sitio", "step1-title": "Tu sitio será tu vitrina 24/7", "step1-desc": "Sin sitio web pierdes clientes a diario. Armamos una página bonita, rápida y objetiva — con botón de WhatsApp y lo necesario para generar confianza.", "step1-b1": "1 página completa (tipo \"landing\")", "step1-b2": "enfocada en conversión (WhatsApp)", "step1-b3": "lista para celular", "step1-b4": "con portafolio/fotos y prueba social", "step1-btn": "Envíanos tu nicho y nuestro equipo te mostrará un modelo",
+                "step1-tag": "Tu Nuevo Sitio", "step1-title": "Tu vitrina automática que vende las 24 horas", "step1-desc": "Basta de perder horas explicando lo básico por DM o perder clientes por no transmitir credibilidad. Creamos un centro de conversión que funciona 24/7: centraliza tus servicios, muestra tus reseñas y envía clientes calificados directo a tu WhatsApp.", "step1-b1": "Luce como una empresa gigante (aunque trabajes solo)", "step1-b2": "Deja de explicar precios y servicios por mensajes", "step1-b3": "Sé encontrado en Google por quienes ya quieren comprar", "step1-b4": "Centraliza tu prueba social y genera confianza inmediata", "step1-btn": "Envíanos tu nicho y nuestro equipo te mostrará un modelo",
                 "port-title": "Portafolio (demos reales)", "port-desc": "Estos son ejemplos de los sitios que desarrollamos. ¿Quieres uno en tu nicho? Nuestro equipo te enviará un modelo similar.", "port-btn": "Quiero un sitio así (WhatsApp)", "port-item-btn": "Quiero uno igual",
-                "testi-title": "Lo que dicen los clientes", "testi-1": "\"Quedó profesional y empezaron a llamar al WhatsApp.\"", "testi-1-author": "— Juan, Barbería", "testi-2": "\"Entrega rápida y excelente en celular.\"", "testi-2-author": "— Dra. Ana, Clínica", "testi-3": "\"No tenía sitio web. Ahora transmito confianza.\"", "testi-3-author": "— Marcos, Abogado",
-                "case-tag": "Resultados Reales", "case-title": "Caso real: de \"casi nadie llama\" a \"pedidos diarios\"", "case-desc": "Un negocio local no tenía sitio web y era invisible en Google. Armamos una landing objetiva, aplicamos SEO avanzado y pusimos WhatsApp en el centro. En pocos días, hubo más clics y más chats iniciados.", "case-metric1": "Clics en el Perfil", "case-metric2": "Llamadas Iniciadas", "case-before-title": "Antes", "case-before-desc": "Sin sitio, baja presencia en búsquedas, poca acción", "case-after-title": "Después", "case-after-desc": "Sitio claro, botón WhatsApp, SEO optimizado, aspecto pro", "case-btn": "¿Quieres un ejemplo para tu caso? Habla con nuestros expertos en WhatsApp.",
+                "testi-title": "Lo que dicen los clientes", "testi-1": "\"Antes dependía solo de Instagram. Ahora, el sitio filtra a los curiosos y quien hace clic en WhatsApp ya llega preguntando horarios. Cambió mi negocio.\"", "testi-1-author": "— Juan, Barbería", "testi-2": "\"Los pacientes siempre elogian el sitio. La credibilidad en salud lo es todo, y ahora parezco la clínica más grande de la región.\"", "testi-2-author": "— Dra. Ana, Clínica", "testi-3": "\"La abogacía exige postura. Tener un sitio con mis especialidades centralizadas redujo los mensajes fríos y duplicó mis reuniones calificadas.\"", "testi-3-author": "— Marcos, Abogado",
+                "case-tag": "Resultados Reales", "case-title": "Caso de estudio: de 'rehén de Instagram' a 'pedidos diarios en WhatsApp'", "case-desc": "Una clínica aliada era rehén del algoritmo y perdía clientes ante competidores en Google. Diseñamos una estructura enfocada en conversión: fotos reales, reseñas destacadas y un botón flotante. Resultados del 1er mes:", "case-metric1": "Clics en el Perfil", "case-metric2": "Llamadas Calificadas", "case-before-title": "Antes", "case-before-desc": "Invisible en búsquedas, respondía las mismas dudas por DM y lucía 'amateur'.", "case-after-title": "Después", "case-after-desc": "Posicionamiento premium, tráfico de Google y clientes que llegan al WhatsApp sabiendo lo que quieren.", "case-btn": "¿Quieres este posicionamiento en tu nicho? Habla en WhatsApp.",
                 "booking-title": "¿Vamos a alinear los detalles de tu proyecto?", "booking-desc": "Agenda una charla rápida. Entenderemos qué necesita tu empresa, aclararemos dudas sobre los planes y confirmaremos si somos la opción ideal para ti.", "booking-b1": "Entender tu negocio y objetivos", "booking-b2": "Aclarar dudas sobre planes y plazos", "booking-b3": "Confirmar si nuestra solución se adapta a ti",
                 "comp-old-title": "Agencia Tradicional", "comp-old-1": "Creación del sitio", "comp-old-1-v": "$ 500+", "comp-old-2": "Hosting (Anual)", "comp-old-2-v": "$ 100+", "comp-old-3": "Mantenimiento (Hora)", "comp-old-3-v": "$ 50+", "comp-old-total": "Costo 1er año:", "comp-old-total-v": "Más de $ 600",
                 "comp-new-title": "Suscripción HubSymples", "comp-new-1": "Creación Premium", "comp-new-1-v": "$ 0 (Incluido)", "comp-new-2": "Hosting Rápido", "comp-new-2-v": "$ 0 (Incluido)", "comp-new-3": "Soporte Continuo", "comp-new-3-v": "$ 0 (Incluido)", "comp-new-total": "Tu costo:", "comp-new-total-v": "Solo la mensualidad",
@@ -1171,8 +1215,10 @@
                 "q4": "¿Cuál es la diferencia entre los planes?", "a4": "Atienden necesidades distintas. El <strong>Plan Estándar</strong> es perfecto para proveedores de servicios y autónomos que necesitan un sitio rápido para atraer clientes al WhatsApp. El <strong>Plan Profesional</strong> está diseñado para negocios físicos que necesitan detallar servicios y sistema de reservas.",
                 "q5": "Si ya tengo Instagram, ¿aún necesito un sitio web?", "a5": "Sí. Instagram atrae la atención, pero un sitio web transmite la confianza necesaria para cerrar la venta y asegura que te encuentren en Google.",
                 "q6": "¿Brindan soporte después de que el sitio esté listo?", "a6": "¡Sí! Nuestro modelo de suscripción incluye soporte. ¿Necesitas cambiar un número o foto? Solo escribe a nuestro equipo en WhatsApp.",
+                "q7": "¿Cuáles son las formas de pago aceptadas?", "a7": "Aceptamos Pix, tarjetas de crédito y débito. <strong>Detalle importante:</strong> al ser una suscripción mensual (estilo Netflix) y no una compra a cuotas, el plan <strong>no consume el límite total</strong> de tu tarjeta de crédito. Solo necesitas tener disponible el valor de la mensualidad de ese mes. Todo el proceso es 100% seguro vía Asaas.",
                 "niches-title": "Expertos en crear sitios para:", "niches-list": "Abogados • Clínicas Estéticas • Odontología • Restaurantes • Inmobiliarias • Proveedores de Servicios • Contadores",
                 "footer-text": "Tu Hub de Soluciones Digitales.", "footer-motto": "Tu sitio listo para vender.", "footer-secure": "Pago 100% seguro procesado por:",
+                "pay-credit": "Crédito", "pay-debit": "Débito", "pay-pix": "Pix",
                 "action-sim": "Simulador", "action-wa": "WhatsApp", "hero-btn1": "Quiero mi sitio en WhatsApp", "hero-btn2": "Ver portafolio (demos reales)",
                 "badge-1": "Sin rodeos", "badge-2": "Móvil rápido", "badge-3": "Apruebas antes",
                 "mobile-sticky": "Hablar en WhatsApp", "fomo-time": "En este momento"
