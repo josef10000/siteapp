@@ -390,18 +390,6 @@
         .fomo-text { font-size: 0.9rem; color: #fff; line-height: 1.4; font-weight: 500; }
         .fomo-time { display: block; font-size: 0.75rem; color: var(--text-dim); margin-top: 4px; }
 
-        /* BOTÃO FIXO MOBILE (STICKY CTA) */
-        .mobile-sticky-cta {
-            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%) translateY(150px);
-            width: 90%; max-width: 350px; z-index: 998; transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            opacity: 0; pointer-events: none; text-align: center;
-        }
-        .mobile-sticky-cta.visible { transform: translateX(-50%) translateY(0); opacity: 1; pointer-events: auto; }
-        
-        @media (min-width: 769px) { 
-            .mobile-sticky-cta { display: none !important; } 
-        }
-
         /* OTIMIZAÇÃO MOBILE GERAL */
         @media (max-width: 768px) {
             .nav-menu { display: none !important; } 
@@ -427,14 +415,6 @@
         <div class="shape shape-1"></div>
         <div class="shape shape-2"></div>
         <div class="shape shape-3"></div>
-    </div>
-
-    <!-- BOTÃO FIXO MOBILE -->
-    <div class="mobile-sticky-cta" id="mobileStickyCta">
-        <a href="#" onclick="window.open(WHATSAPP_LINK)" class="btn btn-primary" style="width: 100%; box-shadow: 0 10px 30px rgba(0,0,0,0.6); padding: 16px;">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 5px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.72.94 3.659 1.437 5.634 1.437h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            <span data-i18n="mobile-sticky">Falar no WhatsApp</span>
-        </a>
     </div>
 
     <!-- POPUP FOMO -->
@@ -794,10 +774,18 @@
 
     <footer>
         <div class="footer-logo"><div class="logo-text" style="font-size: 1.8rem;">HubSymples</div></div>
-        <p class="footer-text">© <script>document.write(new Date().getFullYear())</script> HubSymples. <span data-i18n="footer-text">O Seu Hub de Soluções Digitais.</span></p>
-        <p class="footer-motto" style="margin-top: 10px; color: var(--text-dim);" data-i18n="footer-motto">Seu site pronto pra vender.</p>
         
-        <div style="margin-top: 50px; padding-top: 30px; border-top: 1px solid var(--glass-border); display: flex; flex-direction: column; align-items: center; gap: 15px;">
+        <p class="footer-text" style="margin-top: 20px; font-weight: 500; font-size: 1rem; color: var(--text-main);">
+            © <script>document.write(new Date().getFullYear())</script> HubSymples. <span data-i18n="footer-rights">Todos os direitos reservados.</span>
+        </p>
+        <p class="footer-motto" style="margin-top: 5px; color: var(--text-dim); font-size: 0.9rem;" data-i18n="footer-motto">Seu site pronto pra vender.</p>
+        
+        <!-- RODAPÉ LIMPO - APENAS POLÍTICA DE PRIVACIDADE -->
+        <div style="display: flex; justify-content: center; margin-top: 20px; font-size: 0.85rem;">
+            <a href="#" style="color: var(--text-dim); text-decoration: none; transition: var(--transition);" onmouseover="this.style.color='var(--google-blue)'" onmouseout="this.style.color='var(--text-dim)'" data-i18n="footer-privacy">Políticas de Privacidade</a>
+        </div>
+        
+        <div style="margin-top: 40px; padding-top: 30px; border-top: 1px solid var(--glass-border); display: flex; flex-direction: column; align-items: center; gap: 15px;">
             <div style="display: flex; align-items: center; gap: 8px; color: var(--text-dim); font-size: 0.85rem; font-weight: 500;">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--google-green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
                 <span data-i18n="footer-secure">Pagamento 100% seguro processado por:</span>
@@ -853,54 +841,46 @@
     <script>
         AOS.init({ duration: 800, once: true, offset: 100 });
 
-        // BARRA DE PROGRESSO & STICKY CTA MOBILE
+        // BARRA DE PROGRESSO DE LEITURA
         const scrollBar = document.getElementById("scrollBar");
-        const stickyCta = document.getElementById("mobileStickyCta");
         window.addEventListener('scroll', () => {
             const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             const scrolled = (winScroll / height) * 100;
             if(scrollBar) scrollBar.style.width = scrolled + "%";
-
-            // Mostrar botão fixo no mobile apenas após rolar um pouco
-            if (winScroll > 400 && window.innerWidth <= 768) {
-                stickyCta.classList.add("visible");
-            } else {
-                stickyCta.classList.remove("visible");
-            }
         });
 
-        // EFEITO FOMO (Urgência Social) - MIX ESTRATÉGICO (Nomes, Empresas e Escassez)
+        // EFEITO FOMO - TOTALMENTE FOCADO EM VENDAS E PORTFÓLIO (Sem conflitar com a Agenda)
         const fomoMessages = [
             // Categoria 1: Nome + Nicho (Gera Conexão e Credibilidade)
             { pt: "🔥 Pedro (Dentista) fechou o Plano Padrão.", en: "🔥 Peter (Dentist) closed the Standard Plan.", es: "🔥 Pedro (Dentista) cerró el Plan Estándar." },
-            { pt: "⚡ Dra. Ana (Clínica) agendou o bate-papo inicial.", en: "⚡ Dr. Anna (Clinic) scheduled the initial chat.", es: "⚡ Dra. Ana (Clínica) agendó la charla inicial." },
+            { pt: "⚡ Dra. Ana (Clínica) pediu o portfólio no WhatsApp.", en: "⚡ Dr. Anna (Clinic) asked for the portfolio on WhatsApp.", es: "⚡ Dra. Ana (Clínica) pidió el portafolio en WhatsApp." },
             { pt: "🚀 Lucas (Corretor) solicitou um exemplo de site.", en: "🚀 Lucas (Broker) requested a site example.", es: "🚀 Lucas (Corredor) solicitó un ejemplo de sitio." },
             { pt: "✨ Marcos (Psicólogo) garantiu o Plano Profissional.", en: "✨ Mark (Psychologist) secured the Professional Plan.", es: "✨ Marcos (Psicólogo) aseguró el Plan Profesional." },
             { pt: "🔥 João (Barbearia) iniciou a criação do seu site.", en: "🔥 John (Barbershop) started his site creation.", es: "🔥 Juan (Barbería) inició la creación de su sitio." },
             { pt: "💼 Camila (Esteticista) escolheu o Plano Padrão.", en: "💼 Camila (Esthetician) chose the Standard Plan.", es: "💼 Camila (Esteticista) eligió el Plan Estándar." },
-            { pt: "⚡ Dr. Rafael (Advogado) agendou uma reunião estratégica.", en: "⚡ Dr. Rafael (Lawyer) scheduled a strategic meeting.", es: "⚡ Dr. Rafael (Abogado) agendó una reunión estratégica." },
-            { pt: "🚀 Tiago (Mecânico) pediu o portfólio no WhatsApp.", en: "🚀 Thiago (Mechanic) asked for the portfolio on WhatsApp.", es: "🚀 Tiago (Mecánico) pidió el portafolio en WhatsApp." },
+            { pt: "⚡ Dr. Rafael (Advogado) iniciou contato com a equipe.", en: "⚡ Dr. Rafael (Lawyer) initiated contact with the team.", es: "⚡ Dr. Rafael (Abogado) inició contacto con el equipo." },
+            { pt: "🚀 Tiago (Mecânico) solicitou orçamento.", en: "🚀 Thiago (Mechanic) requested a quote.", es: "🚀 Tiago (Mecánico) solicitó presupuesto." },
             { pt: "🔥 Beatriz (Nutricionista) fechou o Plano Profissional.", en: "🔥 Beatrice (Nutritionist) closed the Professional Plan.", es: "🔥 Beatriz (Nutricionista) cerró el Plan Profesional." },
-            { pt: "✨ Felipe (Personal Trainer) solicitou orçamento.", en: "✨ Felipe (Personal Trainer) requested a quote.", es: "✨ Felipe (Entrenador) solicitó presupuesto." },
-            { pt: "💼 Mariana (Arquiteta) garantiu a sua vaga hoje.", en: "💼 Mariana (Architect) secured her spot today.", es: "💼 Mariana (Arquitecta) aseguró su cupo hoy." },
+            { pt: "✨ Felipe (Personal Trainer) pediu um exemplo de site.", en: "✨ Felipe (Personal Trainer) asked for a site example.", es: "✨ Felipe (Entrenador) pidió un ejemplo de sitio." },
+            { pt: "💼 Mariana (Arquiteta) fechou o Plano Padrão.", en: "💼 Mariana (Architect) closed the Standard Plan.", es: "💼 Mariana (Arquitecta) cerró el Plan Estándar." },
             { pt: "⚡ Roberto (Contador) começou o projeto agora mesmo.", en: "⚡ Robert (Accountant) started the project right now.", es: "⚡ Roberto (Contador) comenzó el proyecto ahora mismo." },
             
             // Categoria 2: Empresa Genérica (Mostra alcance B2B)
             { pt: "🔥 Um Pet Shop de SP solicitou o Plano Padrão.", en: "🔥 A Pet Shop in NY requested the Standard Plan.", es: "🔥 Un Pet Shop de Madrid solicitó el Plan Estándar." },
-            { pt: "🚀 Uma Imobiliária local agendou atendimento.", en: "🚀 A local Real Estate agency scheduled a meeting.", es: "🚀 Una Inmobiliaria local agendó atención." },
+            { pt: "🚀 Uma Imobiliária local pediu o portfólio.", en: "🚀 A local Real Estate agency asked for the portfolio.", es: "🚀 Una Inmobiliaria local pidió el portafolio." },
             { pt: "✨ Um Restaurante fechou o Plano Profissional.", en: "✨ A Restaurant closed the Professional Plan.", es: "✨ Un Restaurante cerró el Plan Profesional." },
             { pt: "💼 Uma Oficina Mecânica pediu um exemplo de site.", en: "💼 An Auto Shop asked for a site example.", es: "💼 Un Taller Mecánico pidió un ejemplo de sitio." },
-            { pt: "⚡ Clínica Veterinária reservou o Plano Profissional.", en: "⚡ Vet Clinic reserved the Professional Plan.", es: "⚡ Clínica Veterinaria reservó el Plan Profesional." },
+            { pt: "⚡ Clínica Veterinária iniciou a criação do site.", en: "⚡ Vet Clinic started the site creation.", es: "⚡ Clínica Veterinaria inició la creación del sitio." },
             { pt: "🔥 Uma Empresa de Limpeza iniciou contato com a equipe.", en: "🔥 A Cleaning Company initiated contact with the team.", es: "🔥 Una Empresa de Limpieza inició contacto con el equipo." },
-            { pt: "🚀 Um Salão de Beleza garantiu a vaga da semana.", en: "🚀 A Beauty Salon secured the spot of the week.", es: "🚀 Un Salón de Belleza aseguró el cupo de la semana." },
+            { pt: "🚀 Um Salão de Beleza escolheu o Plano Profissional.", en: "🚀 A Beauty Salon chose the Professional Plan.", es: "🚀 Un Salón de Belleza eligió el Plan Profesional." },
 
-            // Categoria 3: Escassez e Status da Agência (Quebra de Padrão Forte)
-            { pt: "🚨 Apenas 1 vaga restante para criação nesta semana.", en: "🚨 Only 1 spot left for site creation this week.", es: "🚨 Solo queda 1 cupo para creación esta semana." },
-            { pt: "✨ Nossa equipe acabou de publicar o site de uma Clínica.", en: "✨ Our team just published a Clinic's website.", es: "✨ Nuestro equipo acaba de publicar el sitio de una Clínica." },
-            { pt: "🔥 Agenda de reuniões para amanhã quase lotada.", en: "🔥 Meeting schedule for tomorrow is almost full.", es: "🔥 Agenda de reuniones para mañana casi llena." },
-            { pt: "🚀 Mais um site de Barbearia entregue com sucesso hoje.", en: "🚀 Another Barbershop site successfully delivered today.", es: "🚀 Otro sitio de Barbería entregado con éxito hoy." },
-            { pt: "⚡ Último horário disponível para consultoria amanhã.", en: "⚡ Last available slot for free consulting tomorrow.", es: "⚡ Último horario disponible para consultoría mañana." }
+            // Categoria 3: Status da Agência (Entregas e Publicações reais)
+            { pt: "🚨 Nossa equipe acabou de entregar mais um projeto.", en: "🚨 Our team just delivered another project.", es: "🚨 Nuestro equipo acaba de entregar otro proyecto." },
+            { pt: "✨ Acabamos de publicar o site de uma Clínica.", en: "✨ We just published a Clinic's website.", es: "✨ Acabamos de publicar el sitio de una Clínica." },
+            { pt: "🔥 Mais um cliente satisfeito com o Plano Padrão.", en: "🔥 Another satisfied client with the Standard Plan.", es: "🔥 Otro cliente satisfecho con el Plan Estándar." },
+            { pt: "🚀 Site de Barbearia entregue com sucesso hoje.", en: "🚀 Barbershop site successfully delivered today.", es: "🚀 Sitio de Barbería entregado con éxito hoy." },
+            { pt: "⚡ Nossa equipe iniciou o desenvolvimento de um novo site.", en: "⚡ Our team started developing a new site.", es: "⚡ Nuestro equipo inició el desarrollo de un nuevo sitio." }
         ];
 
         let fomoPopup = document.getElementById('fomoPopup');
@@ -1153,7 +1133,8 @@
                 "q6": "Vocês dão suporte depois do site pronto?", "a6": "Sim! Nosso modelo de assinatura inclui suporte. Precisou alterar um número de telefone, atualizar o endereço ou trocar uma foto? É só chamar nossa equipe no WhatsApp.",
                 "q7": "Quais são as formas de pagamento aceitas?", "a7": "Aceitamos Pix, cartões de crédito e débito. <strong>Detalhe importante:</strong> por ser uma assinatura mensal (estilo Netflix) e não um parcelamento, o plano <strong>não compromete o limite total</strong> do seu cartão de crédito. Você só precisa ter de limite o valor da mensalidade daquele mês. Todo o processo é 100% seguro via Asaas.",
                 "niches-title": "Especialistas em criar sites para:", "niches-list": "Advogados • Clínicas de Estética • Odontologia • Restaurantes • Imobiliárias • Prestadores de Serviço • Contabilidade • Autônomos",
-                "footer-text": "O Seu Hub de Soluções Digitais.", "footer-motto": "Seu site pronto pra vender.", "footer-secure": "Pagamento 100% seguro processado por:",
+                "footer-rights": "Todos os direitos reservados.", "footer-motto": "Seu site pronto pra vender.", "footer-secure": "Pagamento 100% seguro processado por:",
+                "footer-terms": "Termos de Uso", "footer-privacy": "Políticas de Privacidade",
                 "pay-credit": "Crédito", "pay-debit": "Débito", "pay-pix": "Pix",
                 "action-sim": "Simulador", "action-wa": "WhatsApp", "hero-btn1": "Quero meu site no WhatsApp", "hero-btn2": "Ver portfólio (demos reais)",
                 "badge-1": "Sem enrolação", "badge-2": "Mobile rápido", "badge-3": "Você aprova antes",
@@ -1185,7 +1166,8 @@
                 "q6": "Do you provide support after the site is ready?", "a6": "Yes! Our subscription model includes support. Need to change a phone number or photo? Just message our team.",
                 "q7": "What payment methods are accepted?", "a7": "We accept Pix, credit cards, and debit cards. <strong>Important detail:</strong> because it's a true monthly subscription (like Netflix) and not an installment plan, it <strong>does not take up the total limit</strong> of your credit card. You only need enough limit for that single month's fee. The entire process is 100% secure via Asaas.",
                 "niches-title": "Experts in creating sites for:", "niches-list": "Lawyers • Aesthetic Clinics • Dentistry • Restaurants • Real Estate • Service Providers • Accounting",
-                "footer-text": "Your Digital Solutions Hub.", "footer-motto": "Your site ready to sell.", "footer-secure": "100% secure payment processed by:",
+                "footer-rights": "All rights reserved.", "footer-motto": "Your site ready to sell.", "footer-secure": "100% secure payment processed by:",
+                "footer-terms": "Terms of Use", "footer-privacy": "Privacy Policy",
                 "pay-credit": "Credit", "pay-debit": "Debit", "pay-pix": "Pix",
                 "action-sim": "Simulator", "action-wa": "WhatsApp", "hero-btn1": "I want my website via WhatsApp", "hero-btn2": "View portfolio (real demos)",
                 "badge-1": "No fluff", "badge-2": "Fast mobile", "badge-3": "You approve first",
@@ -1217,7 +1199,8 @@
                 "q6": "¿Brindan soporte después de que el sitio esté listo?", "a6": "¡Sí! Nuestro modelo de suscripción incluye soporte. ¿Necesitas cambiar un número o foto? Solo escribe a nuestro equipo en WhatsApp.",
                 "q7": "¿Cuáles son las formas de pago aceptadas?", "a7": "Aceptamos Pix, tarjetas de crédito y débito. <strong>Detalle importante:</strong> al ser una suscripción mensual (estilo Netflix) y no una compra a cuotas, el plan <strong>no consume el límite total</strong> de tu tarjeta de crédito. Solo necesitas tener disponible el valor de la mensualidad de ese mes. Todo el proceso es 100% seguro vía Asaas.",
                 "niches-title": "Expertos en crear sitios para:", "niches-list": "Abogados • Clínicas Estéticas • Odontología • Restaurantes • Inmobiliarias • Proveedores de Servicios • Contadores",
-                "footer-text": "Tu Hub de Soluciones Digitales.", "footer-motto": "Tu sitio listo para vender.", "footer-secure": "Pago 100% seguro procesado por:",
+                "footer-rights": "Todos los derechos reservados.", "footer-motto": "Tu sitio listo para vender.", "footer-secure": "Pago 100% seguro procesado por:",
+                "footer-terms": "Términos de Uso", "footer-privacy": "Políticas de Privacidad",
                 "pay-credit": "Crédito", "pay-debit": "Débito", "pay-pix": "Pix",
                 "action-sim": "Simulador", "action-wa": "WhatsApp", "hero-btn1": "Quiero mi sitio en WhatsApp", "hero-btn2": "Ver portafolio (demos reales)",
                 "badge-1": "Sin rodeos", "badge-2": "Móvil rápido", "badge-3": "Apruebas antes",
@@ -1305,5 +1288,6 @@
     </script>
 </body>
 </html>
+
 
 
