@@ -850,9 +850,9 @@
             if(scrollBar) scrollBar.style.width = scrolled + "%";
         });
 
-        // EFEITO FOMO - TOTALMENTE FOCADO EM VENDAS E PORTFÓLIO (Sem conflitar com a Agenda)
+        // EFEITO FOMO - LISTA EXPANDIDA PARA 45 OPÇÕES E SISTEMA ANTI-REPETIÇÃO
         const fomoMessages = [
-            // Categoria 1: Nome + Nicho (Gera Conexão e Credibilidade)
+            // Categoria 1: Nome + Nicho (Gera Conexão e Credibilidade) - 20 Opções
             { pt: "🔥 Pedro (Dentista) fechou o Plano Padrão.", en: "🔥 Peter (Dentist) closed the Standard Plan.", es: "🔥 Pedro (Dentista) cerró el Plan Estándar." },
             { pt: "⚡ Dra. Ana (Clínica) pediu o portfólio no WhatsApp.", en: "⚡ Dr. Anna (Clinic) asked for the portfolio on WhatsApp.", es: "⚡ Dra. Ana (Clínica) pidió el portafolio en WhatsApp." },
             { pt: "🚀 Lucas (Corretor) solicitou um exemplo de site.", en: "🚀 Lucas (Broker) requested a site example.", es: "🚀 Lucas (Corredor) solicitó un ejemplo de sitio." },
@@ -865,8 +865,16 @@
             { pt: "✨ Felipe (Personal Trainer) pediu um exemplo de site.", en: "✨ Felipe (Personal Trainer) asked for a site example.", es: "✨ Felipe (Entrenador) pidió un ejemplo de sitio." },
             { pt: "💼 Mariana (Arquiteta) fechou o Plano Padrão.", en: "💼 Mariana (Architect) closed the Standard Plan.", es: "💼 Mariana (Arquitecta) cerró el Plan Estándar." },
             { pt: "⚡ Roberto (Contador) começou o projeto agora mesmo.", en: "⚡ Robert (Accountant) started the project right now.", es: "⚡ Roberto (Contador) comenzó el proyecto ahora mismo." },
+            { pt: "🚀 Carlos (Fisioterapeuta) pediu o portfólio no WhatsApp.", en: "🚀 Carlos (Physiotherapist) asked for the portfolio.", es: "🚀 Carlos (Fisioterapeuta) pidió el portafolio." },
+            { pt: "🔥 Julia (Designer) fechou o Plano Profissional.", en: "🔥 Julia (Designer) closed the Professional Plan.", es: "🔥 Julia (Diseñadora) cerró el Plan Profesional." },
+            { pt: "✨ Bruno (Engenheiro) solicitou um exemplo.", en: "✨ Bruno (Engineer) requested an example.", es: "✨ Bruno (Ingeniero) solicitó un ejemplo." },
+            { pt: "💼 Amanda (Terapeuta) iniciou a criação do site.", en: "💼 Amanda (Therapist) started the site creation.", es: "💼 Amanda (Terapeuta) inició la creación del sitio." },
+            { pt: "⚡ Diego (Podólogo) escolheu o Plano Padrão.", en: "⚡ Diego (Podiatrist) chose the Standard Plan.", es: "⚡ Diego (Podólogo) eligió el Plan Estándar." },
+            { pt: "🚀 Fernanda (Confeiteira) iniciou contato.", en: "🚀 Fernanda (Baker) initiated contact.", es: "🚀 Fernanda (Pastelera) inició contacto." },
+            { pt: "🔥 Thiago (Marceneiro) garantiu o Plano Profissional.", en: "🔥 Thiago (Carpenter) secured the Professional Plan.", es: "🔥 Thiago (Carpintero) aseguró el Plan Profesional." },
+            { pt: "✨ Letícia (Consultora) pediu orçamento no WhatsApp.", en: "✨ Letícia (Consultant) asked for a quote on WhatsApp.", es: "✨ Letícia (Consultora) pidió presupuesto en WhatsApp." },
             
-            // Categoria 2: Empresa Genérica (Mostra alcance B2B)
+            // Categoria 2: Empresa Genérica (Mostra alcance B2B) - 15 Opções
             { pt: "🔥 Um Pet Shop de SP solicitou o Plano Padrão.", en: "🔥 A Pet Shop in NY requested the Standard Plan.", es: "🔥 Un Pet Shop de Madrid solicitó el Plan Estándar." },
             { pt: "🚀 Uma Imobiliária local pediu o portfólio.", en: "🚀 A local Real Estate agency asked for the portfolio.", es: "🚀 Una Inmobiliaria local pidió el portafolio." },
             { pt: "✨ Um Restaurante fechou o Plano Profissional.", en: "✨ A Restaurant closed the Professional Plan.", es: "✨ Un Restaurante cerró el Plan Profesional." },
@@ -874,33 +882,60 @@
             { pt: "⚡ Clínica Veterinária iniciou a criação do site.", en: "⚡ Vet Clinic started the site creation.", es: "⚡ Clínica Veterinaria inició la creación del sitio." },
             { pt: "🔥 Uma Empresa de Limpeza iniciou contato com a equipe.", en: "🔥 A Cleaning Company initiated contact with the team.", es: "🔥 Una Empresa de Limpieza inició contacto con el equipo." },
             { pt: "🚀 Um Salão de Beleza escolheu o Plano Profissional.", en: "🚀 A Beauty Salon chose the Professional Plan.", es: "🚀 Un Salón de Belleza eligió el Plan Profesional." },
+            { pt: "✨ Uma Academia de Crossfit solicitou orçamento.", en: "✨ A Crossfit Gym requested a quote.", es: "✨ Un Gimnasio Crossfit solicitó presupuesto." },
+            { pt: "💼 Uma Pizzaria fechou o Plano Padrão.", en: "💼 A Pizzeria closed the Standard Plan.", es: "💼 Una Pizzería cerró el Plan Estándar." },
+            { pt: "⚡ Clínica de Estética pediu um modelo no WhatsApp.", en: "⚡ Aesthetics Clinic asked for a model on WhatsApp.", es: "⚡ Clínica Estética pidió un modelo en WhatsApp." },
+            { pt: "🔥 Um Escritório de Contabilidade iniciou o projeto.", en: "🔥 An Accounting Firm started the project.", es: "🔥 Un Estudio Contable inició el proyecto." },
+            { pt: "🚀 Uma Pousada no litoral escolheu o Plano Profissional.", en: "🚀 A coastal Guesthouse chose the Professional Plan.", es: "🚀 Una Posada en la costa eligió el Plan Profesional." },
+            { pt: "✨ Uma Farmácia pediu o portfólio.", en: "✨ A Pharmacy asked for the portfolio.", es: "✨ Una Farmacia pidió el portafolio." },
+            { pt: "💼 Loja de Roupas iniciou a criação do site.", en: "💼 Clothing Store started the site creation.", es: "💼 Tienda de Ropa inició la creación del sitio." },
+            { pt: "⚡ Estúdio de Tatuagem fechou o Plano Padrão.", en: "⚡ Tattoo Studio closed the Standard Plan.", es: "⚡ Estudio de Tatuajes cerró el Plan Estándar." },
 
-            // Categoria 3: Status da Agência (Entregas e Publicações reais)
+            // Categoria 3: Status da Agência (Entregas e Publicações reais) - 10 Opções
             { pt: "🚨 Nossa equipe acabou de entregar mais um projeto.", en: "🚨 Our team just delivered another project.", es: "🚨 Nuestro equipo acaba de entregar otro proyecto." },
             { pt: "✨ Acabamos de publicar o site de uma Clínica.", en: "✨ We just published a Clinic's website.", es: "✨ Acabamos de publicar el sitio de una Clínica." },
             { pt: "🔥 Mais um cliente satisfeito com o Plano Padrão.", en: "🔥 Another satisfied client with the Standard Plan.", es: "🔥 Otro cliente satisfecho con el Plan Estándar." },
             { pt: "🚀 Site de Barbearia entregue com sucesso hoje.", en: "🚀 Barbershop site successfully delivered today.", es: "🚀 Sitio de Barbería entregado con éxito hoy." },
-            { pt: "⚡ Nossa equipe iniciou o desenvolvimento de um novo site.", en: "⚡ Our team started developing a new site.", es: "⚡ Nuestro equipo inició el desarrollo de un nuevo sitio." }
+            { pt: "⚡ Nossa equipe iniciou o desenvolvimento de um novo site.", en: "⚡ Our team started developing a new site.", es: "⚡ Nuestro equipo inició el desarrollo de un nuevo sitio." },
+            { pt: "🚨 Novo site de Odontologia acaba de ir ao ar.", en: "🚨 New Dentistry site just went live.", es: "🚨 Nuevo sitio de Odontología acaba de publicarse." },
+            { pt: "✨ Portfólio atualizado com novos projetos locais.", en: "✨ Portfolio updated with new local projects.", es: "✨ Portafolio actualizado con nuevos proyectos locales." },
+            { pt: "🔥 Cliente do Plano Profissional aprovou o design hoje.", en: "🔥 Professional Plan client approved the design today.", es: "🔥 Cliente del Plan Profesional aprobó el diseño hoy." },
+            { pt: "🚀 Mais um site otimizado para buscas entregue.", en: "🚀 Another search-optimized site delivered.", es: "🚀 Otro sitio optimizado para búsquedas entregado." },
+            { pt: "⚡ Estrutura de conversão finalizada para uma Estética.", en: "⚡ Conversion structure finished for an Aesthetics clinic.", es: "⚡ Estructura de conversión finalizada para una Estética." }
         ];
 
         let fomoPopup = document.getElementById('fomoPopup');
         let fomoText = document.getElementById('fomoText');
+        
+        // SISTEMA DE SACO DE SORTEIO (Anti-Repetição)
+        let fomoBag = [];
+
+        function getNextFomoMessage() {
+            // Se o saco estiver vazio, enche de novo com todas as mensagens e embaralha
+            if (fomoBag.length === 0) {
+                fomoBag = [...fomoMessages];
+                for (let i = fomoBag.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [fomoBag[i], fomoBag[j]] = [fomoBag[j], fomoBag[i]]; // Troca
+                }
+            }
+            // Retira a última mensagem do saco (garantindo que nunca repete até o saco esvaziar)
+            return fomoBag.pop();
+        }
 
         function triggerFomo() {
             if(!fomoPopup || !fomoText) return;
             
-            // Escolhe uma mensagem aleatória do novo Mix
-            const msg = fomoMessages[Math.floor(Math.random() * fomoMessages.length)];
+            const msg = getNextFomoMessage();
             const lang = currentLang || 'pt';
             fomoText.innerHTML = msg[lang] || msg['pt'];
             
-            // Mostra o popup
             fomoPopup.classList.add('show');
             
             // Esconde após 5 segundos e agenda o próximo
             setTimeout(() => {
                 fomoPopup.classList.remove('show');
-                // Sorteia próximo aparecimento entre 15 e 35 segundos (15000 a 35000 ms)
+                // Sorteia próximo aparecimento entre 15 e 35 segundos
                 let nextTime = Math.floor(Math.random() * 20000) + 15000;
                 setTimeout(triggerFomo, nextTime);
             }, 5000); 
