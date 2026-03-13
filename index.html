@@ -132,14 +132,43 @@
         /* HEADER & LANGUAGE SWITCHER */
         header { position: fixed; top: 0; width: 100%; z-index: 1000; background: var(--bg-nav); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border-bottom: 1px solid var(--glass-border); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); } 
         .nav-container { max-width: var(--container); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 12px 20px; }
-        .logo-container { display: flex; align-items: center; gap: 12px; cursor: pointer; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
         
-        /* EFEITO HOVER E AUMENTO NA LOGO PRINCIPAL */
-        .logo-img { height: 110px; width: auto; object-fit: contain; opacity: 0.85; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        .logo-container:hover .logo-img { opacity: 1; filter: drop-shadow(0 0 15px rgba(26, 115, 232, 0.6)); transform: scale(1.08) rotate(-2deg); }
+        /* ADICIONADA PERSPECTIVA 3D NO CONTAINER */
+        .logo-container { display: flex; align-items: center; gap: 12px; cursor: pointer; perspective: 1000px; }
         
-        .logo-text { font-size: 1.7rem; font-weight: 800; letter-spacing: -0.5px; background: linear-gradient(to right, var(--google-blue), var(--google-green)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: block; transition: all 0.4s ease; }
-        .logo-container:hover .logo-text { filter: drop-shadow(0 0 8px rgba(26, 115, 232, 0.3)); transform: scale(1.02); }
+        /* ANIMAÇÃO 5: ENTRADA DRAMÁTICA (Drop & Bounce) */
+        @keyframes logoDropBounce {
+            0% { transform: translateY(-80px) scale(0.5); opacity: 0; }
+            50% { transform: translateY(15px) scale(1.1); opacity: 1; }
+            75% { transform: translateY(-5px) scale(0.95); opacity: 0.9; }
+            100% { transform: translateY(0) scale(1); opacity: 1; }
+        }
+        
+        /* IMAGEM DA LOGO (PNG) COM ANIMAÇÃO 3D E QUEDA */
+        .logo-img { 
+            height: 110px; width: auto; object-fit: contain; opacity: 0; 
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s, filter 0.4s; 
+            transform-style: preserve-3d;
+            animation: logoDropBounce 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+        
+        /* ANIMAÇÃO 4: FLIP 3D NO HOVER */
+        .logo-container:hover .logo-img { 
+            opacity: 1; 
+            filter: drop-shadow(0 0 20px rgba(26, 115, 232, 0.8)); 
+            transform: scale(1.15) rotateY(360deg); 
+        }
+        
+        /* TEXTO DA LOGO (NORMAL) */
+        .logo-text { 
+            font-size: 1.8rem; font-weight: 800; letter-spacing: -0.5px; 
+            background: linear-gradient(to right, var(--google-blue), var(--google-green)); 
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
+            display: block; transition: all 0.4s ease;
+        }
+        .logo-container:hover .logo-text { 
+            filter: drop-shadow(0 0 8px rgba(26, 115, 232, 0.3)); transform: scale(1.02) translateX(8px); 
+        }
         
         /* MENU LINKS - APPLE VISION PRO */
         .nav-menu { display: flex; gap: 5px; align-items: center; }
@@ -182,6 +211,20 @@
         
         .hero-btns { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; }
         @media (min-width: 992px) { .hero-btns { justify-content: flex-start; } }
+
+        /* SELO DE CONFIANÇA (NOVO) */
+        .trust-badge { display: flex; align-items: center; gap: 15px; margin-top: 40px; justify-content: center; opacity: 0; animation: fadeUpBadge 0.8s ease forwards 0.5s; }
+        @media (min-width: 992px) { .trust-badge { justify-content: flex-start; } }
+        
+        .avatars { display: flex; align-items: center; }
+        .avatars img { width: 38px; height: 38px; border-radius: 50%; border: 2px solid var(--bg-body); margin-left: -12px; object-fit: cover; box-shadow: 0 4px 10px rgba(0,0,0,0.3); transition: transform 0.3s ease; }
+        .avatars img:first-child { margin-left: 0; }
+        .avatars img:hover { transform: translateY(-3px) scale(1.1); z-index: 10; border-color: var(--google-green); }
+        
+        .trust-badge p { margin-bottom: 0; font-size: 0.95rem; color: var(--text-dim); text-align: left; line-height: 1.3; }
+        .trust-badge strong { color: var(--google-green); font-size: 1.2rem; font-weight: 800; text-shadow: 0 0 15px rgba(52, 168, 83, 0.4); }
+        
+        @keyframes fadeUpBadge { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 
         .hero-visual { display: flex; flex-direction: column; gap: 15px; perspective: 1000px; }
         .hero-badge-card { background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border: 1px solid var(--glass-border); padding: 20px 25px; border-radius: 20px; font-size: 1.1rem; font-weight: 600; display: flex; align-items: center; gap: 15px; box-shadow: 0 8px 32px rgba(0,0,0,0.1); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
@@ -347,9 +390,9 @@
         .sd-wa { background: rgba(37, 211, 102, 0.4); }
 
         .sd-main-btn { width: 65px; height: 65px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.25); background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.02)); backdrop-filter: blur(25px); display: flex; justify-content: center; align-items: center; cursor: pointer; box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 2px 2px rgba(255, 255, 255, 0.4); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); outline: none; position: relative; }
-        .sd-main-btn img { width: 52px; height: 52px; object-fit: contain; transition: all 0.4s ease; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); }
+        .sd-main-btn svg, .sd-main-btn img { width: 45px; height: 45px; object-fit: contain; transition: all 0.4s ease; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); }
         .sd-main-btn:hover { background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0.05)); transform: scale(1.05); }
-        .speed-dial-container.active .sd-main-btn img { transform: rotate(90deg) scale(0); opacity: 0; }
+        .speed-dial-container.active .sd-main-btn svg, .speed-dial-container.active .sd-main-btn img { transform: rotate(90deg) scale(0); opacity: 0; }
         .sd-main-btn::after { content: '+'; position: absolute; font-size: 2.8rem; color: white; font-weight: 300; line-height: 1; opacity: 0; transform: rotate(-90deg) scale(0); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
         .speed-dial-container.active .sd-main-btn::after { opacity: 1; transform: rotate(45deg) scale(1); } 
 
@@ -461,6 +504,17 @@
                     <div class="hero-btns">
                         <a href="#" onclick="window.open(WHATSAPP_LINK)" class="btn btn-primary" style="padding: 18px 36px; font-size: 1.1rem;" data-i18n="hero-btn1">Quero meu site no WhatsApp</a>
                         <a href="#pilar-sites" class="btn btn-outline" style="padding: 18px 36px; font-size: 1.1rem;" data-i18n="hero-btn2">Ver portfólio (demos reais)</a>
+                    </div>
+
+                    <!-- SELO DE CONFIANÇA AQUI -->
+                    <div class="trust-badge">
+                        <div class="avatars">
+                            <img src="https://i.pravatar.cc/100?img=11" alt="Cliente 1">
+                            <img src="https://i.pravatar.cc/100?img=32" alt="Cliente 2">
+                            <img src="https://i.pravatar.cc/100?img=47" alt="Cliente 3">
+                            <img src="https://i.pravatar.cc/100?img=68" alt="Cliente 4">
+                        </div>
+                        <p><span data-i18n="trust-pre">Junte-se a</span> <strong id="siteCounter">0</strong><strong>+</strong> <span data-i18n="trust-post">negócios que já transformaram seus sites em máquinas de vendas.</span></p>
                     </div>
                 </div>
                 
@@ -762,6 +816,11 @@
                         <button class="faq-question"><span data-i18n="q7">Quais são as formas de pagamento aceitas?</span> <span class="faq-icon">+</span></button>
                         <div class="faq-answer"><p data-i18n="a7">Aceitamos Pix, cartões de crédito e débito. Todo o processo é realizado de forma 100% segura através da plataforma Asaas.</p></div>
                     </div>
+                    <!-- NOVA PERGUNTA SOBRE O DOMÍNIO -->
+                    <div class="faq-item">
+                        <button class="faq-question"><span data-i18n="q8">Posso ter meu próprio domínio (ex: minhaempresa.com.br)?</span> <span class="faq-icon">+</span></button>
+                        <div class="faq-answer"><p data-i18n="a8">Sim! No <strong>Plano Profissional (R$ 150)</strong>, você tem o direito de conectar um domínio próprio. Para garantir que o nome seja 100% seu, você mesmo compra o domínio no site oficial <a href="https://registro.br/" target="_blank" style="color: var(--google-blue); text-decoration: underline;">registro.br</a> (custa apenas R$ 40 por ano). Depois de comprado, nossa equipe faz toda a configuração técnica de graça para você!</p></div>
+                    </div>
                 </div>
 
             </div>
@@ -826,7 +885,9 @@
             <div class="sd-item"><span class="sd-label">E-mail</span><a href="mailto:hubsymples@gmail.com" class="sd-btn sd-email" aria-label="E-mail"><svg style="width: 22px; height: 22px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a></div>
             <div class="sd-item"><span class="sd-label" data-i18n="action-wa">WhatsApp</span><a href="#" onclick="window.open(WHATSAPP_LINK)" class="sd-btn sd-wa" aria-label="WhatsApp"><svg style="width: 26px; height: 26px;" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.72.94 3.659 1.437 5.634 1.437h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a></div>
         </div>
-        <button class="sd-main-btn" id="speedDialMainBtn" aria-label="Opções de Contato"><img src="https://i.imgur.com/WVOsHDW.png" alt="HubSymples"></button>
+        <button class="sd-main-btn" id="speedDialMainBtn" aria-label="Opções de Contato">
+            <img src="https://i.imgur.com/WVOsHDW.png" alt="HubSymples">
+        </button>
     </div>
 
     <!-- CHAT SIMULADOR -->
@@ -903,6 +964,33 @@
             { pt: "🚀 Mais um site otimizado para buscas entregue.", en: "🚀 Another search-optimized site delivered.", es: "🚀 Otro sitio optimizado para búsquedas entregado." },
             { pt: "⚡ Estrutura de conversão finalizada para uma Estética.", en: "⚡ Conversion structure finished for an Aesthetics clinic.", es: "⚡ Estructura de conversión finalizada para una Estética." }
         ];
+
+        // LÓGICA DO CONTADOR ANIMADO DE SITES
+        function animateCounter(elementId, target, duration) {
+            const obj = document.getElementById(elementId);
+            if (!obj) return;
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                
+                // Função de easing (Desacelera no final)
+                const easeOut = 1 - Math.pow(1 - progress, 4); 
+                obj.innerHTML = Math.floor(easeOut * target);
+                
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                } else {
+                    obj.innerHTML = target; // Garante o número final exato
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        // Inicia o contador quando o selo aparece na tela (ou logo após carregar a página)
+        setTimeout(() => {
+            animateCounter('siteCounter', 75, 2500); // Demora 2.5 segundos para ir de 0 a 75
+        }, 600); // Pequeno atraso para a página carregar a primeira animação do AOS
 
         let fomoPopup = document.getElementById('fomoPopup');
         let fomoText = document.getElementById('fomoText');
@@ -1162,16 +1250,18 @@
                 "form-secure": "🔒 Seus dados estão seguros. Não enviamos spam. Tempo médio de resposta: 2 a 5 minutos.",
                 "q1": "Em quanto tempo o site fica pronto?", "a1": "Em no máximo 3 dias. Nós cuidamos de tudo, da criação da estrutura até a publicação, para você não perder tempo.",
                 "q2": "Preciso ter logo, textos e fotos prontas?", "a2": "Não. Se você não tiver nada pronto, nós criamos o seu site do zero, incluindo textos persuasivos e imagens profissionais para o seu nicho.",
-                "q3": "O site tem mensalidade ou custo de manutenção?", "a3": "Sim. Trabalhamos com um modelo de assinatura acessível (a partir de R$80/mês) que já inclui a criação do site, hospedagem rápida e suporte contínuo. Caso opte por ter um Domínio Próprio (.com.br), o valor anual do registro varia normalmente entre R$ 40 e R$ 50 por ano e é pago diretamente por você para garantir que o nome seja 100% da sua empresa. Você pode verificar a disponibilidade acessando o <a href='https://registro.br/' target='_blank' style='color: var(--google-blue); text-decoration: underline;'>registro.br</a>.",
+                "q3": "O site tem mensalidade ou custo de manutenção?", "a3": "Sim. Trabalhamos com um modelo de assinatura acessível (a partir de R$80/mês) que já inclui a criação do site, hospedagem rápida e suporte contínuo para atualizações.",
                 "q4": "Qual é a diferença entre os planos?", "a4": "Eles atendem a necessidades diferentes. O <strong>Plano Padrão</strong> é perfeito para prestadores de serviços e profissionais autônomos que precisam de um site objetivo e rápido para atrair clientes direto para o WhatsApp. Já o <strong>Plano Profissional</strong> é voltado para negócios físicos (como clínicas, estéticas e oficinas) que precisam de uma estrutura maior para detalhar serviços e integrar agendamento próprio.",
                 "q5": "Se eu já tenho Instagram, ainda preciso de site?", "a5": "Sim. O Instagram atrai a atenção, mas o site passa a confiança necessária para fechar a venda e garante que você seja encontrado no Google por quem está pronto para comprar.",
                 "q6": "Vocês dão suporte depois do site pronto?", "a6": "Sim! Nosso modelo de assinatura inclui suporte. Precisou alterar um número de telefone, atualizar o endereço ou trocar uma foto? É só chamar nossa equipe no WhatsApp.",
                 "q7": "Quais são as formas de pagamento aceitas?", "a7": "Aceitamos Pix, cartões de crédito e débito. <strong>Detalhe importante:</strong> por ser uma assinatura mensal (estilo Netflix) e não um parcelamento, o plano <strong>não compromete o limite total</strong> do seu cartão de crédito. Você só precisa ter de limite o valor da mensalidade daquele mês. Todo o processo é 100% seguro via Asaas.",
+                "q8": "Posso ter meu próprio domínio (ex: minhaempresa.com.br)?", "a8": "Sim! No <strong>Plano Profissional (R$ 150)</strong>, você tem o direito de conectar um domínio próprio. Para garantir que o nome seja 100% seu, você mesmo compra o domínio no site oficial <a href='https://registro.br/' target='_blank' style='color: var(--google-blue); text-decoration: underline;'>registro.br</a> (custa apenas R$ 40 por ano). Depois de comprado, nossa equipe faz toda a configuração técnica de graça para você!",
                 "niches-title": "Especialistas em criar sites para:", "niches-list": "Advogados • Clínicas de Estética • Odontologia • Restaurantes • Imobiliárias • Prestadores de Serviço • Contabilidade • Autônomos",
                 "footer-rights": "Todos os direitos reservados.", "footer-motto": "Seu site pronto pra vender.", "footer-secure": "Pagamento 100% seguro processado por:",
                 "footer-terms": "Termos de Uso", "footer-privacy": "Políticas de Privacidade",
                 "pay-credit": "Crédito", "pay-debit": "Débito", "pay-pix": "Pix",
                 "action-sim": "Simulador", "action-wa": "WhatsApp", "hero-btn1": "Quero meu site no WhatsApp", "hero-btn2": "Ver portfólio (demos reais)",
+                "trust-pre": "Junte-se a", "trust-post": "negócios locais que já garantiram uma presença digital de destaque.",
                 "badge-1": "Sem enrolação", "badge-2": "Mobile rápido", "badge-3": "Você aprova antes",
                 "mobile-sticky": "Falar no WhatsApp", "fomo-time": "Neste momento"
             },
@@ -1195,16 +1285,18 @@
                 "form-secure": "🔒 Your data is safe. We don't send spam. Average response time: 2 to 5 minutes.",
                 "q1": "How long does it take for the site to be ready?", "a1": "In a maximum of 3 days. We take care of everything, from the creation of the structure to the publication, so you don't waste time.",
                 "q2": "Do I need to have a logo, texts, and photos ready?", "a2": "No. If you don't have anything ready, we build your site from scratch, including persuasive copy and professional images for your niche.",
-                "q3": "Does the website have a monthly fee or maintenance cost?", "a3": "Yes. We work with an affordable subscription model that already includes the website creation, fast hosting, and ongoing support.",
+                "q3": "Does the website have a monthly fee or maintenance cost?", "a3": "Yes. We work with an affordable subscription model that already includes the website creation, fast hosting, and ongoing support for updates.",
                 "q4": "What is the difference between the plans?", "a4": "They serve different needs. The <strong>Standard Plan</strong> is perfect for service providers who need a fast site to attract clients straight to WhatsApp. The <strong>Professional Plan</strong> is built for physical businesses that need a larger structure and integrate a scheduling system.",
                 "q5": "If I already have Instagram, do I still need a website?", "a5": "Yes. Instagram attracts attention, but a website builds the trust needed to close the sale and ensures you are found on Google.",
                 "q6": "Do you provide support after the site is ready?", "a6": "Yes! Our subscription model includes support. Need to change a phone number or photo? Just message our team.",
                 "q7": "What payment methods are accepted?", "a7": "We accept Pix, credit cards, and debit cards. <strong>Important detail:</strong> because it's a true monthly subscription (like Netflix) and not an installment plan, it <strong>does not take up the total limit</strong> of your credit card. You only need enough limit for that single month's fee. The entire process is 100% secure via Asaas.",
+                "q8": "Can I have my own domain (e.g., mycompany.com)?", "a8": "Yes! On the <strong>Professional Plan ($ 150/mo)</strong>, you have the right to connect a custom domain. To ensure the name is 100% yours, you buy the domain on the official registry website (costs around $ 10/year). Once purchased, our team handles all the technical setup for free!",
                 "niches-title": "Experts in creating sites for:", "niches-list": "Lawyers • Aesthetic Clinics • Dentistry • Restaurants • Real Estate • Service Providers • Accounting",
                 "footer-rights": "All rights reserved.", "footer-motto": "Your site ready to sell.", "footer-secure": "100% secure payment processed by:",
                 "footer-terms": "Terms of Use", "footer-privacy": "Privacy Policy",
                 "pay-credit": "Credit", "pay-debit": "Debit", "pay-pix": "Pix",
                 "action-sim": "Simulator", "action-wa": "WhatsApp", "hero-btn1": "I want my website via WhatsApp", "hero-btn2": "View portfolio (real demos)",
+                "trust-pre": "Join", "trust-post": "local businesses that have already secured a prominent digital presence.",
                 "badge-1": "No fluff", "badge-2": "Fast mobile", "badge-3": "You approve first",
                 "mobile-sticky": "Chat on WhatsApp", "fomo-time": "Just now"
             },
@@ -1228,16 +1320,18 @@
                 "form-secure": "🔒 Tus datos están seguros. No enviamos spam. Tiempo de respuesta: 2 a 5 minutos.",
                 "q1": "¿En cuánto tiempo está listo el sitio?", "a1": "En un máximo de 3 días. Nos encargamos de todo, desde la creación de la estructura hasta la publicación, para que no pierdas tiempo.",
                 "q2": "¿Necesito tener logo, textos y fotos listas?", "a2": "No. Si no tienes nada listo, creamos tu sitio desde cero, incluyendo textos persuasivos e imágenes profesionales para tu nicho.",
-                "q3": "¿El sitio web tiene mensualidad o costo de mantenimiento?", "a3": "Sí. Trabajamos con un modelo de suscripción accesible que incluye la creación del sitio, hosting rápido y soporte continuo.",
+                "q3": "¿El sitio web tiene mensualidad o costo de mantenimiento?", "a3": "Sí. Trabajamos con un modelo de suscripción accesible que incluye la creación del sitio, hosting rápido y soporte continuo para actualizaciones.",
                 "q4": "¿Cuál es la diferencia entre los planes?", "a4": "Atienden necesidades distintas. El <strong>Plan Estándar</strong> es perfecto para proveedores de servicios y autónomos que necesitan un sitio rápido para atraer clientes al WhatsApp. El <strong>Plan Profesional</strong> está diseñado para negocios físicos que necesitan detallar servicios y sistema de reservas.",
                 "q5": "Si ya tengo Instagram, ¿aún necesito un sitio web?", "a5": "Sí. Instagram atrae la atención, pero un sitio web transmite la confianza necesaria para cerrar la venta y asegura que te encuentren en Google.",
                 "q6": "¿Brindan soporte después de que el sitio esté listo?", "a6": "¡Sí! Nuestro modelo de suscripción incluye soporte. ¿Necesitas cambiar un número o foto? Solo escribe a nuestro equipo en WhatsApp.",
                 "q7": "¿Cuáles son las formas de pago aceptadas?", "a7": "Aceptamos Pix, tarjetas de crédito y débito. <strong>Detalle importante:</strong> al ser una suscripción mensual (estilo Netflix) y no una compra a cuotas, el plan <strong>no consume el límite total</strong> de tu tarjeta de crédito. Solo necesitas tener disponible el valor de la mensualidad de ese mes. Todo el proceso es 100% seguro vía Asaas.",
+                "q8": "¿Puedo tener mi propio dominio (ej: miempresa.com)?", "a8": "¡Sí! En el <strong>Plan Profesional ($ 150/mes)</strong>, tienes el derecho a conectar un dominio personalizado. Para asegurar que el nombre sea 100% tuyo, tú mismo compras el dominio en el sitio de registro oficial (cuesta alrededor de $ 10/año). ¡Una vez comprado, nuestro equipo se encarga de toda la configuración técnica gratis!",
                 "niches-title": "Expertos en crear sitios para:", "niches-list": "Abogados • Clínicas Estéticas • Odontología • Restaurantes • Inmobiliarias • Proveedores de Servicios • Contadores",
                 "footer-rights": "Todos los derechos reservados.", "footer-motto": "Tu sitio listo para vender.", "footer-secure": "Pago 100% seguro procesado por:",
                 "footer-terms": "Términos de Uso", "footer-privacy": "Políticas de Privacidad",
                 "pay-credit": "Crédito", "pay-debit": "Débito", "pay-pix": "Pix",
                 "action-sim": "Simulador", "action-wa": "WhatsApp", "hero-btn1": "Quiero mi sitio en WhatsApp", "hero-btn2": "Ver portafolio (demos reales)",
+                "trust-pre": "Únete a", "trust-post": "negocios locales que ya garantizaron una presencia digital destacada.",
                 "badge-1": "Sin rodeos", "badge-2": "Móvil rápido", "badge-3": "Apruebas antes",
                 "mobile-sticky": "Hablar en WhatsApp", "fomo-time": "En este momento"
             }
