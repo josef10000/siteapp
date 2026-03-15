@@ -418,6 +418,26 @@
         .typing-cursor { display: inline-block; width: 4px; height: 0.9em; background-color: var(--google-blue); margin-left: 5px; vertical-align: baseline; animation: blink 0.8s step-end infinite; }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
+        /* MAPA DE ALCANCE NACIONAL (GLOW HEATMAP) */
+        .map-wrapper { max-width: 800px; margin: 0 auto; position: relative; perspective: 1000px; z-index: 10; padding: 20px; }
+        .map-svg { width: 100%; height: auto; filter: drop-shadow(0 10px 25px rgba(0,0,0,0.4)); transform-style: preserve-3d; }
+        
+        .br-state { fill: rgba(255,255,255,0.03); stroke: rgba(255,255,255,0.15); stroke-width: 1.5; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); transform-box: fill-box; transform-origin: center; cursor: default; }
+        
+        .br-state.active { fill: var(--state-color, var(--google-blue)); fill-opacity: 0.15; stroke: var(--state-color, var(--google-blue)); filter: drop-shadow(0 0 10px var(--state-color, var(--google-blue))); cursor: pointer; }
+        .br-state.active:hover { fill-opacity: 0.6; filter: drop-shadow(0 0 25px var(--state-color, var(--google-blue))); transform: translateZ(20px) scale(1.03); z-index: 10; stroke-width: 2.5; }
+        
+        .map-tooltip { position: fixed; background: rgba(10, 12, 16, 0.95); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid var(--glass-border); padding: 12px 20px; border-radius: 12px; color: white; font-size: 0.95rem; font-weight: 600; pointer-events: none; opacity: 0; transform: translate(-50%, -150%) scale(0.9); transition: opacity 0.2s, transform 0.2s; z-index: 9999; box-shadow: 0 10px 30px rgba(0,0,0,0.5); white-space: nowrap; display: flex; align-items: center; gap: 10px; }
+        .map-tooltip.show { opacity: 1; transform: translate(-50%, -150%) scale(1); }
+        .map-tooltip .neon-dot { width: 10px; height: 10px; }
+        
+        .mobile-map-stats { display: none; margin-top: 30px; }
+        @media (max-width: 768px) { 
+            .mobile-map-stats { display: block; } 
+            .map-tooltip { display: none !important; } 
+            .map-wrapper { transform: scale(1.1); margin-top: 20px; overflow: visible; }
+        }
+
         /* NOTIFICAÇÃO FOMO (URGÊNCIA SOCIAL) */
         .fomo-popup {
             position: fixed; bottom: 30px; left: 30px; z-index: 1001;
@@ -541,6 +561,34 @@
                     <span class="theme-chip" onclick="setNicheAndApply('Clínica')">⚕️ Clínica</span>
                     <span class="theme-chip" onclick="setNicheAndApply('Advogado')">⚖️ Advogado</span>
                     <span class="theme-chip" onclick="setNicheAndApply('Restaurante')">🍽️ Restaurante</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- MAPA DE ALCANCE NACIONAL -->
+        <section id="alcance-nacional" class="glow-band band-blue" data-aos="fade-up" style="padding-top: 40px; padding-bottom: 20px;">
+            <div style="text-align: center; margin-bottom: 20px;">
+                <span class="section-tag" style="color: var(--google-blue);" data-i18n="map-tag">Alcance Nacional</span>
+                <h2 data-i18n="map-title" style="font-size: clamp(1.8rem, 4vw, 2.5rem);">Impacto em todo o Brasil</h2>
+                <p style="color: var(--text-dim); font-size: 1.1rem; margin-top: 15px; max-width: 600px; margin-inline: auto;" data-i18n="map-desc">Não importa a sua região. Nossa infraestrutura atende negócios locais de norte a sul com a mesma velocidade e qualidade.</p>
+            </div>
+
+            <div class="map-wrapper" id="mapWrapper">
+                <div id="map-svg-wrapper">
+                    <p style="text-align: center; color: var(--text-dim); padding: 50px;">Carregando mapa interativo...</p>
+                </div>
+                <div id="mapTooltip" class="map-tooltip"></div>
+            </div>
+
+            <div class="mobile-map-stats" style="text-align: center;">
+                <p style="color: var(--text-main); font-weight: 600; margin-bottom: 15px;" data-i18n="map-stats-title">Principais regiões atendidas:</p>
+                <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;">
+                    <span class="theme-chip" style="border-color: var(--google-blue); color: #fff; background: rgba(26, 115, 232, 0.1);">📍 SP (42)</span>
+                    <span class="theme-chip" style="border-color: var(--google-green); color: #fff; background: rgba(52, 168, 83, 0.1);">📍 RJ (18)</span>
+                    <span class="theme-chip" style="border-color: var(--google-purple); color: #fff; background: rgba(168, 85, 247, 0.1);">📍 MG (15)</span>
+                    <span class="theme-chip">📍 PR (10)</span>
+                    <span class="theme-chip">📍 BA (7)</span>
+                    <span class="theme-chip">📍 CE (6)</span>
                 </div>
             </div>
         </section>
@@ -921,7 +969,7 @@
             { pt: "🔥 João (Barbearia) iniciou a criação do seu site.", en: "🔥 John (Barbershop) started his site creation.", es: "🔥 Juan (Barbería) inició la creación de su sitio." },
             { pt: "💼 Camila (Esteticista) escolheu o Plano Padrão.", en: "💼 Camila (Esthetician) chose the Standard Plan.", es: "💼 Camila (Esteticista) eligió el Plan Estándar." },
             { pt: "⚡ Dr. Rafael (Advogado) iniciou contato com a equipe.", en: "⚡ Dr. Rafael (Lawyer) initiated contact with the team.", es: "⚡ Dr. Rafael (Abogado) inició contacto con el equipo." },
-            { pt: "🚀 Tiago (Mecânico) solicitou orçamento.", en: "🚀 Thiago (Mechanic) requested a quote.", es: "🚀 Tiago (Mecánico) solicitó presupuesto." },
+            { pt: "🚀 Tiago (Mecânico) selecionou o Plano Padrão.", en: "🚀 Thiago (Mechanic) selected the Standard Plan.", es: "🚀 Tiago (Mecánico) seleccionó el Plan Estándar." },
             { pt: "🔥 Beatriz (Nutricionista) fechou o Plano Profissional.", en: "🔥 Beatrice (Nutritionist) closed the Professional Plan.", es: "🔥 Beatriz (Nutricionista) cerró el Plan Profesional." },
             { pt: "✨ Felipe (Personal Trainer) pediu um exemplo de site.", en: "✨ Felipe (Personal Trainer) asked for a site example.", es: "✨ Felipe (Entrenador) pidió un ejemplo de sitio." },
             { pt: "💼 Mariana (Arquiteta) fechou o Plano Padrão.", en: "💼 Mariana (Architect) closed the Standard Plan.", es: "💼 Mariana (Arquitecta) cerró el Plan Estándar." },
@@ -933,7 +981,7 @@
             { pt: "⚡ Diego (Podólogo) escolheu o Plano Padrão.", en: "⚡ Diego (Podiatrist) chose the Standard Plan.", es: "⚡ Diego (Podólogo) eligió el Plan Estándar." },
             { pt: "🚀 Fernanda (Confeiteira) iniciou contato.", en: "🚀 Fernanda (Baker) initiated contact.", es: "🚀 Fernanda (Pastelera) inició contacto." },
             { pt: "🔥 Thiago (Marceneiro) garantiu o Plano Profissional.", en: "🔥 Thiago (Carpenter) secured the Professional Plan.", es: "🔥 Thiago (Carpintero) aseguró el Plan Profesional." },
-            { pt: "✨ Letícia (Consultora) pediu orçamento no WhatsApp.", en: "✨ Letícia (Consultant) asked for a quote on WhatsApp.", es: "✨ Letícia (Consultora) pidió presupuesto en WhatsApp." },
+            { pt: "✨ Letícia (Consultora) finalizou a assinatura no WhatsApp.", en: "✨ Letícia (Consultant) completed the subscription on WhatsApp.", es: "✨ Letícia (Consultora) finalizó la suscripción en WhatsApp." },
             
             // Categoria 2: Empresa Genérica (Mostra alcance B2B) - 15 Opções
             { pt: "🔥 Um Pet Shop de SP solicitou o Plano Padrão.", en: "🔥 A Pet Shop in NY requested the Standard Plan.", es: "🔥 Un Pet Shop de Madrid solicitó el Plan Estándar." },
@@ -943,7 +991,7 @@
             { pt: "⚡ Clínica Veterinária iniciou a criação do site.", en: "⚡ Vet Clinic started the site creation.", es: "⚡ Clínica Veterinaria inició la creación del sitio." },
             { pt: "🔥 Uma Empresa de Limpeza iniciou contato com a equipe.", en: "🔥 A Cleaning Company initiated contact with the team.", es: "🔥 Una Empresa de Limpieza inició contacto con el equipo." },
             { pt: "🚀 Um Salão de Beleza escolheu o Plano Profissional.", en: "🚀 A Beauty Salon chose the Professional Plan.", es: "🚀 Un Salón de Belleza eligió el Plan Profesional." },
-            { pt: "✨ Uma Academia de Crossfit solicitou orçamento.", en: "✨ A Crossfit Gym requested a quote.", es: "✨ Un Gimnasio Crossfit solicitó presupuesto." },
+            { pt: "✨ Uma Academia de Crossfit assinou o Plano Profissional.", en: "✨ A Crossfit Gym subscribed to the Professional Plan.", es: "✨ Un Gimnasio Crossfit suscribió el Plan Profesional." },
             { pt: "💼 Uma Pizzaria fechou o Plano Padrão.", en: "💼 A Pizzeria closed the Standard Plan.", es: "💼 Una Pizzería cerró el Plan Estándar." },
             { pt: "⚡ Clínica de Estética pediu um modelo no WhatsApp.", en: "⚡ Aesthetics Clinic asked for a model on WhatsApp.", es: "⚡ Clínica Estética pidió un modelo en WhatsApp." },
             { pt: "🔥 Um Escritório de Contabilidade iniciou o projeto.", en: "🔥 An Accounting Firm started the project.", es: "🔥 Un Estudio Contable inició el proyecto." },
@@ -989,8 +1037,88 @@
 
         // Inicia o contador quando o selo aparece na tela (ou logo após carregar a página)
         setTimeout(() => {
-            animateCounter('siteCounter', 75, 2500); // Demora 2.5 segundos para ir de 0 a 75
+            animateCounter('siteCounter', 125, 2500); // Demora 2.5 segundos para ir de 0 a 125
         }, 600); // Pequeno atraso para a página carregar a primeira animação do AOS
+
+        // MAPA NACIONAL (OPÇÃO 2 - GLOW HEATMAP) - TODOS OS ESTADOS ATIVOS
+        const stateData = {
+            'SP': { count: 42, color: 'var(--google-blue)' },
+            'RJ': { count: 18, color: 'var(--google-green)' },
+            'MG': { count: 15, color: 'var(--google-purple)' },
+            'PR': { count: 10, color: 'var(--google-blue)' },
+            'SC': { count: 8, color: 'var(--google-blue)' },
+            'BA': { count: 7, color: 'var(--google-purple)' },
+            'CE': { count: 6, color: 'var(--google-blue)' },
+            'PE': { count: 5, color: 'var(--google-green)' },
+            'RS': { count: 5, color: 'var(--google-green)' },
+            'PA': { count: 4, color: 'var(--google-blue)' },
+            'AM': { count: 3, color: 'var(--google-purple)' },
+            'DF': { count: 3, color: 'var(--google-blue)' },
+            // Estados adicionados (Norte, Nordeste, Centro-Oeste e ES)
+            'GO': { count: 3, color: 'var(--google-green)' },
+            'ES': { count: 2, color: 'var(--google-purple)' },
+            'MT': { count: 2, color: 'var(--google-blue)' },
+            'MS': { count: 1, color: 'var(--google-green)' },
+            'MA': { count: 2, color: 'var(--google-purple)' },
+            'RO': { count: 1, color: 'var(--google-blue)' },
+            'AC': { count: 1, color: 'var(--google-green)' },
+            'RR': { count: 1, color: 'var(--google-purple)' },
+            'AP': { count: 1, color: 'var(--google-blue)' },
+            'TO': { count: 1, color: 'var(--google-green)' },
+            'PI': { count: 1, color: 'var(--google-purple)' },
+            'RN': { count: 2, color: 'var(--google-blue)' },
+            'PB': { count: 2, color: 'var(--google-green)' },
+            'AL': { count: 1, color: 'var(--google-purple)' },
+            'SE': { count: 1, color: 'var(--google-blue)' }
+        };
+
+        async function initBrazilMap() {
+            const mapContainer = document.getElementById('map-svg-wrapper');
+            const tooltip = document.getElementById('mapTooltip');
+            if (!mapContainer || !tooltip) return;
+
+            try {
+                // API oficial do IBGE para a malha de estados (Leve e super confiável)
+                const response = await fetch('https://servicodados.ibge.gov.br/api/v3/malhas/paises/BR?formato=image/svg+xml&qualidade=minima&intrarregiao=UF');
+                let svgText = await response.text();
+                
+                mapContainer.innerHTML = svgText;
+                const svg = mapContainer.querySelector('svg');
+                svg.classList.add('map-svg');
+                
+                // O IBGE retorna os IDs como os códigos numéricos dos estados.
+                const ibgeToUf = { '35':'SP', '33':'RJ', '31':'MG', '41':'PR', '42':'SC', '43':'RS', '29':'BA', '53':'DF', '52':'GO', '23':'CE', '26':'PE', '32':'ES', '51':'MT', '50':'MS', '15':'PA', '13':'AM', '21':'MA', '11':'RO', '12':'AC', '14':'RR', '16':'AP', '17':'TO', '22':'PI', '24':'RN', '25':'PB', '27':'AL', '28':'SE' };
+                
+                svg.querySelectorAll('path').forEach(path => {
+                    path.classList.add('br-state');
+                    const ibgeCode = path.getAttribute('id');
+                    const uf = ibgeToUf[ibgeCode];
+                    
+                    if (uf && stateData[uf]) {
+                        path.classList.add('active');
+                        path.style.setProperty('--state-color', stateData[uf].color);
+                        
+                        path.addEventListener('mousemove', (e) => {
+                            let textBase = currentLang === 'en' ? 'sites delivered' : (currentLang === 'es' ? 'sitios entregados' : 'sites entregues');
+                            tooltip.innerHTML = `<span class="neon-dot" style="background:${stateData[uf].color}; box-shadow: 0 0 10px ${stateData[uf].color}"></span> 📍 ${uf}: ${stateData[uf].count} ${textBase}`;
+                            tooltip.classList.add('show');
+                            tooltip.style.left = e.clientX + 'px';
+                            tooltip.style.top = e.clientY + 'px';
+                        });
+                        
+                        path.addEventListener('mouseleave', () => {
+                            tooltip.classList.remove('show');
+                        });
+                    }
+                });
+            } catch (error) {
+                console.log("Erro ao carregar o mapa:", error);
+                mapContainer.innerHTML = '<div style="padding: 50px; border: 1px dashed var(--glass-border); border-radius: 20px; text-align:center;"><h3 style="color: var(--google-blue); margin-bottom: 15px;">📍 +125 Sites em todo o Brasil</h3><p style="color: var(--text-dim);">Conectando negócios de São Paulo ao Amazonas.</p></div>';
+            }
+        }
+        
+        // Inicializa o mapa logo após o carregamento principal
+        setTimeout(initBrazilMap, 800);
 
         let fomoPopup = document.getElementById('fomoPopup');
         let fomoText = document.getElementById('fomoText');
@@ -1230,6 +1358,7 @@
             pt: {
                 "nav-sites": "Sites", "nav-google": "Google", "nav-plans": "Planos", "nav-faq": "Dúvidas",
                 "theme-title": "Teste o seu nicho ao vivo", "theme-desc": "Digite o seu ramo de atuação ou escolha uma opção para ver o site se adaptar para você.", "theme-placeholder": "Ex: Barbearia, Dentista...", "theme-btn": "Simular",
+                "map-tag": "Alcance Nacional", "map-title": "Impacto em todo o Brasil", "map-desc": "Não importa a sua região. Nossa infraestrutura atende negócios locais de norte a sul com a mesma velocidade e qualidade.", "map-stats-title": "Principais regiões atendidas:",
                 "recv-title": "O que entra no seu site (sem surpresas)", "recv-desc": "Tudo pronto pra gerar contato e passar confiança — principalmente no celular.",
                 "recv-1": "Design profissional do seu nicho", "recv-2": "Mobile perfeito + carregamento rápido", "recv-3": "Botão WhatsApp em destaque", "recv-4": "Seção de serviços + fotos + depoimentos", "recv-5": "Endereço e horários", "recv-6": "SEO básico (Google entende seu site)", "recv-7": "Publicação + ajustes finais pós-ar", "recv-btn": "Quero isso no meu negócio (WhatsApp)",
                 "zero-title": "Não tem logo, textos ou imagens prontas? Sem problemas.", "zero-desc": "Nós criamos a sua presença digital <strong>literalmente do zero</strong>. Definimos as melhores cores, imagens profissionais e textos que vendem para o seu nicho. Você só precisa tomar a decisão, e nós colocamos a sua empresa no ar em <strong>no máximo 3 dias</strong>.",
@@ -1268,6 +1397,7 @@
             en: {
                 "nav-sites": "Websites", "nav-google": "Google", "nav-plans": "Plans", "nav-faq": "FAQ",
                 "theme-title": "Test your niche live", "theme-desc": "Type your field of work or choose an option to see the site adapt for you.", "theme-placeholder": "Ex: Barbershop, Dentist...", "theme-btn": "Simulate",
+                "map-tag": "National Reach", "map-title": "Impact across the Country", "map-desc": "No matter your region. Our infrastructure serves local businesses from north to south with the same speed and quality.", "map-stats-title": "Top regions served:",
                 "recv-title": "What's included in your site (no surprises)", "recv-desc": "Everything ready to generate leads and build trust — especially on mobile.", "recv-1": "Professional design for your niche", "recv-2": "Perfect mobile + fast loading", "recv-3": "Highlighted WhatsApp button", "recv-4": "Services section + photos + reviews", "recv-5": "Address and hours", "recv-6": "Basic SEO (Google reads your site)", "recv-7": "Publishing + post-launch tweaks", "recv-btn": "I want this for my business",
                 "zero-title": "Don't have a logo, texts, or images ready? No problem.", "zero-desc": "We create your digital presence <strong>literally from scratch</strong>. We define the best colors, professional images, and copy that sells for your niche. You just need to make the decision, and we will have your business online in <strong>up to 3 days</strong>.",
                 "step1-tag": "Your New Website", "step1-title": "Your automated 24/7 sales storefront", "step1-desc": "Stop wasting hours explaining the basics in DMs or losing clients due to a lack of credibility. We build a conversion hub that works 24/7: it centralizes your services, showcases your reviews, and sends qualified leads straight to your WhatsApp.", "step1-b1": "Look like a massive company (even if you work alone)", "step1-b2": "Stop explaining prices and services in DMs", "step1-b3": "Be found by ready-to-buy clients on Google", "step1-b4": "Centralize your social proof and build instant trust", "step1-btn": "Send us your niche and our team will show you a model",
@@ -1303,6 +1433,7 @@
             es: {
                 "nav-sites": "Sitios", "nav-google": "Google", "nav-plans": "Planes", "nav-faq": "Dudas",
                 "theme-title": "Prueba tu nicho en vivo", "theme-desc": "Escribe tu sector o elige una opción para ver cómo el sitio se adapta para ti.", "theme-placeholder": "Ej: Barbería, Dentista...", "theme-btn": "Simular",
+                "map-tag": "Alcance Nacional", "map-title": "Impacto en todo el País", "map-desc": "No importa tu región. Nuestra infraestructura atiende negocios locales de norte a sur con la misma velocidad y calidad.", "map-stats-title": "Principales regiones atendidas:",
                 "recv-title": "Lo que incluye tu sitio (sin sorpresas)", "recv-desc": "Todo listo para generar contactos y transmitir confianza — especialmente en celular.", "recv-1": "Diseño profesional para tu nicho", "recv-2": "Móvil perfecto + carga rápida", "recv-3": "Botón WhatsApp destacado", "recv-4": "Sección de servicios + fotos + reseñas", "recv-5": "Dirección y horarios", "recv-6": "SEO básico (Google lee tu sitio)", "recv-7": "Publicación + ajustes finales", "recv-btn": "Quiero esto para mi negocio",
                 "zero-title": "¿No tienes logo, textos o imágenes listas? Sin problemas.", "zero-desc": "Creamos tu presencia digital <strong>literalmente desde cero</strong>. Definimos los mejores colores, imágenes profesionales y textos que venden para tu nicho. Solo necesitas tomar la decisión, y pondremos tu empresa en línea en <strong>máximo 3 días</strong>.",
                 "step1-tag": "Tu Nuevo Sitio", "step1-title": "Tu vitrina automática que vende las 24 horas", "step1-desc": "Basta de perder horas explicando lo básico por DM o perder clientes por no transmitir credibilidad. Creamos un centro de conversión que funciona 24/7: centraliza tus servicios, muestra tus reseñas y envía clientes calificados directo a tu WhatsApp.", "step1-b1": "Luce como una empresa gigante (aunque trabajes solo)", "step1-b2": "Deja de explicar precios y servicios por mensajes", "step1-b3": "Sé encontrado en Google por quienes ya quieren comprar", "step1-b4": "Centraliza tu prueba social y genera confianza inmediata", "step1-btn": "Envíanos tu nicho y nuestro equipo te mostrará un modelo",
