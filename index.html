@@ -19,28 +19,27 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
-        /* DESIGN TOKENS */
+        /* DESIGN TOKENS - DARK TECH PREMIUM */
         :root {
-            --bg-body: #050505;
-            --bg-nav: rgba(5, 5, 5, 0.4);
-            --glass-bg: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.08);
-            --glass-blur: blur(20px);
-            --primary: #3b82f6; 
-            --accent: #10b981; 
+            --bg-body: #000000; /* Preto Absoluto para efeito Premium (OLED) */
+            --bg-nav: rgba(0, 0, 0, 0.75);
+            --glass-bg: rgba(10, 15, 25, 0.6); /* Vidro Escuro com toque sutil de Azul */
+            --glass-border: rgba(26, 115, 232, 0.25); /* Bordas com reflexo Azul Tecnológico */
+            --glass-blur: blur(24px);
+            
             --google-blue: #1a73e8; 
             --google-red: #EA4335;
             --google-yellow: #fbbc04;
             --google-green: #34A853;
             --google-purple: #a855f7; 
+            
             --whatsapp: #25D366;
             --whatsapp-dark: #128C7E;
-            --text-main: #f0f6fc;
-            --text-dim: #8b949e;
-            --border: #30363d;
+            --text-main: #ffffff; /* Branco puro para maior contraste */
+            --text-dim: #94a3b8; 
+            --border: #1e293b;
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             
-            /* AUMENTO DO CONTAINER PARA DESKTOP */
             --container: 1200px;
         }
 
@@ -56,9 +55,10 @@
             color: var(--text-main); 
             line-height: 1.6; 
             overflow-x: hidden;
+            /* Gradientes de luz maiores e mais fortes para contrastar com o fundo OLED */
             background-image: 
-                radial-gradient(800px 600px at 15% 10%, rgba(59, 130, 246, 0.08), transparent 60%),
-                radial-gradient(800px 600px at 85% 30%, rgba(168, 85, 247, 0.06), transparent 60%);
+                radial-gradient(1000px 800px at 0% 0%, rgba(26, 115, 232, 0.15), transparent 70%),
+                radial-gradient(1000px 800px at 100% 30%, rgba(168, 85, 247, 0.12), transparent 70%);
             background-attachment: fixed;
         }
         h1, h2, h3 { line-height: 1.2; font-weight: 700; color: #fff; }
@@ -184,6 +184,27 @@
         .zero-to-live-banner p { font-size: 1.1rem; color: var(--text-main); max-width: 850px; line-height: 1.6; }
         .zero-to-live-banner strong { color: var(--google-blue); font-weight: 800; font-size: 1.15rem; }
 
+        /* PROCESSO DE CRIAÇÃO (COMO FUNCIONA) - CORRIGIDO */
+        .process-section { padding-top: 80px; padding-bottom: 40px; position: relative; text-align: center; }
+        .process-grid { display: grid; grid-template-columns: 1fr; gap: 40px; margin-top: 60px; position: relative; max-width: 1000px; margin-inline: auto; }
+        @media (min-width: 768px) {
+            .process-grid { grid-template-columns: repeat(4, 1fr); gap: 20px; }
+            .process-step:not(:last-child)::after {
+                content: ''; position: absolute; top: 50px; right: -20px; width: 20px; height: 2px;
+                background: linear-gradient(90deg, rgba(26, 115, 232, 0.8), transparent);
+                z-index: 0;
+                pointer-events: none; /* CORREÇÃO: Impede que a linha invisível roube o mouse do passo 4 */
+            }
+        }
+        .process-step { background: var(--glass-bg); backdrop-filter: var(--glass-blur); border: 1px solid var(--glass-border); border-radius: 20px; padding: 40px 20px 30px; text-align: center; position: relative; z-index: 1; transition: var(--transition); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        .process-step:hover { transform: translateY(-10px); border-color: var(--google-blue); box-shadow: 0 20px 40px rgba(26, 115, 232, 0.15); background: rgba(26, 115, 232, 0.05); z-index: 10; } /* CORREÇÃO: Garante que o cartão ativo fique no topo de tudo */
+        .step-number { position: absolute; top: -20px; left: 50%; transform: translateX(-50%); width: 40px; height: 40px; background: var(--bg-body); border: 2px solid var(--google-blue); color: var(--text-main); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.1rem; box-shadow: 0 0 15px rgba(26, 115, 232, 0.4); transition: var(--transition); z-index: 2; }
+        .process-step:hover .step-number { background: var(--google-blue); color: #fff; box-shadow: 0 0 20px rgba(26, 115, 232, 0.8); }
+        .step-icon { font-size: 2.2rem; margin-bottom: 15px; display: inline-block; filter: drop-shadow(0 0 5px rgba(26, 115, 232, 0.3)); transition: var(--transition); position: relative; z-index: 2; }
+        .process-step:hover .step-icon { transform: scale(1.15) rotate(5deg); filter: drop-shadow(0 0 15px rgba(26, 115, 232, 0.8)); }
+        .step-title { color: #fff; font-size: 1.1rem; margin-bottom: 10px; font-weight: 700; position: relative; z-index: 2; }
+        .step-desc { color: var(--text-dim); font-size: 0.9rem; line-height: 1.5; position: relative; z-index: 2; }
+
         /* PORTFOLIO */
         .browser-mockup { background: rgba(10, 12, 16, 0.4); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border-radius: 12px; border: 1px solid var(--glass-border); overflow: hidden; box-shadow: 0 8px 32px 0 rgba(0,0,0,0.3); width: 100%; max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
         .browser-mockup:hover { transform: translateY(-10px) scale(1.02); box-shadow: 0 25px 60px rgba(0,0,0,0.5); border-color: var(--google-purple); }
@@ -226,6 +247,12 @@
         .booking-container:hover { transform: translateY(-5px) scale(1.01); box-shadow: 0 15px 45px rgba(0,0,0,0.3); border-color: rgba(255,255,255,0.2); }
         @media (min-width: 850px) { .booking-container { grid-template-columns: 1fr 1fr; } }
         
+        /* MISSÃO / PROPÓSITO */
+        .mission-container { background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border: 1px solid var(--glass-border); border-radius: 24px; padding: clamp(40px, 5vw, 60px); display: grid; grid-template-columns: 1fr; gap: 40px; align-items: center; position: relative; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.5); transition: var(--transition); }
+        .mission-container:hover { border-color: rgba(26, 115, 232, 0.4); box-shadow: 0 20px 50px rgba(0,0,0,0.7); transform: translateY(-5px); }
+        .mission-badge { display: inline-block; background: rgba(26, 115, 232, 0.15); color: var(--google-blue); padding: 6px 16px; border-radius: 20px; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; border: 1px solid rgba(26, 115, 232, 0.3); }
+        @media (min-width: 850px) { .mission-container { grid-template-columns: 1fr 1.2fr; gap: 60px; } }
+
         /* ANCORAGEM E PLANOS */
         .pricing-section { text-align: center; }
         .comparison-grid { display: grid; grid-template-columns: 1fr; gap: 30px; margin: 50px auto 60px; max-width: 900px; text-align: left; perspective: 1000px; }
@@ -307,7 +334,8 @@
 
         .faq-container { width: 100%; }
         .faq-item { border-bottom: 1px solid var(--glass-border); }
-        .faq-question { width: 100%; padding: 24px 0; display: flex; justify-content: space-between; align-items: center; background: none; border: none; color: var(--text-main); font-size: 1.1rem; font-weight: 600; text-align: left; cursor: pointer; }
+        .faq-question { width: 100%; padding: 24px 0; display: flex; justify-content: space-between; align-items: center; background: none; border: none; color: var(--text-main); font-size: 1.1rem; font-weight: 600; text-align: left; cursor: pointer; transition: color 0.3s ease; }
+        .faq-question:hover { color: var(--google-blue); }
         .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; color: var(--text-dim); }
         .faq-answer p { padding-bottom: 24px; }
         .faq-item.active .faq-answer { max-height: 250px; }
@@ -363,7 +391,7 @@
         .chat-actions { padding: 15px 20px; border-top: 1px solid var(--glass-border); display: flex; gap: 10px; flex-direction: column; background: rgba(0,0,0,0.2); }
 
         /* CURSOR MÁQUINA ESCREVER */
-        .typing-cursor { display: inline-block; width: 4px; height: 0.9em; background-color: var(--google-blue); margin-left: 5px; vertical-align: baseline; animation: blink 0.8s step-end infinite; }
+        .typing-cursor { display: inline-block; width: 4px; height: 0.9em; background: var(--google-blue); margin-left: 5px; vertical-align: baseline; animation: blink 0.8s step-end infinite; }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
         /* MAPA DE ALCANCE NACIONAL (GLOW HEATMAP) */
@@ -473,7 +501,7 @@
         <section class="hero" id="topo">
             <div class="hero-content" data-aos="fade-up">
                 <div class="hero-text">
-                    <h1 data-i18n="hero-title" id="main-title">Seu salão ou barbearia com a agenda lotada <span style="color: var(--google-blue)">(via WhatsApp)</span>.</h1>
+                    <h1 data-i18n="hero-title" id="main-title">Seu salão ou barbearia com a agenda lotada <span style="color: var(--google-blue);">(via WhatsApp)</span>.</h1>
                     <p data-i18n="hero-desc">Criamos a sua página profissional em 3 dias. Pare de perder clientes no direct e transforme curiosos em horários marcados com uma estrutura que passa confiança imediata.</p>
                     
                     <div class="hero-btns">
@@ -517,7 +545,7 @@
         <!-- MAPA DE ALCANCE NACIONAL -->
         <section id="alcance-nacional" class="glow-band band-blue" data-aos="fade-up" style="padding-top: 40px; padding-bottom: 20px;">
             <div style="text-align: center; margin-bottom: 20px;">
-                <span class="section-tag" style="color: var(--google-blue);" data-i18n="map-tag">Alcance Nacional</span>
+                <span class="section-tag" data-i18n="map-tag">Alcance Nacional</span>
                 <h2 data-i18n="map-title" style="font-size: clamp(1.8rem, 4vw, 2.5rem);">Atendemos todo o Brasil</h2>
                 <p style="color: var(--text-dim); font-size: 1.1rem; margin-top: 15px; max-width: 600px; margin-inline: auto;" data-i18n="map-desc">Não importa a sua região. Nossa equipe cria a vitrine digital do seu espaço de beleza com a mesma agilidade de Norte a Sul.</p>
             </div>
@@ -532,9 +560,9 @@
             <div class="mobile-map-stats" style="text-align: center;">
                 <p style="color: var(--text-main); font-weight: 600; margin-bottom: 15px;" data-i18n="map-stats-title">Principais regiões atendidas:</p>
                 <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;">
-                    <span class="theme-chip" style="border-color: var(--google-blue); color: #fff; background: rgba(26, 115, 232, 0.1);">📍 SP (42)</span>
+                    <span class="theme-chip" style="border-color: var(--primary); color: #fff; background: rgba(212, 175, 55, 0.1);">📍 SP (42)</span>
                     <span class="theme-chip" style="border-color: var(--google-green); color: #fff; background: rgba(52, 168, 83, 0.1);">📍 RJ (18)</span>
-                    <span class="theme-chip" style="border-color: var(--google-purple); color: #fff; background: rgba(168, 85, 247, 0.1);">📍 MG (15)</span>
+                    <span class="theme-chip" style="border-color: var(--accent); color: #fff; background: rgba(184, 134, 11, 0.1);">📍 MG (15)</span>
                     <span class="theme-chip">📍 PR (10)</span>
                     <span class="theme-chip">📍 BA (7)</span>
                     <span class="theme-chip">📍 CE (6)</span>
@@ -566,10 +594,46 @@
             </div>
         </section>
 
+        <!-- COMO FUNCIONA (PROCESSO) - NOVO -->
+        <section id="como-funciona" class="process-section" data-aos="fade-up">
+            <div style="text-align: center;">
+                <span class="section-tag" data-i18n="proc-tag" style="color: var(--google-blue);">Transparência Total</span>
+                <h2 data-i18n="proc-title" style="font-size: clamp(1.8rem, 4vw, 2.5rem);">Como funciona o processo?</h2>
+                <p data-i18n="proc-desc" style="color: var(--text-dim); font-size: 1.1rem; margin-top: 15px;">Da primeira mensagem no WhatsApp até o seu site pronto para receber agendamentos.</p>
+            </div>
+
+            <div class="process-grid">
+                <div class="process-step" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">💬</div>
+                    <h3 class="step-title" data-i18n="proc-s1-t">Contato Rápido</h3>
+                    <p class="step-desc" data-i18n="proc-s1-d">Você clica no botão, nos chama no WhatsApp e tira todas as suas dúvidas com nossa equipe.</p>
+                </div>
+                <div class="process-step" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">📝</div>
+                    <h3 class="step-title" data-i18n="proc-s2-t">Briefing de 3 Min.</h3>
+                    <p class="step-desc" data-i18n="proc-s2-d">Enviamos perguntas rápidas para pegar suas fotos, logo, lista de serviços e preços do espaço.</p>
+                </div>
+                <div class="process-step" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">✨</div>
+                    <h3 class="step-title" data-i18n="proc-s3-t">A Nossa Mágica</h3>
+                    <p class="step-desc" data-i18n="proc-s3-d">Sem você precisar fazer nada, criamos os textos persuasivos e o design premium da sua vitrine.</p>
+                </div>
+                <div class="process-step" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="step-number">4</div>
+                    <div class="step-icon">🚀</div>
+                    <h3 class="step-title" data-i18n="proc-s4-t">Site no Ar!</h3>
+                    <p class="step-desc" data-i18n="proc-s4-d">Em até 3 dias, você aprova o resultado e já publicamos seu site para captar clientes locais.</p>
+                </div>
+            </div>
+        </section>
+
         <!-- PASSO 1 E PORTFÓLIO (COM FAIXA ROXA) -->
         <section id="pilar-sites" class="glow-band band-purple" data-aos="fade-up">
             <div style="text-align: center; margin-bottom: 50px;">
-                <span class="section-tag" style="color: var(--google-purple);" data-i18n="step1-tag">O Seu Novo Site</span>
+                <span class="section-tag" data-i18n="step1-tag">O Seu Novo Site</span>
                 <h2 data-i18n="step1-title">Sua vitrine automática que funciona enquanto você corta</h2>
                 <p style="margin-top: 15px; font-size: 1.1rem; color: var(--text-dim); max-width: 800px; margin-inline: auto;" data-i18n="step1-desc">Pare de responder as mesmas perguntas ("Qual o valor?", "Onde fica?", "Tem horário?") no meio de um atendimento. Nós criamos uma central que exibe seus serviços, prova a sua excelência e envia o cliente qualificado direto para o seu WhatsApp, pronto para agendar.</p>
                 
@@ -622,7 +686,6 @@
                         </a>
                     </div>
 
-                    <!-- Fakes de Salão/Estética para preencher -->
                     <div class="portfolio-slide">
                         <a href="https://sal-o-delta.vercel.app/" target="_blank" class="portfolio-link">
                             <div class="browser-mockup">
@@ -676,6 +739,25 @@
                 <div style="background: var(--glass-bg); backdrop-filter: var(--glass-blur); border: 1px solid var(--glass-border); border-radius: 16px; overflow: hidden; box-shadow: 0 8px 32px rgba(0,0,0,0.2); height: 600px;">
                     <div class="calendly-inline-widget" data-url="https://calendly.com/jfs102019/30min?hide_event_type_details=1&hide_gdpr_banner=1&background_color=050505&text_color=ffffff&primary_color=3b82f6" style="min-width:320px;height:100%;"></div>
                     <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+                </div>
+            </div>
+        </section>
+
+        <!-- NOSSO PROPÓSITO / MISSÃO -->
+        <section id="missao" data-aos="fade-up" style="padding-top: 40px;">
+            <div class="mission-container">
+                <div style="position: absolute; top: -50%; left: -20%; width: 70%; height: 150%; background: radial-gradient(circle, rgba(26,115,232,0.08) 0%, transparent 60%); pointer-events: none; z-index: 0;"></div>
+                
+                <div style="position: relative; z-index: 1;">
+                    <span class="mission-badge" data-i18n="mission-tag">Por que existimos?</span>
+                    <h2 data-i18n="mission-title" style="font-size: clamp(2rem, 4vw, 2.8rem); line-height: 1.1; margin-bottom: 20px;">Democratizar a <span style="color: var(--google-blue);">autoridade digital</span>.</h2>
+                    <p data-i18n="mission-subtitle" style="font-size: 1.15rem; color: var(--text-dim); font-weight: 500;">Não importa se você tem uma grande clínica ou atende na sala de casa. Todo negócio merece uma vitrine que conquista clientes.</p>
+                </div>
+                
+                <div style="position: relative; z-index: 1; border-left: 2px solid rgba(26, 115, 232, 0.2); padding-left: 25px;">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--google-blue)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 15px; opacity: 0.8;"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                    <p data-i18n="mission-p1" style="color: var(--text-main); font-size: 1.05rem; margin-bottom: 15px;">O mercado está cheio de agências cobrando R$ 1.500 a R$ 2.000 por sites, afastando pequenos e médios empreendedores ("eu-presas") daquilo que eles mais precisam: <strong>credibilidade</strong>.</p>
+                    <p data-i18n="mission-p2" style="color: var(--text-main); font-size: 1.05rem;">A HubSymples nasceu para quebrar essa barreira. Entregamos a <strong>qualidade máxima</strong> de uma agência premium, por valores justos e acessíveis. Porque o seu tamanho hoje não define onde você pode chegar.</p>
                 </div>
             </div>
         </section>
@@ -844,7 +926,7 @@
         <p class="footer-motto" style="margin-top: 5px; color: var(--text-dim); font-size: 0.9rem;" data-i18n="footer-motto">Sua agenda sempre cheia.</p>
         
         <div style="display: flex; justify-content: center; margin-top: 20px; font-size: 0.85rem;">
-            <a href="#" style="color: var(--text-dim); text-decoration: none; transition: var(--transition);" onmouseover="this.style.color='var(--google-blue)'" onmouseout="this.style.color='var(--text-dim)'" data-i18n="footer-privacy">Políticas de Privacidade</a>
+            <a href="#" style="color: var(--text-dim); text-decoration: none; transition: var(--transition);" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--text-dim)'" data-i18n="footer-privacy">Políticas de Privacidade</a>
         </div>
         
         <div style="margin-top: 40px; padding-top: 30px; border-top: 1px solid var(--glass-border); display: flex; flex-direction: column; align-items: center; gap: 15px;">
@@ -1267,11 +1349,17 @@
                 "recv-title": "O que entra no seu site (sem surpresas)", "recv-desc": "Tudo pronto para reduzir os furos na agenda e triar os clientes antes de chegarem ao seu WhatsApp.",
                 "recv-1": "Design profissional com as cores do seu espaço", "recv-2": "Acesso perfeito e ultra-rápido no celular", "recv-3": "Botões diretos para marcação no WhatsApp", "recv-4": "Vitrine de cortes/serviços e prova social (antes/depois)", "recv-5": "Endereço com GPS e horários de funcionamento", "recv-6": "SEO (Seja achado por quem procura no Google)", "recv-7": "Publicação e suporte para trocas de equipe/serviços", "recv-btn": "Quero isso no meu espaço (WhatsApp)",
                 "zero-title": "Não tem tempo para criar textos ou imagens bonitas? Sem problemas.", "zero-desc": "Sabemos que a sua rotina é corrida. Nossa equipe cria a sua presença digital <strong>literalmente do zero</strong>. Pegamos as melhores referências de beleza, escrevemos textos que atraem clientes e organizamos a sua tabela de preços. Você só precisa tomar a decisão, e o seu espaço ganha um site premium em <strong>no máximo 3 dias</strong>.",
+                "proc-tag": "Transparência Total", "proc-title": "Como funciona o processo?", "proc-desc": "Da primeira mensagem no WhatsApp até o seu site pronto para receber agendamentos.",
+                "proc-s1-t": "Contato Rápido", "proc-s1-d": "Você clica no botão, nos chama no WhatsApp e tira todas as suas dúvidas com nossa equipe.",
+                "proc-s2-t": "Briefing de 3 Min.", "proc-s2-d": "Enviamos perguntas rápidas para pegar suas fotos, logo, lista de serviços e preços do espaço.",
+                "proc-s3-t": "A Nossa Mágica", "proc-s3-d": "Sem você precisar fazer nada, criamos os textos persuasivos e o design premium da sua vitrine.",
+                "proc-s4-t": "Site no Ar!", "proc-s4-d": "Em até 3 dias, você aprova o resultado e já publicamos seu site para captar clientes locais.",
                 "step1-tag": "O Seu Novo Site", "step1-title": "Sua vitrine automática que funciona enquanto você corta", "step1-desc": "Pare de responder as mesmas perguntas (\"Qual o valor?\", \"Onde fica?\", \"Tem horário?\") no meio de um atendimento. Nós criamos uma central que exibe seus serviços, prova a sua excelência e envia o cliente qualificado direto para o seu WhatsApp, pronto para agendar.",
                 "step1-b1": "Passe imagem de salão/barbearia premium (mesmo se atuar sozinho)", "step1-b2": "Reduza curiosos e atraia clientes dispostos a pagar o seu valor", "step1-b3": "Saia da guerra do Instagram e seja a 1ª opção no Google local", "step1-b4": "Apresente sua equipe, serviços e parceiros em um só lugar", "step1-btn": "Envie o seu nicho e nossa equipe enviará um modelo",
                 "port-title": "Portfólio (demos reais)", "port-desc": "Estes são exemplos dos sites de beleza que desenvolvemos. Quer um igual? Clique na imagem e veja a estrutura.", "port-btn": "Quero um site assim (WhatsApp)", "port-item-btn": "Quero um igual",
                 "testi-title": "O que dizem os donos de salão", "testi-1": "\"Eu vivia refém do direct do Instagram. Agora, o site filtra os curiosos e quem clica no botão do WhatsApp já chega perguntando os horários disponíveis pro corte. Mudou meu jogo.\"", "testi-1-author": "— Rafa, Barbearia (SP)", "testi-2": "\"A cliente entra no site, vê as fotos do nosso espaço, a tabela de químicas e os depoimentos. Quando me chama, ela já confia. Pareço o maior salão da avenida agora.\"", "testi-2-author": "— Camila, Salão de Beleza (MG)", "testi-3": "\"Estética exige muita confiança. Ter um site com nossos serviços e antes/depois fez os no-shows diminuírem. A cliente entende o nosso valor antes mesmo de falar comigo.\"", "testi-3-author": "— Dra. Amanda, Clínica de Estética (RJ)",
                 "booking-title": "Vamos lotar a sua agenda?", "booking-desc": "Agende um bate-papo rápido. Vamos entender se você quer atrair mais clientes, organizar os horários ou se posicionar acima da concorrência local.", "booking-b1": "Entender a rotina do seu salão/barbearia", "booking-b2": "Definir o melhor pacote para o seu bolso", "booking-b3": "Iniciar a criação do seu site hoje mesmo",
+                "mission-tag": "Por que existimos?", "mission-title": "Democratizar a <span style='color: var(--google-blue);'>autoridade digital</span>.", "mission-subtitle": "Não importa se você tem uma grande clínica ou atende na sala de casa. Todo negócio merece uma vitrine que conquista clientes.", "mission-p1": "O mercado está cheio de agências cobrando R$ 1.500 a R$ 2.000 por sites, afastando pequenos e médios empreendedores (\"eu-presas\") daquilo que eles mais precisam: <strong>credibilidade</strong>.", "mission-p2": "A HubSymples nasceu para quebrar essa barreira. Entregamos a <strong>qualidade máxima</strong> de uma agência premium, por valores justos e acessíveis. Porque o seu tamanho hoje não define onde você pode chegar.",
                 "comp-old-title": "Agência Tradicional", "comp-old-1": "Criação do site", "comp-old-1-v": "R$ 2.500+", "comp-old-2": "Hospedagem (Anual)", "comp-old-2-v": "R$ 400+", "comp-old-3": "Manutenção (Hora)", "comp-old-3-v": "R$ 150+", "comp-old-total": "Custo no 1º ano:", "comp-old-total-v": "Mais de R$ 3.000",
                 "comp-new-title": "Assinatura HubSymples", "comp-new-1": "Criação Premium", "comp-new-1-v": "R$ 0 (Incluso)", "comp-new-2": "Hospedagem Rápida", "comp-new-2-v": "R$ 0 (Inclusa)", "comp-new-3": "Suporte Contínuo", "comp-new-3-v": "R$ 0 (Incluso)", "comp-new-total": "Seu custo:", "comp-new-total-v": "Apenas a mensalidade",
                 "plan-title": "Escolha o caminho mais rápido pro seu negócio", "plan-rec": "Mais Escolhido", "plan-period": "/ mês",
@@ -1303,10 +1391,16 @@
                 "map-tag": "National Reach", "map-title": "We serve the whole country", "map-desc": "No matter your region. Our team creates the digital storefront for your beauty space with the same agility everywhere.", "map-stats-title": "Top regions served:",
                 "recv-title": "What's included in your site (no surprises)", "recv-desc": "Everything ready to reduce empty slots and filter clients before they reach your WhatsApp.", "recv-1": "Professional design with your space's colors", "recv-2": "Perfect mobile access", "recv-3": "Direct WhatsApp booking buttons", "recv-4": "Services showcase & social proof", "recv-5": "GPS address and business hours", "recv-6": "SEO (Be found on Google)", "recv-7": "Publishing & support for team changes", "recv-btn": "I want this for my space",
                 "zero-title": "Don't have time to create texts or photos? No problem.", "zero-desc": "We know your routine is busy. Our team creates your digital presence <strong>literally from scratch</strong>. We grab the best beauty references, write copy that attracts clients, and organize your price list. You just make the decision, and your space gets a premium site in <strong>up to 3 days</strong>.",
+                "proc-tag": "Total Transparency", "proc-title": "How does the process work?", "proc-desc": "From the first WhatsApp message to your site ready to receive bookings.",
+                "proc-s1-t": "Quick Contact", "proc-s1-d": "Click the button, reach out on WhatsApp, and ask our team any questions you have.",
+                "proc-s2-t": "3-Min Briefing", "proc-s2-d": "We send quick questions to get your photos, logo, service list, and prices.",
+                "proc-s3-t": "Our Magic", "proc-s3-d": "Without you lifting a finger, we create persuasive texts and a premium design for your storefront.",
+                "proc-s4-t": "Site goes Live!", "proc-s4-d": "In up to 3 days, you approve the result and we publish your site to attract local clients.",
                 "step1-tag": "Your New Website", "step1-title": "Your automated storefront working while you cut hair", "step1-desc": "Stop answering the same questions ('Price?', 'Where?', 'Available?') during a service. We build a hub that shows your work and sends qualified clients to your WhatsApp, ready to book.", "step1-b1": "Look like a premium salon (even solo)", "step1-b2": "Reduce window-shoppers, attract paying clients", "step1-b3": "Leave the Instagram war, be 1st on Google", "step1-b4": "Showcase your team and services in one place", "step1-btn": "Send your niche and we'll show a model",
                 "port-title": "Portfolio (real demos)", "port-desc": "These are examples of beauty sites we develop. Want the same? Click to see the structure.", "port-btn": "I want a site like this", "port-item-btn": "I want one like this",
                 "testi-title": "What salon owners say", "testi-1": "\"I was a hostage to Instagram DMs. Now the site filters the curious, and whoever clicks WhatsApp just asks for available times for a cut. Game changer.\"", "testi-1-author": "— Rafa, Barbershop", "testi-2": "\"Clients enter the site, see our space, the chemical treatments list, and reviews. When they message me, they already trust us.\"", "testi-2-author": "— Camila, Beauty Salon", "testi-3": "\"Aesthetics requires trust. A site with our services and before/afters reduced no-shows. The client understands our value before talking to me.\"", "testi-3-author": "— Dr. Amanda, Aesthetics Clinic",
                 "booking-title": "Let's fill up your schedule?", "booking-desc": "Schedule a quick chat. We'll understand if you want to attract more clients, organize schedules, or position above local competition.", "booking-b1": "Understand your salon's routine", "booking-b2": "Define the best package for your budget", "booking-b3": "Start building your site today",
+                "mission-tag": "Why do we exist?", "mission-title": "Democratize <span style='color: var(--google-blue);'>digital authority</span>.", "mission-subtitle": "Whether you have a large clinic or work from home. Every business deserves a storefront that wins clients.", "mission-p1": "The market is full of agencies charging $ 1,500 to $ 2,000 for sites, pushing small entrepreneurs away from what they need most: <strong>credibility</strong>.", "mission-p2": "HubSymples was born to break this barrier. We deliver the <strong>maximum quality</strong> of a premium agency, for fair and accessible prices. Because your size today doesn't define how far you can go.",
                 "comp-old-title": "Traditional Agency", "comp-old-1": "Website creation", "comp-old-1-v": "$ 500+", "comp-old-2": "Hosting (Annual)", "comp-old-2-v": "$ 100+", "comp-old-3": "Maintenance (Hourly)", "comp-old-3-v": "$ 50+", "comp-old-total": "1st year cost:", "comp-old-total-v": "Over $ 600",
                 "comp-new-title": "HubSymples Subscription", "comp-new-1": "Premium Creation", "comp-new-1-v": "$ 0 (Included)", "comp-new-2": "Fast Hosting", "comp-new-2-v": "$ 0 (Included)", "comp-new-3": "Ongoing Support", "comp-new-3-v": "$ 0 (Included)", "comp-new-total": "Your cost:", "comp-new-total-v": "Only the monthly fee",
                 "plan-title": "Choose the fastest path for your business", "plan-rec": "Most Chosen", "plan-period": "/ month",
@@ -1338,10 +1432,16 @@
                 "map-tag": "Alcance Nacional", "map-title": "Atendemos todo el país", "map-desc": "No importa tu región. Creamos la vitrina digital de tu espacio de belleza con la misma agilidad.", "map-stats-title": "Principales regiones atendidas:",
                 "recv-title": "Lo que incluye tu sitio (sin sorpresas)", "recv-desc": "Todo listo para reducir vacíos en la agenda y filtrar clientes antes del WhatsApp.", "recv-1": "Diseño profesional con tus colores", "recv-2": "Móvil perfecto y ultra rápido", "recv-3": "Botones de reserva para WhatsApp", "recv-4": "Vitrina de cortes y prueba social", "recv-5": "Dirección GPS y horarios", "recv-6": "SEO (Sé encontrado en Google)", "recv-7": "Publicación y soporte de equipo", "recv-btn": "Quiero esto en mi espacio",
                 "zero-title": "¿Sin tiempo para textos o fotos? Sin problemas.", "zero-desc": "Sabemos que tu rutina es ocupada. Creamos tu presencia digital <strong>desde cero</strong>. Buscamos las mejores referencias, escribimos textos que atraen y organizamos tus precios. Tú decides, y tendrás un sitio premium en <strong>máximo 3 días</strong>.",
+                "proc-tag": "Transparencia Total", "proc-title": "¿Cómo funciona el proceso?", "proc-desc": "Desde el primer mensaje de WhatsApp hasta tu sitio listo para recibir reservas.",
+                "proc-s1-t": "Contacto Rápido", "proc-s1-d": "Haces clic, nos escribes por WhatsApp y nuestro equipo resuelve todas tus dudas.",
+                "proc-s2-t": "Briefing de 3 Min.", "proc-s2-d": "Enviamos preguntas rápidas para pedir tus fotos, logo, lista de servicios y precios.",
+                "proc-s3-t": "Nuestra Magia", "proc-s3-d": "Sin que hagas nada, creamos textos persuasivos y un diseño premium para tu vitrina.",
+                "proc-s4-t": "¡Sitio en Línea!", "proc-s4-d": "En hasta 3 días, apruebas el resultado y publicamos tu sitio para captar clientes.",
                 "step1-tag": "Tu Nuevo Sitio", "step1-title": "Tu vitrina automática trabajando mientras cortas", "step1-desc": "Basta de responder ('¿Precio?', '¿Dónde es?') en medio de un corte. Creamos una central que exhibe tus servicios y envía al cliente calificado a tu WhatsApp, listo para reservar.", "step1-b1": "Luce como un salón premium", "step1-b2": "Reduce curiosos, atrae a quienes pagan", "step1-b3": "Sal de la guerra de Instagram, lidera Google", "step1-b4": "Muestra tu equipo y servicios en un lugar", "step1-btn": "Envía tu nicho y veremos un modelo",
                 "port-title": "Portafolio (demos reales)", "port-desc": "Estos son ejemplos de sitios de belleza que desarrollamos. Haz clic para verlos.", "port-btn": "Quiero un sitio así (WhatsApp)", "port-item-btn": "Quiero uno igual",
                 "testi-title": "Lo que dicen los dueños de salón", "testi-1": "\"Era rehén del DM de Instagram. Ahora el sitio filtra a los curiosos y quien hace clic ya pregunta horarios disponibles. Cambió mi negocio.\"", "testi-1-author": "— Rafa, Barbería", "testi-2": "\"La cliente entra, ve el espacio, los químicos y las reseñas. Cuando me escribe, ya confía. Aparezco como el salón más grande de la zona.\"", "testi-2-author": "— Camila, Salón de Belleza", "testi-3": "\"La estética exige confianza. Un sitio con nuestros servicios y antes/después redujo las ausencias. La cliente entiende el valor antes de hablar conmigo.\"", "testi-3-author": "— Dra. Amanda, Estética",
                 "booking-title": "¿Vamos a llenar tu agenda?", "booking-desc": "Agenda una charla rápida. Entenderemos si quieres más clientes, organizar horarios o destacarte de la competencia local.", "booking-b1": "Entender la rutina de tu salón", "booking-b2": "Definir el mejor paquete para ti", "booking-b3": "Iniciar la creación de tu sitio hoy",
+                "mission-tag": "¿Por qué existimos?", "mission-title": "Democratizar la <span style='color: var(--google-blue);'>autoridad digital</span>.", "mission-subtitle": "No importa si tienes una gran clínica o atiendes en casa. Todo negocio merece una vitrina que conquiste clientes.", "mission-p1": "El mercado está lleno de agencias cobrando $ 1.500 a $ 2.000 por sitios, alejando a pequeños emprendedores de lo que más necesitan: <strong>credibilidad</strong>.", "mission-p2": "HubSymples nació para romper esa barrera. Entregamos la <strong>calidad máxima</strong> de una agencia premium, por valores justos y accesibles. Porque tu tamaño de hoy no define hasta dónde puedes llegar.",
                 "comp-old-title": "Agencia Tradicional", "comp-old-1": "Creación del sitio", "comp-old-1-v": "$ 500+", "comp-old-2": "Hosting (Anual)", "comp-old-2-v": "$ 100+", "comp-old-3": "Mantenimiento (Hora)", "comp-old-3-v": "$ 50+", "comp-old-total": "Costo 1er año:", "comp-old-total-v": "Más de $ 600",
                 "comp-new-title": "Suscripción HubSymples", "comp-new-1": "Creación Premium", "comp-new-1-v": "$ 0 (Incluido)", "comp-new-2": "Hosting Rápido", "comp-new-2-v": "$ 0 (Incluido)", "comp-new-3": "Soporte Continuo", "comp-new-3-v": "$ 0 (Incluido)", "comp-new-total": "Tu costo:", "comp-new-total-v": "Solo la mensualidad",
                 "plan-title": "Elige el camino más rápido", "plan-rec": "Más Elegido", "plan-period": "/ mes",
@@ -1359,7 +1459,7 @@
                 "q7": "¿Cuáles son las formas de pago?", "a7": "Pix y tarjetas. <strong>Detalle:</strong> cobramos como Netflix. Incluso en el plan anual, solo se cobra el mes a mes, <strong>sin bloquear el límite total</strong>.",
                 "q8": "¿Puedo tener mi propio dominio (ej: misalon.com)?", "a8": "¡Sí! En el <strong>Plan Profesional</strong>, conectas tu nombre oficial. Lo compras (aprox. $10/año) y lo instalamos gratis.",
                 "niches-title": "Sitios de alta conversión para:", "niches-list": "Barberías • Salones de Belleza • Estéticas • Nail Designers • SPAs • Profesionales de Belleza",
-                "footer-rights": "Todos los derechos reservados.", "footer-motto": "Tu agenda siempre llena.", "footer-secure": "Pago 100% seguro procesado por:",
+                "footer-rights": "Todos os derechos reservados.", "footer-motto": "Tu agenda siempre llena.", "footer-secure": "Pago 100% seguro procesado por:",
                 "footer-terms": "Términos de Uso", "footer-privacy": "Políticas de Privacidad",
                 "pay-credit": "Crédito", "pay-debit": "Débito", "pay-pix": "Pix",
                 "action-sim": "Simulador", "action-wa": "WhatsApp", "hero-btn1": "Quero meu site no WhatsApp", "hero-btn2": "Ver portfólio (demos reais)",
