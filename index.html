@@ -12,8 +12,10 @@
     <meta property="og:type" content="website">
     <meta name="robots" content="index, follow">
 
-    <!-- Favicon (Agora com a logo da HubSymples) -->
-    <link rel="icon" type="image/png" href="https://i.imgur.com/WVOsHDW.png">
+    <!-- Favicon Avançado (Tamanhos forçados para ocupar o máximo de espaço) -->
+    <link rel="icon" type="image/png" sizes="32x32" href="https://i.imgur.com/WVOsHDW.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="https://i.imgur.com/WVOsHDW.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://i.imgur.com/WVOsHDW.png">
 
     <!-- AOS Animation CSS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -184,7 +186,7 @@
         .zero-to-live-banner p { font-size: 1.1rem; color: var(--text-main); max-width: 850px; line-height: 1.6; }
         .zero-to-live-banner strong { color: var(--google-blue); font-weight: 800; font-size: 1.15rem; }
 
-        /* PROCESSO DE CRIAÇÃO (COMO FUNCIONA) - CORRIGIDO */
+        /* PROCESSO DE CRIAÇÃO (COMO FUNCIONA) - REVERTIDO PARA O ORIGINAL */
         .process-section { padding-top: 80px; padding-bottom: 40px; position: relative; text-align: center; }
         .process-grid { display: grid; grid-template-columns: 1fr; gap: 40px; margin-top: 60px; position: relative; max-width: 1000px; margin-inline: auto; }
         @media (min-width: 768px) {
@@ -193,11 +195,11 @@
                 content: ''; position: absolute; top: 50px; right: -20px; width: 20px; height: 2px;
                 background: linear-gradient(90deg, rgba(26, 115, 232, 0.8), transparent);
                 z-index: 0;
-                pointer-events: none; /* CORREÇÃO: Impede que a linha invisível roube o mouse do passo 4 */
+                pointer-events: none;
             }
         }
         .process-step { background: var(--glass-bg); backdrop-filter: var(--glass-blur); border: 1px solid var(--glass-border); border-radius: 20px; padding: 40px 20px 30px; text-align: center; position: relative; z-index: 1; transition: var(--transition); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
-        .process-step:hover { transform: translateY(-10px); border-color: var(--google-blue); box-shadow: 0 20px 40px rgba(26, 115, 232, 0.15); background: rgba(26, 115, 232, 0.05); z-index: 10; } /* CORREÇÃO: Garante que o cartão ativo fique no topo de tudo */
+        .process-step:hover { transform: translateY(-10px); border-color: var(--google-blue); box-shadow: 0 20px 40px rgba(26, 115, 232, 0.15); background: rgba(26, 115, 232, 0.05); z-index: 10; }
         .step-number { position: absolute; top: -20px; left: 50%; transform: translateX(-50%); width: 40px; height: 40px; background: var(--bg-body); border: 2px solid var(--google-blue); color: var(--text-main); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.1rem; box-shadow: 0 0 15px rgba(26, 115, 232, 0.4); transition: var(--transition); z-index: 2; }
         .process-step:hover .step-number { background: var(--google-blue); color: #fff; box-shadow: 0 0 20px rgba(26, 115, 232, 0.8); }
         .step-icon { font-size: 2.2rem; margin-bottom: 15px; display: inline-block; filter: drop-shadow(0 0 5px rgba(26, 115, 232, 0.3)); transition: var(--transition); position: relative; z-index: 2; }
