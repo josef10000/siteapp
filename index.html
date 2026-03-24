@@ -178,8 +178,8 @@
         .process-step p { color: var(--text-dim); font-size: 0.95rem; }
 
         /* PLANOS E PREÇOS (NOVA ESTRUTURA) */
-        .plans-grid { display: grid; grid-template-columns: 1fr; gap: 30px; margin-top: 60px; align-items: start; }
-        @media (min-width: 1024px) { .plans-grid { grid-template-columns: repeat(3, 1fr); } }
+        .plans-grid { display: grid; grid-template-columns: 1fr; gap: 40px; margin-top: 60px; align-items: start; }
+        @media (min-width: 1024px) { .plans-grid { grid-template-columns: repeat(2, 1fr); max-width: 900px; margin-inline: auto; } }
         
         .plan-card { background: rgba(17, 24, 39, 0.4); border: 1px solid var(--border); border-radius: 16px; padding: 40px; display: flex; flex-direction: column; transition: var(--transition); position: relative; }
         .plan-card:hover { border-color: rgba(255,255,255,0.15); }
@@ -191,21 +191,40 @@
         .plan-title { font-size: 1.5rem; color: #fff; margin-bottom: 10px; font-weight: 700; }
         .plan-desc { color: var(--text-dim); font-size: 0.95rem; line-height: 1.6; min-height: 75px; }
         
-        /* Nova Estrutura de Preços (Premium Corporate) */
-        .plan-pricing-box { background: rgba(0, 0, 0, 0.3); border: 1px solid var(--border); border-radius: 8px; padding: 20px; margin-bottom: 25px; }
+        /* Nova Estrutura de Preços com Toggle (Interruptor) */
+        .pricing-toggle-wrapper { display: flex; justify-content: center; align-items: center; gap: 15px; margin: 40px 0 50px; }
+        .toggle-label { font-size: 1.1rem; color: var(--text-dim); font-weight: 600; cursor: pointer; transition: var(--transition); }
+        .toggle-label.active { color: #fff; }
+        .toggle-badge { background: var(--accent-green); color: #000; font-size: 0.7rem; padding: 3px 8px; border-radius: 12px; font-weight: 800; text-transform: uppercase; margin-left: 8px; vertical-align: middle; }
+        
+        .switch { position: relative; display: inline-block; width: 60px; height: 34px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(255,255,255,0.1); transition: .4s; border: 1px solid var(--border); }
+        .slider:before { position: absolute; content: ""; height: 26px; width: 26px; left: 3px; bottom: 3px; background-color: var(--text-dim); transition: .4s; }
+        input:checked + .slider { background-color: rgba(197, 160, 89, 0.2); border-color: var(--primary-gold); }
+        input:checked + .slider:before { transform: translateX(26px); background-color: var(--primary-gold); }
+        .slider.round { border-radius: 34px; }
+        .slider.round:before { border-radius: 50%; }
+
+        .plan-pricing-box { background: rgba(0, 0, 0, 0.3); border: 1px solid var(--border); border-radius: 8px; padding: 25px; margin-bottom: 25px; min-height: 140px; display: flex; flex-direction: column; justify-content: center; }
         .price-setup { font-size: 0.95rem; color: var(--text-dim); margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); }
         .price-setup strong { color: #fff; font-size: 1.05rem; }
         
-        .price-line { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-        .price-line.annual { margin-bottom: 0; }
+        .price-line { display: flex; justify-content: space-between; align-items: center; }
         .price-label { color: var(--text-dim); font-size: 0.95rem; }
-        .price-amount { color: #fff; font-weight: 600; font-size: 1.1rem; }
+        .price-amount { color: #fff; font-weight: 600; font-size: 1.3rem; }
+        .price-period { font-size: 0.9rem; color: var(--text-dim); font-weight: 400; }
         
-        .price-amount.annual-amount { color: var(--primary-gold-light); font-size: 1.3rem; font-weight: 800; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: flex-end;}
+        .billing-annual { display: none; }
+        .savings-tag { color: var(--accent-green); font-size: 0.85rem; font-weight: 700; background: var(--accent-green-glow); display: inline-block; padding: 6px 12px; border-radius: 6px; margin-top: 12px; border: 1px solid rgba(16, 185, 129, 0.2); width: 100%; text-align: center; }
         
-        .best-condition-badge { font-size: 0.65rem; text-transform: uppercase; background: rgba(197, 160, 89, 0.1); border: 1px solid rgba(197, 160, 89, 0.3); color: var(--primary-gold); padding: 4px 8px; border-radius: 4px; letter-spacing: 0.5px; font-weight: 700; }
-        .plan-card.highlight .best-condition-badge { background: var(--primary-gold); color: #000; border-color: var(--primary-gold); }
-        
+        /* Lógica Visual do Toggle */
+        body.show-annual .billing-annual { display: block; animation: fadeIn 0.4s ease forwards; }
+        body.show-annual .billing-monthly { display: none; }
+        body.show-annual .toggle-label.monthly { color: var(--text-dim); }
+        body.show-annual .toggle-label.annual { color: #fff; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
         .plan-features { display: flex; flex-direction: column; gap: 16px; margin-bottom: 40px; flex-grow: 1; }
         .plan-features li { display: flex; align-items: flex-start; gap: 12px; color: #E2E8F0; font-size: 0.95rem; }
         .feature-check { color: var(--accent-green); flex-shrink: 0; margin-top: 2px; font-weight: bold; } /* Verde sutil aqui */
@@ -282,13 +301,13 @@
         <!-- HERO -->
         <section class="hero" id="topo">
             <div class="hero-content" data-aos="fade-up">
-                <span class="hero-tag">Presença Digital Premium</span>
-                <h1>Transforme a presença digital da sua empresa agro em uma estrutura de <span>credibilidade e conversão</span>.</h1>
-                <p>Criamos sites de alto padrão para fazendas, agtechs, empresas do agronegócio e <strong>prestadores de serviço</strong> que exigem confiança e resultados no ambiente digital.</p>
+                <span class="hero-tag">Orgulho do Agro Nacional</span>
+                <h1>Transforme o seu negócio em uma <span>marca forte e respeitada</span> na internet.</h1>
+                <p>O agronegócio é o que puxa este país para frente. Criamos sites para fazendas, lojas agro e <strong>prestadores de serviço</strong> que não querem apenas "estar na internet", mas sim mostrar o valor do seu trabalho e atrair bons negócios.</p>
                 
                 <div class="hero-btns">
                     <a href="#planos" class="btn btn-primary">Ver opções de investimento</a>
-                    <a href="https://api.whatsapp.com/send?phone=5511952924208&text=Olá!%20Gostaria%20de%20falar%20com%20um%20especialista%20sobre%20a%20presença%20digital%20da%20minha%20empresa%20agro." class="btn btn-outline" target="_blank">Falar com um especialista</a>
+                    <a href="https://api.whatsapp.com/send?phone=5511952924208&text=Olá!%20Gostaria%20de%20conversar%20sobre%20a%20presença%20digital%20do%20meu%20negócio." class="btn btn-outline" target="_blank">Conversar com a nossa equipe</a>
                 </div>
             </div>
         </section>
@@ -296,12 +315,12 @@
         <!-- O NOSSO NORTE (ELEVATOR PITCH) -->
         <section class="branding-section" data-aos="fade-up">
             <div class="branding-card">
-                <h2>A forma mais inteligente, rápida e premium de negócios do agronegócio terem um site de alto nível.</h2>
-                <p class="elevator-pitch">Não importa se você é um <strong>prestador de serviços independente</strong>, gere uma grande fazenda, uma consultoria ou uma operação logística. O seu negócio no campo precisa de uma vitrine digital que transmita segurança e força imediata a investidores e clientes.</p>
+                <h2>A força do seu trabalho no campo, com o respeito que merece na internet.</h2>
+                <p class="elevator-pitch">Acreditamos que o setor mais importante do Brasil precisa ser tratado com excelência. Não importa se você é um <strong>prestador de serviços independente</strong>, tem uma loja de insumos ou toca uma fazenda. Quem acorda cedo para fazer o país crescer precisa de um espaço online que passe confiança logo de cara para novos clientes e parceiros.</p>
                 
                 <div class="usp-box">
                     <span>Por que escolher a HubSymples?</span>
-                    <p>"Porque traduzimos a força do seu negócio no campo para uma vitrine digital impecável, sem dores de cabeça, de forma rápida e com valor justo."</p>
+                    <p>"Porque nós não vendemos 'só um site'. Nós ajudamos o seu negócio a ser valorizado, filtrando curiosos e trazendo para o seu WhatsApp quem realmente quer fechar negócio, sem complicação."</p>
                 </div>
             </div>
         </section>
@@ -309,9 +328,9 @@
         <!-- BENEFÍCIOS (VALOR DE NEGÓCIO AGRO) -->
         <section id="beneficios" data-aos="fade-up">
             <div style="text-align: center; max-width: 800px; margin: 0 auto;">
-                <span style="color: var(--primary-gold-light); font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Valor de Negócio</span>
-                <h2 style="font-size: clamp(2rem, 4vw, 2.5rem); margin: 15px 0;">Por que estruturar sua presença digital conosco?</h2>
-                <p style="color: var(--text-dim); font-size: 1.1rem;">Um site não é apenas estética. É a ferramenta comercial que trabalha pela sua marca 24 horas por dia.</p>
+                <span style="color: var(--primary-gold-light); font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">O que muda na prática</span>
+                <h2 style="font-size: clamp(2rem, 4vw, 2.5rem); margin: 15px 0;">O que você ganha com o nosso trabalho?</h2>
+                <p style="color: var(--text-dim); font-size: 1.1rem;">Nós substituímos a "vitrine bonitinha" por algo que facilita a sua rotina e ajuda a trazer negócios de verdade.</p>
             </div>
 
             <div class="benefits-grid">
@@ -319,29 +338,29 @@
                     <div class="benefit-icon">
                         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
                     </div>
-                    <h3>Sua Força, Agora na Web</h3>
-                    <p>Transmita a mesma solidez, tecnologia e profissionalismo da sua operação rural para o ambiente digital. Uma marca forte atrai negócios fortes.</p>
+                    <h3>Mostre o Tamanho do Seu Valor</h3>
+                    <p>O seu cliente vai entender a qualidade e a seriedade do seu serviço antes mesmo do primeiro "bom dia". É a sua reputação trabalhando por você, justificando o seu preço e afastando pechinchas.</p>
                 </div>
                 <div class="benefit-card">
                     <div class="benefit-icon">
                         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"></path></svg>
                     </div>
-                    <h3>Filtro de Contatos</h3>
-                    <p>Facilite o contato de investidores, fornecedores e clientes B2B reais. Estruturamos caminhos claros para solicitações de cotações e propostas.</p>
+                    <h3>O Fim dos Curiosos</h3>
+                    <p>O seu tempo custa caro e o dia no campo é curto. Criamos caminhos no site que afastam quem só quer "dar uma olhadinha" e levam para o seu WhatsApp apenas quem tem interesse real no que você faz.</p>
                 </div>
                 <div class="benefit-card">
                     <div class="benefit-icon">
                         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                     </div>
-                    <h3>Posicionamento Local e Nacional</h3>
-                    <p>Otimização técnica (SEO) para ajudar sua empresa a ser encontrada por quem busca suas commodities, insumos ou serviços na sua região ou em todo o país.</p>
+                    <h3>Seja Encontrado na Hora Certa</h3>
+                    <p>Quando alguém da sua região pesquisar no Google por serviços ou produtos que você oferece, o seu site estará lá, pronto para ser achado por quem já está com a intenção de fechar negócio.</p>
                 </div>
                 <div class="benefit-card">
                     <div class="benefit-icon">
                         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                     </div>
-                    <h3>Foco na sua Operação</h3>
-                    <p>Você cuida da safra, da equipe e da gestão do negócio. Nós cuidamos de toda a infraestrutura, hospedagem e atualizações da sua tecnologia.</p>
+                    <h3>Sem Esquentar a Cabeça</h3>
+                    <p>Você cuida do seu negócio, da sua equipe ou do seu maquinário. Nós cuidamos para que o seu site nunca saia do ar, fique rápido e seguro. Você não precisa entender de tecnologia, deixe isso com a gente.</p>
                 </div>
             </div>
         </section>
@@ -350,8 +369,8 @@
         <section class="reach-section" data-aos="fade-up">
             <div style="text-align: center; max-width: 800px; margin: 0 auto;">
                 <span style="color: var(--primary-gold-light); font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Nossa Atuação</span>
-                <h2 style="font-size: clamp(2rem, 4vw, 2.5rem); margin: 15px 0;">Do profissional independente à grande operação.</h2>
-                <p style="color: var(--text-dim); font-size: 1.1rem;">Mais de <strong>55 infraestruturas digitais</strong> entregues para quem faz o agronegócio e o mercado B2B girar de Norte a Sul.</p>
+                <h2 style="font-size: clamp(2rem, 4vw, 2.5rem); margin: 15px 0;">De quem trabalha sozinho até quem tem equipe.</h2>
+                <p style="color: var(--text-dim); font-size: 1.1rem;">Mais de <strong>55 presenças digitais</strong> entregues para fortalecer quem faz o agronegócio girar de Norte a Sul do Brasil.</p>
             </div>
 
             <div class="reach-container">
@@ -361,21 +380,21 @@
                         <div class="stat-number">28</div>
                         <div class="stat-info">
                             <h4>Prestadores de Serviço</h4>
-                            <p>Agrônomos, consultores técnicos, veterinários e profissionais liberais que atendem o campo.</p>
+                            <p>Agrônomos, consultores, veterinários, operadores de máquina e autônomos que atendem o campo.</p>
                         </div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-number">19</div>
                         <div class="stat-info">
-                            <h4>Médias Empresas</h4>
-                            <p>Fazendas produtoras, lojas de insumos regionais e escritórios de logística e contabilidade rural.</p>
+                            <h4>Negócios Locais</h4>
+                            <p>Fazendas produtoras, lojas de insumos, cooperativas e escritórios de apoio rural.</p>
                         </div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-number">08</div>
                         <div class="stat-info">
                             <h4>Grandes Operações</h4>
-                            <p>Agtechs, indústrias de implementos e holdings buscando posicionamento digital de alto padrão.</p>
+                            <p>Agtechs, corretoras e empresas com estruturas maiores que precisam de um site de peso.</p>
                         </div>
                     </div>
                 </div>
@@ -393,30 +412,30 @@
         <!-- METODOLOGIA (COMO FUNCIONA) -->
         <section id="como-funciona" style="background: rgba(17, 24, 39, 0.4); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);" data-aos="fade-up">
             <div style="text-align: center; max-width: 800px; margin: 0 auto;">
-                <h2 style="font-size: clamp(2rem, 4vw, 2.5rem); margin-bottom: 15px;">Processo Claro e Ágil</h2>
-                <p style="color: var(--text-dim); font-size: 1.1rem;">Sem burocracias desnecessárias. Do diagnóstico corporativo à publicação da sua nova presença online.</p>
+                <h2 style="font-size: clamp(2rem, 4vw, 2.5rem); margin-bottom: 15px;">Como a gente trabalha?</h2>
+                <p style="color: var(--text-dim); font-size: 1.1rem;">Sem burocracias desnecessárias e sem termos difíceis. O papo é reto, do começo ao fim.</p>
             </div>
 
             <div class="process-grid">
                 <div class="process-step">
                     <div class="step-number">1</div>
-                    <h4>Diagnóstico da Operação</h4>
-                    <p>Alinhamento rápido via WhatsApp ou reunião para entender os objetivos comerciais, serviços prestados e os diferenciais do seu negócio agro.</p>
+                    <h4>Entender o seu negócio</h4>
+                    <p>Um bate-papo rápido via WhatsApp ou ligação para a gente entender o que você faz de melhor e quem é o seu cliente ideal.</p>
                 </div>
                 <div class="process-step">
                     <div class="step-number">2</div>
-                    <h4>Desenvolvimento Premium</h4>
-                    <p>Nossa equipe desenha o layout de alto padrão e desenvolve a comunicação (copywriting) focada em clareza, autoridade e mercado B2B.</p>
+                    <h4>Construir o seu valor</h4>
+                    <p>Nossa equipe monta o visual e escreve os textos focando em mostrar a sua qualidade, de forma simples e direta, como tem que ser.</p>
                 </div>
                 <div class="process-step">
                     <div class="step-number">3</div>
-                    <h4>Lançamento Digital</h4>
-                    <p>Após a sua validação, colocamos o site no ar em servidores robustos, com domínio próprio configurado e total segurança.</p>
+                    <h4>Colocar no ar</h4>
+                    <p>Depois que você aprovar, ativamos o site com endereço próprio, prontinho para receber os contatos que realmente importam.</p>
                 </div>
                 <div class="process-step">
                     <div class="step-number">4</div>
-                    <h4>Suporte Contínuo</h4>
-                    <p>Com nossa mensalidade, garantimos que sua vitrine tecnológica nunca pare. Segurança, hospedagem e pequenas atualizações inclusas.</p>
+                    <h4>Apoio contínuo</h4>
+                    <p>O site foi pro ar? Nós continuamos por aqui. Garantimos que tudo siga funcionando rápido e seguro, sem você precisar mexer em nada.</p>
                 </div>
             </div>
         </section>
@@ -449,10 +468,23 @@
         <!-- PLANOS DE INVESTIMENTO -->
         <section id="planos" data-aos="fade-up">
             <div style="text-align: center; max-width: 800px; margin: 0 auto;">
-                <span style="color: var(--primary-gold-light); font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Investimento</span>
-                <h2 style="font-size: clamp(2rem, 4vw, 2.5rem); margin: 15px 0;">Estruturas sob medida para a sua operação</h2>
-                <p style="color: var(--text-dim); font-size: 1.1rem; margin-bottom: 10px;">Valores transparentes. Escolha o nível de profundidade e autoridade que sua empresa precisa hoje.</p>
-                <p style="color: var(--primary-gold); font-weight: 600; font-size: 1.05rem; background: rgba(197, 160, 89, 0.1); display: inline-block; padding: 8px 20px; border-radius: 30px; border: 1px solid rgba(197, 160, 89, 0.2);">A maioria dos clientes opta pelo plano anual pela melhor condição e maior previsibilidade.</p>
+                <span style="color: var(--primary-gold-light); font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Investimento Justo</span>
+                <h2 style="font-size: clamp(2rem, 4vw, 2.5rem); margin: 15px 0;">O que você precisa para crescer hoje?</h2>
+                
+                <!-- Caixa de Compromisso e Transparência -->
+                <div style="background: rgba(197, 160, 89, 0.05); border: 1px solid rgba(197, 160, 89, 0.2); border-radius: 12px; padding: 25px; margin: 25px auto 10px; text-align: center; max-width: 750px;">
+                    <p style="color: #fff; font-size: 1rem; line-height: 1.6; margin: 0;"><strong style="color: var(--primary-gold); font-size: 1.1rem; display: block; margin-bottom: 8px;">Papo Reto com Você:</strong> Aqui não tem "pacote empurrado". Nós não vamos tentar te vender o mais caro se você não precisa dele. Nosso objetivo é conversar, entender a realidade da sua empresa hoje, e te recomendar exatamente o que vai te trazer o melhor resultado prático.</p>
+                </div>
+            </div>
+
+            <!-- INTERRUPTOR MENSAL / ANUAL -->
+            <div class="pricing-toggle-wrapper">
+                <span class="toggle-label monthly active" onclick="document.getElementById('billing-toggle').click()">Ver Mensal</span>
+                <label class="switch">
+                    <input type="checkbox" id="billing-toggle">
+                    <span class="slider round"></span>
+                </label>
+                <span class="toggle-label annual" onclick="document.getElementById('billing-toggle').click()">Ver Anual <span class="toggle-badge">Mais Inteligente</span></span>
             </div>
 
             <div class="plans-grid">
@@ -460,94 +492,78 @@
                 <!-- Plano Essencial -->
                 <div class="plan-card">
                     <div class="plan-header">
-                        <h3 class="plan-title">Essencial</h3>
-                        <p class="plan-desc">Ideal para quem precisa de uma presença digital profissional, simples e funcional, com foco em facilitar o contato com clientes.</p>
+                        <h3 class="plan-title">Ecossistema Essencial</h3>
+                        <p class="plan-desc">Ideal para prestadores de serviço e negócios locais que precisam parar de depender só de indicação e passar mais credibilidade na internet.</p>
                     </div>
                     
                     <div class="plan-pricing-box">
-                        <div class="price-setup">Setup inicial: <strong>R$ 500</strong></div>
-                        <div class="price-line">
-                            <span class="price-label">Mensal:</span>
-                            <span class="price-amount">R$ 147</span>
+                        <!-- Visão Mensal -->
+                        <div class="billing-monthly">
+                            <div class="price-setup">Setup (Implementação): <strong>R$ 2.500</strong></div>
+                            <div class="price-line">
+                                <span class="price-label">Manutenção e Suporte:</span>
+                                <span class="price-amount">R$ 397 <span class="price-period">/ mês</span></span>
+                            </div>
                         </div>
-                        <div class="price-line annual">
-                            <span class="price-label">ou Anual:</span>
-                            <span class="price-amount annual-amount">R$ 1.323 <span class="best-condition-badge">Melhor condição</span></span>
+                        
+                        <!-- Visão Anual -->
+                        <div class="billing-annual">
+                            <div class="price-setup" style="color: var(--primary-gold-light); font-weight: 600; border-color: rgba(197, 160, 89, 0.2);">Pacote Anual (Setup + 12 meses)</div>
+                            <div style="text-align: center;">
+                                <span class="price-amount" style="font-size: 2.2rem; color: #fff;">R$ 6.073 <span class="price-period" style="font-size: 1rem;">à vista</span></span>
+                                <div class="savings-tag">Economize R$ 1.191 no ano<br><span style="font-weight: 500; font-size: 0.75rem; color: var(--text-main);">(Você ganha 3 meses de manutenção grátis)</span></div>
+                            </div>
                         </div>
                     </div>
                     
                     <ul class="plan-features">
-                        <li><span class="feature-check">✔</span> Criação de Site Corporativo (One Page Premium)</li>
-                        <li><span class="feature-check">✔</span> Fluxo de contato rápido via WhatsApp</li>
-                        <li><span class="feature-check">✔</span> Adaptado para leitura no Campo (Celulares)</li>
-                        <li><span class="feature-check">✔</span> Hospedagem robusta e rápida inclusa</li>
-                        <li><span class="feature-check">✔</span> Suporte corporativo via WhatsApp</li>
+                        <li><span class="feature-check">✔</span> Visual profissional que valoriza o seu nome ou a sua empresa</li>
+                        <li><span class="feature-check">✔</span> Organizado para levar pessoas interessadas direto pro seu WhatsApp</li>
+                        <li><span class="feature-check">✔</span> Funciona perfeitamente no celular (para quem vê direto da roça)</li>
+                        <li><span class="feature-check">✔</span> Hospedagem segura e suporte para você não esquentar a cabeça</li>
                     </ul>
                     
-                    <a href="https://api.whatsapp.com/send?phone=5511952924208&text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20o%20Plano%20Essencial%20para%20meu%20negócio%20agro." class="plan-btn plan-btn-outline" target="_blank">Selecionar Essencial</a>
+                    <a href="https://api.whatsapp.com/send?phone=5511952924208&text=Olá!%20Gostaria%20de%20bater%20um%20papo%20para%20entender%20se%20o%20Ecossistema%20Essencial%20ajuda%20meu%20negócio." class="plan-btn plan-btn-outline" target="_blank">Conversar sobre este plano</a>
                 </div>
 
-                <!-- Plano Profissional (Destaque) -->
-                <div class="plan-card highlight">
-                    <div class="plan-header">
-                        <h3 class="plan-title">Profissional</h3>
-                        <p class="plan-desc">Indicado para empresas que querem transmitir mais autoridade, melhorar sua apresentação online e gerar contatos mais qualificados.</p>
-                    </div>
-                    
-                    <div class="plan-pricing-box">
-                        <div class="price-setup">Setup inicial: <strong>R$ 2.500</strong></div>
-                        <div class="price-line">
-                            <span class="price-label">Mensal:</span>
-                            <span class="price-amount">R$ 397</span>
-                        </div>
-                        <div class="price-line annual">
-                            <span class="price-label">ou Anual:</span>
-                            <span class="price-amount annual-amount">R$ 3.573 <span class="best-condition-badge">Escolha Inteligente</span></span>
-                        </div>
-                    </div>
-                    
-                    <ul class="plan-features">
-                        <li><span class="feature-check">✔</span> <strong>Tudo do plano Essencial, mais:</strong></li>
-                        <li><span class="feature-check">✔</span> Site Multi-páginas Estruturado (Empresa, Serviços, Equipe, Contato)</li>
-                        <li><span class="feature-check">✔</span> Copywriting (Textos) persuasivo focado no produtor/investidor</li>
-                        <li><span class="feature-check">✔</span> Formulários avançados para cotações e propostas</li>
-                        <li><span class="feature-check">✔</span> Instalação de Domínio Oficial (.com.br)</li>
-                        <li><span class="feature-check">✔</span> Otimização de SEO Local e Institucional avançada</li>
-                        <li><span class="feature-check">✔</span> Atendimento prioritário</li>
-                    </ul>
-                    
-                    <a href="https://api.whatsapp.com/send?phone=5511952924208&text=Olá!%20Gostaria%20de%20avançar%20com%20o%20Plano%20Profissional%20para%20a%20minha%20empresa." class="plan-btn plan-btn-solid" target="_blank">Selecionar Profissional</a>
-                </div>
-
-                <!-- Plano Autoridade -->
+                <!-- Plano Avançado (Sem destaque forçado) -->
                 <div class="plan-card">
                     <div class="plan-header">
-                        <h3 class="plan-title">Autoridade</h3>
-                        <p class="plan-desc">Para negócios que precisam de uma presença digital mais robusta, estratégica e alinhada com um posicionamento mais forte no mercado.</p>
+                        <h3 class="plan-title">Ecossistema Avançado</h3>
+                        <p class="plan-desc">Para negócios que já estão crescendo e precisam de mais espaço para mostrar diferentes serviços, estrutura e organizar o contato com clientes.</p>
                     </div>
                     
                     <div class="plan-pricing-box">
-                        <div class="price-setup">Setup inicial: <strong>R$ 7.500</strong></div>
-                        <div class="price-line">
-                            <span class="price-label">Mensal:</span>
-                            <span class="price-amount">R$ 997</span>
+                        <!-- Visão Mensal -->
+                        <div class="billing-monthly">
+                            <div class="price-setup">Setup (Implementação): <strong>R$ 7.500</strong></div>
+                            <div class="price-line">
+                                <span class="price-label">Manutenção Avançada:</span>
+                                <span class="price-amount">R$ 997 <span class="price-period">/ mês</span></span>
+                            </div>
                         </div>
-                        <div class="price-line annual">
-                            <span class="price-label">ou Anual:</span>
-                            <span class="price-amount annual-amount">R$ 8.973 <span class="best-condition-badge">Melhor condição</span></span>
+                        
+                        <!-- Visão Anual -->
+                        <div class="billing-annual">
+                            <div class="price-setup" style="color: var(--primary-gold-light); font-weight: 600; border-color: rgba(197, 160, 89, 0.2);">Pacote Anual (Setup + 12 meses)</div>
+                            <div style="text-align: center;">
+                                <span class="price-amount" style="font-size: 2.2rem; color: #fff;">R$ 16.473 <span class="price-period" style="font-size: 1rem;">à vista</span></span>
+                                <div class="savings-tag">Economize R$ 2.991 no ano<br><span style="font-weight: 500; font-size: 0.75rem; color: var(--text-main);">(Você ganha 3 meses de suporte VIP grátis)</span></div>
+                            </div>
                         </div>
                     </div>
                     
                     <ul class="plan-features">
-                        <li><span class="feature-check">✔</span> <strong>Tudo do plano Profissional, mais:</strong></li>
-                        <li><span class="feature-check">✔</span> Design Exclusivo Customizado de Alto Nível</li>
-                        <li><span class="feature-check">✔</span> Área de Blog/Notícias para Marketing de Conteúdo (Agro)</li>
-                        <li><span class="feature-check">✔</span> Integração de captação com CRMs (RD Station, etc.)</li>
-                        <li><span class="feature-check">✔</span> Catálogo de produtos ou detalhamento profundo de serviços</li>
-                        <li><span class="feature-check">✔</span> Consultoria técnica trimestral de desempenho</li>
+                        <li><span class="feature-check">✔</span> <strong>Tudo que tem no Ecossistema Essencial, e mais:</strong></li>
+                        <li><span class="feature-check">✔</span> Páginas separadas para mostrar a fundo seus serviços, história e estrutura</li>
+                        <li><span class="feature-check">✔</span> Páginas focadas em conversão (Landing Pages) para vender produtos específicos ou captar contatos rápidos via WhatsApp/formulário</li>
+                        <li><span class="feature-check">✔</span> Área de Notícias (Blog) para você postar novidades da empresa e manter o cliente informado</li>
+                        <li><span class="feature-check">✔</span> <strong>Atendente de Inteligência Artificial</strong> treinado com as informações do seu negócio para respostas automáticas 24h no site ou WhatsApp</li>
+                        <li><span class="feature-check">✔</span> <strong>Captura e Direcionamento de Clientes:</strong> o sistema pega nome e contato de quem tem interesse e direciona a pessoa já triada para você fechar negócio</li>
+                        <li><span class="feature-check">✔</span> Acompanhamento humano para garantir que o site está ajudando no dia a dia</li>
                     </ul>
                     
-                    <a href="https://api.whatsapp.com/send?phone=5511952924208&text=Olá!%20Temos%20interesse%20no%20Plano%20Autoridade.%20Podemos%20agendar%20uma%20reunião?" class="plan-btn plan-btn-outline" target="_blank">Falar com Consultor</a>
+                    <a href="https://api.whatsapp.com/send?phone=5511952924208&text=Olá!%20Meu%20negócio%20está%20crescendo%20e%20quero%20conversar%20sobre%20o%20Ecossistema%20Avançado." class="plan-btn plan-btn-solid" target="_blank">Agendar conversa sem compromisso</a>
                 </div>
 
             </div>
@@ -574,7 +590,7 @@
                 </div>
                 <div class="faq-item">
                     <button class="faq-question">Qual é a velocidade de implantação do site? <span>+</span></button>
-                    <div class="faq-answer"><p>Trabalhamos com agilidade para não travar suas operações. O Plano Essencial geralmente é publicado em poucos dias úteis. Para os planos Profissional e Autoridade, desenvolvemos cronogramas específicos na nossa reunião de diagnóstico, alinhando as expectativas com a profundidade necessária da arquitetura do seu novo site.</p></div>
+                    <div class="faq-answer"><p>Trabalhamos com agilidade para não travar suas operações. Desenvolvemos cronogramas específicos na nossa reunião de diagnóstico, alinhando as expectativas com a profundidade necessária da arquitetura do seu novo site. Geralmente, publicamos a primeira versão oficial da sua vitrine em poucos dias úteis após a aprovação dos materiais e briefing.</p></div>
                 </div>
             </div>
         </section>
@@ -588,13 +604,12 @@
                     <img src="https://i.imgur.com/WVOsHDW.png" alt="HubSymples Logo" class="logo-img" style="filter: grayscale(1) brightness(2);">
                     <span class="logo-text" style="background: none; -webkit-text-fill-color: white;">HubSymples</span>
                 </div>
-                <p>Criamos infraestruturas digitais inteligentes para o agronegócio e empresas que exigem credibilidade, organização e resultados.</p>
+                <p>Criamos infraestruturas digitais inteligentes para quem planta, produz e faz o Brasil crescer. Tecnologia e credibilidade para o agronegócio.</p>
             </div>
             
             <div>
                 <h4 class="footer-title">Soluções Corporativas</h4>
                 <div class="footer-links">
-                    <a href="#planos">Plano Essencial</a>
                     <a href="#planos">Plano Profissional</a>
                     <a href="#planos">Plano Autoridade</a>
                 </div>
@@ -621,6 +636,18 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({ duration: 800, once: true, offset: 100 });
+
+        // Lógica do Interruptor (Toggle) Mensal/Anual
+        const billingToggle = document.getElementById('billing-toggle');
+        if (billingToggle) {
+            billingToggle.addEventListener('change', function() {
+                if(this.checked) {
+                    document.body.classList.add('show-annual');
+                } else {
+                    document.body.classList.remove('show-annual');
+                }
+            });
+        }
 
         // Progresso de Leitura
         const scrollBar = document.getElementById("scrollBar");
