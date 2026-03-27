@@ -3,9 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HubSymples | Método Raiz Digital™ para o Agronegócio</title>
-    <meta name="description" content="A maioria das empresas no agro até tem um site… mas não tem uma base digital que gera clientes. Conheça o Método Raiz Digital™.">
     
+    <!-- SEO TÉCNICO BÁSICO -->
+    <title>HubSymples | Método Raiz Digital™ para o Agronegócio</title>
+    <meta name="description" content="A maioria das empresas no agro até tem um site… mas não tem uma base digital que gera clientes. Conheça o Método Raiz Digital™ e blinde o seu negócio.">
+    <meta name="keywords" content="agronegócio, marketing rural, site para fazenda, método raiz digital, hubsymples, consultoria agro, agtech, presença digital agro">
+    <meta name="author" content="HubSymples">
+    <meta name="robots" content="index, follow">
+
+    <!-- OPEN GRAPH (Para ficar perfeito ao compartilhar no WhatsApp, LinkedIn e Facebook) -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="HubSymples | Método Raiz Digital™ para o Agronegócio">
+    <meta property="og:description" content="A maioria das empresas no agro até tem um site… mas não tem uma base digital que gera clientes. Pare de perder dinheiro e conheça o nosso método.">
+    <meta property="og:image" content="https://i.imgur.com/GZVo03w.png">
+    <meta property="og:site_name" content="HubSymples">
+
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="https://i.imgur.com/WVOsHDW.png">
 
@@ -134,17 +146,13 @@
         .method-header h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 15px; color: #FFF; }
         .method-header p { font-size: 1.2rem; color: var(--text-dim); line-height: 1.6; }
         
-        .method-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
-        @media(min-width: 768px) { .method-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media(min-width: 1024px) { .method-grid { grid-template-columns: repeat(3, 1fr); } }
+        /* CORREÇÃO DO ALINHAMENTO DO MÉTODO (Uso de Flexbox para centralizar perfeitamente) */
+        .method-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+        .method-card { width: 100%; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 30px; border-radius: 12px; transition: var(--transition); display: flex; flex-direction: column; gap: 15px; }
         
-        /* Ajuste para centralizar as 2 últimas cartas no grid de 3 colunas */
-        @media(min-width: 1024px) {
-            .method-card:nth-child(4) { grid-column: 1 / 3; justify-self: end; width: calc(100% - 10px); }
-            .method-card:nth-child(5) { grid-column: 2 / 4; justify-self: start; width: calc(100% - 10px); }
-        }
+        @media(min-width: 768px) { .method-card { width: calc(50% - 10px); } }
+        @media(min-width: 1024px) { .method-card { width: calc(33.333% - 14px); } }
 
-        .method-card { background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 30px; border-radius: 12px; transition: var(--transition); display: flex; flex-direction: column; gap: 15px; }
         .method-card:hover { border-color: var(--agro-green); box-shadow: 0 10px 20px rgba(22, 163, 74, 0.1); transform: translateY(-5px); background: rgba(22, 163, 74, 0.05); }
         .method-step { font-size: 0.85rem; font-weight: 800; color: var(--agro-orange); text-transform: uppercase; letter-spacing: 1px; }
         .method-title { font-size: 1.3rem; color: #FFF; display: flex; align-items: center; gap: 10px; }
