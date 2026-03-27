@@ -86,26 +86,50 @@
             .header-btn { padding: 6px 12px !important; font-size: 0.8rem !important; }
         }
 
-        /* 1. HERO (Topo) */
-        .hero { max-width: 100%; padding-top: clamp(140px, 18vw, 180px); padding-bottom: 60px; text-align: center; position: relative; }
+        /* 1. HERO (Topo) COM IMAGEM NÍTIDA */
+        .hero { max-width: 100%; padding-top: clamp(140px, 18vw, 180px); padding-bottom: 60px; text-align: center; position: relative; overflow: hidden; }
+        
         .hero::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url('https://i.imgur.com/GZVo03w.png'); background-size: cover; background-position: center top;
-            opacity: 0.35; z-index: -1;
-            -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
-            mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+            content: ''; 
+            position: absolute; 
+            top: 0; left: 0; width: 100%; height: 100%;
+            /* Nova imagem de alta resolução (muito mais clara e nítida) */
+            background-image: url('https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=1920&q=80'); 
+            background-size: cover; 
+            background-position: center 60%;
+            opacity: 0.45; /* Opacidade aumentada para deixar a imagem mais visível/clara */
+            z-index: -1;
+            /* Máscara suave que escurece apenas o rodapé da imagem para misturar com o site */
+            -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+            mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
         }
+
         .hero-tag { display: inline-block; padding: 6px 16px; background: rgba(22, 163, 74, 0.1); border: 1px solid rgba(22, 163, 74, 0.3); color: var(--agro-green-light); border-radius: 30px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; margin-bottom: 25px; }
         .hero h1 { font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 20px; max-width: 900px; margin-inline: auto; }
         .hero h1 span { color: var(--agro-green); }
         .hero p { font-size: clamp(1.1rem, 2vw, 1.25rem); color: var(--text-dim); margin-bottom: 35px; max-width: 750px; margin-inline: auto; }
         
-        .hero-trust { margin-top: 30px; display: flex; flex-direction: column; align-items: center; gap: 8px; }
-        .trust-stars { color: #FBBF24; font-size: 1.2rem; letter-spacing: 2px; }
-        .trust-text { font-size: 0.9rem; color: var(--text-dim); font-weight: 500; }
+        .hero-trust { margin-top: 40px; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+        .trust-stars { color: var(--agro-orange); font-size: 1.4rem; letter-spacing: 3px; }
+        .trust-text { font-size: 1rem; color: var(--text-dim); font-weight: 500; }
+        .trust-text strong { color: #FFF; font-weight: 800; }
         .trust-avatars { display: flex; margin-bottom: 5px; }
-        .trust-avatars img { width: 35px; height: 35px; border-radius: 50%; border: 2px solid var(--bg-body); margin-left: -10px; }
+        .trust-avatars img { width: 50px; height: 50px; border-radius: 50%; border: 3px solid var(--bg-body); margin-left: -15px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
         .trust-avatars img:first-child { margin-left: 0; }
+
+        /* NOVA BARRA DE ESTATÍSTICAS / RESULTADOS */
+        .stats-bar-section { padding-top: 20px; padding-bottom: 60px; }
+        .stats-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; max-width: 1000px; margin: 0 auto; background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 40px; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.4); }
+        @media(min-width: 768px) { .stats-container { grid-template-columns: repeat(4, 1fr); } }
+        .stat-item { text-align: center; border-right: 1px solid var(--border); }
+        .stat-item:last-child { border-right: none; }
+        @media(max-width: 767px) {
+            .stat-item:nth-child(2) { border-right: none; }
+            .stat-item:nth-child(3), .stat-item:nth-child(4) { margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border); }
+            .stat-item:nth-child(3) { border-right: 1px solid var(--border); }
+        }
+        .stat-number { font-size: 2.8rem; font-weight: 800; color: var(--agro-green-light); line-height: 1; margin-bottom: 8px; }
+        .stat-label { font-size: 0.9rem; color: #FFF; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
 
         /* 2. PROVA SOCIAL INICIAL */
         .quick-testimonials { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; margin-top: -20px; }
@@ -212,27 +236,42 @@
         .plan-card:not(.highlight) .plan-btn:hover { background: var(--agro-orange); color: #FFF; }
         .plan-card.highlight .plan-btn { background: var(--agro-orange); color: #FFF; }
         .plan-card.highlight .plan-btn:hover { background: var(--agro-orange-dark); border-color: var(--agro-orange-dark); }
-
-        /* 7. FAQ */
+        
+        /* 7. FAQ (CORREÇÃO DE BUGS E ANIMAÇÃO) */
         .faq-grid { max-width: 700px; margin: 40px auto 0; }
         .faq-item { border-bottom: 1px solid var(--border); }
-        .faq-question { width: 100%; padding: 20px 0; display: flex; justify-content: space-between; background: none; border: none; color: #FFF; font-size: 1.05rem; font-weight: 600; text-align: left; cursor: pointer; }
-        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; color: var(--text-dim); }
-        .faq-answer p { padding-bottom: 20px; }
-        .faq-item.active .faq-answer { max-height: 200px; }
+        .faq-question { width: 100%; padding: 20px 0; display: flex; justify-content: space-between; align-items: center; background-color: transparent !important; background: transparent; border: none; color: #FFF; font-size: 1.05rem; font-weight: 600; text-align: left; cursor: pointer; outline: none; -webkit-appearance: none; appearance: none; font-family: inherit; }
+        .faq-question span { font-size: 1.5rem; transition: transform 0.3s ease; color: var(--agro-green-light); font-weight: 400; line-height: 1; }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-in-out; color: var(--text-dim); }
+        .faq-answer p { padding-bottom: 20px; font-size: 0.95rem; line-height: 1.6; }
+        .faq-item.active .faq-answer { max-height: 600px; /* Aumentado para caber textos longos */ }
+        .faq-item.active .faq-question span { transform: rotate(45deg); color: #EF4444; }
         .faq-item.active .faq-question { color: var(--agro-green-light); }
 
-        /* 8. WALL OF LOVE (PROVA SOCIAL) */
-        .wall-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; margin-top: 40px; }
-        .wall-card { background: rgba(255,255,255,0.02); border: 1px solid var(--border); padding: 20px; border-radius: 12px; }
-        .wall-stars { color: #FBBF24; font-size: 0.8rem; margin-bottom: 10px; }
-        .wall-text { font-size: 0.9rem; color: #E5E7EB; margin-bottom: 15px; }
-        .wall-author { font-size: 0.8rem; color: var(--text-dim); font-weight: 600; }
+        /* 8. WALL OF LOVE (PROVA SOCIAL - CARROSSEL INFINITO) */
+        .marquee-wrapper { overflow: hidden; width: 100%; position: relative; margin-top: 40px; padding: 10px 0; -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); }
+        .marquee-track { display: flex; gap: 20px; width: max-content; animation: scrollMarquee 30s linear infinite; }
+        .marquee-track:hover { animation-play-state: paused; }
+        
+        @keyframes scrollMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-50% - 10px)); } }
+        
+        .wall-card { width: 320px; flex-shrink: 0; background: rgba(255,255,255,0.02); border: 1px solid var(--border); padding: 25px; border-radius: 12px; display: flex; flex-direction: column; justify-content: space-between; transition: var(--transition); }
+        .wall-card:hover { border-color: var(--agro-green); background: rgba(22, 163, 74, 0.05); }
+        .wall-stars { color: #FBBF24; font-size: 0.9rem; margin-bottom: 15px; letter-spacing: 2px; }
+        .wall-text { font-size: 0.95rem; color: #E5E7EB; margin-bottom: 20px; line-height: 1.6; font-style: italic; }
+        
+        .wall-user { display: flex; align-items: center; gap: 12px; }
+        .wall-user img { width: 45px; height: 45px; border-radius: 50%; object-fit: cover; border: 2px solid var(--border); }
+        .wall-author { font-size: 0.85rem; color: #FFF; font-weight: 700; display: flex; flex-direction: column; }
+        .wall-author span { font-weight: 500; color: var(--agro-green-light); font-size: 0.75rem; }
 
         /* 9. FINAL CTA */
         .final-cta { text-align: center; background: linear-gradient(180deg, transparent, rgba(22, 163, 74, 0.05)); border-radius: 20px; padding: 80px 20px; border: 1px solid var(--glass-border); margin-bottom: 60px; }
         .final-cta h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 20px; }
         .final-cta p { color: var(--text-dim); font-size: 1.1rem; margin-bottom: 30px; max-width: 600px; margin-inline: auto; }
+        
+        .final-trust { display: flex; flex-direction: column; align-items: center; gap: 12px; margin-top: 40px; }
+        .final-trust .trust-avatars img { width: 45px; height: 45px; }
 
         /* 10. FOOTER SIMPLES */
         footer { border-top: 1px solid var(--border); padding: 40px 20px; text-align: center; color: var(--text-dim); font-size: 0.9rem; }
@@ -256,6 +295,7 @@
     <main>
         <!-- 1. HERO (Foco no Benefício + Call to Action + Prova Social Rápida) -->
         <section class="hero">
+
             <div class="hero-content" data-aos="fade-up">
                 <span class="hero-tag">Pare de vender barato no Agro</span>
                 <h1>A maioria das empresas no agro até tem um site... mas não tem uma <span>base digital que gera clientes.</span></h1>
@@ -268,13 +308,13 @@
                 <div class="hero-trust">
                     <div class="trust-avatars">
                         <!-- Placeholders de produtores reais -->
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fit=crop&w=100&h=100" alt="Cliente">
-                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?fit=crop&w=100&h=100" alt="Cliente">
-                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?fit=crop&w=100&h=100" alt="Cliente">
-                        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?fit=crop&w=100&h=100" alt="Cliente">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fit=crop&w=150&h=150" alt="Cliente">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?fit=crop&w=150&h=150" alt="Cliente">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?fit=crop&w=150&h=150" alt="Cliente">
+                        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?fit=crop&w=150&h=150" alt="Cliente">
                     </div>
                     <div class="trust-stars">★★★★★</div>
-                    <p class="trust-text">Junte-se a mais de 55 operações lucrativas no Brasil.</p>
+                    <p class="trust-text">Faça parte de <strong>+55 operações agro</strong> que pararam de perder clientes.</p>
                 </div>
             </div>
         </section>
@@ -308,6 +348,28 @@
                             <span class="qt-role">Fazenda Produtora</span>
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NOVA BARRA DE RESULTADOS (Provas em Números) -->
+        <section class="stats-bar-section" data-aos="fade-up">
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="stat-number">+55</div>
+                    <div class="stat-label">Bases Ativas</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Foco no Agro</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Filtro de Curiosos</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">5.0</div>
+                    <div class="stat-label">Estrelas (Média)</div>
                 </div>
             </div>
         </section>
@@ -510,42 +572,110 @@
                     <button class="faq-question">Por que existe um valor de Setup e outro de Mensalidade? <span>+</span></button>
                     <div class="faq-answer"><p>O Setup é a "mão na massa": desenhar, escrever, aplicar o Método Raiz Digital e programar a sua estrutura. A mensalidade (ou o plano anual) cobre a Raiz de Crescimento: hospedagem pesada, segurança (cadeado verde) e o suporte humano para evoluir seus resultados.</p></div>
                 </div>
+                
                 <div class="faq-item">
-                    <button class="faq-question">Atendem autônomos ou só grandes empresas? <span>+</span></button>
-                    <div class="faq-answer"><p>Atendemos ambos. Se você é um veterinário ou agrônomo autônomo, nossa base serve exatamente para dar a você o "peso" de uma grande consultoria, fechando contratos que você perderia por parecer pequeno.</p></div>
+                    <button class="faq-question">Quais são as formas de pagamento aceitas? <span>+</span></button>
+                    <div class="faq-answer"><p>Aceitamos pagamentos via <strong>Cartão de Crédito</strong> e <strong>Cartão de Débito</strong>. Uma excelente vantagem é que, ao optar pelo <strong>Plano Anual</strong> (que já possui desconto), você ainda pode parcelar o valor em <strong>até 12 vezes no cartão de crédito</strong>. Isso facilita o investimento na sua base digital sem comprometer o fluxo de caixa da sua operação.</p></div>
                 </div>
+
                 <div class="faq-item">
-                    <button class="faq-question">Eu preciso entender de tecnologia? <span>+</span></button>
-                    <div class="faq-answer"><p>Zero. Você entrega as fotos e a sua história para nós no WhatsApp. Nós montamos a estratégia toda. Seu único trabalho depois da base pronta será atender os clientes qualificados que chegarem.</p></div>
+                    <button class="faq-question">Atendem prestadores de serviço além de grandes empresas? <span>+</span></button>
+                    <div class="faq-answer"><p>Com certeza. O agronegócio é construído por uma rede gigante de prestadores independentes (agrônomos, veterinários, mecânicos, etc.). Nossa base serve exatamente para dar a você o "peso" de uma grande consultoria, fechando contratos que você perderia por parecer pequeno na internet.</p></div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">A minha empresa vai aparecer no Google? <span>+</span></button>
+                    <div class="faq-answer"><p>Sim. Nós já construímos a sua estrutura seguindo as regras de leitura do Google (o que chamamos de SEO). Assim, quando alguém na sua região pesquisar pelo serviço ou insumo que você vende, fica muito mais fácil para a sua base aparecer na primeira página das buscas, atraindo clientes orgânicos.</p></div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">Qual é o tempo para a estrutura ficar pronta? <span>+</span></button>
+                    <div class="faq-answer"><p>A gente sabe que o seu trabalho não pode parar, então somos ágeis. Após o nosso papo inicial e o envio dos seus materiais (como fotos e logomarca), montamos um cronograma rápido. Geralmente, em poucos dias úteis a primeira versão oficial da sua base digital já está pronta para você aprovar e colocar no ar.</p></div>
                 </div>
             </div>
         </section>
 
         <!-- 8. WALL OF LOVE (A Parede de Prova Social) -->
-        <section data-aos="fade-up">
+        <section data-aos="fade-up" style="max-width: 100%;">
             <h2 style="text-align: center; margin-bottom: 10px;">Quem confiou, não se arrepende.</h2>
             <p style="text-align: center; color: var(--text-dim);">Resultados reais de quem investiu em posicionamento e autoridade.</p>
 
-            <div class="wall-grid">
-                <div class="wall-card">
-                    <div class="wall-stars">★★★★★</div>
-                    <p class="wall-text">"Pensei que era besteira, mas em um mês a nova base da nossa fazenda trouxe dois investidores novos que nos acharam direto no Google."</p>
-                    <div class="wall-author">- Paulo S., Produtor Rural</div>
-                </div>
-                <div class="wall-card">
-                    <div class="wall-stars">★★★★★</div>
-                    <p class="wall-text">"O melhor foi o fim das mensagens de curiosos no Zap. A IA deles responde o básico e a mim só chega quem quer comprar insumo pra valer."</p>
-                    <div class="wall-author">- AgroTech Insumos</div>
-                </div>
-                <div class="wall-card">
-                    <div class="wall-stars">★★★★★</div>
-                    <p class="wall-text">"A página que criaram para as nossas máquinas colheitadeiras usadas valeu por 10 vendedores na rua. O método funciona muito."</p>
-                    <div class="wall-author">- JM Máquinas Agro</div>
-                </div>
-                <div class="wall-card">
-                    <div class="wall-stars">★★★★★</div>
-                    <p class="wall-text">"Rápido, sem burocracia. O papo com a equipe deles é reto e eles entendem que tempo é dinheiro no nosso setor."</p>
-                    <div class="wall-author">- Eduardo B., Consultor</div>
+            <div class="marquee-wrapper">
+                <div class="marquee-track">
+                    <!-- Cartão 1 -->
+                    <div class="wall-card">
+                        <div class="wall-stars">★★★★★</div>
+                        <p class="wall-text">"Pensei que era besteira, mas em um mês a nova base da nossa fazenda trouxe dois investidores novos que nos acharam direto no Google."</p>
+                        <div class="wall-user">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fit=crop&w=150&h=150" alt="Paulo S.">
+                            <div class="wall-author">Paulo S.<span>Produtor Rural</span></div>
+                        </div>
+                    </div>
+                    <!-- Cartão 2 -->
+                    <div class="wall-card">
+                        <div class="wall-stars">★★★★★</div>
+                        <p class="wall-text">"O melhor foi o fim das mensagens de curiosos no Zap. A IA deles responde o básico e a mim só chega quem quer comprar insumo pra valer."</p>
+                        <div class="wall-user">
+                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?fit=crop&w=150&h=150" alt="AgroTech">
+                            <div class="wall-author">Marcos Silva<span>AgroTech Insumos</span></div>
+                        </div>
+                    </div>
+                    <!-- Cartão 3 -->
+                    <div class="wall-card">
+                        <div class="wall-stars">★★★★★</div>
+                        <p class="wall-text">"A página que criaram para as nossas máquinas colheitadeiras usadas valeu por 10 vendedores na rua. O método funciona muito."</p>
+                        <div class="wall-user">
+                            <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?fit=crop&w=150&h=150" alt="JM Máquinas">
+                            <div class="wall-author">Roberto Junior<span>JM Máquinas Agro</span></div>
+                        </div>
+                    </div>
+                    <!-- Cartão 4 -->
+                    <div class="wall-card">
+                        <div class="wall-stars">★★★★★</div>
+                        <p class="wall-text">"Rápido, sem burocracia. O papo com a equipe deles é reto e eles entendem que tempo é dinheiro no nosso setor."</p>
+                        <div class="wall-user">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?fit=crop&w=150&h=150" alt="Eduardo B.">
+                            <div class="wall-author">Eduardo B.<span>Consultor Agrônomo</span></div>
+                        </div>
+                    </div>
+
+                    <!-- REPETIÇÃO DOS CARTÕES PARA O LOOP INFINITO NÃO QUEBRAR -->
+                    <!-- Cartão 1 -->
+                    <div class="wall-card">
+                        <div class="wall-stars">★★★★★</div>
+                        <p class="wall-text">"Pensei que era besteira, mas em um mês a nova base da nossa fazenda trouxe dois investidores novos que nos acharam direto no Google."</p>
+                        <div class="wall-user">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fit=crop&w=150&h=150" alt="Paulo S.">
+                            <div class="wall-author">Paulo S.<span>Produtor Rural</span></div>
+                        </div>
+                    </div>
+                    <!-- Cartão 2 -->
+                    <div class="wall-card">
+                        <div class="wall-stars">★★★★★</div>
+                        <p class="wall-text">"O melhor foi o fim das mensagens de curiosos no Zap. A IA deles responde o básico e a mim só chega quem quer comprar insumo pra valer."</p>
+                        <div class="wall-user">
+                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?fit=crop&w=150&h=150" alt="AgroTech">
+                            <div class="wall-author">Marcos Silva<span>AgroTech Insumos</span></div>
+                        </div>
+                    </div>
+                    <!-- Cartão 3 -->
+                    <div class="wall-card">
+                        <div class="wall-stars">★★★★★</div>
+                        <p class="wall-text">"A página que criaram para as nossas máquinas colheitadeiras usadas valeu por 10 vendedores na rua. O método funciona muito."</p>
+                        <div class="wall-user">
+                            <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?fit=crop&w=150&h=150" alt="JM Máquinas">
+                            <div class="wall-author">Roberto Junior<span>JM Máquinas Agro</span></div>
+                        </div>
+                    </div>
+                    <!-- Cartão 4 -->
+                    <div class="wall-card">
+                        <div class="wall-stars">★★★★★</div>
+                        <p class="wall-text">"Rápido, sem burocracia. O papo com a equipe deles é reto e eles entendem que tempo é dinheiro no nosso setor."</p>
+                        <div class="wall-user">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?fit=crop&w=150&h=150" alt="Eduardo B.">
+                            <div class="wall-author">Eduardo B.<span>Consultor Agrônomo</span></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -556,8 +686,16 @@
                 <h2>O seu negócio é forte no campo. Está na hora de ser forte na internet.</h2>
                 <p>A maioria das empresas no agro até tem um site… mas não tem uma base digital que gera clientes. Não deixe que concorrentes piores do que você roubem contratos apenas porque parecem mais profissionais.</p>
                 <a href="#planos" class="btn btn-primary" style="font-size: 1.2rem; padding: 20px 40px;">Quero blindar meu negócio agora</a>
-                <div style="margin-top: 15px; color: var(--text-dim); font-size: 0.9rem;">
-                    ★★★★★ Mais de 55 operações aprovam.
+                
+                <div class="final-trust">
+                    <div class="trust-stars">★★★★★</div>
+                    <div class="trust-avatars" style="justify-content: center;">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fit=crop&w=150&h=150" alt="Cliente">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?fit=crop&w=150&h=150" alt="Cliente">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?fit=crop&w=150&h=150" alt="Cliente">
+                        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?fit=crop&w=150&h=150" alt="Cliente">
+                    </div>
+                    <span style="color: #FFF; font-weight: 600; font-size: 1rem;">Mais de 55 operações aprovam. Construa a sua base.</span>
                 </div>
             </div>
         </section>
