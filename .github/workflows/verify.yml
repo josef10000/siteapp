@@ -1,0 +1,19 @@
+name: Verify and Deploy
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: HTML Validation
+        run: |
+          # A simple check to ensure index.html exists and contains essential tags
+          grep -q "<!DOCTYPE html>" index.html
+          grep -q "HubSumples" index.html
+          grep -q "Metodo Hub Sumples" index.html || grep -q "Método Hub Sumples" index.html
