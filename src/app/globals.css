@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 2, 6, 23;
+  --background-end-rgb: 0, 0, 0;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-white/[0.03] border border-white/[0.1] backdrop-blur-[20px];
+  }
+  
+  .btn-primary {
+    @apply bg-brand-main text-white font-bold py-3 px-8 rounded-full transition-all duration-300 hover:scale-105 hover:bg-brand-dark shadow-[0_5px_15px_rgba(249,115,22,0.3)];
+  }
+
+  .btn-outline {
+    @apply border border-brand-main text-brand-main font-bold py-3 px-8 rounded-full transition-all duration-300 hover:bg-brand-main hover:text-white;
+  }
+}
+
+/* Background Grid Pattern */
+.bg-grid {
+  background-size: 50px 50px;
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+}
+
+.hero-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(249, 115, 22, 0.15) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
