@@ -1,3 +1,5 @@
+"use client";
+
 const testimonials = [
   {
     text: "Pensei que era apenas um site, mas em um mês a nova base digital do meu negócio trouxe dois investidores novos que nos acharam direto no Google.",
