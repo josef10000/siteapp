@@ -22,101 +22,104 @@
     <link rel="icon" type="image/png" sizes="32x32" href="https://i.imgur.com/WVOsHDW.png">
 
     <!-- AOS Animation CSS -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
-    <style>
-        /* TOKENS - DARK AGRO (BLACK & GREEN) */
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet        /* TOKENS - PREMIUM DIGITAL AUTHORITY (DEEP NAVY & ORANGE) */
         :root {
-            --bg-body: #050505; 
-            --bg-nav: rgba(5, 5, 5, 0.6); 
+            --bg-body: #020617; 
+            --bg-nav: rgba(2, 6, 23, 0.8); 
             --glass-bg: rgba(255, 255, 255, 0.03); 
-            --glass-border: rgba(255, 255, 255, 0.08); 
-            --glass-blur: blur(12px);
+            --glass-border: rgba(255, 255, 255, 0.1); 
+            --glass-blur: blur(20px);
             
             --brand-main: #f97316; 
             --brand-dark: #ea580c;
             --brand-light: #fbbf24;
-            --brand-secondary: #3b82f6; 
+            --brand-accent: #38bdf8; /* Blue accent for tech feel */
 
             /* Cor de Conversão (Botões) */
             --accent-orange: #f97316;
             --accent-orange-dark: #ea580c;
             
-            --text-main: #F9FAFB; 
-            --text-dim: #9CA3AF; 
-            --border: rgba(255, 255, 255, 0.1); 
+            --text-main: #f8fafc; 
+            --text-dim: #94a3b8; 
+            --border: rgba(255, 255, 255, 0.08); 
             
-            --transition: all 0.3s ease;
-            --container: 1100px;
+            --transition: cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
+            --container: 1200px;
+        }
+
+        /* GRID BACKGROUND PATTERN */
+        .bg-pattern {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                radial-gradient(circle at 2px 2px, rgba(255,255,255,0.05) 1px, transparent 0);
+            background-size: 40px 40px;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        /* GLOW EFFECTS */
+        .glow {
+            position: absolute;
+            width: 40vw; height: 40vw;
+            background: radial-gradient(circle, rgba(249, 115, 22, 0.07) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: -1;
+            filter: blur(80px);
+            pointer-events: none;
         }
 
         /* RESET */
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
-        body { font-family: 'Inter', sans-serif; background-color: var(--bg-body); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
-        h1, h2, h3, h4 { line-height: 1.2; font-weight: 700; color: #FFF; letter-spacing: -0.02em; }
+        body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background-color: var(--bg-body); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
+        h1, h2, h3, h4 { line-height: 1.1; font-weight: 800; color: #FFF; letter-spacing: -0.03em; }
         a { text-decoration: none; color: inherit; }
         ul { list-style: none; }
         img { max-width: 100%; height: auto; display: block; }
         
         /* SCROLLBAR */
-        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: var(--bg-body); }
-        ::-webkit-scrollbar-thumb { background: #374151; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
         ::-webkit-scrollbar-thumb:hover { background: var(--brand-main); }
 
-        section { padding: clamp(60px, 10vw, 100px) 20px; max-width: var(--container); margin: 0 auto; position: relative; z-index: 1; }
+        section { padding: clamp(80px, 12vw, 120px) 20px; max-width: var(--container); margin: 0 auto; position: relative; z-index: 1; }
 
         /* BOTOES */
-        .btn { display: inline-flex; align-items: center; justify-content: center; padding: 16px 32px; border-radius: 6px; font-weight: 700; cursor: pointer; transition: var(--transition); font-size: 1.05rem; border: none; text-align: center; }
-        .btn-primary { background: var(--accent-orange); color: #FFF; box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3); }
-        .btn-primary:hover { background: var(--accent-orange-dark); transform: translateY(-2px); color: #FFF; box-shadow: 0 6px 20px rgba(249, 115, 22, 0.4); }
-        .btn-outline { background: transparent; color: #FFF; border: 1px solid rgba(255,255,255,0.3); }
-        .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: #FFF; }
+        .btn { display: inline-flex; align-items: center; justify-content: center; padding: 18px 36px; border-radius: 8px; font-weight: 750; cursor: pointer; transition: var(--transition); font-size: 1.05rem; border: none; text-align: center; gap: 10px; }
+        .btn-primary { background: linear-gradient(135deg, var(--brand-main), var(--brand-dark)); color: #FFF; box-shadow: 0 8px 25px rgba(249, 115, 22, 0.25); }
+        .btn-primary:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 12px 30px rgba(249, 115, 22, 0.4); filter: brightness(1.1); }
+        .btn-outline { background: rgba(255,255,255,0.03); color: #FFF; border: 1px solid var(--glass-border); backdrop-filter: var(--glass-blur); }
+        .btn-outline:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.3); transform: translateY(-2px); }
 
-        /* 10. HEADER (Simples) */
-        header { position: fixed; top: 0; width: 100%; z-index: 1000; background: var(--bg-nav); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border-bottom: 1px solid rgba(255,255,255,0.05); } 
-        .nav-container { max-width: var(--container); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; }
-        .logo-container { display: flex; align-items: center; gap: 10px; }
-        .logo-img { height: 60px; filter: brightness(1.2); } 
-        .logo-text { font-size: 1.5rem; font-weight: 800; color: #FFF; }
+        /* 10. HEADER (Modernized) */
+        header { position: fixed; top: 0; width: 100%; z-index: 1000; background: var(--bg-nav); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border-bottom: 1px solid var(--glass-border); } 
+        .nav-container { max-width: var(--container); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; }
+        .logo-container { display: flex; align-items: center; gap: 12px; }
+        .logo-img { height: 50px; } 
+        .logo-text { font-size: 1.6rem; font-weight: 900; color: #FFF; background: linear-gradient(to right, #FFF, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-        @media (max-width: 480px) {
-            .nav-container { padding: 10px 15px; }
-            .logo-img { height: 40px; }
-            .logo-text { font-size: 1.2rem; }
-            .header-btn { padding: 6px 12px !important; font-size: 0.8rem !important; }
-        }
-
-        /* 1. HERO (Topo) COM IMAGEM NÍTIDA */
-        .hero { max-width: 100%; padding-top: clamp(140px, 18vw, 180px); padding-bottom: 60px; text-align: center; position: relative; overflow: hidden; }
+        /* 1. HERO (Completamente reformulado) */
+        .hero { max-width: 100%; min-height: 90vh; display: flex; align-items: center; justify-content: center; padding-top: 100px; text-align: center; position: relative; }
         
-        .hero::before {
-            content: ''; 
-            position: absolute; 
-            top: 0; left: 0; width: 100%; height: 100%;
-            /* Nova imagem de alta resolução (muito mais clara e nítida) */
-            background-image: url('https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=1920&q=80'); 
-            background-size: cover; 
-            background-position: center 60%;
-            opacity: 0.45; /* Opacidade aumentada para deixar a imagem mais visível/clara */
-            z-index: -1;
-            /* Máscara suave que escurece apenas o rodapé da imagem para misturar com o site */
-            -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
-            mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
-        }
+        .hero-glow-1 { top: -10%; right: -5%; background: radial-gradient(circle, rgba(249, 115, 22, 0.15) 0%, transparent 70%); }
+        .hero-glow-2 { bottom: 10%; left: -10%; background: radial-gradient(circle, rgba(56, 189, 248, 0.1) 0%, transparent 70%); }
 
-        .hero-tag { display: inline-block; padding: 6px 16px; background: rgba(22, 163, 74, 0.1); border: 1px solid rgba(22, 163, 74, 0.3); color: var(--agro-green-light); border-radius: 30px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; margin-bottom: 25px; }
-        .hero h1 { font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 20px; max-width: 900px; margin-inline: auto; }
-        .hero h1 span { color: var(--agro-green); }
-        .hero p { font-size: clamp(1.1rem, 2vw, 1.25rem); color: var(--text-dim); margin-bottom: 35px; max-width: 750px; margin-inline: auto; }
+        .hero-tag { display: inline-flex; align-items: center; gap: 8px; padding: 8px 18px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); color: var(--brand-light); border-radius: 100px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; margin-bottom: 30px; letter-spacing: 1px; }
+        .hero h1 { font-size: clamp(2.8rem, 6vw, 4.5rem); margin-bottom: 25px; max-width: 950px; margin-inline: auto; background: linear-gradient(180deg, #FFF 0%, rgba(255,255,255,0.7) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero h1 span { color: var(--brand-main); -webkit-text-fill-color: initial; background: none; }
+        .hero p { font-size: clamp(1.15rem, 2.5vw, 1.4rem); color: var(--text-dim); margin-bottom: 45px; max-width: 800px; margin-inline: auto; font-weight: 400; }
         
-        .hero-trust { margin-top: 40px; display: flex; flex-direction: column; align-items: center; gap: 12px; }
-        .trust-stars { color: var(--brand-main); font-size: 1.4rem; letter-spacing: 3px; }
-        .trust-text { font-size: 1rem; color: var(--text-dim); font-weight: 500; }
-        .trust-text strong { color: #FFF; font-weight: 800; }
-        .trust-avatars { display: flex; margin-bottom: 5px; }
-        .trust-avatars img { width: 50px; height: 50px; border-radius: 50%; border: 3px solid var(--bg-body); margin-left: -15px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+        .hero-btns { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+
+        .hero-trust { margin-top: 60px; }
+        .trust-stars { color: #FBBF24; font-size: 1.2rem; letter-spacing: 5px; margin-bottom: 10px; }
+        .trust-text { font-size: 0.95rem; color: var(--text-dim); }
+        .trust-avatars { display: flex; justify-content: center; margin-bottom: 10px; }
+        .trust-avatars img { width: 42px; height: 42px; border-radius: 50%; border: 2px solid var(--bg-body); margin-left: -12px; transition: transform 0.3s ease; }
+        .trust-avatars img:hover { transform: translateY(-5px); z-index: 10; }
         .trust-avatars img:first-child { margin-left: 0; }
+-child { margin-left: 0; }
 
         /* NOVA BARRA DE ESTATÍSTICAS / RESULTADOS */
         .stats-bar-section { padding-top: 20px; padding-bottom: 60px; }
@@ -280,50 +283,54 @@
         .footer-links a:hover { color: #FFF; }
     </style>
 </head>
-<body>
+<body class="show-annual"> <!-- Padrão anual ativado por padrão -->
 
-    <!-- 10. CABEÇALHO SIMPLES -->
+    <div class="bg-pattern"></div>
+    <div class="glow" style="top: -5%; right: -5%; background: radial-gradient(circle, rgba(249, 115, 22, 0.12) 0%, transparent 70%);"></div>
+    <div class="glow" style="bottom: 20%; left: -10%; background: radial-gradient(circle, rgba(56, 189, 248, 0.08) 0%, transparent 70%);"></div>
+
+    <!-- 10. CABEÇALHO MODERNO -->
     <header>
         <nav class="nav-container">
             <div class="logo-container">
-                <img src="https://i.imgur.com/WVOsHDW.png" alt="HubSymples Logo" class="logo-img">
-                <span class="logo-text">HubSymples</span>
+                <img src="https://i.imgur.com/WVOsHDW.png" alt="HubSumples Logo" class="logo-img" style="filter: drop-shadow(0 0 10px rgba(249, 115, 22, 0.3));">
+                <span class="logo-text">HubSumples</span>
             </div>
-            <a href="#planos" class="btn btn-primary header-btn" style="padding: 8px 20px; font-size: 0.9rem;">Ver Planos</a>
+            <a href="#planos" class="btn btn-primary" style="padding: 10px 24px; font-size: 0.95rem; border-radius: 100px;">Blindar meu Negócio</a>
         </nav>
     </header>
 
     <main>
-        <!-- 1. HERO (Foco no Benefício + Call to Action + Prova Social Rápida) -->
-        <section class="hero">
-
-            <div class="hero-content" data-aos="fade-up">
-                <span class="hero-tag">A sua autoridade digital começa aqui</span>
-                <h1>A maioria dos negócios até tem um site... mas não tem uma <span>base digital que gera clientes.</span></h1>
-                <p>É exatamente isso que nós construímos através do Método Hub Sumples. Filtramos curiosos, justificamos o seu preço e fazemos o seu WhatsApp tocar com pessoas prontas para fechar negócio.</p>
+        <!-- 1. HERO (Foco no Benefício +         <section class="hero">
+            <div class="hero-content" data-aos="zoom-out" data-aos-duration="1000">
+                <span class="hero-tag">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--brand-accent);"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    A base digital dos líderes de mercado
+                </span>
+                <h1>Sua autoridade não pode depender de um <span>site amador.</span></h1>
+                <p>Construímos infraestruturas digitais de alta conversão que separam você da concorrência e transformam visitantes em clientes prontos para fechar.</p>
                 
                 <div class="hero-btns">
-                    <a href="#planos" class="btn btn-primary">Conhecer as Estruturas</a>
+                    <a href="#planos" class="btn btn-primary">Blindar meu Negócio</a>
+                    <a href="#metodo" class="btn btn-outline">Ver o Método</a>
                 </div>
 
                 <div class="hero-trust">
                     <div class="trust-avatars">
-                        <!-- Placeholders de produtores reais -->
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fit=crop&w=150&h=150" alt="Cliente">
-                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?fit=crop&w=150&h=150" alt="Cliente">
-                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?fit=crop&w=150&h=150" alt="Cliente">
-                        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?fit=crop&w=150&h=150" alt="Cliente">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fit=crop&w=100&h=100" alt="Avatar">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?fit=crop&w=100&h=100" alt="Avatar">
+                        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?fit=crop&w=100&h=100" alt="Avatar">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?fit=crop&w=100&h=100" alt="Avatar">
                     </div>
                     <div class="trust-stars">★★★★★</div>
-                    <p class="trust-text">Faça parte de <strong>+55 operações</strong> que pararam de perder clientes.</p>
+                    <p class="trust-text">Eleve sua operação para o <strong>próximo nível</strong> digital.</p>
                 </div>
             </div>
         </section>
-
-        <!-- 2. PROVA SOCIAL INICIAL (Direto ao ponto) -->
+        <!-- 2. PROVA SOCIAL INICIAL (Modernized) -->
         <section class="social-proof-initial" data-aos="fade-up">
             <div class="quick-testimonials">
-                <div class="qt-card">
+                <div class="qt-card" style="border-top: 3px solid var(--brand-accent);">
                     <p class="qt-text">"Mudou o jogo do meu negócio. Antes eu brigava por preço, hoje a nossa base digital passa tanta autoridade que o cliente já vem pronto para fechar."</p>
                     <div class="qt-author">
                         <div>
@@ -332,16 +339,16 @@
                         </div>
                     </div>
                 </div>
-                <div class="qt-card">
+                <div class="qt-card" style="border-top: 3px solid var(--brand-main);">
                     <p class="qt-text">"Só o fato de não ter mais que responder mensagens de curiosos pagou o investimento. A estrutura filtra todo mundo e só chega orçamento real."</p>
                     <div class="qt-author">
                         <div>
                             <span class="qt-name">Marcos Silva</span>
-                            <span class="qt-role">Dono de Loja de Insumos</span>
+                            <span class="qt-role">CEO - Consultoria X</span>
                         </div>
                     </div>
                 </div>
-                <div class="qt-card">
+                <div class="qt-card" style="border-top: 3px solid var(--brand-light);">
                     <p class="qt-text">"Em 15 dias usando a base de conversão que criaram para nossa operação de serviços, fechamos 3 vendas de ticket alto direto pelo WhatsApp."</p>
                     <div class="qt-author">
                         <div>
@@ -355,209 +362,198 @@
 
         <!-- NOVA BARRA DE RESULTADOS (Provas em Números) -->
         <section class="stats-bar-section" data-aos="fade-up">
-            <div class="stats-container">
+            <div class="stats-container" style="border: 1px solid var(--border); box-shadow: 0 20px 50px rgba(0,0,0,0.5);">
                 <div class="stat-item">
                     <div class="stat-number">+55</div>
                     <div class="stat-label">Bases Ativas</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-number">100%</div>
-                    <div class="stat-label">Foco em Conversão</div>
+                    <div class="stat-label">Conversão</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-number">24/7</div>
-                    <div class="stat-label">Filtro de Curiosos</div>
+                    <div class="stat-label">Autoridade</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-number">5.0</div>
-                    <div class="stat-label">Estrelas (Média)</div>
+                    <div class="stat-label">Satisfação</div>
                 </div>
             </div>
         </section>
 
-        <!-- 3. DIAGNÓSTICO INTERATIVO (A Isca) -->
+        <!-- 3. DIAGNÓSTICO INTERATIVO (SaaS Look) -->
         <section class="diagnostic-section" data-aos="fade-up">
-            <div class="quiz-container">
-                
-                <!-- Pergunta 1 -->
+            <div class="quiz-container" style="background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));">
                 <div id="quiz-step-1" class="quiz-step active">
-                    <span class="quiz-progress">Diagnóstico Rápido • 1/3</span>
-                    <p>Hoje a sua empresa aparece no Google quando alguém busca pelo que você vende na sua região?</p>
+                    <span class="quiz-progress">Diagnóstico de Autoridade • 1/3</span>
+                    <p style="font-size: 1.5rem;">Sua empresa é a primeira opção que vem à mente do cliente quando ele busca o seu serviço?</p>
                     <div class="quiz-btns">
-                        <button class="btn btn-outline" onclick="nextQuizStep(2)">Sim, sempre</button>
-                        <button class="btn btn-outline" onclick="nextQuizStep(2)">Não / Pouco</button>
+                        <button class="btn btn-outline" onclick="nextQuizStep(2)">Sim, somos referência</button>
+                        <button class="btn btn-primary" onclick="nextQuizStep(2)" style="font-size: 0.95rem;">Poderia ser melhor</button>
                     </div>
                 </div>
-
-                <!-- Pergunta 2 -->
                 <div id="quiz-step-2" class="quiz-step">
-                    <span class="quiz-progress">Diagnóstico Rápido • 2/3</span>
-                    <p>O seu site atual (ou redes sociais) gera contatos de clientes qualificados com frequência?</p>
+                    <span class="quiz-progress">Diagnóstico de Autoridade • 2/3</span>
+                    <p style="font-size: 1.5rem;">Os contatos que chegam no seu WhatsApp hoje estão prontos para fechar ou ficam apenas perguntando preço?</p>
                     <div class="quiz-btns">
-                        <button class="btn btn-outline" onclick="nextQuizStep(3)">Sim, todos os dias</button>
-                        <button class="btn btn-outline" onclick="nextQuizStep(3)">Quase nunca</button>
+                        <button class="btn btn-outline" onclick="nextQuizStep(3)">Chegam Prontos</button>
+                        <button class="btn btn-primary" onclick="nextQuizStep(3)" style="font-size: 0.95rem;">Apenas Curiosos</button>
                     </div>
                 </div>
-
-                <!-- Pergunta 3 -->
                 <div id="quiz-step-3" class="quiz-step">
-                    <span class="quiz-progress">Diagnóstico Rápido • 3/3</span>
-                    <p>Você depende exclusivamente de indicação ou de esforço manual da sua equipe para vender?</p>
+                    <span class="quiz-progress">Diagnóstico de Autoridade • 3/3</span>
+                    <p style="font-size: 1.5rem;">Seu site atual justifica o seu preço ou ele parece um "cartão de visitas" comum?</p>
                     <div class="quiz-btns">
-                        <button class="btn btn-outline" onclick="nextQuizStep(4)">Não, tenho automação</button>
-                        <button class="btn btn-outline" onclick="nextQuizStep(4)">Sim, dependo disso</button>
+                        <button class="btn btn-outline" onclick="showQuizResult()">Justifica bem</button>
+                        <button class="btn btn-primary" onclick="showQuizResult()" style="font-size: 0.95rem;">Parece Comum</button>
                     </div>
                 </div>
-
-                <!-- Resultado / Ancoragem -->
                 <div id="quiz-result" class="quiz-step result">
-                    <span class="quiz-progress">Atenção ao Diagnóstico</span>
-                    <p class="result-text">Se você teve dúvidas ou respondeu "não" para alguma dessas perguntas, a sua empresa provavelmente está <strong>perdendo clientes e dinheiro todos os dias</strong> sem perceber.</p>
-                    
-                    <div class="anchoring-box">
-                        <p>A maioria das empresas investe anos em operação, equipe e estrutura física…</p>
-                        <p>Mas nunca constrói a base digital que sustenta e protege esse crescimento.</p>
-                        <p>É exatamente isso que o Método Hub Sumples resolve.</p>
+                    <span class="quiz-progress">Diagnóstico Final</span>
+                    <p style="font-size: 1.8rem; color: #FFF; margin-bottom: 20px;">Sua operação está <strong>Vulnerável.</strong></p>
+                    <div class="result-text">
+                        A competição não é por quem é o melhor, mas por quem parece o melhor. Sem uma <strong>Base Digital de Autoridade</strong>, você continuará perdendo os melhores clientes para quem tem menos serviço, mas aparece melhor.
                     </div>
-
-                    <a href="#metodo" class="btn btn-primary" onclick="document.getElementById('metodo').scrollIntoView({behavior: 'smooth'}); return false;">Conhecer o Método</a>
+                    <div class="anchoring-box" style="border-radius: 20px; border: 1px solid rgba(249, 115, 22, 0.2); background: rgba(0,0,0,0.3);">
+                        <p>💡 <strong>Alerta:</strong> O seu negócio precisa migrar do modelo de "procura" para o modelo de "autoridade desejada".</p>
+                        <p>O Método Hub Sumples blindará sua presença digital.</p>
+                    </div>
+                    <a href="#planos" class="btn btn-primary" style="width: 100%;">Garantir Minha Blindagem</a>
                 </div>
-
             </div>
         </section>
 
-        <!-- 4. MÉTODO RAIZ DIGITAL™ (A Metodologia Proprietária) -->
+        <!-- 4. MÉTODO HUB SUMPLES (Modernized) -->
         <section id="metodo" class="method-section" data-aos="fade-up">
             <div class="method-header">
-                <span class="hero-tag" style="background: rgba(249, 115, 22, 0.1); border-color: rgba(249, 115, 22, 0.3); color: var(--brand-main);">O Segredo do Nosso Processo</span>
-                <h2>Método Hub Sumples</h2>
-                <p>Nós não construímos só um site... nós construímos a base digital para sua empresa crescer de forma consistente. Veja como funciona na prática:</p>
+                <span class="hero-tag" style="background: rgba(249, 115, 22, 0.05); border: 1px solid var(--glass-border); color: var(--brand-light);">Metodologia de Elite</span>
+                <h2>O Ecossistema Hub Sumples</h2>
+                <p>Nós não entregamos arquivos. Nós entregamos a base digital que sustenta o crescimento do seu negócio.</p>
             </div>
 
             <div class="method-grid">
-                
                 <div class="method-card">
-                    <span class="method-step">Passo 01</span>
+                    <div class="method-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--brand-main);"><circle cx="12" cy="12" r="10"/><path d="m16 12-4-4-4 4"/><path d="M12 16V8"/></svg></div>
+                    <span class="method-step">01. Posicionamento</span>
                     <h3 class="method-title">💎 Pilar Estratégico</h3>
-                    <p class="method-desc">Antes de construir qualquer coisa, nós garantimos que sua empresa esteja falando a língua certa para atrair o público que realmente tem o poder de compra necessário.</p>
+                    <p class="method-desc">Alinhamos sua fala e oferta para atrair o público que reconhece valor e não questiona preço.</p>
                 </div>
-                
                 <div class="method-card">
-                    <span class="method-step">Passo 02</span>
+                    <div class="method-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--brand-accent);"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg></div>
+                    <span class="method-step">02. Infraestrutura</span>
                     <h3 class="method-title">🏆 Pilar de Autoridade</h3>
-                    <p class="method-desc">Aqui entra a estrutura. Nós construímos uma presença digital e um design que faz a sua empresa parecer líder de mercado, altamente confiável e pronta para fechar negócios.</p>
+                    <p class="method-desc">Design e engenharia premium que fazem sua empresa parecer — e ser — a líder do segmento.</p>
                 </div>
-
                 <div class="method-card">
-                    <span class="method-step">Passo 03</span>
+                    <div class="method-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #FBBF24;"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg></div>
+                    <span class="method-step">03. Visibilidade</span>
                     <h3 class="method-title">🚀 Pilar de Aquisição</h3>
-                    <p class="method-desc">Não adianta ser bom se ninguém te vê. Estruturamos o seu negócio para aparecer direto no Google exatamente para quem já está procurando pelos seus produtos ou serviços.</p>
+                    <p class="method-desc">Colocamos você na frente de quem já está procurando pelo seu serviço hoje, eliminando o desperdício.</p>
                 </div>
-
                 <div class="method-card">
-                    <span class="method-step">Passo 04</span>
+                    <div class="method-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #10B981;"><path d="M12 2v20"/><path d="m17 5-5-3-5 3"/><path d="m17 19-5 3-5-3"/><path d="M2 12h20"/><path d="m5 7-3 5 3 5"/><path d="m19 7 3 5-3 5"/></svg></div>
+                    <span class="method-step">04. Triagem</span>
                     <h3 class="method-title">💰 Pilar de Conversão</h3>
-                    <p class="method-desc">Separamos o curioso do cliente real. Transformamos os visitantes da sua página em contatos qualificados e prontos para comprar, encaminhando-os filtrados para o seu WhatsApp.</p>
+                    <p class="method-desc">Filtramos curiosos e entregamos no seu WhatsApp clientes qualificados e prontos para fechar.</p>
                 </div>
-
                 <div class="method-card">
-                    <span class="method-step">Passo 05</span>
+                    <div class="method-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--brand-main);"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
+                    <span class="method-step">05. Perpetuidade</span>
                     <h3 class="method-title">📈 Pilar de Crescimento</h3>
-                    <p class="method-desc">Nós não entregamos um site e sumimos. Nós continuamos por perto, evoluindo, acompanhando os dados e blindando sua base digital para gerar cada vez mais lucro.</p>
+                    <p class="method-desc">Suporte contínuo para blindar sua autoridade e garantir que seu negócio nunca pare de escalar.</p>
                 </div>
-
             </div>
         </section>
 
         <!-- 5. NOTA PESSOAL (Nosso Compromisso) -->
+        <!-- 5. COMPROMISSO (Modernized) -->
         <section data-aos="fade-up">
-            <div class="founder-note">
-                <div class="founder-header">
-                    <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?fit=crop&w=150&h=150" alt="Fundador" class="founder-img">
+            <div class="founder-note" style="border-radius: 20px; border: 1px solid var(--glass-border); padding: 60px 40px; background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)); position: relative;">
+                <div class="founder-header" style="margin-bottom: 30px;">
+                    <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?fit=crop&w=150&h=150" alt="Diretoria HubSumples" class="founder-img" style="border: 2px solid var(--brand-main); padding: 4px;">
                     <div>
-                        <h3 style="font-size: 1.2rem; color: #FFF;">Nosso compromisso com você.</h3>
-                        <p style="font-size: 0.9rem; margin:0; color: var(--brand-light);">Da diretoria da HubSumples</p>
+                        <h3 style="font-size: 1.3rem; color: #FFF; margin-bottom: 5px;">Nosso compromisso com você.</h3>
+                        <p style="font-size: 0.95rem; margin:0; color: var(--brand-main); font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">Diretoria HubSumples</p>
                     </div>
                 </div>
-                <p>Nós aplicamos o Método Hub Sumples, onde estruturamos desde o posicionamento até a geração de clientes, criando uma base sólida que faz o seu negócio crescer de forma previsível.</p>
-                <p>O nosso único trabalho é pegar todo o suor, qualidade e credibilidade do seu negócio e colocar isso numa plataforma que faça as pessoas te respeitarem e comprarem de você sem questionar o seu preço.</p>
-                <p>Se você quer parar de brigar por migalhas e começar a jogar o jogo grande, escolha um dos planos abaixo. Vai ser uma honra trabalhar lado a lado com a sua operação.</p>
-                <div class="founder-signature">Equipe HubSymples</div>
+                <p style="font-size: 1.15rem; color: #FFF; margin-bottom: 20px; line-height: 1.6;">Não construímos apenas sites. Criamos <strong>barreiras de mercado</strong>. O seu suor merece uma vitrine digital que faça as pessoas te respeitarem antes mesmo do primeiro "olá".</p>
+                <p style="font-size: 1.05rem; color: var(--text-dim); margin-bottom: 30px;">Se você quer parar de brigar por migalhas e começar a jogar o jogo da autoridade real, escolha um dos planos abaixo. Vai ser uma honra blindar sua operação.</p>
+                <div class="founder-signature" style="color: #FFF; font-weight: 800; font-size: 1.2rem; border-top: 1px solid var(--border); padding-top: 20px;">Equipe HubSumples</div>
             </div>
         </section>
 
-        <!-- 6. PREÇOS (De volta a 2 planos - Foco no High Ticket) -->
+        <!-- 6. PREÇOS (Premium SaaS Cards) -->
         <section id="planos" class="pricing-section" data-aos="fade-up">
-            <h2>Construa a sua Base Digital Hoje</h2>
-            <p style="color: var(--text-dim); margin-bottom: 20px;">Escolha o ecossistema ideal para o momento atual do seu negócio.</p>
+            <h2 style="font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 15px;">Construa sua Autoridade Hoje</h2>
+            <p style="color: var(--text-dim); margin-bottom: 40px; font-size: 1.1rem;">Escolha o nível de blindagem ideal para o momento do seu negócio.</p>
 
             <div class="pricing-toggle-wrapper">
-                <span class="toggle-label monthly" style="font-weight:600;" onclick="document.getElementById('billing-toggle').click()">Mensal</span>
+                <span class="toggle-label monthly" style="font-weight:700;">Mensal</span>
                 <label class="switch">
                     <input type="checkbox" id="billing-toggle" checked>
                     <span class="slider"></span>
                 </label>
-                <span class="toggle-label annual" style="font-weight:600;" onclick="document.getElementById('billing-toggle').click()">Anual <span style="background:var(--brand-main); color:#000; font-size:0.7rem; padding:2px 6px; border-radius:10px; margin-left:5px;">Mais Vantajoso</span></span>
+                <span class="toggle-label annual" style="font-weight:700;">Anual <span style="background:var(--brand-main); color:#000; font-size:0.75rem; padding:4px 10px; border-radius:100px; margin-left:8px; font-weight:900;">-15% OFF</span></span>
             </div>
 
             <div class="plans-grid">
-                
                 <!-- Essencial -->
                 <div class="plan-card">
-                    <h3 class="plan-title">Site Premium</h3>
-                    <p class="plan-desc">Presença digital completa e autoridade garantida. Ideal para profissionais e pequenos negócios que querem parar de brigar por preço.</p>
+                    <h3 class="plan-title" style="font-weight: 800;">Site Premium</h3>
+                    <p class="plan-desc">A presença digital completa para quem quer parar de ser ignorado e começar a ser desejado.</p>
                     
-                    <div class="price-box">
+                    <div class="price-box" style="background: rgba(255,255,255,0.02); border: 1px solid var(--border);">
                         <div class="billing-monthly">
-                            <span class="price-amount">R$ 97</span> <span style="color: var(--text-dim);">/mês</span>
-                            <div style="font-size: 0.85rem; color: var(--brand-light); margin-top: 5px;">Taxa de Setup: Grátis</div>
+                            <span class="price-amount">R$ 97</span> <span style="color: var(--text-dim); font-size: 1rem;">/mês</span>
+                            <div style="font-size: 0.85rem; color: var(--brand-accent); margin-top: 8px; font-weight: 700;">Setup: Gratuito</div>
                         </div>
                         <div class="billing-annual">
-                            <span class="price-amount">R$ 989</span> <span style="color: var(--text-dim);">/ano</span>
-                            <div style="color: var(--brand-light); font-size: 0.8rem; font-weight: 600; margin-top: 5px;">Economize 15% pagando à vista</div>
+                            <span class="price-amount">R$ 989</span> <span style="color: var(--text-dim); font-size: 1rem;">/ano</span>
+                            <div style="color: #10B981; font-size: 0.85rem; font-weight: 800; margin-top: 8px;">Economia Real de R$ 175</div>
                         </div>
                     </div>
                     
                     <ul class="plan-features">
-                        <li>Site corporativo de alto padrão.</li>
-                        <li><strong>Subdomínio HubSumples incluso.</strong></li>
-                        <li>Acesso rápido e otimizado (Mobile First).</li>
-                        <li>Botão de WhatsApp Estratégico.</li>
-                        <li>Filtros comerciais e formulários.</li>
-                        <li>Hospedagem segura e suporte técnico.</li>
+                        <li>Site de High-Ticket (Design Premium)</li>
+                        <li>Subdomínio <strong>SuaEmpresa</strong>.hubsumples.com.br</li>
+                        <li>Infraestrutura Mobile-First de Alta Velocidade</li>
+                        <li>WhatsApp Estratégico com Filtro de Triagem</li>
+                        <li>Certificado de Segurança SSL Incluso</li>
+                        <li>Suporte Técnico Prioritário</li>
                     </ul>
                     
-                    <a href="https://api.whatsapp.com/send?phone=5511952924208&text=Olá!%20Quero%20o%20Plano%20Site%20Premium%20de%2097." class="plan-btn" target="_blank">Quero este</a>
+                    <a href="https://api.whatsapp.com/send?phone=5511952924208&text=Olá!%20Quero%20blindar%20meu%20negócio%20com%20o%20Plano%20Site%20Premium." class="btn btn-outline" style="width: 100%; margin-top: auto; border-radius: 100px;">Assinar Estrutura</a>
                 </div>
 
                 <!-- Master -->
                 <div class="plan-card highlight">
-                    <span class="plan-badge">Mais Popular</span>
-                    <h3 class="plan-title">Domínio Master</h3>
-                    <p class="plan-desc">Para empresas que buscam independência total, marca forte e resultados profissionais com domínio próprio.</p>
+                    <div class="plan-badge" style="background: var(--brand-main); color: #FFF; box-shadow: 0 5px 15px rgba(249, 115, 22, 0.4);">Autoridade Máxima</div>
+                    <h3 class="plan-title" style="font-weight: 800;">Domínio Master</h3>
+                    <p class="plan-desc">Independência absoluta para empresas que buscam marca forte e domínio total do próprio mercado.</p>
                     
-                    <div class="price-box">
+                    <div class="price-box" style="background: rgba(249, 115, 22, 0.05); border: 1px solid rgba(249, 115, 22, 0.3);">
                         <div class="billing-monthly">
-                            <span class="price-amount">R$ 150</span> <span style="color: var(--text-dim);">/mês</span>
-                            <div style="font-size: 0.85rem; color: var(--brand-light); margin-top: 5px;">Taxa de Setup: Grátis</div>
+                            <span class="price-amount" style="color: var(--brand-main);">R$ 150</span> <span style="color: var(--text-dim); font-size: 1rem;">/mês</span>
+                            <div style="font-size: 0.85rem; color: var(--brand-accent); margin-top: 8px; font-weight: 700;">Setup: Gratuito</div>
                         </div>
                         <div class="billing-annual">
-                            <span class="price-amount">R$ 1.530</span> <span style="color: var(--text-dim);">/ano</span>
-                            <div style="color: var(--brand-light); font-size: 0.8rem; font-weight: 600; margin-top: 5px;">Economize 15% (2 meses grátis)</div>
+                            <span class="price-amount" style="color: var(--brand-main);">R$ 1.530</span> <span style="color: var(--text-dim); font-size: 1rem;">/ano</span>
+                            <div style="color: #10B981; font-size: 0.85rem; font-weight: 800; margin-top: 8px;">2 Meses Grátis de Blindagem</div>
                         </div>
                     </div>
                     
                     <ul class="plan-features">
-                        <li><strong>Tudo do Plano Site Premium, mais:</strong></li>
-                        <li><strong>Uso de Domínio Próprio (.com.br).</strong></li>
-                        <li>Integração com Google Search Console.</li>
-                        <li>E-mail profissional personalizado.</li>
-                        <li>Prioridade no suporte estratégico.</li>
+                        <li><strong>Tudo do Plano Premium, mais:</strong></li>
+                        <li><strong>Uso de Domínio Próprio (.com.br)</strong></li>
+                        <li>Indexação Avançada no Google (GSC)</li>
+                        <li>E-mail Profissional (@suaempresa.com.br)</li>
+                        <li>Análise de Desempenho Trimestral</li>
+                        <li>Prioridade Máxima no Ecossistema Hub</li>
                     </ul>
                     
-                    <a href="https://api.whatsapp.com/send?phone=5511952924208&text=Olá!%20Quero%20o%20Plano%20Domínio%20Master%20de%20150." class="plan-btn" target="_blank">Quero este</a>
+                    <a href="https://api.whatsapp.com/send?phone=5511952924208&text=Olá!%20Quero%20blindar%20meu%20negócio%20com%20o%20Domínio%20Master." class="btn btn-primary" style="width: 100%; margin-top: auto; border-radius: 100px;">Garantir Domínio Master</a>
                 </div>
-
             </div>
         </section>
 
@@ -697,15 +693,30 @@
     </main>
 
     <!-- 10. FOOTER SIMPLES -->
-    <footer>
-        <div style="font-weight: 800; font-size: 1.2rem; color: #FFF; margin-bottom: 10px;">HubSumples</div>
-        <p>A força comercial que o seu negócio precisa na internet.</p>
-        <div class="footer-links">
-            <a href="#">Termos de Uso</a>
-            <a href="#">Privacidade</a>
-            <a href="mailto:hubsymples@gmail.com">Contato: hubsymples@gmail.com</a>
+    <footer style="background: rgba(0,0,0,0.5); border-top: 1px solid var(--border); padding: 80px 20px 40px; margin-top: 60px;">
+        <div class="nav-container" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 30px;">
+            <div class="logo-container" style="flex-direction: column;">
+                <img src="https://i.imgur.com/WVOsHDW.png" alt="HubSumples Logo" class="logo-img" style="height: 60px;">
+                <span class="logo-text" style="font-size: 2rem;">HubSumples</span>
+            </div>
+            
+            <div style="max-width: 500px; color: var(--text-dim);">
+                A infraestrutura digital de elite que separa você da concorrência e transforma sua empresa em autoridade inquestionável.
+            </div>
+
+            <div class="footer-links" style="gap: 25px; flex-wrap: wrap;">
+                <a href="#planos" style="font-weight: 600;">Planos de Blindagem</a>
+                <a href="#metodo" style="font-weight: 600;">O Método</a>
+                <a href="mailto:hubsymples@gmail.com" style="display: flex; align-items: center; gap: 8px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                    hubsymples@gmail.com
+                </a>
+            </div>
+
+            <p style="opacity: 0.4; font-size: 0.8rem; margin-top: 40px;">
+                © 2024 HubSumples. Todos os direitos reservados. Design & Estratégia por HubSumples Digital Authority.
+            </p>
         </div>
-        <p style="margin-top: 30px; opacity: 0.5;">© 2024 HubSymples. Todos os direitos reservados.</p>
     </footer>
 
     <!-- SCRIPTS -->
