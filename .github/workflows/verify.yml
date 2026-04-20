@@ -11,9 +11,40 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: HTML Validation
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install HTMLHint
+        run: npm install -g htmlhint
+
+      - name: HTML Syntax Lint (HTMLHint)
         run: |
-          # A simple check to ensure index.html exists and contains essential tags
+          htmlhint index.html --rules "tag-pair,tagname-lowercase,attr-value-double-quotes,id-unique,src-not-empty,attr-no-duplication,id-class-ad-disabled"
+
+      - name: Structural Integrity Checks
+        run: |
+          echo "Checking for essential closed tags..."
+          grep -F "</html>" index.html
+          grep -F "</body>" index.html
+          grep -F "</head>" index.html
+          grep -F "</style>" index.html
           grep -q "<!DOCTYPE html>" index.html
+          
+          echo "Checking for malformed comments..."
+          # Ensures no '<!--' is left without '-->' on the same block (basic check)
+          # We check if the number of opens matches the number of closes roughly
+          OPENS=$(grep -o "<!--" index.html | wc -l)
+          CLOSES=$(grep -o "-->" index.html | wc -l)
+          if [ "$OPENS" -ne "$CLOSES" ]; then
+            echo "Error: Unmatched HTML comment tags ($OPENS opens, $CLOSES closes)"
+            exit 1
+          fi
+
+      - name: Brand and Content Verification
+        run: |
           grep -q "HubSumples" index.html
-          grep -q "Metodo Hub Sumples" index.html || grep -q "Método Hub Sumples" index.html
+          grep -q "Método Hub Sumples" index.html
+          grep -q "Hero" index.html
