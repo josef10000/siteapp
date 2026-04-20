@@ -36,8 +36,8 @@ jobs:
           echo "Checking for malformed comments..."
           # Ensures no '<!--' is left without '-->' on the same block (basic check)
           # We check if the number of opens matches the number of closes roughly
-          OPENS=$(grep -o "<!--" index.html | wc -l)
-          CLOSES=$(grep -o "-->" index.html | wc -l)
+          OPENS=$(grep -o -- "<!--" index.html | wc -l)
+          CLOSES=$(grep -o -- "-->" index.html | wc -l)
           if [ "$OPENS" -ne "$CLOSES" ]; then
             echo "Error: Unmatched HTML comment tags ($OPENS opens, $CLOSES closes)"
             exit 1
